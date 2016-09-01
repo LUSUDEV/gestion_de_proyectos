@@ -1,0 +1,860 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data noupdate="1">
+    
+    <!--
+    data_tipo_vehiculo
+-->
+    
+        <record id="monto_minimo_uso_vehiculo_acuatico_aereo" model="ept_cp.montos_minimos_vehiculo_uso">
+            <field name="uso">Acuático y Aéreo</field>
+        </record>
+        <record id="monto_minimo_uso_vehiculo_automovil" model="ept_cp.montos_minimos_vehiculo_uso">
+            <field name="uso">Automóviles</field>
+        </record>
+        <record id="monto_minimo_uso_vehiculo_carga" model="ept_cp.montos_minimos_vehiculo_uso">
+            <field name="uso">Carga</field>
+        </record>
+        <record id="monto_minimo_uso_vehiculo_especiales" model="ept_cp.montos_minimos_vehiculo_uso">
+            <field name="uso">Especiales</field>
+        </record>
+        <record id="monto_minimo_uso_vehiculo_motocicleta" model="ept_cp.montos_minimos_vehiculo_uso">
+            <field name="uso">Motocicleta</field>
+        </record>
+        <record id="monto_minimo_uso_vehiculo_no_motorizado" model="ept_cp.montos_minimos_vehiculo_uso">
+            <field name="uso">No motorizado</field>
+        </record>
+        <record id="monto_minimo_uso_vehiculo_rustico" model="ept_cp.montos_minimos_vehiculo_uso">
+            <field name="uso">Rustico</field>
+        </record>
+        <record id="monto_minimo_uso_vehiculo_servicio" model="ept_cp.montos_minimos_vehiculo_uso">
+            <field name="uso">Servicio</field>
+        </record>
+        <record id="monto_minimo_uso_vehiculo_transporte_publico" model="ept_cp.montos_minimos_vehiculo_uso">
+            <field name="uso">Transporte Público</field>
+        </record>
+    
+    
+        
+<!--
+    datos_caracteristicas_vehiculo
+-->
+    
+        <record id="monto_minimo_caracteristica_vehiculo_aeronave" model="ept_cp.montos_minimos_vehiculo_caracteristicas">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_acuatico_aereo"/>
+            <field name="caracteristicas">Aeronave</field>
+        </record>
+        <record id="monto_minimo_caracteristica_vehiculo_ambulancia_fluvial" model="ept_cp.montos_minimos_vehiculo_caracteristicas">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_acuatico_aereo"/>
+            <field name="caracteristicas">Ambulancia Fluvial</field>
+        </record>
+        <record id="monto_minimo_caracteristica_vehiculo_patrulla_fluvial" model="ept_cp.montos_minimos_vehiculo_caracteristicas">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_acuatico_aereo"/>
+            <field name="caracteristicas">Patrulla Fluvial</field>
+        </record>
+        <record id="monto_minimo_caracteristica_vehiculo_embarcaciones" model="ept_cp.montos_minimos_vehiculo_caracteristicas">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_acuatico_aereo"/>
+            <field name="caracteristicas">Embarcaciones</field>
+        </record>
+        <record id="monto_minimo_caracteristica_vehiculo_carro" model="ept_cp.montos_minimos_vehiculo_caracteristicas">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_automovil"/>
+            <field name="caracteristicas">Carro</field>
+        </record>
+        <record id="monto_minimo_caracteristica_vehiculo_camioneta" model="ept_cp.montos_minimos_vehiculo_caracteristicas">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_automovil"/>
+            <field name="caracteristicas">Camioneta</field>
+        </record>
+        <record id="monto_minimo_caracteristica_vehiculo_camioneta_pickup" model="ept_cp.montos_minimos_vehiculo_caracteristicas">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_automovil"/>
+            <field name="caracteristicas">Camioneta - Pickup</field>
+        </record>
+        <record id="monto_minimo_caracteristica_vehiculo_camion_plataforma" model="ept_cp.montos_minimos_vehiculo_caracteristicas">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_carga"/>
+            <field name="caracteristicas">Camión de Plataforma</field>
+        </record>
+        <record id="monto_minimo_caracteristica_vehiculo_camion_refrigeracion" model="ept_cp.montos_minimos_vehiculo_caracteristicas">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_carga"/>
+            <field name="caracteristicas">Camión de Refrigeración (Cava)</field>
+        </record>
+        <record id="monto_minimo_caracteristica_vehiculo_camion_volteo" model="ept_cp.montos_minimos_vehiculo_caracteristicas">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_carga"/>
+            <field name="caracteristicas">Camión Volteo</field>
+        </record>
+        <record id="monto_minimo_caracteristica_vehiculo_camion_cisterna" model="ept_cp.montos_minimos_vehiculo_caracteristicas">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_carga"/>
+            <field name="caracteristicas">Camión Cisterna</field>
+        </record>
+        <record id="monto_minimo_caracteristica_vehiculo_camion_remolque" model="ept_cp.montos_minimos_vehiculo_caracteristicas">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_carga"/>
+            <field name="caracteristicas">Camión de Remolque</field>
+        </record>
+        <record id="monto_minimo_caracteristica_vehiculo_unidad_movil" model="ept_cp.montos_minimos_vehiculo_caracteristicas">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas">Unidad Móvil de Especialidades Médicas</field>
+        </record>
+        <record id="monto_minimo_caracteristica_vehiculo_medicatura_forense" model="ept_cp.montos_minimos_vehiculo_caracteristicas">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas">Medicatura Forense</field>
+        </record>
+        <record id="monto_minimo_caracteristica_vehiculo_telecomunicaciones" model="ept_cp.montos_minimos_vehiculo_caracteristicas">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas">Telecomunicaciones</field>
+        </record>
+        <record id="monto_minimo_caracteristica_vehiculo_patrulla" model="ept_cp.montos_minimos_vehiculo_caracteristicas">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas">Patrulla</field>
+        </record>
+        <record id="monto_minimo_caracteristica_vehiculo_bomberos" model="ept_cp.montos_minimos_vehiculo_caracteristicas">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas">Bomberos</field>
+        </record>
+        <record id="monto_minimo_caracteristica_vehiculo_rescate" model="ept_cp.montos_minimos_vehiculo_caracteristicas">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas">Rescate</field>
+        </record>
+        <record id="monto_minimo_caracteristica_vehiculo_ambulancias" model="ept_cp.montos_minimos_vehiculo_caracteristicas">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas">Ambulancias</field>
+        </record>
+        <record id="monto_minimo_caracteristica_vehiculo_todo_terreno" model="ept_cp.montos_minimos_vehiculo_caracteristicas">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_motocicleta"/>
+            <field name="caracteristicas">Todo Terreno</field>
+        </record>
+        <record id="monto_minimo_caracteristica_vehiculo_paseo" model="ept_cp.montos_minimos_vehiculo_caracteristicas">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_motocicleta"/>
+            <field name="caracteristicas">Paseo</field>
+        </record>
+        <record id="monto_minimo_caracteristica_vehiculo_bicicleta" model="ept_cp.montos_minimos_vehiculo_caracteristicas">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_no_motorizado"/>
+            <field name="caracteristicas">Bicicleta</field>
+        </record>
+        <record id="monto_minimo_caracteristica_vehiculo_chasis_largo" model="ept_cp.montos_minimos_vehiculo_caracteristicas">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_rustico"/>
+            <field name="caracteristicas">Chasis Largo</field>
+        </record>
+        <record id="monto_minimo_caracteristica_vehiculo_chasis_corto" model="ept_cp.montos_minimos_vehiculo_caracteristicas">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_rustico"/>
+            <field name="caracteristicas">Chasis Corto</field>
+        </record>
+        <record id="monto_minimo_caracteristica_vehiculo_succion_vacio" model="ept_cp.montos_minimos_vehiculo_caracteristicas">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_servicio"/>
+            <field name="caracteristicas">Succión al Vacio (Vacuum)</field>
+        </record>
+        <record id="monto_minimo_caracteristica_vehiculo_succion_vacio_expulsion" model="ept_cp.montos_minimos_vehiculo_caracteristicas">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_servicio"/>
+            <field name="caracteristicas">Succión al Vacio y Expulsión a presión (Vactor)</field>
+        </record>
+        <record id="monto_minimo_caracteristica_vehiculo_camion_cesta" model="ept_cp.montos_minimos_vehiculo_caracteristicas">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas">Camión Cesta</field>
+        </record>
+        <record id="monto_minimo_caracteristica_vehiculo_barredora_vial" model="ept_cp.montos_minimos_vehiculo_caracteristicas">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_servicio"/>
+            <field name="caracteristicas">Barredora Vial</field>
+        </record>
+        <record id="monto_minimo_caracteristica_vehiculo_camion_mesclador" model="ept_cp.montos_minimos_vehiculo_caracteristicas">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_servicio"/>
+            <field name="caracteristicas">Camión Mezclador (Hormigón)</field>
+        </record>
+        <record id="monto_minimo_caracteristica_vehiculo_camion_grupo" model="ept_cp.montos_minimos_vehiculo_caracteristicas">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_servicio"/>
+            <field name="caracteristicas">Camión Grúa</field>
+        </record>
+        <record id="monto_minimo_caracteristica_vehiculo_compactadores_basura" model="ept_cp.montos_minimos_vehiculo_caracteristicas">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_servicio"/>
+            <field name="caracteristicas">Compactadores de Basura</field>
+        </record>
+        <record id="monto_minimo_caracteristica_vehiculo_urbano" model="ept_cp.montos_minimos_vehiculo_caracteristicas">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_transporte_publico"/>
+            <field name="caracteristicas">Urbano</field>
+        </record>
+        <record id="monto_minimo_caracteristica_vehiculo_inter_urbano" model="ept_cp.montos_minimos_vehiculo_caracteristicas">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_transporte_publico"/>
+            <field name="caracteristicas">Inter-Urbano</field>
+        </record>
+        <record id="monto_minimo_caracteristica_vehiculo_rural" model="ept_cp.montos_minimos_vehiculo_caracteristicas">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_transporte_publico"/>
+            <field name="caracteristicas">Rural</field>
+        </record>
+    
+    
+<!--
+    datos_tipo_vehiculo
+-->
+    <record id="monto_minimo_tipo_vehiculo_aeronave" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_acuatico_aereo"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_aeronave"/>
+            <field name="tipo">No Aplica</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_ambulancia_fluvial" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_acuatico_aereo"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_ambulancia_fluvial"/>
+            <field name="tipo">No Aplica</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_patrulla_fluvial" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_acuatico_aereo"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_patrulla_fluvial"/>
+            <field name="tipo">No Aplica</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_embarcaciones_bongo" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_acuatico_aereo"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_embarcaciones"/>
+            <field name="tipo">Bongo</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_embarcaciones_bote" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_acuatico_aereo"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_embarcaciones"/>
+            <field name="tipo">Bote</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_embarcaciones_lancha" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_acuatico_aereo"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_embarcaciones"/>
+            <field name="tipo">Lancha</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_5_puestos" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_automovil"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_carro"/>
+            <field name="tipo">5 Puestos</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_7_puestos" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_automovil"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camioneta"/>
+            <field name="tipo">7 Puestos</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_cabina_sencilla" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_automovil"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camioneta_pickup"/>
+            <field name="tipo">Cabina sencilla</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_cabina_doble" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_automovil"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camioneta_pickup"/>
+            <field name="tipo">Doble cabina</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_plataforma" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_carga"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camion_plataforma"/>
+            <field name="tipo">0 Kg a 3.499 Kg</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_plataforma_2" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_carga"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camion_plataforma"/>
+            <field name="tipo">3.500 Kg a 7.999 Kg</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_plataforma_3" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_carga"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camion_plataforma"/>
+            <field name="tipo">8.000 Kg a 15.999 Kg</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_refrigeracion" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_carga"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camion_refrigeracion"/>
+            <field name="tipo">0 Kg a 3.499 Kg</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_refrigeracion_2" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_carga"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camion_refrigeracion"/>
+            <field name="tipo">3.500 Kg a 7.999 Kg</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_volteo" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_carga"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camion_volteo"/>
+            <field name="tipo">0 Kg a 3.499 Kg</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_volteo_2" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_carga"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camion_volteo"/>
+            <field name="tipo">3.500 Kg a 7.999 Kg</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_volteo_3" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_carga"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camion_volteo"/>
+            <field name="tipo">8.000 Kg a 15.999 Kg</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_cisterna" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_carga"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camion_cisterna"/>
+            <field name="tipo">0 Kg a 3.499 Kg</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_cisterna_2" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_carga"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camion_cisterna"/>
+            <field name="tipo">3.500 Kg a 7.999 Kg</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_cisterna_3" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_carga"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camion_cisterna"/>
+            <field name="tipo">8.000 Kg a 15.999 Kg</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_remolque" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_carga"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camion_remolque"/>
+            <field name="tipo">16.000 Kg a 35.000 Kg</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_unidad_movil" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_unidad_movil"/>
+            <field name="tipo">No Aplica</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_medicatura_forense" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_medicatura_forense"/>
+            <field name="tipo">No Aplica</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_audiovisual_radio" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_telecomunicaciones"/>
+            <field name="tipo">Audiovisual y Radio</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_enlace_satelite" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_telecomunicaciones"/>
+            <field name="tipo">Enlace Satélite</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_patrulla_automovil" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_patrulla"/>
+            <field name="tipo">Automóvil</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_patrulla_camioneta" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_patrulla"/>
+            <field name="tipo">Camioneta</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_patrulla_rustico" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_patrulla"/>
+            <field name="tipo">Rustico</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_bomba" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_bomberos"/>
+            <field name="tipo">Camión Bomba</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_cisterna" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_bomberos"/>
+            <field name="tipo">Camión Cisterna</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_escalera" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_bomberos"/>
+            <field name="tipo">Camión Escalera</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_forestal" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_bomberos"/>
+            <field name="tipo">Camión Forestal</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_unidad_materiales_peligrosos" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_bomberos"/>
+            <field name="tipo">Unidad de Materiales Peligrosos</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_unidad_rescate" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_bomberos"/>
+            <field name="tipo">Unidad de Rescate</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_rescate_rustico" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_rescate"/>
+            <field name="tipo">Rustico</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_ambulancias_tipo_i" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_ambulancias"/>
+            <field name="tipo">Tipo I</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_ambulancias_tipo_ii" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_ambulancias"/>
+            <field name="tipo">Tipo II</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_ambulancias_tipo_iii" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_ambulancias"/>
+            <field name="tipo">Tipo III</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_todo_terreno" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_motocicleta"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_todo_terreno"/>
+            <field name="tipo">No Aplica</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_paseo" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_motocicleta"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_paseo"/>
+            <field name="tipo">No Aplica</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_bicicleta" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_no_motorizado"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_bicicleta"/>
+            <field name="tipo">No Aplica</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_chasis_largo" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_rustico"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_chasis_largo"/>
+            <field name="tipo">No Aplica</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_chasis_corto" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_rustico"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_chasis_corto"/>
+            <field name="tipo">No Aplica</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_succion_vacio" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_servicio"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_succion_vacio"/>
+            <field name="tipo">No Aplica</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_succion_vacio_expulsion" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_servicio"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_succion_vacio_expulsion"/>
+            <field name="tipo">No Aplica</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_cesta" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camion_cesta"/>
+            <field name="tipo">No Aplica</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_barredora_vial" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_servicio"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_barredora_vial"/>
+            <field name="tipo">No Aplica</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_mesclador" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_servicio"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camion_mesclador"/>
+            <field name="tipo">No Aplica</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_grupo" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_servicio"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camion_grupo"/>
+            <field name="tipo">0 Kg a 3.499 Kg</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_grupo_2" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_servicio"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camion_grupo"/>
+            <field name="tipo">3.500 Kg a 7.999 Kg</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_grupo_3" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_servicio"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camion_grupo"/>
+            <field name="tipo">8.000 Kg a 15.999 Kg</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_compactadores_basura" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_servicio"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_compactadores_basura"/>
+            <field name="tipo">20 Yardas</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_compactadores_basura_2" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_servicio"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_compactadores_basura"/>
+            <field name="tipo">25 Yardas</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_compactadores_basura_3" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_servicio"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_compactadores_basura"/>
+            <field name="tipo">40 Yardas</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_compactadores_basura_4" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_servicio"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_compactadores_basura"/>
+            <field name="tipo">8 Yardas</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_urbano_autobuses" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_transporte_publico"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_urbano"/>
+            <field name="tipo">Autobuses</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_urbano_minibuses" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_transporte_publico"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_urbano"/>
+            <field name="tipo">Minibuses</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_inter_urbano_autobuses" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_transporte_publico"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_inter_urbano"/>
+            <field name="tipo">Autobuses</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_rural_rustico" model="ept_cp.montos_minimos_vehiculo_tipo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_transporte_publico"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_rural"/>
+            <field name="tipo">Rustico</field>
+        </record>
+
+    
+    
+    
+    
+<!--
+    datos monto minimos vehiculo
+-->
+    
+        <record id="monto_minimo_tipo_vehiculo_aeronave_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_acuatico_aereo"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_aeronave"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_aeronave"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_ambulancia_fluvial_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_acuatico_aereo"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_ambulancia_fluvial"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_ambulancia_fluvial"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_patrulla_fluvial_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_acuatico_aereo"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_patrulla_fluvial"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_patrulla_fluvial"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_embarcaciones_bongo_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_acuatico_aereo"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_embarcaciones"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_embarcaciones_bongo"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_embarcaciones_bote_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_acuatico_aereo"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_embarcaciones"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_embarcaciones_bote"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_embarcaciones_lancha_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_acuatico_aereo"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_embarcaciones"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_embarcaciones_lancha"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_5_puestos_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_automovil"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_carro"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_5_puestos"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_7_puestos_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_automovil"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camioneta"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_7_puestos"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_cabina_sencilla_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_automovil"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camioneta_pickup"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_cabina_sencilla"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_cabina_doble_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_automovil"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camioneta_pickup"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_cabina_doble"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_plataforma_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_carga"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camion_plataforma"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_camion_plataforma"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_plataforma_2_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_carga"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camion_plataforma"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_camion_plataforma_2"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_plataforma_3_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_carga"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camion_plataforma"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_camion_plataforma_3"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_refrigeracion_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_carga"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camion_refrigeracion"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_camion_refrigeracion"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_refrigeracion_2_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_carga"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camion_refrigeracion"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_camion_refrigeracion_2"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_volteo_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_carga"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camion_volteo"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_camion_volteo"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_volteo_2_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_carga"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camion_volteo"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_camion_volteo_2"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_volteo_3_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_carga"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camion_volteo"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_camion_volteo_3"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_cisterna_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_carga"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camion_cisterna"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_camion_cisterna"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_cisterna_2_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_carga"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camion_cisterna"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_camion_cisterna_2"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_cisterna_3_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_carga"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camion_cisterna"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_camion_cisterna_3"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_remolque_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_carga"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camion_remolque"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_camion_remolque"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_unidad_movil_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_unidad_movil"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_unidad_movil"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_medicatura_forense_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_medicatura_forense"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_medicatura_forense"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_audiovisual_radio_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_telecomunicaciones"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_audiovisual_radio"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_enlace_satelite_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_telecomunicaciones"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_enlace_satelite"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_patrulla_automovil_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_patrulla"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_patrulla_automovil"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_patrulla_camioneta_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_patrulla"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_patrulla_camioneta"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_patrulla_rustico_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_patrulla"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_patrulla_rustico"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_bomba_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_bomberos"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_camion_bomba"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_cisterna_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_bomberos"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_camion_cisterna"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_escalera_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_bomberos"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_camion_escalera"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_forestal_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_bomberos"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_camion_forestal"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_unidad_materiales_peligrosos_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_bomberos"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_unidad_materiales_peligrosos"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_unidad_rescate_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_bomberos"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_unidad_rescate"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_rescate_rustico_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_rescate"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_rescate_rustico"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_ambulancias_tipo_i_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_ambulancias"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_ambulancias_tipo_i"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_ambulancias_tipo_ii_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_ambulancias"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_ambulancias_tipo_ii"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_ambulancias_tipo_iii_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_ambulancias"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_ambulancias_tipo_iii"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_todo_terreno_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_motocicleta"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_todo_terreno"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_todo_terreno"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_paseo_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_motocicleta"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_paseo"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_paseo"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_bicicleta_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_no_motorizado"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_bicicleta"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_bicicleta"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_chasis_largo_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_rustico"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_chasis_largo"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_chasis_largo"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_chasis_corto_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_rustico"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_chasis_corto"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_chasis_corto"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_succion_vacio_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_servicio"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_succion_vacio"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_succion_vacio"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_succion_vacio_expulsion_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_servicio"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_succion_vacio_expulsion"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_succion_vacio_expulsion"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_cesta_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_especiales"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camion_cesta"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_camion_cesta"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_barredora_vial_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_servicio"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_barredora_vial"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_barredora_vial"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_mesclador_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_servicio"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camion_mesclador"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_camion_mesclador"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_grupo_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_servicio"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camion_grupo"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_camion_grupo"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_grupo_2_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_servicio"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camion_grupo"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_camion_grupo_2"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_camion_grupo_3_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_servicio"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_camion_grupo"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_camion_grupo_3"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_compactadores_basura_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_servicio"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_compactadores_basura"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_compactadores_basura"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_compactadores_basura_2_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_servicio"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_compactadores_basura"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_compactadores_basura_2"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_compactadores_basura_3_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_servicio"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_compactadores_basura"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_compactadores_basura_3"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_compactadores_basura_4_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_servicio"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_compactadores_basura"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_compactadores_basura_4"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_urbano_autobuses_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_transporte_publico"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_urbano"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_urbano_autobuses"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_urbano_minibuses_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_transporte_publico"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_urbano"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_urbano_minibuses"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_inter_urbano_autobuses_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_transporte_publico"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_inter_urbano"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_inter_urbano_autobuses"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_tipo_vehiculo_rural_rustico_final" model="ept_cp.montos_minimos_vehiculo">
+            <field name="uso_id" ref="monto_minimo_uso_vehiculo_transporte_publico"/>
+            <field name="caracteristicas_id" ref="monto_minimo_caracteristica_vehiculo_rural"/>
+            <field name="tipo_id" ref="monto_minimo_tipo_vehiculo_rural_rustico"/>
+            <field name="monto_minimo">1000000</field>
+        </record>
+    
+
+    
+
+    
+
+</data>
+</openerp>

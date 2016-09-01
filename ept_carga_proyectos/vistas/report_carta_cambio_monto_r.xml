@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+
+
+
+<template id="ept_carga_proyectos.cambio_monto_proyecto_qweb"> 
+                 <t t-call="ept_valoracion.external_layout_ept">
+                     <link rel="stylesheet" type="text/css" href="/ept_valoracion/static/src/css/ept_val_reporte.css"/>
+                <div class="page">
+                     <p >RIF: G-20009542-3</p>
+                    <t t-esc="data['correlativo']"></t>
+                    <div class="row">
+                        <div class="col-xs-9">
+                            <p><h5>Ciudadano(a) <strong><t t-esc="data['nombre']"></t></strong><br/>
+                            <t t-esc="data['titulo']"/> <t t-esc="data['entidad']"/><br/>
+                            Su Despacho.-</h5></p>
+                        </div>
+                         <div class="col-xs-offset-3">
+                             <p >Caracas, <t t-esc="data['hoy']"/></p>
+                         </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-xs-10 col-xs-offset-1">
+                            <p align="justify">Tengo el agrado de dirigirme a usted, en la oportunidad de extenderle un cordial saludo y a su vez, hacer de su conocimiento que la solicitud de <strong>Cambio de Monto</strong> del proyecto  <t t-esc="data['proyecto_data']['correlativo']"/> <t t-esc="data['proyecto_data']['nombre_proyecto']"/> de BS. <t t-esc="data['monto_viejo']"/> por BS. <t t-esc="data['monto_nuevo']"/>, fue aprobada. </p>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div class="row">
+                        <div class="col-xs-10 col-xs-offset-1">
+                            <p>Sin ningún otro particular al cual hacer referencia, queda de usted,</p>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div class="row">
+                        <div class="col-xs-10 col-xs-offset-1" >
+                            <p align="center">Atentamente,</p>
+                        </div>
+                    </div>
+                </div>
+                 </t>
+    </template>
+    
+    
+
+
+</data>
+</openerp>

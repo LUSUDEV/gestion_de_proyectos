@@ -1,0 +1,266 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+<template id="website_apiform" inherit_id="website.assets_frontend" name="website_apiform">
+    <xpath expr="/t" position="inside">
+            <script type="text/javascript" src="/ept_usuarios/static/src/js/users.js"></script>
+    </xpath>
+</template>
+<!--
+template del modal para eliminar 
+-->
+<template id="ept_usuarios.modal_eliminar" name="template para eliminar usuario">
+    <div class="modal fade" id="modal-switch" role="dialog" aria-labelledby="AJAXErrorModal" aria-hidden="true" >
+            <div class="modal-dialog">
+                <div class="modal-content ">
+                    <div class="modal-header alert alert-info">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&amp;times;</button>
+                        <h4 class="modal-title titulo " >Eliminar Usuario</h4>
+                    </div>
+                    <div class="modal-body cuerpo alert alert-danger" ><p>Una vez que usted elimine al Sr(a)
+                        <t t-esc="user['name']"/>. no podra volverlo a crear.</p> 
+                        <p>Si luego desea volverlo a crear, deverá solicitarlo al Coordinador de la  URE.</p>
+                        <br/>
+                        <form t-att-id="user['id']"  action="/usuario/eliminar">
+                        <input type="hidden" name="iduser"  t-att-value="user['id']" />
+                    <button
+                        t-att-iduser="user['id']"
+                        type="button"
+                        class="btn btn-danger js_eliminar_user" >
+                        Acepto Eliminar a: <t t-esc="user['name']"/>
+                        </button>
+                    </form>
+                    </div>
+                    <div class="modal-footer "><span class="pie"></span><button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button></div>
+                </div>
+            </div>
+        </div>
+</template>
+<!--
+template recorrer los usuarios
+-->
+
+<template id="ept_usuarios.recorrido" name="recorrido de usuarios" >
+    <table class="table table-bordered table-striped mt32">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Útima conexión</th>
+                <th>Perfil</th>
+<!--
+                <th>Activo</th>
+-->
+                <th ><span class="glyphicon glyphicon-wrench">...</span></th>
+            </tr>
+        </thead>
+        <tbody>
+            <t t-set="cont" t-value="0" />
+            <t t-foreach="users_data" t-as="user">
+                 
+                   <tr class="active" >
+                    <td ><t t-esc="cont+1"/></td>
+                    <t t-set="cont" t-value="cont+1" />
+                    <td ><a t-att-href="url_for('/usuarios/%s/' % user['id'])" ><t t-esc="user['name']"/></a></td>
+                    <td ><t t-esc="user['login']"/></td>
+                    <td ><t t-esc="user['login_date']"/></td>
+                    <td >
+                        <t t-set='group_name' t-value="groups_user(user['groups_id'])" />
+                         <div t-esc="group_name" ></div>
+                    </td>
+
+                    <td>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary "><span class="glyphicon glyphicon-cog" /></button>
+                              <button type="button" class="btn btn-primary dropdown-toggle"
+                                      data-toggle="dropdown">
+                                <span class="caret"></span>
+                                <span class="sr-only">Desplegar menú</span>
+                              </button>
+                              <ul class="dropdown-menu" role="menu">
+                                <li>
+                                <t t-if="user['activo']" >
+                        <input 
+                                type="checkbox" 
+                                checked="True"
+                                destino='/usuarios/active'
+                                auto_envio='1'
+                                data-on-text="Activo" 
+                                data-off-text="Inactivo" 
+                                t-att-value="user['id']"
+                                data-on-color="info"
+                                data-off-color="danger"
+                                 />
+                    </t>
+                  <t t-if="user['activo']==False" >
+                        <input 
+                                type="checkbox" 
+                                class="js_active" 
+                                name="my-active"
+                                auto_envio='1'
+                                destino='/usuarios/active'
+                                data-on-text="Activo" 
+                                data-off-text="Inactivo"
+                                t-att-value="user['id']"
+                                data-off-color="danger"
+                                  />
+                    </t><span t-att-class="'js_mycontext%s' % (user['id']) "></span>
+                    </li>
+                    <li class="divider"></li>
+                    
+                    <t t-if="group_name!=not_groups_name[0]+'\n'">
+                    <li align='center'>
+                            <button data-toggle="modal" data-target="#modal-switch" class="btn btn-danger">Eliminar Usuario</button>
+                    </li>
+                    </t>
+                                
+                              </ul>
+                        </div>
+                    </td>
+                </tr>
+                <t t-call="ept_usuarios.modal_eliminar"></t>
+           </t>
+            
+        </tbody>
+    </table>
+
+</template>
+
+
+<template id="ept_usuarios.users_create"  name="ejemplo formulario">
+     
+        <div class="form-group ">
+            <div class="form-group col-xs-3">
+                <input type="file" id="image1"  class="img-responsive" name="image"  widget="apiform_image" />
+            </div>
+    <!--
+            nombre
+    -->                                 
+             <div class="form-group">
+                 <label>Nombre</label>
+             <div class="input-group col-xs-9">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                <input
+                            type="text"
+                            class="form-control input-lg"
+                            id="nombreusers"
+                            name="name"
+                            placeholder="Nombre"
+                            title="Nombre con el que el usuario estará definido en el sistema"
+                            required="true"/>
+            </div>
+             </div>
+            
+    <!--
+            email
+    -->                                 
+            <div class="form-group">
+
+                <label>Email</label>
+            <div class="input-group col-xs-9">
+                <span class="input-group-addon">@</span>
+                <input
+                        type="email"
+                        class="form-control input-lg"
+                        id="inputEmail"
+                        name="email"
+                        required="required"
+                        title="Este correo electrónico es el que utilizara el usuario para acceder al sistema. al mismo le llegara automáticamente una invitación para crear la contraseña de acceso, una vez finalizado el registro."
+                        placeholder="Email" />
+                
+            </div>
+            </div>
+            
+            
+            <div class="form-group">
+             <table class="table table-bordered table-striped mt32">
+                    <thead >
+                        <tr>
+                            <th colspan="2" >Rol del Usuario</th>
+                        </tr>
+                    </thead>
+                     <tbody>
+                         <t t-foreach="groups_data" t-as="groups">
+                            <tr class="active">
+                            <td ><t t-esc="groups[1]"/></td>
+                            <td ><input
+                                                type="checkbox"
+                                                value="True"
+                                                t-attf-name="in_group_#{groups[0]}"
+                                                 title="Si usted pulsa este botón le estas concediendo los permisos referente a este perfil a este usuario."
+                                                /></td>
+                            </tr>
+                         </t>
+                                
+                     </tbody>
+                </table>
+            
+            </div>
+
+        </div>
+</template>
+
+<template id="ept_usuarios.users_edit"  name="ejemplo formulario">
+     
+        <div class="form-group ">
+            <div class="form-group col-xs-3">
+                <input type="file" id="image1"  class="img-responsive" t-att-src="users_data.image" name="image"  widget="apiform_image" />
+            </div>
+    <!--
+            nombre
+    -->                                 
+             <div class="form-group">
+                 <label>Nombre</label>
+                <h2><span t-field='users_data.name' /></h2>
+                <input type="hidden"  id="userid" name="iduser"  t-att-value="users_data.id" />
+
+             </div>
+            
+    <!--
+            email
+    -->                                 
+                <div class="form-group">
+
+                    <label>Email</label>
+                <div class="input-group col-xs-9">
+                    <span class="input-group-addon">@</span>
+                    <input
+                            type="email"
+                            class="form-control input-lg"
+                            id="inputEmail"
+                            name="email"
+                            required="required"
+                            t-att-value="users_data.email"
+                            title="Este correo electrónico es el que él usuario utiliza para acceder  al sistema. Si el correo era incorrecto deberá solicitar un envío de restablecimiento de contraseña a la URE."
+                            placeholder="Email" />
+                    <input type="hidden"  id="inputEmail2" name="email2"  t-att-value="users_data.email" />
+                </div>
+                </div>
+                
+                
+                <div class="form-group">
+                 <table class="table table-bordered table-striped mt32">
+                        <thead >
+                            <tr>
+                                <th colspan="2" >Rol del Usuario</th>
+                            </tr>
+                        </thead>
+                         <tbody>
+                            <t t-foreach="groups_union" t-as="groups">
+                                <tr class="active">
+                                    <td ><t t-esc="groups[1]"/></td>
+                                    <td ><input type="checkbox" value="True" t-att-checked="groups[2]" t-attf-name="in_group_#{groups[0]}"  /></td>
+                                </tr>
+                            </t>
+                         </tbody>
+                    </table>
+                
+                </div>
+
+        </div>
+</template>
+
+
+ </data>
+</openerp>

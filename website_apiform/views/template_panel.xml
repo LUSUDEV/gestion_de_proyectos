@@ -1,0 +1,202 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+<template id="website_apiform.modal" name="ajax_error">
+    <div class="modal fade" id="AJAX_Modal" role="dialog" aria-labelledby="AJAXErrorModal" aria-hidden="true" >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&amp;times;</button>
+                        <h4 class="modal-title titulo" ></h4>
+                    </div>
+                    <div class="modal-body cuerpo"></div>
+                    <div class="modal-footer "><span class="pie"></span><button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button></div>
+                </div>
+            </div>
+        </div>
+</template>
+<template id="website_apiform.modal_sinBoton" name="ajax_error">
+    <div class="modal fade" id="Modal_sin_botton" role="dialog" data-keyboard="false" data-backdrop="static" aria-labelledby="AJAXErrorModal" aria-hidden="true" >
+            <div class="modal-dialog" width="75%">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title titulo" ></h4>
+                    </div>
+                    <div class="modal-body cuerpo"></div>
+                    <div class="modal-footer piemodal">
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+</template>
+<template id="website_apiform.ajax_error" name="ajax_error">
+    <div class="modal fade" id="AJAXErrorModal" role="dialog" aria-labelledby="AJAXErrorModal" aria-hidden="true" >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&amp;times;</button>
+                        <h4 class="modal-title">Disculpe ha ocurrido un problema</h4>
+                    </div>
+                    <div class="modal-body"><p>Algo salió mal en el servidor. <strong class="text-danger">El cambio probablemente no se realizo,.</strong> Pulse F5 ó recarge la pagina</p></div>
+                    <div class="modal-body" id="error_server"></div>
+                    <div class="modal-footer"><button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button></div>
+                </div>
+            </div>
+        </div>
+</template>
+<template id="website_apiform.erooruno" name="ajax_error">
+   <h1>Hola mundo</h1>
+</template>
+<!--
+panel crear
+-->
+<template id="website_apiform.panel_crear" name="panel formulario template">
+    <t t-call="website.layout">
+        <t t-set="additional_title"><t t-esc="titulo"/></t>
+        <div id="wrap">
+            <div class="row mt32">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <form t-attf-id="#{id_form}"  
+                  t-att-action="'%s' % (action)"
+                  enctype="multipart/form-data"
+                  runat="server" >
+                    <div t-attf-class="panel panel-#{css}">
+                        <div class="panel-heading" >
+                                <div class="row">
+                                    <div class="col-xs-9" align="left">
+                                        <h4 ><b><t t-esc="titulo"/></b></h4>
+                                    </div>
+                                    <div class="col-md-3" align="right">
+                                        <t t-if="url_boton_list!=''">
+                                            <a t-att-href="'%s' % (url_boton_list)" >
+                                            <button type="button" t-attf-class="btn btn-#{color_btn_lista} glyphicon glyphicon-#{ico_btn_lista}" />
+                                            </a>
+                                        </t>
+                                    </div>
+                                </div>
+                                
+                        </div>
+                        <div t-attf-class="panel-body #{css_background}">
+                            
+                                <t t-call="#{template}" />
+                            
+                            
+                        </div>
+                        <div class="panel-footer" align="center">
+                            <t t-if="remover_btn_enviar=='no'">
+                                <img style="display:none"
+                                        width="40px"
+                                        t-att-id="'img-idform1'"
+                                        height="40px"
+                                        src="/web/static/src/img/throbber-large.gif"/>
+                                <button type="button" 
+                                        t-att-id="id_enviar" 
+                                        form="idform1"
+                                        t-att-css="'%s js_submit' % (js_enviar)" 
+                                        t-attf-class="btn btn-#{color_btn_enviar} glyphicon glyphicon-send" ><t t-esc="nombre_btn_accion"/></button>
+
+                            </t>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </t>
+    <t t-call="website_apiform.ajax_error"/>
+    <t t-call="website_apiform.modal"/>
+    <t t-call="website_apiform.modal_sinBoton"/>
+</template>
+
+
+<template id="website_apiform.template_crear" name="ejemplo formulario ejemplo">
+<t t-set="titulo" t-value="parametros['titulo']" />
+<t t-set="url_boton_list" t-value="parametros['url_boton_list']" />
+<t t-set="template" t-value="parametros['template']" />
+<t t-set="js_enviar" t-value="parametros['js_enviar']" />
+<t t-set="css" t-value="parametros['css']" />
+<t t-set="css_background" t-value="parametros['css_background']" />
+<t t-set="color_btn_lista" t-value="parametros['color_btn_lista']" />
+<t t-set="ico_btn_lista" t-value="parametros['ico_btn_lista']" />
+<t t-set="remover_btn_enviar" t-value="parametros['remover_btn_enviar']" />
+<t t-set="color_btn_enviar" t-value="parametros['color_btn_enviar']" />
+<t t-set="id_enviar" t-value="parametros['id_enviar']" />
+<t t-set="id_form" t-value="parametros['id_form']" />
+<t t-set="action" t-value="parametros['action']" />
+<t t-set="nombre_btn_accion" t-value="parametros['nombre_bt_accion']" />
+<t t-call="website_apiform.panel_crear"/>
+</template>
+<!--
+panel vista tree
+-->
+<template id="website_apiform.panel_lista" name="Periodo">
+    <t t-call="website.layout">
+         <t t-set="additional_title"><t t-esc="titulo"/></t>
+        <div id="wrap">
+            <div class="row mt32">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div t-attf-class="panel panel-#{css}">
+                        <div class="panel-heading">
+                            <h4 ><b><t t-esc="titulo"/></b></h4>
+                        </div>
+                        <div class="panel-body">
+                            <t t-if="url_boton_crear!=''">
+                                 <img style="display:none"
+                                        width="40px"
+                                        t-att-id="'img-idform1'"
+                                        height="40px"
+                                        src="/web/static/src/img/throbber-large.gif"/>
+                                <a t-att-href="'%s' % (url_boton_crear)">
+                                    <button type="button" form="idform1" t-attf-class="btn btn-#{color_btn_crear} glyphicon glyphicon-#{icon_crear}" >Crear</button>
+                                </a>
+                            </t>
+                            <t t-call="#{template}" />
+                        </div>
+                        <div class="panel-footer">
+                              <div t-esc="pie"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+    <t t-call="website_apiform.ajax_error"/>
+    <t t-call="website_apiform.modal"/>
+     <t t-call="website_apiform.modal_sinBoton"/>
+
+</template>
+
+
+<template id="website_apiform.template_lista" name="ejemplo formulario ejemplo">
+    <t t-set="titulo" t-value="parametros['titulo']" />
+    <t t-set="url_boton_crear" t-value="parametros['url_boton_crear']" />
+    <t t-set="template" t-value="parametros['template']" />
+    <t t-set="icon_crear" t-value="parametros['icon_crear']" />
+    <t t-set="pie" t-value="parametros['pie']" />
+    <t t-set="css" t-value="parametros['css']" />
+    <t t-set="color_btn_crear" t-value="parametros['color_btn_crear']" />
+    <t t-call="website_apiform.panel_lista"/>
+</template>
+
+<!--
+ template redireccionamiento de error
+-->
+<template id="website_apiform.mensaje" name="Mensaje del apiform">
+        <t t-call="website.layout">
+            <div class="wrap">
+                <div class="container">
+                    <div class="jumbotron mt32">
+                        <h2><t t-esc="titulo"/></h2>
+                        <h3><p t-esc="mensaje"></p></h3>
+                        <a t-att-href="'%s' % (volver)">
+                                    <button type="button" class="btn btn-info" >Volver</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+ </data>
+</openerp>

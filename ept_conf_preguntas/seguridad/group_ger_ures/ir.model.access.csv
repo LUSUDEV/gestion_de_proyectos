@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ept_conf_obj_rendicion_gguu,ept_conf.obj_rendicion,model_ept_conf_obj_rendicion,ept_usuarios.group_ggu_ures,0,0,0,0
+access_ept_conf_preguntas_gguu,ept_conf.preguntas,model_ept_conf_preguntas,ept_usuarios.group_ggu_ures,0,0,0,0
+access_ept_conf_items_respueta_gguu,ept_conf.items_respueta,model_ept_conf_items_respueta,ept_usuarios.group_ggu_ures,0,0,0,0
+access_ept_conf_dependencia_gguu,ept_conf.dependencia,model_ept_conf_dependencia,ept_usuarios.group_ggu_ures,0,0,0,0
+access_ept_conf_accion_gguu,ept_conf.accion,model_ept_conf_accion,ept_usuarios.group_ggu_ures,0,0,0,0
+access_ept_conf_categ_respuesta_gguu,ept_conf.categ_respuesta,model_ept_conf_categ_respuesta,ept_usuarios.group_ggu_ures,0,0,0,0

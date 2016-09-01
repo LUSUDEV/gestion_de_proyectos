@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <openerp>
+     <data>
+         
+
+    <record model="ir.ui.view" id="view_ept_rnd_input_line_form">
+        <field name="name">ept_rnd_input_line</field>
+        <field name="model">ept_rnd.input_line</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Respuestas" >
+                <sheet>
+                    <separator string="Input Line" colspan="4"/>
+                    <group>
+                        <field name="pregunta_id"/>
+                        <field name="respuesta"/>
+                        <field name="files" attrs="{'invisible': [('files','=', [])]}">
+                            <tree>
+                                <field name="name"/>
+                                <field name="datas"/>
+                                <field name="create_date"/>
+                                <field name="mimetype"/>
+                            </tree>
+                        </field>
+                        </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+     
+     <record model="ir.ui.view" id="view_ept_rnd_input_line_tree">
+        <field name="name">ept_rnd_input_line</field>
+        <field name="model">ept_rnd.input_line</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Carga de Proyectos">           
+                    <field name="pregunta_id"/>
+                    <field name="respuesta"/>
+                    <field name="files"/>
+                    
+            </tree>
+        </field>
+     </record>
+     
+
+    
+    <record model="ir.actions.act_window" id="action_ept_conf_obj_valoracion">
+        <field name="name">Respuestas</field>
+        <field name="res_model">ept_rnd.input_line</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+            
+    </data>
+</openerp>

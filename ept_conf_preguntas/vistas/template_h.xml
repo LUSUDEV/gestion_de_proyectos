@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="inherit_js_rendicion" inherit_id="website.assets_frontend">
+        <xpath expr="." position="inside">
+        <script type="text/javascript" src="/ept_conf_preguntas/static/src/js/ept_conf_preguntas.js"></script>
+        </xpath>
+        </template>
+    </data>
+</openerp>

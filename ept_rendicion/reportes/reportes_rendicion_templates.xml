@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+    
+<!--
+    reporte menu vista tree
+-->
+    
+    <template id="id_template_reporte_ejecucion_qweb">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="ept_valoracion.external_layout_ept">
+                    <link rel="stylesheet" type="text/css" href="/ept_valoracion/static/src/css/ept_val_reporte.css"/>
+                <div class="page">
+                    <div class="row">
+                        <h2>
+                            <span><center>Reporte de Ejecución</center></span>
+                        </h2>
+                        <hr/>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-hover table-bordered table-striped">
+                               <thead> 
+                                <tr>
+                                    <th><strong>Codigo de Proyecto</strong></th>
+                                    <th><strong>Entidad</strong></th>
+                                    <th><strong>Monto</strong></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><span t-field="o.proyecto_id.correlativo"/></td>
+                                    <td><span t-field="o.entidad_id.name"/></td>
+                                    <td><span t-field="o.proyecto_id.monto_proyecto"/></td>
+                                </tr>
+                                </tbody>
+                                </table>
+                                <table class="table table-hover table-bordered table-striped">
+                                <thead>    
+                                <tr>
+                                    <td colspan="3" ><strong>Titulo del Proyecto</strong></td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td colspan="3" align="justify"><span t-field="o.proyecto_id.nombre_proyecto"/></td>
+                                </tr>
+                                </tbody>
+                                </table>
+                                <hr/>
+                                <h4><strong>Dirección</strong></h4>
+                                <table class="table table-hover table-bordered table-striped">
+                                <thead>
+<!--
+                                <tr>
+                                    <td colspan="3" align="center"><h4><strong>Dirección</strong></h4></td>
+                                </tr>
+-->                             
+                                <tr>
+                                    <th><strong>Estado</strong></th>
+                                    <th><strong>Municipio</strong></th>
+                                    <th><strong>Parroquia</strong></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><span t-field="o.proyecto_id.estado_id.estado"/></td>
+                                    <td><span t-field="o.proyecto_id.municipio_id.municipio"/></td>
+                                    <td><span t-field="o.proyecto_id.parroquia_id.parroquia"/></td>
+                                </tr>
+                                </tbody>
+                                </table>
+                                <hr/>
+                                <h4><strong>Ejecución del Proyecto</strong></h4>
+                                <table class="table table-hover table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <t t-if="o.avance_fisico"><th><strong>Avance Fisico</strong></th></t>
+                                    <t t-if="o.monto_gastado"><th><strong>Avance Financiero</strong></th></t>
+                                    <th><strong>Estatus del Proyecto</strong></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <t t-if="o.avance_fisico"><td><span t-field="o.avance_fisico"/></td></t>
+                                    <t t-if="o.monto_gastado"><td><span t-field="o.monto_gastado"/></td></t>
+                                    <td><span t-field="o.estatus"/></td>
+                                </tr>
+                                </tbody>
+                                </table>
+                                <hr/>
+                                <t t-if="o.obra_civil or len(o.adquisicion_equipos) or len(o.adquisicion_vehiculo) or len(o.adquisicion_vehiculo) or len(o.adquisicion_materiales_consumo) or len(o.adquisicion_maquinaria) or len(o.adquisicion_semovientes)">
+                                <h4><strong>Metas Alcanzadas</strong></h4>
+                                <br/>
+                                </t>
+                                <t t-if="o.obra_civil">
+                                <strong>Obra Civil</strong>
+                                <table class="table table-hover table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th><strong>Tipo de obra</strong></th>
+                                    <th><strong>Cantidad Estimada de la Obra</strong></th>
+                                    <th><strong>Unidad</strong></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><span t-field="o.tipo_obra"/></td>
+                                    <td><span t-field="o.cantidad_estimada_obra"/></td>
+                                    <td><span t-field="o.unidad_medicion_obra.unidad"/></td>
+                                </tr>
+                                </tbody>
+                                </table>
+                                </t>
+                                <t t-if="len(o.adquisicion_equipos)">
+                                <table class="table table-hover table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th><strong>Uso</strong></th>
+                                    <th><strong>Tipo</strong></th>
+                                    <th><strong>Cantidad</strong></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <t t-foreach="o.adquisicion_equipos" t-as="equipo">    
+                                <tr>
+                                    <td><span t-field="equipo.uso_id.uso"/></td>
+                                    <td><span t-field="equipo.tipo"/></td>
+                                    <td><span t-field="equipo.cantidad"/></td>
+                                </tr>
+                                </t>
+                                </tbody>
+                                </table>
+                                <br/>
+                                </t>
+                                <t t-if="len(o.adquisicion_vehiculo)">
+                                <strong>Adquisición de Vehiculos</strong>
+                                <table class="table table-hover table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th><strong>Uso</strong></th>
+                                    <th><strong>Caracteristica</strong></th>
+                                    <th><strong>Tipo</strong></th>
+                                    <th><strong>Cantidad</strong></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <t t-foreach="o.adquisicion_vehiculo" t-as="vehiculo">    
+                                <tr>
+                                    <td><span t-field="vehiculo.uso_id.uso"/></td>
+                                    <td><span t-field="vehiculo.caracteristica_id.caracteristicas"/></td>
+                                    <td><span t-field="vehiculo.tipo_id.tipo"/></td>
+                                    <td><span t-field="vehiculo.cantidad"/></td>
+                                </tr>
+                                </t>
+                                </tbody>
+                                </table>
+                                </t>
+                                <t t-if="len(o.adquisicion_materiales_consumo)">
+                                <strong>Adquisición de Materiales de Consumo</strong>
+                                <table class="table table-hover table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th><strong>Uso</strong></th>
+                                    <th><strong>Tipo</strong></th>
+                                    <th><strong>Cantidad</strong></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <t t-foreach="o.adquisicion_materiales_consumo" t-as="materiales">    
+                                <tr>
+                                    <td><span t-field="materiales.uso_id.uso"/></td>
+                                    <td><span t-field="materiales.tipo"/></td>
+                                    <td><span t-field="materiales.cantidad"/></td>  
+                                </tr>
+                                </t>
+                                </tbody>
+                                </table>
+                                </t>
+                                <t t-if="len(o.adquisicion_maquinaria)">
+                                <strong>Adquisición de Maquinaria</strong>
+                                <table class="table table-hover table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th><strong>Uso</strong></th>
+                                    <th><strong>Tipo</strong></th>
+                                    <th><strong>Cantidad</strong></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <t t-foreach="o.adquisicion_maquinaria" t-as="maquinaria">    
+                                <tr>
+                                    <td><span t-field="maquinaria.uso_id.uso"/></td>
+                                    <td><span t-field="maquinaria.tipo"/></td>
+                                    <td><span t-field="maquinaria.cantidad"/></td>  
+                                </tr>
+                                </t>
+                                </tbody>
+                                </table>
+                                </t>
+                                <t t-if="len(o.adquisicion_semovientes)">
+                                <strong>Adquisición de Semovientes</strong>
+                               <table class="table table-hover table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th><strong>Especie</strong></th>
+                                    <th><strong>Grupo Etario</strong></th>
+                                    <th><strong>Uso</strong></th>
+                                    <th><strong>Proposito</strong></th>
+                                    <th><strong>Cantidad</strong></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <t t-foreach="o.adquisicion_semovientes" t-as="semoviente">    
+                                <tr>
+                                    <td><span t-field="semoviente.especie_id.especie"/></td>
+                                    <td><span t-field="semoviente.grupo"/></td>
+                                    <td><span t-field="semoviente.uso"/></td>  
+                                    <td><span t-field="semoviente.proposito"/></td>  
+                                    <td><span t-field="semoviente.cantidad"/></td>  
+                                </tr>
+                                </t>
+                                </tbody>
+                                </table>
+                                <hr/>
+                                </t>
+                                <t t-set="imagenes" t-value="get_data(o.id)"/>
+                                <t t-if="len(imagenes)">
+                                <br/>    
+                                <br/>    
+                                <br/>    
+                                <br/>    
+                                <br/>    
+                                <br/>    
+                                <br/>    
+                                <br/>    
+                                <br/>    
+                                <br/> 
+                                <table class="table table-hover table-bordered table-striped">
+                                <thead>
+                                <th align="center"><center><h4><strong>Imagenes</strong></h4></center></th>
+                                </thead>
+                                <tbody>
+                                    <tr><td>
+                                <center>
+                                    <t t-foreach="imagenes" t-as="imagen">
+                                    <img style="height:300px;width:300px;" t-att-src="'data:%s;base64,%s' % (imagen.mimetype,imagen.datas)"/>
+                                    </t>
+                                    </center>
+                                    </td>
+                                    </tr>
+                                </tbody>
+                                </table>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+                </t>
+            </t>
+    </template>
+    
+    <template id="id_template_reporte_ejecucion_qweb_website">
+            <t t-foreach="data['rendicion_data']" t-as="o">
+                <t t-call="ept_valoracion.external_layout_ept">
+                <div class="page">
+                    <div class="row">
+                        <h2>
+                            <span><center>Reporte de Ejecución</center></span>
+                        </h2>
+                        <hr/>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-hover table-bordered table-striped">
+                               <thead> 
+                                <tr>
+                                    <th><strong>Codigo de Proyecto</strong></th>
+                                    <th><strong>Entidad</strong></th>
+                                    <th><strong>Monto</strong></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><span t-field="o.proyecto_id.correlativo"/></td>
+                                    <td><span t-field="o.entidad_id.name"/></td>
+                                    <td><span t-field="o.proyecto_id.monto_proyecto"/></td>
+                                </tr>
+                                </tbody>
+                                </table>
+                                <table class="table table-hover table-bordered table-striped">
+                                <thead>    
+                                <tr>
+                                    <td colspan="3" ><strong>Titulo del Proyecto</strong></td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td colspan="3" align="justify"><span t-field="o.proyecto_id.nombre_proyecto"/></td>
+                                </tr>
+                                </tbody>
+                                </table>
+                                <hr/>
+                                <h4><strong>Dirección</strong></h4>
+                                <table class="table table-hover table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th><strong>Estado</strong></th>
+                                    <th><strong>Municipio</strong></th>
+                                    <th><strong>Parroquia</strong></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><span t-field="o.proyecto_id.estado_id.estado"/></td>
+                                    <td><span t-field="o.proyecto_id.municipio_id.municipio"/></td>
+                                    <td><span t-field="o.proyecto_id.parroquia_id.parroquia"/></td>
+                                </tr>
+                                </tbody>
+                                </table>
+                                <hr/>
+                                <h4><strong>Ejecución del Proyecto</strong></h4>
+                                <table class="table table-hover table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <t t-if="o.avance_fisico"><th><strong>Avance Fisico</strong></th></t>
+                                    <t t-if="o.monto_gastado"><th><strong>Avance Financiero</strong></th></t>
+                                    <th><strong>Estatus del Proyecto</strong></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <t t-if="o.avance_fisico"><td><span t-field="o.avance_fisico"/></td></t>
+                                    <t t-if="o.monto_gastado"><td><span t-field="o.monto_gastado"/></td></t>
+                                    <td><span t-field="o.estatus"/></td>
+                                </tr>
+                                </tbody>
+                                </table>
+                                <hr/>
+                                <t t-if="o.obra_civil or len(o.adquisicion_equipos) or len(o.adquisicion_vehiculo) or len(o.adquisicion_vehiculo) or len(o.adquisicion_materiales_consumo) or len(o.adquisicion_maquinaria) or len(o.adquisicion_semovientes)">
+                                <h4><strong>Metas Alcanzadas</strong></h4>
+                                <br/>
+                                </t>
+                                <t t-if="o.obra_civil">
+                                <strong>Obra Civil</strong>
+                                <table class="table table-hover table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th><strong>Tipo de obra</strong></th>
+                                    <th><strong>Cantidad Estimada de la Obra</strong></th>
+                                    <th><strong>Unidad</strong></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><span t-field="o.tipo_obra"/></td>
+                                    <td><span t-field="o.cantidad_estimada_obra"/></td>
+                                    <td><span t-field="o.unidad_medicion_obra.unidad"/></td>
+                                </tr>
+                                </tbody>
+                                </table>
+                                </t>
+                                <t t-if="len(o.adquisicion_equipos)">
+                                <table class="table table-hover table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th><strong>Uso</strong></th>
+                                    <th><strong>Tipo</strong></th>
+                                    <th><strong>Cantidad</strong></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <t t-foreach="o.adquisicion_equipos" t-as="equipo">    
+                                <tr>
+                                    <td><span t-field="equipo.uso_id.uso"/></td>
+                                    <td><span t-field="equipo.tipo"/></td>
+                                    <td><span t-field="equipo.cantidad"/></td>
+                                </tr>
+                                </t>
+                                </tbody>
+                                </table>
+                                <br/>
+                                </t>
+                                <t t-if="len(o.adquisicion_vehiculo)">
+                                <strong>Adquisición de Vehiculos</strong>
+                                <table class="table table-hover table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th><strong>Uso</strong></th>
+                                    <th><strong>Caracteristica</strong></th>
+                                    <th><strong>Tipo</strong></th>
+                                    <th><strong>Cantidad</strong></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <t t-foreach="o.adquisicion_vehiculo" t-as="vehiculo">    
+                                <tr>
+                                    <td><span t-field="vehiculo.uso_id.uso"/></td>
+                                    <td><span t-field="vehiculo.caracteristica_id.caracteristicas"/></td>
+                                    <td><span t-field="vehiculo.tipo_id.tipo"/></td>
+                                    <td><span t-field="vehiculo.cantidad"/></td>
+                                </tr>
+                                </t>
+                                </tbody>
+                                </table>
+                                </t>
+                                <t t-if="len(o.adquisicion_materiales_consumo)">
+                                <strong>Adquisición de Materiales de Consumo</strong>
+                                <table class="table table-hover table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th><strong>Uso</strong></th>
+                                    <th><strong>Tipo</strong></th>
+                                    <th><strong>Cantidad</strong></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <t t-foreach="o.adquisicion_materiales_consumo" t-as="materiales">    
+                                <tr>
+                                    <td><span t-field="materiales.uso_id.uso"/></td>
+                                    <td><span t-field="materiales.tipo"/></td>
+                                    <td><span t-field="materiales.cantidad"/></td>  
+                                </tr>
+                                </t>
+                                </tbody>
+                                </table>
+                                </t>
+                                <t t-if="len(o.adquisicion_maquinaria)">
+                                <strong>Adquisición de Maquinaria</strong>
+                                <table class="table table-hover table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th><strong>Uso</strong></th>
+                                    <th><strong>Tipo</strong></th>
+                                    <th><strong>Cantidad</strong></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <t t-foreach="o.adquisicion_maquinaria" t-as="maquinaria">    
+                                <tr>
+                                    <td><span t-field="maquinaria.uso_id.uso"/></td>
+                                    <td><span t-field="maquinaria.tipo"/></td>
+                                    <td><span t-field="maquinaria.cantidad"/></td>  
+                                </tr>
+                                </t>
+                                </tbody>
+                                </table>
+                                </t>
+                                <t t-if="len(o.adquisicion_semovientes)">
+                                <strong>Adquisición de Semovientes</strong>
+                               <table class="table table-hover table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th><strong>Especie</strong></th>
+                                    <th><strong>Grupo Etario</strong></th>
+                                    <th><strong>Uso</strong></th>
+                                    <th><strong>Proposito</strong></th>
+                                    <th><strong>Cantidad</strong></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <t t-foreach="o.adquisicion_semovientes" t-as="semoviente">    
+                                <tr>
+                                    <td><span t-field="semoviente.especie_id.especie"/></td>
+                                    <td><span t-field="semoviente.grupo"/></td>
+                                    <td><span t-field="semoviente.uso"/></td>  
+                                    <td><span t-field="semoviente.proposito"/></td>  
+                                    <td><span t-field="semoviente.cantidad"/></td>  
+                                </tr>
+                                </t>
+                                </tbody>
+                                </table>
+                                <hr/>
+                                </t>
+                                <t t-set="imagenes" t-value="get_data(o.id)"/>
+                                <t t-if="len(imagenes)">
+                                <br/>    
+                                <br/>    
+                                <br/>    
+                                <br/>    
+                                <br/>    
+                                <br/>    
+                                <br/>    
+                                <br/>    
+                                <br/>    
+                                <br/>    
+                                <table class="table table-hover table-bordered table-striped">
+                                <thead>
+                                <th align="center"><center><h4><strong>Imagenes</strong></h4></center></th>
+                                </thead>
+                                <tbody>
+                                    <tr><td>
+                                <center>
+                                    <t t-foreach="imagenes" t-as="imagen">
+                                    <img style="height:300px;width:300px;" t-att-src="'data:%s;base64,%s' % (imagen.mimetype,imagen.datas)"/>
+                                    </t>
+                                    </center>
+                                    </td>
+                                    </tr>
+                                </tbody>
+                                </table>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+                </t>
+            </t>
+    </template>
+    
+</data>
+</openerp>

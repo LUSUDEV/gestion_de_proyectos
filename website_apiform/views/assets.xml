@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="inherit_assets_frontend" name="mask_hide_duplicate" inherit_id="website.assets_frontend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/website_apiform/static/src/lib/inputmask/jquery.mask.min.js"></script>
+            </xpath>
+        </template>
+    </data>
+</openerp>

@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <openerp>
+     <data>
+         
+<!--
+         vista formulario para cargar proyectos
+-->
+         
+     <record model="ir.ui.view" id="view_ept_cp_carga_proyecto_form">
+        <field name="name">ept_cp_carga_proyecto_form</field>
+        <field name="model">ept_cp.carga_proyecto</field> 
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Cargar de Proyecto">
+                <header>
+					<button name="crear_ficha_proyecto" string="Ficha de Proyecto"  type="object" class="oe_highlight"/>
+<!--
+					<button name="cambio_status_diferido" string="Revertir a Diferido"  type="object" class="oe_highlight"/>
+-->
+                    <field name="state" widget="statusbar" statusbar_visible="carga,evaluacion,diferido,aprobado,negado,cancelado,culminado"/>
+                </header>
+                <sheet>
+                    <h3>
+                        <label string="Numero de Proyecto" attrs="{'invisible': [('state','=',False)]}"/>
+                        <field name="correlativo" class="oe_inline"  string="Codificación"  readonly="1" style="widht:30%%"/>
+                    </h3>                
+                    <h1 ALIGN="center" >Datos Generales</h1>
+                    <group>
+                        <field name="partner_id" on_change="cp_filtro_estados(partner_id)" style="width: 40%%" attrs="{'readonly': [('create_uid','!=',False)],'required': [('create_uid','=',False)]}"/>
+                        <field name="cuenta_id" style="width: 40%%"  on_change="cp_monto_disponible(cuenta_id)" invisible="1"/>
+                        <field name="periodo_id" style="width: 40%%"  on_change="cp_buscar_periodo_id(partner_id)" invisible="1"/>
+                        <field name="create_uid" invisible="1"/>
+                    </group>
+                    <div class="oe_right oe_button_box">
+                    <button name="action_get_attachment_tree_view" 
+                        class="oe_stat_button"
+                        icon="fa-book"
+                        type="object">
+                        <field name="attachment_number" widget="statinfo" string="Cartas"/>
+                    </button>
+                    </div> 
+                    <notebook>
+                        <page string="Nombre del Proyecto">
+                            <field name="nombre_proyecto"/>
+                        </page>
+                    </notebook>
+                    <notebook>
+                        <page string="Descripción del Proyecto">
+                            <field name="descripcion_proyecto"/>
+                        </page>
+                    </notebook>
+                    <notebook>
+                        <page string="Historial del Proyecto">
+                            <field name="historial_ids"  >
+                                <tree string="Historial" editable="botton" create="0" delete="0">
+                                    <field name="descripcion"/>
+                                    <field name="create_date" readonly="True" string="Fecha del mensaje"/>
+                                 </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <group>
+                        <h2 >Tiempo de Ejecución Estimado</h2>
+                        <h2 >Monto del Proyecto</h2>
+                        <group>
+                            <field name="fecha_inicio" on_change="cp_validar_fecha_inicio(fecha_inicio)"/>
+<!--
+                            <field name="fecha_inicio" />
+-->
+                            <field name="fecha_fin" on_change="cp_validar_fechas_proyecto(fecha_inicio,fecha_fin)"/>
+                            <field name="duracion_proyec"/>
+                        </group>
+                        <group>
+                            <field name="monto_disponible" string="Monto Disponible"/>
+<!--
+                            <field name="monto_proyecto" on_change="cp_validar_monto_proyecto(monto_disponible,monto_proyecto)"/>
+-->
+                            <field name="monto_proyecto" />
+                        </group>
+                    </group>
+                    <h2 >Clasificación de Inversión</h2>
+                    <group col="2" colspan="2">
+                        <field name="tipo_sector_id" on_change="cp_limpiar_campos('categoria_id')" domain="[('parent_id','=',[0])]" style="width: 40%%"/>
+                        <field name="categoria_id" on_change="cp_limpiar_campos('subcategoria_id',)" string="Categoria" context="{'default_id':tipo_sector_id}"  domain="[('parent_id','=',tipo_sector_id)]" style="width: 40%%"/>
+                        <field name="subcategoria_id" on_change="cp_subcaterogia(subcategoria_id)" context="{'default_id':categoria_id}" domain="[('parent_id','=',categoria_id)]" style="width: 40%%"/>
+                    </group>
+                    <h2>Proyecto de Mantenimiento</h2>
+                    <group>
+                        <field name="proyect_mantenimiento" on_change="cp_monto_disponible_mantenimieno(proyect_mantenimiento,partner_id,periodo_id)"/>
+                        <field name="monto_disponible_mantenimiento" string="Monto disponible de Mantenimiento" attrs="{'invisible': [('proyect_mantenimiento','=',False)]}"/>
+                    </group>
+                    <div attrs="{'invisible': [('proyect_mantenimiento','=', True)]}">
+                    <h2>Caracteristicas Generales</h2>
+                    <group>
+                        <field name="aval" invisible="1"/>
+                        <field name="obra_civil" on_change="cp_obra_civil(obra_civil,subcategoria_id)"/>
+                    </group>
+                    <group col="4">
+                         <field name="tipo_obra" widget="radio" style="width: 40%%" on_change="cp_validar_requerimiento_aval(subcategoria_id,tipo_obra)" attrs="{'invisible': [('obra_civil','=', False)],'required':[('obra_civil','=', True)]}"/>
+                            <div>
+                                <div attrs="{'invisible': [('aval','=', False)]}" class="alert alert-warning">
+                                    Este Proyecto requiere un aval
+                                </div>
+                                <div attrs="{'invisible': [('aval','=', False)]}">
+                                    <field name="aval_ids" >
+                                        <tree string="Aval"  >
+                                            <field name="description"/>
+                                            <field name="datas"/>
+                                         </tree>
+                                    </field>
+                                </div>
+                            </div>
+                    </group>
+                    <group>
+                        <field name="unidad_medicion_obra" style="width: 40%%" attrs="{'invisible': [('obra_civil','=', False)],'required':[('obra_civil','=', True)]}" />
+                        <field name="cantidad_estimada_obra" attrs="{'invisible': [('obra_civil','=', False)],'required':[('obra_civil','=', True)]}"/>
+                    </group>
+                    <group>
+                        <field name="equipos" on_change="cp_limpiar_campos('equipos_ids')"/>
+                    </group>
+                    <notebook attrs="{'invisible': [('equipos','=', False)],'required':[('equipos','=', True)]}">
+                        <page string="Equipos">
+                            <field name="equipos_ids"  >
+                                <tree string="Equipos" editable="botton" >
+                                    <field name="uso_id"/>
+                                    <field name="tipo"/>
+                                    <field name="cantidad" sum="Total de Equipos"/>
+                                 </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <group>
+                        <field name="maquinaria" on_change="cp_limpiar_campos('maquinaria_ids')"/>
+                    </group>
+                    <notebook attrs="{'invisible': [('maquinaria','=', False)],'required':[('maquinaria','=', True)]}">
+                        <page string="Maquinaria">
+                            <field name="maquinaria_ids" >
+                                <tree string="Maquinaria" editable="botton" >
+                                    <field name="uso_id"/>
+                                    <field name="tipo"/>
+                                    <field name="cantidad" sum="Total de Maquinarias"/>
+                                 </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <group>
+                        <field name="vehiculos" on_change="cp_limpiar_campos('vehiculos_ids')"/>
+                    </group>
+                     <notebook attrs="{'invisible': [('vehiculos','=', False)],'required':[('vehiculos','=', True)]}">
+                        <page string="Vehiculos">
+                            <field name="vehiculos_ids" >
+                                <tree string="Vehiculos" editable="botton" >
+                                    <field name="uso_id" />
+                                    <field name="caracteristica_id" domain="[('uso_id','=',uso_id)]"/>
+                                    <field name="tipo_id" domain="[('caracteristicas_id','=',caracteristica_id)]"/>
+                                    <field name="cantidad" sum="Total de Vehiculos"/>
+                                 </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <group>
+                        <field name="materiales_consumo" on_change="cp_limpiar_campos('materiales_ids')"/>
+                    </group>
+                    <notebook attrs="{'invisible': [('materiales_consumo','=', False)],'required':[('materiales_consumo','=', True)]}">
+                        <page string="Materiales de Consumo">
+                            <field name="materiales_ids" >
+                                <tree string="Materiales de Consumo" editable="botton" >
+                                    <field name="uso_id"/>
+                                    <field name="tipo"/>
+                                    <field name="cantidad" sum="Total de Materiales"/>
+                                 </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <group attrs="{'invisible': [('subcategoria_id','!=', 98)],'required':[('subcategoria_id','=', 98)]}">
+                        <field name="semoviente" on_change="cp_limpiar_campos('semoviente_ids')"/>
+                    </group>
+                    <notebook attrs="{'invisible': [('semoviente','=', False)],'required':[('semoviente','=', True)]}">
+                        <page string="Semovientes">
+                            <field name="semoviente_ids" >
+                                <tree string="Semovientes" editable="botton" >
+                                    <field name="especie_id" on_change="cp_limpiar_campos('grupo_id')"/>
+                                    <field name="grupo_id" on_change="cp_limpiar_campos('uso_id')" domain="[('especies_id','=',especie_id)]"/>
+                                    <field name="uso_id" on_change="cp_limpiar_campos('proposito_id')" domain="[('grupos_id','=',grupo_id)]"/>
+                                    <field name="proposito_id" domain="[('usos_id','=',uso_id)]"/>
+                                    <field name="cantidad" sum="Total de Semovientes"/>
+                                 </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    </div>
+                    <notebook>
+                        <page string="Beneficiarios del Proyecto">
+                            <group>
+                                <field name="benef_masculino" on_change="cp_total_beneficios_proyecto(benef_masculino,'benef_masculino',benef_femenino,'total_benef')" style="width: 40%%"/>
+                                <field name="benef_femenino" on_change="cp_total_beneficios_proyecto(benef_masculino,'benef_femenino',benef_femenino,'total_benef')" style="width: 40%%"/>
+                                <field name="total_benef" style="width: 40%%"/>
+                            </group>
+                        </page>
+                        <page string="Empleo Asociado">
+                            <group col="4" colspan="4">
+                                <group string="Directos">
+                                    <field name="empleo_direct_masculino" on_change="cp_total_beneficios_proyecto(empleo_direct_masculino,'empleo_direct_masculino',empleo_direct_femenino,'empleo_direct_total')" style="width: 40%%"/>
+                                    <field name="empleo_direct_femenino" on_change="cp_total_beneficios_proyecto(empleo_direct_masculino,'empleo_direct_femenino',empleo_direct_femenino,'empleo_direct_total')" style="width: 40%%"/>
+                                    <field name="empleo_direct_total" style="width: 40%%"/>
+                                </group>
+                                <group string="Indirectos">
+                                    <field name="empleo_indirect_masculino" on_change="cp_total_beneficios_proyecto(empleo_indirect_masculino,'empleo_indirect_masculino',empleo_indirect_femenino,'empleo_indirect_total')"  style="width: 40%%"/>
+                                    <field name="empleo_indirect_femenino" on_change="cp_total_beneficios_proyecto(empleo_indirect_masculino,'empleo_indirect_femenino',empleo_indirect_femenino,'empleo_indirect_total')" style="width: 40%%"/>
+                                    <field name="empleo_indirect_total" style="width: 40%%"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                    <notebook>
+                        <page string="Ubicación">
+                            <group>
+                                <group string="Política Territorial" >
+                                    <field name="estado_id" on_change="cp_filtro_municipios(partner_id,estado_id,'municipio_id')" />
+                                    <field name="municipio_id" on_change="cp_limpiar_campos('parroquia_id')"/>
+                                    <field name="parroquia_id"  domain="[('municipio_id','=',municipio_id)]"/>
+                                    <field name="sector"/>
+                                </group>
+                                <group string="Geo-espacial" >
+                                    <field name="coordenada" invisible="1"/>
+                                    <field name="huso_id"/>
+                                    <field name="coord_este" />
+                                    <field name="coord_norte"/>
+                                    <field name="husof_id" attrs="{'invisible': [('coordenada','=',False)],'required':[('coordenada','=', True)]}"/>
+                                    <field name="coord_este_f"  attrs="{'invisible': [('coordenada','=',False)],'required':[('coordenada','=', True)]}"/>
+                                    <field name="coord_norte_f"  attrs="{'invisible': [('coordenada','=', False)],'required':[('coordenada','=', True)]}"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                    <h2>Documentación Visual</h2>
+                    <group>
+                        <field name="foto_id">
+                            <tree string="Fotografía" editable="botton" >
+                                <field name="name"/>
+                                <field name="description"/>
+                                <field name="datas"/>
+                             </tree>
+                        </field>
+                    </group>
+                 </sheet>
+                 <div class="oe_chatter">
+                    <field name="message_ids" widget="mail_thread" readonly="1" />
+                </div>
+            </form>
+        </field>
+     </record>
+     
+<!--
+     vista lista de los proyectos cargados
+-->
+     
+     <record model="ir.ui.view" id="view_ept_cp_carga_proyecto_tree">
+        <field name="name">ept_cp_carga_proyecto_tree</field>
+        <field name="model">ept_cp.carga_proyecto</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Carga de Proyectos" colors="grey:state=='cancelado';blue:state in ('diferido');green:state in ('aprobado');red:state in ('negado');">
+                <field name="correlativo"/>
+                <field name="partner_id"/>
+                <field name="fecha_inicio"/>
+                <field name="fecha_fin"/>
+                <field name="duracion_proyec"/>
+                <field name="monto_proyecto"/>
+                <field name="state"/>
+            </tree>
+        </field>
+     </record>
+    
+<!--
+    actions para la carga de proyectos
+-->
+    
+    <record model="ir.actions.act_window" id="ept_cp_carga_proyecto_action">
+        <field name="name">Carga de Proyecto</field>
+        <field name="res_model">ept_cp.carga_proyecto</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Aqui se registran los proyectos
+            </p>
+        </field>
+    </record>
+    
+<!--
+    menu para la carga de proyectos
+-->
+
+        <menuitem 
+            name="Carga de Proyectos" 	
+            id="menu_ept_cp_carga_proyecto" 
+            parent="ept_usuarios.menu_general_ept_pi"
+            groups="base.group_system,ept_usuarios.group_jun_dir,ept_usuarios.group_ger_inf,ept_usuarios.group_ger_tpg,ept_usuarios.group_ger_tpc,ept_usuarios.group_ger_tpa,ept_usuarios.group_ger_ppeg,ept_usuarios.group_ger_ppec,ept_usuarios.group_ger_ppea,ept_usuarios.group_coor_ures,ept_usuarios.group_ggu_ures,ept_usuarios.group_jun_dir_sec,ept_usuarios.group_ger_csg,ept_usuarios.group_ger_csc,ept_usuarios.group_ger_csa"
+            sequence="90"/>
+        <menuitem name="Carga de Proyectos" 
+            id="inicio_ept_cp_carga_proyecto"  
+            action="ept_cp_carga_proyecto_action" 
+            parent="menu_ept_cp_carga_proyecto"
+            sequence="10"/>
+    </data>
+</openerp>

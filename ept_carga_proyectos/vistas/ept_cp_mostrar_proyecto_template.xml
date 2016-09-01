@@ -1,0 +1,676 @@
+<?xml version="1.0"?>
+    <openerp>
+        <data>
+            <template id="ept_carga_proyectos.modal_cancelar_proyectos" name="template para cancelar proyectos">
+                <div class="modal fade" id="modal-switch" role="dialog" aria-labelledby="AJAXErrorModal" aria-hidden="true" >
+                    <div class="modal-dialog">
+                        <div class="modal-content ">
+                            <div class="modal-header alert alert-info">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&amp;times;</button>
+                                <h4 class="modal-title titulo " >Cancelar Proyecto</h4>
+                            </div>
+                            <div class="modal-body cuerpo alert alert-danger" ><p>¿Esta seguro que desea cancelar el proyecto?.</p> 
+                            <br/>
+                            <form   action="/proyecto/cancelar">
+                                <input type="text" class="form-control hidden" name="proyecto_id" id="proyecto_id" t-att-value="'%s' % (proyecto.id)"/>
+                                <button
+                                    type="button"
+                                    class="btn btn-danger" id="cancelar_proyecto_confirm" >
+                                    Acepto Cancelar el proyecto <t t-esc="proyecto['correlativo']"/>
+                                </button>
+                            </form>
+                            </div>
+                            <div class="modal-footer "><span class="pie"></span><button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button></div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+            
+            
+            
+            
+            
+            <template id="ept_carga_proyectos.proyecto_vista_solo_lectura" name="Template para mostrar el proyecto solo lectura">
+                <div> 
+                <t t-foreach="carga_proyecto_data" t-as="proyectos">
+                    <a href="/proyecto/crear">
+                        <button type="button"  t-attf-class="btn btn-info glyphicon glyphicon-folder-open #{ocultar_boton_crear(proyectos.partner_id)}" > Crear</button>
+                    </a>
+                    <t t-if="proyectos['state'] in ['aprobado','carga','diferido']">
+                        <a t-att-href="'/proyecto/editar/%s' % (carga_proyecto_data['id'])">
+                            <button type="button"  t-attf-class="btn btn-info glyphicon glyphicon-folder-open #{ocultar_boton_editar(proyectos.partner_id,proyectos.ciclo_id,proyectos.state,proyectos.id)}" > Editar</button>
+                        </a>    
+                    </t>
+<!--
+                    <t t-if="proyectos['state'] in ['aprobado']">
+                        <a t-att-href="'/proyecto/solicitar_edicion/crear/%s' % (carga_proyecto_data['id'])">
+                            <button type="button"  t-attf-class="btn btn-info glyphicon glyphicon-folder-open" > Solicitar Edición</button>
+                        </a>
+                    </t>
+-->
+                    <t t-if="proyectos['state'] in ['carga','diferido']">
+                        <a>
+                            <button type="button" id="cancelar_proyecto" data-toggle="modal" data-target="#modal-switch" t-attf-class="btn btn-danger glyphicon glyphicon-folder-open" > Cancelar</button>
+                        </a>
+                    </t>
+                    <div class="pull-right">
+                        
+                        <t t-if="proyectos['state']=='aprobado'">
+                                <img  src="/ept_carga_proyectos/static/src/img/status.png"><span class="glyphicon glyphicon-check" /> APROBADO</img>
+                        </t>
+                        <t t-if="proyectos['state']=='negado'">
+                                <img  src="/ept_carga_proyectos/static/src/img/status_busy.png"><span class="glyphicon glyphicon-remove-circle"  /> NEGADO</img>
+                        </t>
+                        <t t-if="proyectos['state']=='evaluacion'">
+                               <img  src="/ept_carga_proyectos/static/src/img/bullet_blue.png"><span class="glyphicon glyphicon-pencil" /> EN EVALUACIÓN</img>
+                        </t>
+                        <t t-if="proyectos['state']=='cancelado'">
+                                <img  src="/ept_carga_proyectos/static/src/img/status_busy.png"><span class="glyphicon glyphicon-hand-down" /> CANCELADO</img>
+                        </t>
+                        <t t-if="proyectos['state']=='carga'">
+                                <img  src="/ept_carga_proyectos/static/src/img/status_offline.png"><span class="glyphicon glyphicon-list-alt" /> BORRADOR</img>
+                        </t>
+                        <t t-if="proyectos['state']=='diferido'">
+                               <img  src="/ept_carga_proyectos/static/src/img/status_away.png"><span class="glyphicon glyphicon-refresh" /> DIFERIDO</img>
+                        </t>
+                        <t t-if="proyectos['state']=='culminado'">
+                               <img  src="/ept_carga_proyectos/static/src/img/status.png"><span class="glyphicon glyphicon-flag" /> CULMINADO</img>
+                        </t>
+                    </div>
+                </t>
+                </div>
+                <br/><br/>
+                <t t-foreach="carga_proyecto_data" t-as="proyecto">
+					<input type="text" class="form-control hidden" id="id_proyecto" t-att-value="'%s' % (proyecto.id)"></input>
+					<div class="checkbox hidden">
+						
+                        <label>
+                            <t t-if="proyecto.solicitud_cambio==True">
+                                <input id="solicitud" type="checkbox" value='' data-switch-no-init="True" checked="checked">
+                                solicitud_cambio
+                                </input>
+                            </t>
+                            <t t-if="proyecto.solicitud_cambio!=True">
+                                <input id="solicitud" type="checkbox" value='' data-switch-no-init="True" disabled="">
+                                solicitud_cambio
+                                </input>
+                            </t>
+                        </label>
+                    </div>
+					
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Código de Proyecto</div>
+                            <div class="panel-body">
+                                <div class="col-md-6">
+                                     <p id="codigo_proyecto" name="correlativo"><t t-esc="proyecto.correlativo"/></p>
+                                </div>
+                                <div class="col-md-6">
+                                     <a class="pull-right" t-att-href="'/descargar/ficha_proyecto/%s' % (carga_proyecto_data['id'])">Descargar Ficha</a>
+                                </div>
+                               
+                            </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Nombre y Descripción</div>
+                        <div class="panel-body">
+                            <label for="nombre_proyecto">Nombre del Proyecto</label>
+                                <p name="nombre_proyecto"><t t-esc="proyecto.nombre_proyecto"/></p>
+                            <br/>
+                            <label for="descripcion_proyecto">Descripción del Proyecto</label>
+                                <p name="descripcion_proyecto"><t t-esc="proyecto.descripcion_proyecto"/></p>
+                        </div>
+                    </div>
+                    <t t-if="len(proyecto.historial_ids)>0">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Historial de Notificaciones</div>
+                                    <div class="panel-body">             
+                                        <table class="table table-bordered" >
+                                            <tr>
+                                                <td>
+                                                   <table class="table table-bordered">
+                                                        <thead >
+                                                            <tr id="tr_ept_scroll_ancho">
+                                                                <th class="text-center">Descripción</th>
+                                                                <th class="text-center">Fecha</th>
+                                                            </tr>
+                                                        </thead>
+                                                   </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div style="width:100%; height:260px; overflow:auto;">
+                                                         <table class="table table-bordered table-striped" >
+                                                                <t t-foreach="proyecto.historial_ids" t-as="historial">
+                                                                    <tr class="js_tr_ept_scroll_ancho_edit">
+                                                                        <td class="text-raigh"><t t-esc="historial.descripcion"/></td>
+                                                                        <td class="text-center"><t t-esc="historial.create_date"/></td>
+                                                                    </tr>
+                                                                </t>
+                                                         </table>  
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <t t-if="len(proyecto.cartas_proyecto)>0">
+                                            <table class="table table-bordered" >
+                                                <tr>
+                                                    <td>
+                                                       <table class="table table-bordered">
+                                                            <thead >
+                                                                <tr id="tr_ept_scroll_ancho">
+                                                                    <th class="text-center">Cartas</th>
+                                                                </tr>
+                                                            </thead>
+                                                       </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div style="width:100%; height:260px; overflow:auto;">
+                                                             <table class="table table-bordered table-striped" >
+                                                                    <t t-foreach="proyecto.cartas_proyecto" t-as="carta">
+                                                                        <tr class="js_tr_ept_scroll_ancho_edit">
+                                                                            <td class="text-raigh"><a t-att-href="'data:application/octet-stream;base64,%s' % (carta.datas)" ><t t-esc="carta.name"/></a></td>
+                                                                        </tr>
+                                                                    </t>
+                                                             </table>  
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Tiempo de Ejecución Estimado</div>
+                                <div class="panel-body">
+                                    <div class="col-md-4">
+                                        <label for="fecha_inicio" data-toggle="popover" data-trigger="hover" data-content="Fecha de inicio estimada del proycto a cargar">Fecha de Inicio</label>
+                                            <p name="fecha_inicio"><t t-esc="proyecto.fecha_inicio"/></p>             
+                                    </div>
+                                    <div class="col-md-4">
+                                            <label for="fecha_fin" data-toggle="popover" data-trigger="hover" data-content="Fecha de fin estimada del proycto a cargar">Fecha de Fin</label>
+                                                <p name="fecha_fin"><t t-esc="proyecto.fecha_fin"/></p> 
+                                    </div>
+                                    <div class="col-md-4">
+                                            <label for="duracion_proyec" data-toggle="popover" data-trigger="hover" data-content="Duración estimada del proyecto">Duración del proyecto</label>
+                                                <p name="duracion_proyec"><t t-esc="proyecto.duracion_proyec"/></p> 
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Monto del Proyecto</div>
+                                <div class="panel-body">
+                                    <div class="col-md-12">
+                                        <label for="monto_proyecto">Monto del Proyecto</label>
+                                            <p name="monto_proyecto" class="monto"><t t-esc="dict_montos[proyecto.id]"/></p> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Clasificación de Inversión</div>
+                                <div class="panel-body">             
+                                        <div class="col-md-12">
+                                            <label for="tipo_sector_id">Tipo de Sector</label>
+                                            <p name="tipo_sector_id"><t t-esc="proyecto.tipo_sector_id.name"/></p> 
+                                            <label for="categoria">Categoria</label>
+                                            <p name="categoria_id"><t t-esc="proyecto.categoria_id.name"/></p>
+                                            <label for="subcategoria">Subcategoria</label>
+                                            <p name="subcategoria_id"><t t-esc="proyecto.subcategoria_id.name"/></p>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Proyecto de Mantenimiento</div>
+                        <div class="panel-body">
+                            <div class="checkbox">
+                                <label>
+                                    <t t-if="proyecto.proyect_mantenimiento==True">
+                                        <input type="checkbox"   value="" id="proyect_mantenimiento" name="proyect_mantenimiento"  data-switch-no-init="True" checked="checked" disabled="">
+                                            ¿Este proyecto es de mantenimiento?
+                                        </input>
+                                    </t>
+                                    <t t-if="proyecto.proyect_mantenimiento!=True">
+                                        <input type="checkbox"   value="" id="proyect_mantenimiento" name="proyect_mantenimiento"  data-switch-no-init="True" disabled="">
+                                            ¿Este proyecto es de mantenimiento?
+                                        </input>
+                                    </t>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <t t-if="proyecto.proyect_mantenimiento!=True">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Caracteristicas Generales</div>
+                                    <div class="panel-body">
+                                         <div class="checkbox">
+                                            <label>
+                                                <t t-if="proyecto.obra_civil==True">
+                                                    <input type="checkbox" value='' data-switch-no-init="True" checked="checked" disabled="">
+                                                        Obra Civil
+                                                    </input>
+                                                </t>
+                                                <t t-if="proyecto.obra_civil!=True">
+                                                    <input type="checkbox" value='' data-switch-no-init="True" disabled="">
+                                                        Obra Civil
+                                                    </input>
+                                                </t>
+                                            </label>
+                                        </div>
+                                        <t t-if="proyecto.obra_civil==True">
+                                            <div class="row">
+                                                <div class="col-md-7">
+                                                    <div class="col-md-12">
+                                                        <div class="radio"  id="tipo_obra">
+                                                            <label>
+                                                                <t t-if="proyecto.tipo_obra=='construccion'">
+                                                                    <input type="radio" id="construccion" name="tipo_obra"  value="construccion" data-switch-no-init="True" checked="checked" disabled=""/>
+                                                                    Construcción Inicial
+                                                                </t>
+                                                                <t t-if="proyecto.tipo_obra!='construccion'">
+                                                                    <input type="radio" id="construccion" name="tipo_obra"  value="construccion" data-switch-no-init="True"  disabled=""/>
+                                                                    Construcción Inicial
+                                                                </t>
+                                                            </label>
+                                                            <label>
+                                                                <t t-if="proyecto.tipo_obra=='ampliacion'">
+                                                                    <input type="radio"  name="tipo_obra" id="ampliacion" value="ampliacion" data-switch-no-init="True" checked="checked" disabled="" />
+                                                                    Ampliación
+                                                                </t>
+                                                                <t t-if="proyecto.tipo_obra!='ampliacion'">
+                                                                    <input type="radio"  name="tipo_obra" id="ampliacion" value="ampliacion" data-switch-no-init="True" disabled="" />
+                                                                    Ampliación
+                                                                </t>
+                                                            </label>
+                                                            <label>
+                                                                <t t-if="proyecto.tipo_obra=='rehabilitacion'">
+                                                                    <input type="radio" name="tipo_obra" id="rehabilitacion" value="rehabilitacion" data-switch-no-init="True" checked="checked" disabled=""/>
+                                                                    Rehabilitación o Mejora
+                                                                </t>
+                                                                <t t-if="proyecto.tipo_obra!='rehabilitacion'">
+                                                                    <input type="radio" name="tipo_obra" id="rehabilitacion" value="rehabilitacion" data-switch-no-init="True" disabled=""/>
+                                                                    Rehabilitación o Mejora
+                                                                </t>
+                                                            </label>
+                                                        </div>  
+                                                    </div>
+                                                </div>
+                                                <div id="cantidad_unidad" class="col-md-5">
+                                                    <div class="col-md-6">
+                                                        <label for="cantidad" >Cantidad
+                                                            <p name="cantidad"><t t-esc="proyecto.cantidad_estimada_obra"/></p></label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="unidad">Unidad
+                                                            <p name="unidad"><t t-esc="proyecto.unidad_medicion_obra.unidad"/></p> 
+                                                        </label>
+                                                     </div>
+                                                </div>
+                                                <t t-if="proyecto.aval==True">
+                                                    <t t-if="proyecto.aval_ids.datas!=False">
+                                                        <input name="objeto_aval_obj" type="hidden" t-att-value="'%s' % (proyecto.aval_ids)"/>
+                                                        <input name="objeto_aval_datas" type="hidden" t-att-value="'%s' % (proyecto.aval_ids.datas)"/>
+                                                        <input name="objeto_aval_name" type="hidden" t-att-value="'%s' % (proyecto.aval_ids.name)"/>
+                                                        <input name="objeto_aval_type" type="hidden" t-att-value="'%s' % (proyecto.aval_ids.mimetype)"/>
+                                                        <input name="objeto_aval_id" type="hidden" t-att-value="'%s' % (proyecto.aval_ids.id)"/>
+                                                        
+                                                    </t>
+                                                    <input name="solo_lectura_aval" type="hidden" id="solo_lectura_aval" value="True"/>
+                                                    <div class="col-md-6" id="aval_file">
+                                                        <label for="aval_proyecto">Aval
+                                                            <input type="file" class="file-loadig input-files_proyecto js_file_apiform" id="aval_ids" name="aval_ids"></input>
+                                                        </label>
+                                                    </div>
+                                                </t>
+                                            </div>
+                    </t>
+                    <div class="checkbox">
+                        <label>
+                            <t t-if="proyecto.equipos==True">
+                                <input type="checkbox" value='' data-switch-no-init="True" checked="checked" disabled="">
+                                Adquisición de Equipos
+                                </input>
+                            </t>
+                            <t t-if="proyecto.equipos!=True">
+                                <input type="checkbox" value='' data-switch-no-init="True" disabled="">
+                                Adquisición de Equipos
+                                </input>
+                            </t>
+                        </label>
+                    </div>
+                    <t t-if="proyecto.equipos==True">
+                        <table class="table table-bordered table-striped mt32" >
+                            <thead>
+                                <tr>
+                                    <th class="col-md-6">Uso</th>
+                                    <th class="col-md-4">Tipo</th>
+                                    <th class="col-md-2">Cantidad</th>
+                                </tr>
+                            </thead>                       
+                            <tbody>
+                                <t t-foreach="proyecto.equipos_ids" t-as="equipo">
+                                    <tr class="active" >
+                                        <td><t t-esc="equipo.uso_id.uso"/></td>
+                                        <td><t t-esc="equipo.tipo"/></td>
+                                        <td><t t-esc="equipo.cantidad"/></td>
+                                    </tr>
+                                </t>        
+                            </tbody>
+                        </table>
+                    </t>
+                    <div class="checkbox">
+                        <label>
+                            <t t-if="proyecto.maquinaria==True">
+                                <input type="checkbox" value=''  data-switch-no-init="True" checked="checked"  disabled="">
+                                    Adquisición de Maquinaria
+                                </input>
+                            </t>
+                            <t t-if="proyecto.maquinaria!=True">
+                                <input type="checkbox" value=''  data-switch-no-init="True" disabled="">
+                                    Adquisición de Maquinaria
+                                </input>
+                            </t>
+                        </label>
+                    </div>
+                    <t t-if="proyecto.maquinaria==True">
+                        <table class="table table-bordered table-striped mt32" >
+                            <thead>
+                                <tr>
+                                    <th class="col-md-5">Uso</th>
+                                    <th class="col-md-5">Tipo</th>
+                                    <th class="col-md-2">Cantidad</th>
+                                </tr>
+                            </thead>                       
+                            <tbody>
+                                <t t-foreach="proyecto.maquinaria_ids" t-as="maquinaria">
+                                    <tr class="active"  >
+                                        <td><t t-esc="maquinaria.uso_id.uso"/></td>
+                                        <td><t t-esc="maquinaria.tipo"/></td>
+                                        <td><t t-esc="maquinaria.cantidad"/></td>
+                                    </tr>
+                                </t>        
+                            </tbody>
+                        </table>
+                    </t>
+                    <div class="checkbox">
+                        <label>
+                            <t t-if="proyecto.vehiculos==True">
+                                <input type="checkbox" value=''  data-switch-no-init="True" checked="checked" disabled="">
+                                    Adquisición de Vehículos
+                                </input>
+                            </t>
+                            <t t-if="proyecto.vehiculos!=True">
+                                <input type="checkbox" value=''  data-switch-no-init="True" disabled="">
+                                    Adquisición de Vehículos
+                                </input>
+                            </t>
+                        </label>
+                    </div>
+                    <t t-if="proyecto.vehiculos==True">
+                        <table class="table table-bordered table-striped mt32" >
+                            <thead>
+                                <tr>
+                                    <th class="col-md-3">Uso</th>
+                                    <th class="col-md-4">Caracteristica</th>
+                                    <th class="col-md-3">Tipo</th>
+                                    <th class="col-md-2">Cantidad</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                             <t t-foreach="proyecto.vehiculos_ids" t-as="vehiculo">
+                                <tr class="active"  >
+                                    <td><t t-esc="vehiculo.uso_id.uso"/></td>
+                                    <td><t t-esc="vehiculo.caracteristica_id.caracteristicas"/></td>
+                                    <td><t t-esc="vehiculo.tipo_id.tipo"/></td>
+                                    <td><t t-esc="vehiculo.cantidad"/></td>
+                                </tr>
+                            </t>        
+                            </tbody>
+                        </table> 
+                    </t>
+                    <div class="checkbox">
+                        <label>
+                            <t t-if="proyecto.materiales_consumo==True">
+                                <input type="checkbox" value=''  data-switch-no-init="True" checked="checked" disabled="">
+                                    Adquisición de Materiales de Consumo
+                                </input>
+                            </t>
+                            <t t-if="proyecto.materiales_consumo!=True">
+                                <input type="checkbox" value=''  data-switch-no-init="True" disabled="">
+                                    Adquisición de Materiales de Consumo
+                                </input>
+                            </t>
+                        </label>
+                    </div>
+                    <t t-if="proyecto.materiales_consumo==True">
+                        <table class="table table-bordered table-striped mt32">
+                            <thead>
+                                <tr>
+                                    <th class="col-md-5">Uso</th>
+                                    <th class="col-md-5">Tipo</th>
+                                    <th class="col-md-2">Cantidad</th>
+                                </tr>
+                            </thead>
+                            <tbody id="t_adquis_materiales1">
+                                 <t t-foreach="proyecto.materiales_ids" t-as="material">
+                                    <tr class="active"  >
+                                        <td><t t-esc="material.uso_id.uso"/></td>
+                                        <td><t t-esc="material.tipo"/></td>
+                                        <td><t t-esc="material.cantidad"/></td>
+                                    </tr>
+                                </t>        
+                            </tbody>
+                        </table> 
+                    </t>
+                     <t t-if="proyecto.subcategoria_id.name=='Sistema Productivo Animal'">
+                         <div class="checkbox" id="adqui_semovi">
+                            <label>
+                                <t t-if="proyecto.semoviente==True">
+                                    <input type="checkbox"  name="semovientes"  data-switch-no-init="True" checked="checked" disabled="">
+                                        Adquisición de Semovientes
+                                    </input>
+                                </t>
+                                <t t-if="proyecto.semoviente!=True">
+                                    <input type="checkbox"  name="semovientes"  data-switch-no-init="True" disabled="">
+                                        Adquisición de Semovientes
+                                    </input>
+                                </t>
+                            </label>
+                        </div>
+                        <t t-if="proyecto.semoviente==True">
+                            <table class="table table-bordered table-striped mt32" id="t_adquis_semovientes">
+                                <thead>
+                                    <tr>
+                                        <th class="col-md-2">Especie</th>
+                                        <th class="col-md-3">Grupo</th>
+                                        <th class="col-md-3">Uso</th>
+                                        <th class="col-md-2">Proposito</th>
+                                        <th class="col-md-2">Cantidad</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="t_adquis_semovientes1">
+                                    <t t-foreach="proyecto.semoviente_ids" t-as="semo">
+                                        <tr class="active" id="semoviente_1">
+                                            <td><t t-esc="semo.especie_id.especie"/></td>
+                                            <td><t t-esc="semo.grupo_id.grupo_etario"/></td>
+                                            <td><t t-esc="semo.uso_id.uso"/></td>
+                                            <td><t t-esc="semo.proposito_id.proposito"/></td>
+                                            <td><t t-esc="semo.cantidad"/></td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </t>
+                    </t>
+                </div>
+                </div>
+                </div>
+                </div>
+            </t>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Beneficiarios del Proyecto</div>
+                    <div class="panel-body">
+                        <table class="table table-bordered table-striped mt32">
+                            <thead>
+                                <tr>
+                                    <th>Masculino</th>
+                                    <th>Femenino</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="active" >
+                                    <td ><t t-esc="proyecto.benef_masculino"/></td>
+                                    <td ><t t-esc="proyecto.benef_femenino"/></td>
+                                    <td ><t t-esc="proyecto.total_benef"/></td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Empleo Asociado</div>
+                    <div class="panel-body">
+                        <table class="table table-bordered table-striped mt32">
+                            <thead>
+                                <tr>
+                                    <th>Tipo</th>
+                                    <th>Masculino</th>
+                                    <th>Femenino</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="active" >
+                                    <td><h4>Directos</h4></td>
+                                    <td ><t t-esc="proyecto.empleo_direct_masculino"/></td>
+                                    <td ><t t-esc="proyecto.empleo_direct_femenino"/></td>
+                                    <td ><t t-esc="proyecto.empleo_direct_total"/></td>
+                                </tr>
+                                <tr class="active" >
+                                    <td><h4>Indirectos</h4></td>
+                                    <td ><t t-esc="proyecto.empleo_indirect_masculino"/></td>
+                                    <td ><t t-esc="proyecto.empleo_indirect_femenino"/></td>
+                                    <td ><t t-esc="proyecto.empleo_indirect_total"/></td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Política Territorial</div>
+                            <div class="panel-body">
+                                <label for="estado_id">Estado</label>
+                                <p name="estado_id"><t t-esc="proyecto.estado_id.estado"/></p>
+                                <label for="municipio_id">Municipio</label>
+                                <p name="municipio_id"><t t-esc="proyecto.municipio_id.municipio"/></p>
+                                <label for="parroquia">Parroquia</label>
+                                <p name="parroquia_id"><t t-esc="proyecto.parroquia_id.parroquia"/></p>
+                                <label for="sector">Sector</label>
+                                <p name="sector"><t t-esc="proyecto.sector"/></p>
+                            </div>
+                        </div>       
+                    </div>
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Geo-espacial</div>
+                                <div class="panel-body">
+                                    <label for="huso">Huso Inicio</label>
+                                    <p name="huso"><t t-esc="proyecto.huso_id.huso"/></p>
+                                    <label for="coord_e_i">Coordenas Este Inicio</label>
+                                    <p name="coord_este"><t t-esc="proyecto.coord_este"/></p>
+                                    <label for="coord_n_i">Coordenas Norte Inicio</label>
+                                    <p name="coord_norte"><t t-esc="proyecto.coord_norte"/></p>
+                                    <t t-if="proyecto.coordenada==True">
+                                        <label for="huso">Huso Final</label>
+                                        <p name="huso"><t t-esc="proyecto.husof_id.huso"/></p>
+                                        <label for="coord_e_i">Coordenas Este Fin</label>
+                                        <p name="coord_este_f"><t t-esc="proyecto.coord_este_f"/></p>
+                                        <label for="coord_n_i">Coordenas Norte Fin</label>
+                                        <p name="coord_norte_f"><t t-esc="proyecto.coord_norte_f"/></p>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="row">
+                        <t t-if="len(proyecto.foto_id)">
+                            <input name="objeto_fotos_obj" type="hidden" t-att-value="'%s' % (proyecto.foto_id[0])"/>
+                            <input name="objeto_fotos_datas" type="hidden" t-att-value="'%s' % (proyecto.foto_id[0].datas)"/>
+                            <input name="objeto_fotos_name" type="hidden" t-att-value="'%s' % (proyecto.foto_id[0].name)"/>
+                            <input name="objeto_fotos_type" type="hidden" t-att-value="'%s' % (proyecto.foto_id[0].mimetype)"/>
+                            <input name="objeto_fotos_id" type="hidden" t-att-value="'%s' % (proyecto.foto_id[0].id)"/>
+                        </t>
+                        <input name="solo_lectura" type="hidden" id="solo_lectura" value="True"/>
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Fotografia<a href="#" id="ayudas_informacion" ref="fotografia"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                                <div class="panel-body">
+                                    <div class="col-md-12">
+                                        <div class="col-md-9">
+                                            <input type="file" class="file-loadig input-imagen_proyecto" name="fotos_id" data-toggle="popover" data-trigger="hover" data-content="Fotografia inicial del proyecto a cargar"></input>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <t t-call="ept_carga_proyectos.modal_cancelar_proyectos"></t>
+            </t>
+            <hr></hr>
+            <t t-if="len(rendicion_data)">
+				<h4>Avances</h4>
+				<t t-set="count" t-value="0"/>
+				<t t-foreach="rendicion_data.rendicion_line" t-as="avances">
+				<t t-set="count" t-value="count+1"/>   
+				<hr></hr>
+					<table t-att-id="'%s' % (avances.id)" class="table table-bordered table-striped mt32">
+						<thead>
+							<tr class="desplegar_avance" t-att-ref="'%s' % ('%s' % (avances.id))">
+								<th colspan="2"><div><span style="float:left">Avance Nro <t t-esc="count"/></span><span style="float:right">Fecha:<t t-esc="avances.create_date"/></span></div></th>
+							</tr>
+						</thead>
+						<tbody t-att-id="'%s' % (avances.id)" style="overflow: hidden; display: none;">
+							<t t-foreach="self.input_line_order(avances.respuestas_line)" t-as="respuestas">
+								<tr>
+									<td><t t-esc="respuestas.pregunta_id.nombre"/></td>
+									<td align="justify">
+										<t t-if="respuestas.pregunta_id.tipo == 'file' or respuestas.pregunta_id.tipo == 'img'">
+										<t t-foreach="respuestas.files" t-as="file">
+											<a t-att-href="'data:application/octet-stream;base64,%s' % (file.datas)"><t t-esc="file.name"/></a><t t-if="len(respuestas.files) > 1"><br/></t>
+										</t>
+										</t>
+										<t t-if="not (respuestas.pregunta_id.tipo == 'file' or respuestas.pregunta_id.tipo == 'img')">
+										<t t-esc="respuestas.respuesta"/>
+										</t>
+									</td>
+								</tr>
+							</t>
+					  </tbody>
+					</table>
+				</t>
+			</t>
+            
+</template>
+
+</data>
+</openerp>
+

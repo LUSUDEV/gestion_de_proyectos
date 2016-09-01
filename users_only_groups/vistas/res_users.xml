@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="view_ept_ent_users_form">
+            <field name="name">res.users.form.inherit.users</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_simple_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                    <label for="name" class="oe_edit_only" position="replace">
+                        <label for="name" class="oe_edit_only" string="Nombre"/>
+                    </label>
+                    
+                    <xpath expr="/form/sheet/div/h2/field[@name='login']" position="attributes">
+                        <attribute name="placeholder">nombre@email.com</attribute>
+                    </xpath>
+                    
+                    <xpath expr="/form/sheet/group" position="replace">
+                         <group>
+                            <field name="groups_id" readonly="0" widget="many2many_tags" required="True" style="display: inline;"/>
+                            <field name="phone" placeholder="e.g. +32.81.81.37.00" invisible="True"/>
+                            <field name="phone" placeholder="Por ejemplo 0212-1234567" string="Teléfono" data-inputmask="'mask': '9999-9999999'"/>
+                             <field name="mobile" placeholder="e.g. +32.81.81.37.00" invisible="True"/>
+                            <field name="mobile" placeholder="Por ejemplo 0426-1234567" string="Celular" data-inputmask="'mask': '9999-9999999'"/>
+                            <field name="fax" placeholder="e.g. +32.81.81.37.00" invisible="True"/>
+                            <field name="fax" placeholder="Por ejemplo 0212-1234567" string="Fax" data-inputmask="'mask': '9999-9999999'"/>
+                        </group>
+                    </xpath>
+                    
+            </field>
+        </record>
+        
+</data>
+</openerp>

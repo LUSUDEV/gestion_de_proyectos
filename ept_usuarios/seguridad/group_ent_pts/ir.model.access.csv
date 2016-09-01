@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_res_users_gepts,base.res.users_gepts,base.model_res_users,group_ent_pts,1,0,0,0
+access_res_partner_gepts,base.res.partner_gepts,base.model_res_partner,group_ent_pts,1,0,0,0
+
+
+

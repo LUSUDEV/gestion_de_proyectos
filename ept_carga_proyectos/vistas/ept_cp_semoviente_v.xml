@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+     <data>
+         
+<!--
+         vista formulario para la carga de los montos minimos de especies en semovientes
+-->
+         
+        <record model="ir.ui.view" id="view_ept_cp_semovientes_form">
+            <field name="name">ept_cp_semovientes_form</field>
+            <field name="model">ept_cp.semovientes</field> 
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Semovientes">
+                    <sheet>
+                        <group col="2" colspan="2">
+                            <field name="especie" style="width: 40%%"/>
+                            <field name="monto_minimo" style="width: 40%%"/>
+                        </group>
+                     </sheet>
+                </form>
+            </field>
+         </record>
+         
+<!--
+         vista lista para los registros de montos minimos de especies en semovientes
+-->
+         
+        <record model="ir.ui.view" id="view_ept_cp_semovientes_tree">
+            <field name="name">ept_cp_semovienteso_tree</field>
+            <field name="model">ept_cp.semovientes</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Semovientes">
+                    <field name="especie"/>
+                    <field name="monto_minimo"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="ept_cp_semovientes_action">
+            <field name="name">Semovientes</field>
+            <field name="res_model">ept_cp.semovientes</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Aqui se registran las especies de semovientes
+                </p>
+            </field>
+        </record>
+        
+        <menuitem name="Semovientes" 
+                id="inicio_ept_cp_semovientes_principal"  
+                parent="menu_ept_cp_tipo_sectores"
+                sequence="60"/>
+        <menuitem name="Especies" 
+                id="inicio_ept_cp_semovientes"  
+                action="ept_cp_semovientes_action" 
+                parent="inicio_ept_cp_semovientes_principal"
+                sequence="10"/>
+                
+<!--
+         vista formulario para la carga de los grupos etarios
+-->
+         
+        <record model="ir.ui.view" id="view_ept_cp_semovientes_grupo_etario_form">
+            <field name="name">ept_cp_semovientes_grupo_etario_form</field>
+            <field name="model">ept_cp.semovientes_grupo_etario</field> 
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Grupo etario">
+                    <sheet>
+                        <group col="2" colspan="2">
+                            <field name="grupo_etario" style="width: 40%%"/>
+                            <field name="especies_id" style="width: 40%%"/>
+                        </group>
+                     </sheet>
+                </form>
+            </field>
+         </record>
+         
+<!--
+         vista lista para los registros de grupos etarios
+-->
+         
+        <record model="ir.ui.view" id="view_ept_cp_semovientes_grupo_etario_tree">
+            <field name="name">ept_cp_semovientes_grupo_etario_tree</field>
+            <field name="model">ept_cp.semovientes_grupo_etario</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Grupo etario">
+                    <field name="grupo_etario"/>
+                    <field name="especies_id"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="ept_ept_cp_semovientes_grupo_etario_action">
+            <field name="name">Grupo etario</field>
+            <field name="res_model">ept_cp.semovientes_grupo_etario</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Aqui se registran los grupos etarios
+                </p>
+            </field>
+        </record>
+        
+        <menuitem name="Grupo etario" 
+                id="inicio_ept_cp_semovientes_grupo_etario"  
+                action="ept_ept_cp_semovientes_grupo_etario_action" 
+                parent="inicio_ept_cp_semovientes_principal"
+                sequence="20"/>
+                
+                
+<!--
+         vista formulario para la carga de los usos de semovientes
+-->
+         
+        <record model="ir.ui.view" id="view_ept_cp_semovientes_uso_form">
+            <field name="name">ept_cp_semovientes_uso_form</field>
+            <field name="model">ept_cp.semovientes_uso</field> 
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Usos semovientes">
+                    <sheet>
+                        <group col="2" colspan="2">
+                            <field name="uso" style="width: 40%%"/>
+                            <field name="grupos_id" style="width: 40%%"/>
+                        </group>
+                     </sheet>
+                </form>
+            </field>
+         </record>
+         
+<!--
+         vista lista para los registros de de los usos de semovientes
+-->
+         
+        <record model="ir.ui.view" id="view_ept_cp_semovientes_uso_tree">
+            <field name="name">ept_cp_semovientes_uso_tree</field>
+            <field name="model">ept_cp.semovientes_uso</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Usos semovientes">
+                    <field name="uso"/>
+                    <field name="grupos_id"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="ept_cp_semovientes_uso_action">
+            <field name="name">Usos semovientes</field>
+            <field name="res_model">ept_cp.semovientes_uso</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Aqui se registran los usos de semovientes
+                </p>
+            </field>
+        </record>
+        
+        <menuitem name="Usos" 
+                id="inicio_ept_cp_semovientes_uso"  
+                action="ept_cp_semovientes_uso_action" 
+                parent="inicio_ept_cp_semovientes_principal"
+                sequence="30"/>
+<!--
+         vista formulario para la carga de los propositos de semovientes
+-->
+         
+        <record model="ir.ui.view" id="view_ept_cp_semovientes_proposito_form">
+            <field name="name">ept_cp_semovientes_proposito_form</field>
+            <field name="model">ept_cp.semovientes_proposito</field> 
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Proposito semovientes">
+                    <sheet>
+                        <group col="2" colspan="2">
+                            <field name="proposito" style="width: 40%%"/>
+                            <field name="usos_id" style="width: 40%%"/>
+                        </group>
+                     </sheet>
+                </form>
+            </field>
+         </record>
+         
+<!--
+         vista lista para los registros de de los propositos de semovientes
+-->
+         
+        <record model="ir.ui.view" id="view_ept_cp_semovientes_proposito_tree">
+            <field name="name">ept_cp_semovientes_uso_tree</field>
+            <field name="model">ept_cp.semovientes_proposito</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Proposito semovientes">
+                    <field name="proposito"/>
+                    <field name="usos_id"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="ept_cp_semovientes_proposito_action">
+            <field name="name">Proposito semovientes</field>
+            <field name="res_model">ept_cp.semovientes_proposito</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Aqui se registran los propositos de semovientes
+                </p>
+            </field>
+        </record>
+        
+        <menuitem name="Proposito" 
+                id="inicio_ept_cp_semovientes_proposito"  
+                action="ept_cp_semovientes_proposito_action" 
+                parent="inicio_ept_cp_semovientes_principal"
+                sequence="40"/>
+         
+    </data>
+</openerp>

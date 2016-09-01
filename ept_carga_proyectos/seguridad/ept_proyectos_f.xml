@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+<record id="mi_ure_proyectos_usuarios" model="ir.rule">
+            <field name="name">Usuarios de las entidades que pueden ver los  coordinadores de las ures</field>
+            <field name="model_id" ref="model_ept_cp_carga_proyecto"/>
+            <field name="domain_force">[('partner_id','in',[ e.parent_id.id for ur in user.ures_ids for e in ur.entidad_ids])]</field>
+            <field name="perm_read" eval='True'/>
+            <field name="perm_write" eval='True'/>
+            <field name="perm_create" eval='True'/>
+            <field name="perm_unlink" eval='True'/>
+            <field name="groups" eval="[(4,ref('ept_usuarios.group_coor_ures'))]"/>
+        </record>
+ </data>
+</openerp>

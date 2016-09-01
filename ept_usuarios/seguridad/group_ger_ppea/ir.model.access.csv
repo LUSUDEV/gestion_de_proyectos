@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_res_users_gppea,base.res.users_gppea,base.model_res_users,group_ger_ppea,1,0,0,0
+access_res_partner_gppea,base.res.partner_gppea,base.model_res_partner,group_ger_ppea,1,0,0,0
+

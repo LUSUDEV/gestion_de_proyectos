@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates id="template" xml:space="preserve" >
+<t t-name="apiform_imagen" >
+    <div class="ejemplo_img" >
+            <img
+                css="story-small"
+                t-att-src="defaults.src" 
+                t-att-height="defaults.height" 
+                t-att-width="defaults.width" 
+                t-att-id="defaults.id" />
+            <div class="ejemplo_img_cont" t-attf-style="top: #{defaults.height} ; height: #{defaults.height} ;width: #{defaults.width}">
+                <div class="oe_form_field_image_controls oe_edit_only">
+                  <i class="fa fa-pencil fa-1g pull-left col-md-offset-1 oe_form_binary_file_edit" t-att-id="defaults.id_file" title="Edit" />
+                  <i class="fa fa-trash-o fa-1g col-md-offset-5 oe_form_binary_file_clear"  t-att-data-id="defaults.id" title="Clear" />
+                </div>
+            </div>
+            </div>
+</t>
+</templates>

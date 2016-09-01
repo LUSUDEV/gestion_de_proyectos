@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <openerp>
+     <data>
+         
+
+    <record model="ir.ui.view" id="view_ept_conf_obj_rendicion_form">
+        <field name="name">ept_conf_obj_rendicion</field>
+        <field name="model">ept_conf.obj_rendicion</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Objetos de Encuesta" >
+                <sheet>
+                    <separator string="Objetos de Encuesta" colspan="4"/>
+                    <group>
+                        <field  name="refencia" />
+                        <field  name="model_id" />
+                        <field  name="model_parent_id" />
+                        <field  name="advertencia" />
+                        </group>
+                        <separator string="Preguntas"/>
+                       <field name="preguntas_ids" context="{'default_model_id':model_id, 'default_model_destino_id':model_parent_id}">
+                        <tree>
+                        <field name="sequence" widget="handle"/>
+                        <field name="nombre"/>
+                        <field name="state"/>
+                        <field name="tipo"/>
+                        </tree>   
+                       
+                       </field>
+                        
+                            <group>
+                                <field  name="active" />
+                            </group>
+                    
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+     
+     <record model="ir.ui.view" id="view_ept_conf_obj_rendicion_tree">
+        <field name="name">ept_conf_obj_rendicion</field>
+        <field name="model">ept_conf.obj_rendicion</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Carga de Proyectos">           
+                <field name="refencia"/>
+                <field name="model_id"/>
+            </tree>
+        </field>
+     </record>
+     
+
+    
+    <record model="ir.actions.act_window" id="action_ept_conf_obj_rendicion">
+        <field name="name">Objeto de la Rendicion</field>
+        <field name="res_model">ept_conf.obj_rendicion</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_ept_conf_obj_rendicion_tree"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+            Aqui se registran las preguntas para las rendiciones
+            </p>
+        </field>
+    </record>
+
+         <menuitem 
+            name="Control y Seguimiento" 	
+            id="menu_ept_control_seguimiento" 
+            parent="ept_usuarios.menu_general_ept_pi"
+            sequence="100"/>
+         
+         <menuitem 
+            name="Configuracion" 	
+            id="menu_ept_control_seguimiento_conf" 
+            parent="menu_ept_control_seguimiento"
+            sequence="100"/>
+            
+        <menuitem name="Configuración de Preguntas" 
+            id="menu_ept_val_objeto_valoracion"  
+            action="action_ept_conf_obj_rendicion" 
+            parent="menu_ept_control_seguimiento_conf"
+            sequence="20"/>
+            
+    </data>
+</openerp>

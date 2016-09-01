@@ -1,0 +1,1081 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data noupdate="1">
+        <record id="s_p_almacenamiento" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_agua"/>
+            <field name="subcategoria_id" ref="subcategoria_almacenamiento"/>
+            <field name="unidades_id" ref="unidades_obra_civil_l"/>
+            <field name="monto_construc">15.77</field>
+            <field name="monto_rehabilit">13.40</field>
+            <field name="monto_ampliac">14.19</field>
+        </record>
+        <record id="s_p_captacion" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_agua"/>
+            <field name="subcategoria_id" ref="subcategoria_captacion"/>
+            <field name="unidades_id" ref="unidades_obra_civil_unidad"/>
+            <field name="monto_construc">1000</field>
+            <field name="monto_rehabilit">1000</field>
+            <field name="monto_ampliac">1000</field>
+        </record>
+        <record id="s_p_planta_tratamiento" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_agua"/>
+            <field name="subcategoria_id" ref="subcategoria_planta_tratamiento"/>
+            <field name="unidades_id" ref="unidades_obra_civil_unidad"/>
+            <field name="monto_construc">1000</field>
+            <field name="monto_rehabilit">1000</field>
+            <field name="monto_ampliac">1000</field>
+        </record>
+        <record id="s_p_pozos_profundos" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_agua"/>
+            <field name="subcategoria_id" ref="subcategoria_pozos_profundos_artesanales"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro"/>
+            <field name="monto_construc">166666.6</field>
+            <field name="monto_rehabilit">141666.61</field>
+            <field name="monto_ampliac">149999.94</field>
+        </record>
+        <record id="s_p_distrib_agua_potable" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_agua"/>
+            <field name="subcategoria_id" ref="subcategoria_redes_distribucuion_aguas_potables"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro"/>
+            <field name="monto_construc">4031.67</field>
+            <field name="monto_rehabilit">3426.92</field>
+            <field name="monto_ampliac">3628.50</field>
+        </record>
+        <record id="s_p_recolec_aguas_pluviales" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_agua"/>
+            <field name="subcategoria_id" ref="subcategoria_redes_recoleccion_aguas_pluviales"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro"/>
+            <field name="monto_construc">41198.63</field>
+            <field name="monto_rehabilit">35018.84</field>
+            <field name="monto_ampliac">37078.77</field>
+        </record>
+        <record id="s_p_recolec_aguas_servidas" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_agua"/>
+            <field name="subcategoria_id" ref="subcategoria_redes_recoleccion_aguas_servidas"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro"/>
+            <field name="monto_construc">41198.63</field>
+            <field name="monto_rehabilit">35018.84</field>
+            <field name="monto_ampliac">37078.77</field>
+        </record>
+<!--
+        
+-->
+        <record id="s_p_canalizacion_embaula_quebrada_2" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_ambiente"/>
+            <field name="subcategoria_id" ref="subcategoria_canalizacion_embaulamiento_quebradas"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">16948.11</field>
+            <field name="monto_rehabilit">14405.89</field>
+            <field name="monto_ampliac">15253.30</field>
+        </record>
+        <record id="s_p_canalizacion_embaula_quebrada_m" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_ambiente"/>
+            <field name="subcategoria_id" ref="subcategoria_canalizacion_embaulamiento_quebradas"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro"/>
+            <field name="monto_construc">1000.00</field>
+            <field name="monto_rehabilit">1000.00</field>
+            <field name="monto_ampliac">1000.00</field>
+        </record>
+        <record id="s_p_dragado_de_rio" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_ambiente"/>
+            <field name="subcategoria_id" ref="subcategoria_dagrado_rio"/>
+            <field name="unidades_id" ref="unidades_obra_civil_n_a"/>
+            <field name="monto_construc"></field>
+            <field name="monto_rehabilit"></field>
+            <field name="monto_ampliac"></field>
+        </record>
+        <record id="s_p_manejo_desechos_solidos" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_ambiente"/>
+            <field name="subcategoria_id" ref="subcategoria_manejo_integral_sesechos_solidos"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">1000</field>
+            <field name="monto_rehabilit">1000</field>
+            <field name="monto_ampliac">1000</field>
+        </record>
+        
+        <record id="s_p_margenes_rios_quebradas" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_ambiente"/>
+            <field name="subcategoria_id" ref="subcategoria_proteccion_margenes_rios_quebradas"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro"/>
+            <field name="monto_construc">1000</field>
+            <field name="monto_rehabilit">1000</field>
+            <field name="monto_ampliac">1000</field>
+        </record>
+        
+        <record id="s_p_reforestacion" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_ambiente"/>
+            <field name="subcategoria_id" ref="subcategoria_reforestacion"/>
+            <field name="unidades_id" ref="unidades_obra_civil_n_a"/>
+            <field name="monto_construc"></field>
+            <field name="monto_rehabilit"></field>
+            <field name="monto_ampliac"></field>
+        </record>
+<!--
+        
+-->
+        
+        <record id="s_p_biblioteca" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_cultura"/>
+            <field name="subcategoria_id" ref="subcategoria_bibliotecas"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_p_centros_exposicion" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_cultura"/>
+            <field name="subcategoria_id" ref="subcategoria_centros_exposicion"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_p_casas_culturales_musicales" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_cultura"/>
+            <field name="subcategoria_id" ref="subcategoria_casas_culturales_musicales"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_p_medios_radial_audiovisual" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_cultura"/>
+            <field name="subcategoria_id" ref="subcategoria_medios_comunicacion_radial_audiovisual"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_p_medios_impreso" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_cultura"/>
+            <field name="subcategoria_id" ref="subcategoria_medios_comunicacion_impreso"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_p_museos" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_cultura"/>
+            <field name="subcategoria_id" ref="subcategoria_museos"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_p_teatros" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_cultura"/>
+            <field name="subcategoria_id" ref="subcategoria_teatros"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_p_rehabilitacion_patrimonio" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_cultura"/>
+            <field name="subcategoria_id" ref="subcategoria_rehabilitacion_patrimonio_historico_cultural"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc"></field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac"></field>
+        </record>
+        <record id="s_p_edif_deport_aire_libre" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_deporte"/>
+            <field name="subcategoria_id" ref="subcategoria_edificacionnes_deportivas_practica_aire_libre"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">11205.37</field>
+            <field name="monto_rehabilit">9524.56</field>
+            <field name="monto_ampliac">10084.83</field>
+        </record>
+        <record id="s_p_edif_deport_aire_libre_2" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_deporte"/>
+            <field name="subcategoria_id" ref="subcategoria_edificacionnes_deportivas_practica_aire_libre"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro"/>
+            <field name="monto_construc">1000</field>
+            <field name="monto_rehabilit">1000</field>
+            <field name="monto_ampliac">1000</field>
+        </record>
+        <record id="s_p_edif_complejos_deportivos" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_deporte"/>
+            <field name="subcategoria_id" ref="subcategoria_edificacionnes_complejos_deportivos"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_p_edif_complejos_deportivos_2" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_deporte"/>
+            <field name="subcategoria_id" ref="subcategoria_edificacionnes_complejos_deportivos"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro"/>
+            <field name="monto_construc">1000</field>
+            <field name="monto_rehabilit">1000</field>
+            <field name="monto_ampliac">1000</field>
+        </record>
+        <record id="s_p_edif_polideportivas_deporte_feder" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_deporte"/>
+            <field name="subcategoria_id" ref="subcategoria_edificacionnes_polideportivas_deporte_federaciones"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_p_edif_polideportivas_deporte_feder_2" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_deporte"/>
+            <field name="subcategoria_id" ref="subcategoria_edificacionnes_polideportivas_deporte_federaciones"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro"/>
+            <field name="monto_construc">1000</field>
+            <field name="monto_rehabilit">1000</field>
+            <field name="monto_ampliac">1000</field>
+        </record>
+        <record id="s_p_edif_alto_nivel_intern" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_deporte"/>
+            <field name="subcategoria_id" ref="subcategoria_edificaciones_deport_alto_nivel_competicion_intern"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_p_edif_alto_nivel_intern_2" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_deporte"/>
+            <field name="subcategoria_id" ref="subcategoria_edificaciones_deport_alto_nivel_competicion_intern"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro"/>
+            <field name="monto_construc">1000</field>
+            <field name="monto_rehabilit">1000</field>
+            <field name="monto_ampliac">1000</field>
+        </record>
+        <record id="s_p_edif_educacion_especial" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_educacion"/>
+            <field name="subcategoria_id" ref="subcategoria_edificacionnes_educacion_especial"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_p_edif_educacion_preescolar" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_educacion"/>
+            <field name="subcategoria_id" ref="subcategoria_edificacionnes_educacion_preescolar"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_p_edif_educacion_primaria" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_educacion"/>
+            <field name="subcategoria_id" ref="subcategoria_edificacionnes_educacion_primaria"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_p_edif_educacion_secundaria" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_educacion"/>
+            <field name="subcategoria_id" ref="subcategoria_edificacionnes_educacion_secunadaria"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_p_edif_educacion_universitaria" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_educacion"/>
+            <field name="subcategoria_id" ref="subcategoria_edificacionnes_educacion_universitaria"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_p_edif_escuelas_tecnicas" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_educacion"/>
+            <field name="subcategoria_id" ref="subcategoria_edificacionnes_escuelas_tecnicas"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_p_edif_formacion_capacitacion_trabajo" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_educacion"/>
+            <field name="subcategoria_id" ref="subcategoria_edificacionnes_formacion_organizacion_capacitacion"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_p_edif_misiones_educativas" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_educacion"/>
+            <field name="subcategoria_id" ref="subcategoria_edificacionnes_misiones_educativas"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_p_edif_simoncito" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_educacion"/>
+            <field name="subcategoria_id" ref="subcategoria_edificacionnes_simoncito"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_p_alumbrado_publico" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_electricidad"/>
+            <field name="subcategoria_id" ref="subcategoria_alumbrado_publico"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro"/>
+            <field name="monto_construc">2200</field>
+            <field name="monto_rehabilit">1870</field>
+            <field name="monto_ampliac">1980</field>
+        </record>
+        <record id="s_p_distribucion_media_baja_tension" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_electricidad"/>
+            <field name="subcategoria_id" ref="subcategoria_distribucion_media_baja_tension"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro"/>
+            <field name="monto_construc">2733.33</field>
+            <field name="monto_rehabilit">2323.33</field>
+            <field name="monto_ampliac">2460</field>
+        </record>
+        <record id="s_p_generacion_distribuida" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_electricidad"/>
+            <field name="subcategoria_id" ref="subcategoria_generacion_diversificada"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">2733.33</field>
+            <field name="monto_rehabilit">2323.33</field>
+            <field name="monto_ampliac">2460</field>
+        </record>
+        <record id="s_p_conservacion_taludes" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_estabilizacion_taludes"/>
+            <field name="subcategoria_id" ref="subcategoria_conservacion_taludes"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">33195.74</field>
+            <field name="monto_rehabilit">28216.38</field>
+            <field name="monto_ampliac">29876.17</field>
+        </record>
+        <record id="s_p_gaviones" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_estabilizacion_taludes"/>
+            <field name="subcategoria_id" ref="subcategoria_gaviones"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">33195.74</field>
+            <field name="monto_rehabilit">28216.38</field>
+            <field name="monto_ampliac">29876.17</field>
+        </record>
+        <record id="s_p_gaviones_2" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_estabilizacion_taludes"/>
+            <field name="subcategoria_id" ref="subcategoria_gaviones"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro"/>
+            <field name="monto_construc">1000</field>
+            <field name="monto_rehabilit">1000</field>
+            <field name="monto_ampliac">1000</field>
+        </record>
+        <record id="s_p_concreto_armado" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_estabilizacion_taludes"/>
+            <field name="subcategoria_id" ref="subcategoria_muro_concreto_armado"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">26377.23</field>
+            <field name="monto_rehabilit">22420.65</field>
+            <field name="monto_ampliac">23739.51</field>
+        </record>
+        <record id="s_p_concreto_armado_2" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_estabilizacion_taludes"/>
+            <field name="subcategoria_id" ref="subcategoria_muro_concreto_armado"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro"/>
+            <field name="monto_construc">1000</field>
+            <field name="monto_rehabilit">1000</field>
+            <field name="monto_ampliac">1000</field>
+        </record>
+        <record id="s_p_pantallas_atirantadas" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_estabilizacion_taludes"/>
+            <field name="subcategoria_id" ref="subcategoria_pantallas_atirantada"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">1000</field>
+            <field name="monto_rehabilit">1000</field>
+            <field name="monto_ampliac">1000</field>
+        </record>
+        <record id="s_p_tierra_atirantadas" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_estabilizacion_taludes"/>
+            <field name="subcategoria_id" ref="subcategoria_tierra_atirantada"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">1000</field>
+            <field name="monto_rehabilit">1000</field>
+            <field name="monto_ampliac">1000</field>
+        </record>
+        <record id="s_p_mercados" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_mejoras_habitat"/>
+            <field name="subcategoria_id" ref="subcategoria_mercados"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">22000</field>
+            <field name="monto_rehabilit">18700</field>
+            <field name="monto_ampliac">19800</field>
+        </record>
+        <record id="s_p_plazas_parques_paisajismo" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_mejoras_habitat"/>
+            <field name="subcategoria_id" ref="subcategoria_plazas_parques_paisajismo"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_p_rehabilitacion_vivienda" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_mejoras_habitat"/>
+            <field name="subcategoria_id" ref="subcategoria_rehabilitacion_vivienda"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">10000</field>
+            <field name="monto_rehabilit">8500</field>
+            <field name="monto_ampliac">9000</field>
+        </record>
+        <record id="s_p_ambulatorio_rural_tipo_i" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_salud"/>
+            <field name="subcategoria_id" ref="subcategoria_ambulatorios_rurales_tipo_1"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_p_ambulatorio_rural_tipo_ii" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_salud"/>
+            <field name="subcategoria_id" ref="subcategoria_ambulatorios_rurales_tipo_2"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_p_ambulatorio_urbano_tipo_i" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_salud"/>
+            <field name="subcategoria_id" ref="subcategoria_ambulatorios_urbano_tipo_1"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_p_ambulatorio_urbano_tipo_ii" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_salud"/>
+            <field name="subcategoria_id" ref="subcategoria_ambulatorios_urbano_tipo_2"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_p_ambulatorio_urbano_tipo_iii" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_salud"/>
+            <field name="subcategoria_id" ref="subcategoria_ambulatorios_urbano_tipo_3"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_p_cementerio" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_salud"/>
+            <field name="subcategoria_id" ref="subcategoria_cementerio"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">25000</field>
+            <field name="monto_rehabilit">21250</field>
+            <field name="monto_ampliac">22500</field>
+        </record>
+        <record id="s_p_hospital_tipo_i" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_salud"/>
+            <field name="subcategoria_id" ref="subcategoria_hospitales_tipo_1"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">22000</field>
+            <field name="monto_rehabilit">18700</field>
+            <field name="monto_ampliac">19800</field>
+        </record>
+        <record id="s_p_hospital_tipo_ii" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_salud"/>
+            <field name="subcategoria_id" ref="subcategoria_hospitales_tipo_2"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">22000</field>
+            <field name="monto_rehabilit">18700</field>
+            <field name="monto_ampliac">19800</field>
+        </record>
+        <record id="s_p_hospital_tipo_iii" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_salud"/>
+            <field name="subcategoria_id" ref="subcategoria_hospitales_tipo_3"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">22000</field>
+            <field name="monto_rehabilit">18700</field>
+            <field name="monto_ampliac">19800</field>
+        </record>
+        <record id="s_p_hospital_tipo_iv" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_salud"/>
+            <field name="subcategoria_id" ref="subcategoria_hospitales_tipo_4"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">22000</field>
+            <field name="monto_rehabilit">18700</field>
+            <field name="monto_ampliac">19800</field>
+        </record>
+        <record id="s_p_barrio_adentro_i" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_salud"/>
+            <field name="subcategoria_id" ref="subcategoria_barrio_adentro_1"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_p_barrio_adentro_ii" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_salud"/>
+            <field name="subcategoria_id" ref="subcategoria_barrio_adentro_2"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_p_instalaciones_geriatricas" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_salud"/>
+            <field name="subcategoria_id" ref="subcategoria_instalaciones_geriatricas"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_p_centro_salud_mental" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_salud"/>
+            <field name="subcategoria_id" ref="subcategoria_centro_salud_mental"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_p_centro_farmacia_populares" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_salud"/>
+            <field name="subcategoria_id" ref="subcategoria_farmacia_populares"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_p_bombero_administracion_emergencia" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_seguridad_ciudadana"/>
+            <field name="subcategoria_id" ref="subcategoria_bombero_administracion_emergencia"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_p_administracion_desastre" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_seguridad_ciudadana"/>
+            <field name="subcategoria_id" ref="subcategoria_organismo_administracion_desastres"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_p_seguridad_policia" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_seguridad_ciudadana"/>
+            <field name="subcategoria_id" ref="subcategoria_servicio_policia"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_p_paradas" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_transporte_publico"/>
+            <field name="subcategoria_id" ref="subcategoria_paradas"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">15032.74</field>
+            <field name="monto_rehabilit">12777.83</field>
+            <field name="monto_ampliac">13529.47</field>
+        </record>
+        <record id="s_p_terminales" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_transporte_publico"/>
+            <field name="subcategoria_id" ref="subcategoria_terminales"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_p_terrestre" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_transporte_publico"/>
+            <field name="subcategoria_id" ref="subcategoria_terreste"/>
+            <field name="unidades_id" ref="unidades_obra_civil_n_a"/>
+            <field name="monto_construc"></field>
+            <field name="monto_rehabilit"></field>
+            <field name="monto_ampliac"></field>
+        </record>
+        <record id="s_p_acuatico" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_transporte_publico"/>
+            <field name="subcategoria_id" ref="subcategoria_acuatico"/>
+            <field name="unidades_id" ref="unidades_obra_civil_n_a"/>
+            <field name="monto_construc"></field>
+            <field name="monto_rehabilit"></field>
+            <field name="monto_ampliac"></field>
+        </record>
+        <record id="s_p_aceras_brocales_cunetas" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_vialidad"/>
+            <field name="subcategoria_id" ref="subcategoria_aceras_brocales_cunetas"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro"/>
+            <field name="monto_construc">3000</field>
+            <field name="monto_rehabilit">2550</field>
+            <field name="monto_ampliac">2700</field>
+        </record>
+        <record id="s_p_agricola" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_vialidad"/>
+            <field name="subcategoria_id" ref="subcategoria_agricola"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro"/>
+            <field name="monto_construc">5652.06</field>
+            <field name="monto_rehabilit">4804.25</field>
+            <field name="monto_ampliac">5086.85</field>
+        </record>
+        <record id="s_p_alcantarilla_sumidero_ventana" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_vialidad"/>
+            <field name="subcategoria_id" ref="subcategoria_alcantarilla_sumidero_ventana"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro"/>
+            <field name="monto_construc">85824.55</field>
+            <field name="monto_rehabilit">72950.87</field>
+            <field name="monto_ampliac">77242.10</field>
+        </record>
+        <record id="s_p_bateas_puentes_cajones" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_vialidad"/>
+            <field name="subcategoria_id" ref="subcategoria_bateas_puentes_cajones"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">15801.74</field>
+            <field name="monto_rehabilit">13431.48</field>
+            <field name="monto_ampliac">14221.57</field>
+        </record>
+        <record id="s_p_paso_peatonal_caminerias_veredas" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_vialidad"/>
+            <field name="subcategoria_id" ref="subcategoria_paso_peatonal_camineria_vereda"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">2500</field>
+            <field name="monto_rehabilit">2125</field>
+            <field name="monto_ampliac">2250</field>
+        </record>
+        <record id="s_p_ciclovia" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_vialidad"/>
+            <field name="subcategoria_id" ref="subcategoria_ciclovia"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">2500</field>
+            <field name="monto_rehabilit">2125</field>
+            <field name="monto_ampliac">2250</field>
+        </record>
+        <record id="s_p_ciclovia_2" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_vialidad"/>
+            <field name="subcategoria_id" ref="subcategoria_ciclovia"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro"/>
+            <field name="monto_construc">2500</field>
+            <field name="monto_rehabilit">2125</field>
+            <field name="monto_ampliac">2250</field>
+        </record>
+        <record id="s_p_rural" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_vialidad"/>
+            <field name="subcategoria_id" ref="subcategoria_rural"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro"/>
+            <field name="monto_construc">12000.00</field>
+            <field name="monto_rehabilit">10200.00</field>
+            <field name="monto_ampliac">10800.00</field>
+        </record>
+        <record id="s_p_senalizacion_demarcacion_semaforizacion" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_vialidad"/>
+            <field name="subcategoria_id" ref="subcategoria_senalizacion_demarcacion_semaforizacion"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro"/>
+            <field name="monto_construc">1000</field>
+            <field name="monto_rehabilit">1000</field>
+            <field name="monto_ampliac">1000</field>
+        </record>
+        <record id="s_p_sistema_vial_nacional" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_vialidad"/>
+            <field name="subcategoria_id" ref="subcategoria_sistema_final_vial"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro"/>
+            <field name="monto_construc">9539.72</field>
+            <field name="monto_rehabilit">8108.76</field>
+            <field name="monto_ampliac">8585.75</field>
+        </record>
+        <record id="s_p_sistema_vial_nacional_2" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_vialidad"/>
+            <field name="subcategoria_id" ref="subcategoria_sistema_final_vial"/>
+            <field name="unidades_id" ref="unidades_obra_civil_t"/>
+            <field name="monto_construc">9539.72</field>
+            <field name="monto_rehabilit">8108.76</field>
+            <field name="monto_ampliac">8585.75</field>
+        </record>
+        <record id="s_p_sistemas_vias_acceso" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_vialidad"/>
+            <field name="subcategoria_id" ref="subcategoria_sistema_vias_acceso"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro"/>
+            <field name="monto_construc">9539.72</field>
+            <field name="monto_rehabilit">8108.76</field>
+            <field name="monto_ampliac">8585.75</field>
+        </record>
+        <record id="s_p_sistemas_vias_acceso_2" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_servicio_publico"/>
+            <field name="categoria_id" ref="categoria_vialidad"/>
+            <field name="subcategoria_id" ref="subcategoria_sistema_vias_acceso"/>
+            <field name="unidades_id" ref="unidades_obra_civil_t"/>
+            <field name="monto_construc">9539.72</field>
+            <field name="monto_rehabilit">8108.76</field>
+            <field name="monto_ampliac">8585.75</field>
+        </record>
+        <record id="s_s_extracion_materiales_no_metalicos" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_socioproductivo"/>
+            <field name="categoria_id" ref="categoria_produccion_primaria"/>
+            <field name="subcategoria_id" ref="subcategoria_extracion_materiales_no_metalicos"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_s_sistema_prodctivo_agroecologico" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_socioproductivo"/>
+            <field name="categoria_id" ref="categoria_produccion_primaria"/>
+            <field name="subcategoria_id" ref="subcategoria_sistema_productivo_agroecologico"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_s_sistema_prodctivo_animal" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_socioproductivo"/>
+            <field name="categoria_id" ref="categoria_produccion_primaria"/>
+            <field name="subcategoria_id" ref="subcategoria_sistema_productivo_animal"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_s_sistema_prodctivo_forestal" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_socioproductivo"/>
+            <field name="categoria_id" ref="categoria_produccion_primaria"/>
+            <field name="subcategoria_id" ref="subcategoria_sistema_productivo_forestal"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_s_sistema_prodctivo_pesquero" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_socioproductivo"/>
+            <field name="categoria_id" ref="categoria_produccion_primaria"/>
+            <field name="subcategoria_id" ref="subcategoria_sistema_productivo_pesquero"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_s_sistema_prodctivo_vegetal" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_socioproductivo"/>
+            <field name="categoria_id" ref="categoria_produccion_primaria"/>
+            <field name="subcategoria_id" ref="subcategoria_sistema_productivo_vegetal"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_s_almacenamiento_frio_seco" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_socioproductivo"/>
+            <field name="categoria_id" ref="categoria_produccion_primaria"/>
+            <field name="subcategoria_id" ref="subcategoria_almacenamiento_frio_seco"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_s_empaque_envasado" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_socioproductivo"/>
+            <field name="categoria_id" ref="categoria_servicios_conexos"/>
+            <field name="subcategoria_id" ref="subcategoria_empaque_envasado"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_s_matadero" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_socioproductivo"/>
+            <field name="categoria_id" ref="categoria_servicios_conexos"/>
+            <field name="subcategoria_id" ref="subcategoria_matadero"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_s_servicios_mecanicos" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_socioproductivo"/>
+            <field name="categoria_id" ref="categoria_servicios_conexos"/>
+            <field name="subcategoria_id" ref="subcategoria_servicios_mecanicos"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_s_transporte_carga_actividad_product" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_socioproductivo"/>
+            <field name="categoria_id" ref="categoria_servicios_conexos"/>
+            <field name="subcategoria_id" ref="subcategoria_trasporte_carga_asociada_actividades_productivas"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_s_sistema_riego" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_socioproductivo"/>
+            <field name="categoria_id" ref="categoria_servicios_conexos"/>
+            <field name="subcategoria_id" ref="subcategoria_sistema_riesgo"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">37069.60</field>
+            <field name="monto_rehabilit">31509.16</field>
+            <field name="monto_ampliac">33362.64</field>
+        </record>
+        <record id="s_s_alimentos_balanceados_animales" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_socioproductivo"/>
+            <field name="categoria_id" ref="categoria_transformacion_industrial"/>
+            <field name="subcategoria_id" ref="subcategoria_alimentos_balanceados_animales"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_s_productos_carnicos" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_socioproductivo"/>
+            <field name="categoria_id" ref="categoria_transformacion_industrial"/>
+            <field name="subcategoria_id" ref="subcategoria_productos_carnicos"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_s_productos_lacteos" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_socioproductivo"/>
+            <field name="categoria_id" ref="categoria_transformacion_industrial"/>
+            <field name="subcategoria_id" ref="subcategoria_productos_lacteos"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_s_productos_construccion_no_metalicos" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_socioproductivo"/>
+            <field name="categoria_id" ref="categoria_transformacion_industrial"/>
+            <field name="subcategoria_id" ref="subcategoria_productos_construccion_no_metalicos"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_s_productos_pesquero" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_socioproductivo"/>
+            <field name="categoria_id" ref="categoria_transformacion_industrial"/>
+            <field name="subcategoria_id" ref="subcategoria_productos_pesquero"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_s_productos_vegetal" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_socioproductivo"/>
+            <field name="categoria_id" ref="categoria_transformacion_industrial"/>
+            <field name="subcategoria_id" ref="subcategoria_productos_vegetal"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_s_textil" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_socioproductivo"/>
+            <field name="categoria_id" ref="categoria_transformacion_industrial"/>
+            <field name="subcategoria_id" ref="subcategoria_textil"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_s_calzado" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_socioproductivo"/>
+            <field name="categoria_id" ref="categoria_transformacion_industrial"/>
+            <field name="subcategoria_id" ref="subcategoria_calzado"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_s_cuero" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_socioproductivo"/>
+            <field name="categoria_id" ref="categoria_transformacion_industrial"/>
+            <field name="subcategoria_id" ref="subcategoria_cuero"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_s_madera" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_socioproductivo"/>
+            <field name="categoria_id" ref="categoria_transformacion_industrial"/>
+            <field name="subcategoria_id" ref="subcategoria_madera"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_s_metalmetanica" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_socioproductivo"/>
+            <field name="categoria_id" ref="categoria_transformacion_industrial"/>
+            <field name="subcategoria_id" ref="subcategoria_metalmecanica"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_s_planta_asfatado" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_socioproductivo"/>
+            <field name="categoria_id" ref="categoria_transformacion_industrial"/>
+            <field name="subcategoria_id" ref="subcategoria_planta_asfaltado"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_s_planta_reciclado" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_socioproductivo"/>
+            <field name="categoria_id" ref="categoria_transformacion_industrial"/>
+            <field name="subcategoria_id" ref="subcategoria_planta_reciclado"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_s_planta_plastico" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_socioproductivo"/>
+            <field name="categoria_id" ref="categoria_transformacion_industrial"/>
+            <field name="subcategoria_id" ref="subcategoria_planta_plastico"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_s_alojamiento_turistico" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_socioproductivo"/>
+            <field name="categoria_id" ref="categoria_turismo"/>
+            <field name="subcategoria_id" ref="subcategoria_alojamiento_turistico"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_s_establecimiento_turismo_recreativo" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_socioproductivo"/>
+            <field name="categoria_id" ref="categoria_turismo"/>
+            <field name="subcategoria_id" ref="subcategoria_establecimiento_turismo_recreativo"/>
+            <field name="unidades_id" ref="unidades_obra_civil_metro_cuadrado"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        <record id="s_s_transporte_acuatico" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_socioproductivo"/>
+            <field name="categoria_id" ref="categoria_turismo"/>
+            <field name="subcategoria_id" ref="subcategoria_transporte_turistico_acuatico"/>
+            <field name="unidades_id" ref="unidades_obra_civil_n_a"/>
+            <field name="monto_construc"></field>
+            <field name="monto_rehabilit"></field>
+            <field name="monto_ampliac"></field>
+        </record>
+        <record id="s_s_transporte_terreste" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_socioproductivo"/>
+            <field name="categoria_id" ref="categoria_turismo"/>
+            <field name="subcategoria_id" ref="subcategoria_transporte_turistico_terrestre"/>
+            <field name="unidades_id" ref="unidades_obra_civil_n_a"/>
+            <field name="monto_construc"></field>
+            <field name="monto_rehabilit"></field>
+            <field name="monto_ampliac"></field>
+        </record>
+        <record id="s_s_unidades_gastronomicas" model="ept_cp.montos_minimos_construccion">
+            <field name="tipo_sector_id" ref="sector_socioproductivo"/>
+            <field name="categoria_id" ref="categoria_turismo"/>
+            <field name="subcategoria_id" ref="subcategoria_unidades_gastronomicas"/>
+            <field name="unidades_id" ref="unidades_obra_civil_n_a"/>
+            <field name="monto_construc">20000</field>
+            <field name="monto_rehabilit">17000</field>
+            <field name="monto_ampliac">18000</field>
+        </record>
+        
+        
+        
+        
+<!--
+        <record id="subcategoria_centro_atencion_personas_situacion_calle_violencia" model="ept_cp.tipo_sectores">
+            <field name="name">Centros para la Atención de las Personas en Situación de Calle y Violencia</field>
+            <field name="parent_id" ref="categoria_salud"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+        </record>
+-->
+        
+</data>
+</openerp>

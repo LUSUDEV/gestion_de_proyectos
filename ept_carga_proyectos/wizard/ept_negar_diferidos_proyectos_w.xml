@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <openerp>
+     <data>
+         <!-- Seleccionar proyectos a migrar -->
+        <record id="ept_negar_proyectos_diferidos_wizard_view" model="ir.ui.view">
+            <field name="name">Seleccionar Entidades para cancelar proyectos diferidos</field>
+            <field name="model">ept.negar_proyectos_diferidos</field>
+            <field name="arch" type="xml">
+                <form string="Proyectos a migrar">
+					<separator string="Descripción" colspan="4"/>
+                    <field name="descripcion" />
+                    <separator string="Ciclo" colspan="4"/>
+                    <field name="ciclo_id" />
+                    <separator string="¿Negar Proyectos diferidos por aval?" colspan="4"/>
+                    <field name="diferido_aval" />
+                    <separator string="Entidades" colspan="4"/>
+                    <field name="entidades_ids" domain="[('cis_entidad','=',True)]" >
+                        <tree>
+                            <field  name="name" />
+                        </tree>
+                    </field>
+                    <footer>
+                        <button string="Negar Proyectos" type="object"  name="negar_proyectos" class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+         <record model="ir.actions.act_window" id="action_ept_negar_proyectos_diferidos">
+            <field name="name">Buscar Proyectos a migrar</field>
+            <field name="res_model">ept.negar_proyectos_diferidos</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="ept_negar_proyectos_diferidos_wizard_view"/>
+            <field name="target">new</field>
+        </record>
+    
+        <menuitem name="Negar Proyectos Diferidos" 
+                id="menu_ept_seleccionar_proyectos_migrar" 
+                action="action_ept_negar_proyectos_diferidos" 
+                parent="menu_ept_cp_carga_proyecto" 
+                sequence="20"
+                groups="base.group_system,ept_usuarios.group_jun_dir_sec"/>
+    </data>
+</openerp>

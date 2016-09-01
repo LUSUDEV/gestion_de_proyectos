@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data noupdate="1">
+        <record id="monto_minimo_maquinaria_construccion" model="ept_cp.montos_minimos_maquinaria">
+            <field name="uso">Maquinaria de construcción</field>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_maquinaria_agropecuaria" model="ept_cp.montos_minimos_maquinaria">
+            <field name="uso">Maquinaria Agropecuaria</field>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_maquinaria_industrial" model="ept_cp.montos_minimos_maquinaria">
+            <field name="uso">Maquinaria Industrial (Transformación, Procesamiento y Empaquetado)</field>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_maquinaria_taller_industrial" model="ept_cp.montos_minimos_maquinaria">
+            <field name="uso">Maquinaria para Taller Industrial</field>
+            <field name="monto_minimo">1000000</field>
+        </record>
+</data>
+</openerp>

@@ -1,0 +1,544 @@
+<?xml version="1.0"?>
+    <openerp>
+        <data>
+            <template id="ept_carga_proyectos.registrar_proyecto_template" name="Template para el registro de proyecto">
+                <div class="panel panel-default hidden">
+                    <div class="panel-heading">Entidad Político Territorial</div>
+                    <div class="panel-body">
+                        <label for="usr">Entidad</label>
+                            <select class="selectpicker show-tick" id="entidad" name="partner_id">
+                                <t t-foreach="partner_data" t-as="partner">
+                                    <option t-att-value="'%s' % (partner.id)" ><t t-esc="partner.name"/></option>
+                                </t>
+                            </select>
+                        <label for="usr">Cuenta</label>
+                            <select class="selectpicker show-tick" name="cuenta_id" id="cuenta">
+                                <t t-foreach="cuenta_data" t-as="cuenta">
+                                    <option t-att-value="'%s' % (cuenta.id)"><t t-esc="cuenta.name"/></option>
+                                </t>
+                            </select>
+                    </div>
+            </div>    
+            <div class="panel panel-default">
+                <div class="panel-heading">Nombre y Descripción<a href="#" id="ayudas_informacion" ref="nombre_descripcion"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                <div class="panel-body">
+                    <label for="nombre_proyecto" data-toggle="popover" data-trigger="hover" data-content="Nombre del proyecto a cargar">Nombre del Proyecto</label>
+                        <textarea class="form-control" name="nombre_proyecto" mensaje="Nombre del Proyecto" required="required"  rows="3" maxlength="500"  ></textarea>
+                        <br/>
+                    <label for="descripcion_proyecto" data-toggle="popover" data-trigger="hover" data-content="Descripción del proyecto a cargar">Descripción del Proyecto</label>
+                        <textarea  class="form-control" name="descripcion_proyecto" mensaje="Descripción del Proyecto" required="required"  rows="4" maxlength="500"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Tiempo de Ejecución Estimado<a href="#" id="ayudas_informacion" ref="tiempo_ejecucion"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                        <div class="panel-body">
+                            <div class="col-md-4">
+                                <label for="fecha_inicio" data-toggle="popover" data-trigger="hover" data-content="Fecha de inicio estimada del proyecto a cargar">Fecha de Inicio</label>
+                                <input type="text" class="form-control border_form_input date_proyecto_ept"  id="fecha_inicio" name="fecha_inicio" mensaje="Fecha de inicio" required="required"/>
+                            </div>
+                            <div class="col-md-4">
+                                    <label for="fecha_fin" data-toggle="popover" data-trigger="hover" data-content="Fecha de fin estimada del proyecto a cargar">Fecha de Fin</label>
+                                    <input type="text" class="form-control border_form_input date_proyecto_ept"  id="fecha_fin" name="fecha_fin" mensaje="Fecha de Fin" required="required"/>
+                            </div>
+                            <div class="col-md-4">
+                                    <label for="duracion_proyec" data-toggle="popover" data-trigger="hover" data-content="Duración estimada del proyecto">Duración del proyecto</label>
+                                    <p id="duracion_proyecto"></p>
+                                    <input type="text" class="form-control control-label hidden" disabled="" id="duracion_proyec" name="duracion_proyec"/>
+                            </div>
+                        </div>
+                    </div>       
+                </div>
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Monto del Proyecto<a href="#" id="ayudas_informacion" ref="monto_proyecto"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                        <div class="panel-body">
+                            <div class="col-md-6">
+                                <label for="monto_proyecto" data-toggle="popover" data-trigger="hover" data-content="Monto disponilble del proyecto">Monto del Proyecto</label>
+                                <input type="text" class="form-control monto" name="monto_proyecto" id="monto_proyecto" mensaje="Monto Proyecto" required="required"></input>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="monto_disponible" data-toggle="popover" data-trigger="hover" data-content="Monto disponible del la entidad">Monto Disponible</label>
+                                <p id="monto_disponible" class="monto"><t t-esc="monto_total"/></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Clasificación de Inversión<a href="#" id="ayudas_informacion" ref="clasificacion"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                        <div class="panel-body">             
+                            <div class="col-md-12">
+                                <label for="tipo_sector" data-toggle="popover" data-trigger="hover" data-content="Tipo de sector del proyecto a cargar">Tipo de Sector</label>
+                                    <select class="form-control" id="tipo_sector" name="tipo_sector_id" mensaje="Tipo de sector" required="required">
+                                        <option class="hidden" selected="true" value=''>Seleccione</option>
+                                        <t t-foreach="tipo_sectores_data" t-as="sector">
+                                            <option t-att-value="'%s' % (sector.id)"><t t-esc="sector.name"/></option>
+                                        </t>
+                                    </select>
+                                <label for="categoria"  data-toggle="popover" data-trigger="hover" data-content="Categoría del proyecto a cargar">Categoria</label>
+                                    <select class="form-control" id="categoria" name="categoria_id" mensaje="Categoría" required="required">
+                                        <option class="hidden" value=''>Seleccione</option>
+                                    </select>
+                                <label for="subcategoria" data-toggle="popover" data-trigger="hover" data-content="Subcategoía del proyecto a cargar">Subcategoria</label>
+                                    <select class="form-control" id="subcategoria" name="subcategoria_id" mensaje="Subcategoria" required="required">
+                                        <option class="hidden"  value=''>Seleccione</option>
+                                    </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Proyecto de Mantenimiento<a href="#" id="ayudas_informacion" ref="proyecto_mantenimiento"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                    <div class="panel-body">
+                        <div class="col-md-12">
+                            <div class="checkbox col-md-6">
+                                <label>
+                                    <input type="checkbox" value="" id="proyect_mantenimiento" name="proyect_mantenimiento"  data-switch-no-init="True" data-toggle="popover" data-trigger="hover" data-content="Seleccione si este proyecto es de mantenimiento">
+                                        ¿Este proyecto es de mantenimiento?
+                                    </input>
+                                </label>
+                            </div>
+                            <div class="col-md-6 hidden" id="monto_mant_disp">
+                                <label data-toggle="popover" data-trigger="hover" data-content="Monto disponible del la entidad">Monto Disponible de Mantenimiento</label>
+                                    <p class="monto" id="monto_disponible_mantenimiento"><t t-esc="monto_manteni_disp"/></p>
+
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="row" id="caracteristicas_generales">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Caracteristicas Generales<a href="#" id="ayudas_informacion" ref="caracteristicas_generales"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="checkbox col-md-2">
+                                    <label>
+                                        <input type="checkbox" data-switch-no-init="True" id="obra_civil" name="obra_civil" value="True" data-toggle="popover" data-trigger="hover" data-content="Seleccione si el proyecto a cargar es de infraestructura">
+                                            Obra Civil
+                                        </input>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <div class="col-md-12">
+                                        <div class="radio hidden"  id="tipo_obra">
+                                            <label>
+                                                <input type="radio" id="construccion" name="tipo_obra"  value="construccion" data-switch-no-init="True"/>
+                                                Construcción Inicial
+                                            </label>
+                                            <label>
+                                                <input type="radio"  name="tipo_obra" id="ampliacion" value="ampliacion" data-switch-no-init="True"/>
+                                                Ampliación
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="tipo_obra" id="rehabilitacion" value="rehabilitacion" data-switch-no-init="True"/>
+                                                Rehabilitación o Mejora
+                                            </label>
+                                        </div>  
+                                    </div>
+                                </div>
+                                <div id="cantidad_unidad" class="hidden col-md-5">
+                                    <div class="col-md-6">
+                                        <label for="cantidad" >Cantidad
+                                            <input type="number" min="1"  step="1" class="form-control" id="cantidad1" value="" name="cantidad_estimada_obra"></input></label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="unidad">Unidad
+                                            <select class="form-control" id="unidad" name="unidad_medicion_obra">
+                                                <option class="hidden" value=''>Seleccione</option>
+                                            </select>
+                                        </label>
+                                     </div>
+                                </div>
+                                <div class="col-md-6 hidden" id="aval_file">
+                                    <label for="aval_proyecto">Aval
+                                        <input type="file" class="file-loadig input-files_proyecto js_file_apiform_proyecto" id="aval_ids" name="aval_ids"></input>
+                                    </label>
+                                    <div>
+                                        <a href="http://smallpdf.com/es/comprimir-pdf" target="new">Enlace para reducir peso de los archivos pdf</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hidden">
+                                <input type="checkbox" value="" id="aval" name="aval"  data-switch-no-init="True">Aval</input>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="" id="adquisi_equipo" name="equipos"  data-switch-no-init="True" data-toggle="popover" data-trigger="hover" data-content="Seleccione si el proyecto a cargar es para adquisición de equipos">
+                                        Adquisición de Equipos
+                                    </input>
+                                </label>
+                            </div>
+                            <table class="table table-bordered table-striped mt32 hidden" id="t_adquisi_equipo">
+                                <thead>
+                                    <tr>
+                                        <th class="col-md-6">Uso</th>
+                                        <th class="col-md-4">Tipo</th>
+                                        <th class="col-md-2">Cantidad</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="t_adquisi_equipo1">
+                                    <tr class="active" id="equipo_1" >
+                                        <td>
+                                            <select class="form-control" name="equipo_uso_select_1" >
+                                                <option class="hidden" value=''>Seleccione</option>
+                                                <t t-foreach="equipos_data" t-as="equipo">
+                                                    <option t-att-value="'%s' % (equipo.id)"><t t-esc="equipo.uso"/></option>
+                                                </t>
+                                            </select>
+                                        </td>
+                                        <td><input type="text" class="form-control" name="equipo_tipo_text_1" val=""></input></td>
+                                        <td><input type="number" min="1"  step="1" value="" class="form-control" name="equipo_cantidad_number_1" ></input></td>
+                                        <td><button type="button" value="Eliminar" class="eliminarFila" ref_body='t_adquisi_equipo1'>
+                                            <span class="glyphicon glyphicon-trash"></span></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <button type="button" class="btn btn-primary btn-xs hidden agregarFila" ref='t_adquisi_equipo1' value="Adicionar" id="agregarFila">Adicionar</button> 
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="True" id="adquis_maqui" data-switch-no-init="True" name="maquinaria"  data-toggle="popover" data-trigger="hover" data-content="Seleccione si el proyecto a cargar es para adquisición de maquinarias">
+                                        Adquisición de Maquinarias
+                                    </input>
+                                </label>
+                            </div>
+                            <table class="table table-bordered table-striped mt32 hidden" id="t_adquis_maqui">
+                                <thead>
+                                    <tr>
+                                        <th class="col-md-5">Uso</th>
+                                        <th class="col-md-5">Tipo</th>
+                                        <th class="col-md-2">Cantidad</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="t_adquis_maqui1">
+                                    <tr class="active"  id="maquina_1" >
+                                        <td >
+                                            <select class="form-control" name="maquinaria_uso_select_1">
+                                                <option class="hidden" value=''>Seleccione</option>
+                                                <t t-foreach="maquinaria_data" t-as="maqui">
+                                                    <option t-att-value="'%s' % (maqui.id)"><t t-esc="maqui.uso"/></option>
+                                                </t>
+                                            </select>
+                                        </td>
+                                        <td ><input type="text" class="form-control" name="maquinaria_tipo_text_1" value=""></input></td>
+                                        <td ><input type="number" class="form-control" name="maquinaria_cantidad_number_1"  min="1"  step="1" value=""></input></td>
+                                        <td><button type="button" value="Eliminar" class="eliminarFila" ref_body='t_adquis_maqui1'>
+                                            <span class="glyphicon glyphicon-trash"></span></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <button type="button" class="btn btn-primary btn-xs hidden agregarFila" value="Adicionar" ref='t_adquis_maqui1' id="agregarFila2">Adicionar</button> 
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="True" id="adquis_vehiculo" data-switch-no-init="True" name="vehiculos"  data-toggle="popover" data-trigger="hover" data-content="Seleccione si el proyecto a cargar es para adquisición de vehiculos">
+                                        Adquisición de Vehiculos
+                                    </input>
+                                </label>
+                            </div>
+                            <table class="table table-bordered table-striped mt32 hidden" id="t_adquis_vehiculo">
+                                <thead>
+                                    <tr>
+                                        <th class="col-md-3">Uso</th>
+                                        <th class="col-md-4">Caracteristica</th>
+                                        <th class="col-md-3">Tipo</th>
+                                        <th class="col-md-2">Cantidad</th>
+                                    </tr>
+                                </thead>
+                                    <tbody id="t_adquis_vehiculo1">
+                                        <tr class="active" id="vehiculo_1" >
+                                            <td >
+                                                <select class="form-control vehiculo" id="vehiculo_uso_select_1" name="vehiculo_uso_select_1">
+                                                   <option class="hidden" value=''>Seleccione</option>
+                                                        <t t-foreach="vehiculo_uso_data" t-as="vehiculo">
+                                                            <option t-att-value="'%s' % (vehiculo.id)"><t t-esc="vehiculo.uso"/></option>
+                                                        </t>
+                                                </select>
+                                            </td>
+                                            <td >
+                                                <select class="form-control vehiculo_caract" id="vehiculo_caracteristica_select_1" name="vehiculo_caracteristica_select_1">
+                                                   <option class="hidden" value=''>Seleccione</option>
+                                                </select>
+                                            </td>
+                                            <td >
+                                                <select class="form-control" id="vehiculo_tipo_text_1" name="vehiculo_tipo_text_1">
+                                                   <option class="hidden" value=''>Seleccione</option>
+                                                </select>
+                                            </td>
+                                            <td ><input type="number" class="form-control" min="1"  step="1" value="" id="" name="vehiculo_cantidad_number_1"></input></td>
+                                            <td><button type="button" value="Eliminar" class="eliminarFila" ref_body='t_adquis_vehiculo1'>
+                                                <span class="glyphicon glyphicon-trash"></span></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table> 
+                                <button type="button" class="btn btn-primary btn-xs hidden agregarFila" value="Adicionar" ref='t_adquis_vehiculo1'  id="agregarFila3">Adicionar</button> 
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="True" id="adquis_materiales" data-switch-no-init="True" name="materiales_consumo"  data-toggle="popover" data-trigger="hover" data-content="Seleccione si el proyecto a cargar es para adquisición de materiales">
+                                           Adquisición de Materiales de Consumo
+                                        </input>
+                                    </label>
+                                </div>
+                                <table class="table table-bordered table-striped mt32 hidden" id="t_adquis_materiales">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-md-5">Uso</th>
+                                            <th class="col-md-5">Tipo</th>
+                                            <th class="col-md-2">Cantidad</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="t_adquis_materiales1">
+                                        <tr class="active" id="material_1">
+                                            <td >
+                                                <select class="form-control" name="materiales_uso_select_1">
+                                                    <option class="hidden" value=''>Seleccione</option>
+                                                        <t t-foreach="material_data" t-as="material">
+                                                            <option t-att-value="'%s' % (material.id)"><t t-esc="material.uso"/></option>
+                                                        </t>
+                                                </select>
+                                            </td>
+                                            <td ><input type="text" class="form-control" name="materiales_tipo_text_1" value=""></input></td>
+                                            <td ><input type="number" class="form-control" name="materiales_cantidad_number_1" min="1"  step="1" value=""></input></td>
+                                            <td><button type="button" value="Eliminar" class="eliminarFila" ref_body='t_adquis_materiales1'>
+                                                <span class="glyphicon glyphicon-trash"></span></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table> 
+                                <button type="button" class="btn btn-primary btn-xs hidden agregarFila" value="Adicionar" ref='t_adquis_materiales1' id="agregarFila4">Adicionar</button> 
+                                <div class="checkbox hidden" id="adqui_semovi">
+                                    <label>
+                                        <input type="checkbox" value="" id="adquis_semovientes" name="semovientes"  data-switch-no-init="True" data-toggle="popover" data-trigger="hover" data-content="Seleccione si el proyecto a cargar es para adquisición de semovientes">
+                                            Adquisición de Semovientes
+                                        </input>
+                                    </label>
+                                </div>
+<!--
+                                <table class="table table-bordered table-striped mt32 hidden" id="t_adquis_semovientes">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-md-2">Especie</th>
+                                            <th class="col-md-3">Grupo</th>
+                                            <th class="col-md-3">Uso</th>
+                                            <th class="col-md-2">Proposito</th>
+                                            <th class="col-md-2">Cantidad</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="t_adquis_semovientes1">
+                                        <tr class="active" id="semoviente_1">
+                                            <td >
+                                                <select class="form-control" name="semovientes_especie_select_1">
+                                                    <option class="hidden" value=''>Seleccione</option>
+                                                        <t t-foreach="semoviente_data" t-as="semoviente">
+                                                            <option t-att-value="'%s' % (semoviente.id)"><t t-esc="semoviente.especie"/></option>
+                                                        </t>
+                                                </select>
+                                            </td>
+                                            <td ><input type="text" class="form-control" name="semovientes_grupo_text_1" value=""></input></td>
+                                            <td ><input type="text" class="form-control" name="semovientes_uso_text_1" value=""></input></td>
+                                            <td ><input type="text" class="form-control" name="semovientes_proposito_text_1" value=""></input></td>
+                                            <td ><input type="number" class="form-control" name="semovientes_cantidad_number_1" min="1"  step="1" value=""></input></td>
+                                            <td><button type="button" value="Eliminar" class="eliminarFila" ref_body='t_adquis_semovientes1'>
+                                                <span class="glyphicon glyphicon-trash"></span></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+-->
+                                <table class="table table-bordered table-striped mt32 hidden" id="t_adquis_semovientes">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-md-2">Especie</th>
+                                            <th class="col-md-3">Grupo</th>
+                                            <th class="col-md-3">Uso</th>
+                                            <th class="col-md-2">Proposito</th>
+                                            <th class="col-md-2">Cantidad</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="t_adquis_semovientes1">
+                                        <tr class="active" id="semoviente_1">
+                                            <td >
+                                                <select class="form-control semoviente_especie" name="semovientes_especie_select_1">
+                                                    <option class="hidden" value=''>Seleccione</option>
+                                                        <t t-foreach="semoviente_data" t-as="semoviente">
+                                                            <option t-att-value="'%s' % (semoviente.id)"><t t-esc="semoviente.especie"/></option>
+                                                        </t>
+                                                </select>
+                                            </td>
+                                            <td >
+												<select class="form-control semoviente_grupo" id="semovientes_grupo_select_1" name="semovientes_grupo_select_1">
+                                                    <option class="hidden" value=''>Seleccione</option>
+                                                </select>
+                                            </td>
+                                            <td >
+												<select class="form-control semoviente_uso" id="semovientes_uso_select_1" name="semovientes_uso_select_1">
+                                                    <option class="hidden" value=''>Seleccione</option>
+                                                </select>
+                                            </td>
+                                            <td >
+												<select class="form-control" id="semovientes_proposito_select_1" name="semovientes_proposito_select_1">
+                                                    <option class="hidden" value=''>Seleccione</option>
+                                                </select>
+                                            </td>
+                                            <td ><input type="number" class="form-control" name="semovientes_cantidad_number_1" min="1"  step="1" value=""></input></td>
+                                            <td><button type="button" value="Eliminar" class="eliminarFila" ref_body='t_adquis_semovientes1'>
+                                                <span class="glyphicon glyphicon-trash"></span></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <button type="button" class="btn btn-primary btn-xs hidden agregarFila" value="Adicionar" ref='t_adquis_semovientes1' id="agregarFila5">Adicionar</button> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Beneficiarios del Proyecto<a href="#" id="ayudas_informacion" ref="beneficiarios"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                            <div class="panel-body">
+                                <table class="table table-bordered table-striped mt32">
+                                    <thead>
+                                        <tr>
+                                            <th>Masculino</th>
+                                            <th>Femenino</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="active" >
+                                            <td ><input type="number" min="1"  step="1" class="form-control beneficiario " id="benef_masculino" value="0" name="benef_masculino" mensaje="Beneficiario Maculino" required="required" data-toggle="popover" data-trigger="hover" data-content="Cantidad de beneficiarios masculinos"></input></td>
+                                            <td ><input type="number" min="1"  step="1" class="form-control beneficiario " id="benef_femenino" value="0" name="benef_femenino" mensaje="Beneficiario Femenino" required="required" data-toggle="popover" data-trigger="hover" data-content="Cantidad de beneficiarios femeninos"></input></td>
+                                            <td><p class="total_beneficiario"></p></td>
+                                            <td class="hidden"><input type="number" min="1"  step="1" class="form-control control-label total_beneficiario mayor_0"  value="0" name="total_benef" data-toggle="popover" data-trigger="hover" data-content="Total de beneficiarios del proyecto" ></input></td>
+                                        </tr>
+                                    </tbody>
+                                </table> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Empleo Asociado<a href="#" id="ayudas_informacion" ref="empleo"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                            <div class="panel-body">
+                                <table class="table table-bordered table-striped mt32">
+                                    <thead>
+                                        <tr>
+                                            <th>Tipo</th>
+                                            <th>Masculino</th>
+                                            <th>Femenino</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="active" >
+                                            <td><p>Directos</p></td>
+                                            <td > <input type="number" min="1"  step="1" class="form-control directos " id="directo_masculino" value="0"  name="empleo_direct_masculino" mensaje="Empleo Directo Masculino" required="required" data-toggle="popover" data-trigger="hover" data-content="Cantidad de empleos directos masculinos"></input></td>
+                                            <td ><input type="number" min="1"  step="1" class="form-control directos " id="directo_femenino" value="0" name="empleo_direct_femenino" mensaje="Empleo Directo Femenino" required="required" data-toggle="popover" data-trigger="hover" data-content="Cantidad de empleos directos femeninos"></input></td>
+                                            <td><p class="total_directos"></p></td>
+                                            <td class="hidden"><input type="number" min="1"  step="1" class="form-control control-label total_directos mayor_0" name="empleo_direct_total" value="0" ></input></td>
+                                        </tr>
+                                        <tr class="active" >
+                                            <td><p>Indirectos</p></td>
+                                            <td > <input type="number" min="1" step="1"  class="form-control indirectos " id="indirecto_masculino" value="0" name="empleo_indirect_masculino" mensaje="Empleo Indirecto Masculino" required="required"  data-toggle="popover" data-trigger="hover" data-content="Cantidad de empleos indirectos masculinos"></input></td>
+                                            <td ><input type="number" min="1"  step="1" class="form-control indirectos " id="indirecto_femenino" value="0" name="empleo_indirect_femenino" mensaje="Empleo Indirecto Femenino" required="required" data-toggle="popover" data-trigger="hover" data-content="Cantidad de empleos indirectos femeninos"></input></td>
+                                            <td><p class="total_indirectos"></p></td>
+                                            <td class="hidden"><input type="number" min="1"  step="1" class="form-control control-label total_indirectos mayor_0" name="empleo_indirect_total" value="0"></input></td>
+                                        </tr>
+                                    </tbody>
+                                </table> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Político Territorial<a href="#" id="ayudas_informacion" ref="politica_territorial"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                            <div class="panel-body">
+                                <label for="estado" data-toggle="popover" data-trigger="hover" data-content="Estado donde se desarrolla el proyecto">Estado</label>
+                                    <select class="form-control" id="estado" name="estado_id" mensaje="Estado" required="required">
+                                        <option class="hidden" value=''>Seleccione</option>
+                                        <t t-foreach="estado_data" t-as="estado">
+                                            <option t-att-value="'%s' % (estado.id)"><t t-esc="estado.estado"/></option>
+                                        </t>
+                                    </select>
+                                <label for="municipio" data-toggle="popover" data-trigger="hover" data-content="Municipio donde se desarrolla el proyecto">Municipio</label>
+                                    <select class="form-control" id="municipio" name="municipio_id" mensaje="Municipio" required="required">
+                                        <option class="hidden" value=''>Seleccione</option>
+                                    </select>
+                                <label for="parroquia" data-toggle="popover" data-trigger="hover" data-content="Parroquia donde se desarrolla el sistema">Parroquia</label>
+                                    <select class="form-control" id="parroquia" name="parroquia_id" mensaje="Parroquia" required="required">
+                                        <option class="hidden" value=''>Seleccione</option>
+                                    </select>
+                                <label for="sector" data-toggle="popover" data-trigger="hover" data-content="Sector donde se desarrolla el sistema">Sector</label>
+                                <input type="text" class="form-control" name="sector" value="" required="required" mensaje="Sector"></input>
+                            </div>
+                        </div>       
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Geograficas<a href="#" id="ayudas_informacion" ref="geo_espacial"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                            <div class="panel-body">
+                                <label for="huso" data-toggle="popover" data-trigger="hover" data-content="Huso de las coordenadas iniciales">Huso Coordenadas de Inicio</label>
+                                    <select class="form-control" id="huso" name="huso_id" mensaje="Huso Inicial" required="required">
+                                        <option class="hidden" value=''>Seleccione</option>
+                                    </select>
+                                <label for="coord_e_i" data-toggle="popover" data-trigger="hover" data-content="Coordenadas este iniciales del proyecto a cargar">Coordenas Este Inicio</label>
+                                    <input type="number" min="1" max="999999"  step="1" class="form-control coordenada" name="coord_este" required="required" mensaje="Coordenada Este Inicial"></input>
+                                <label for="coord_n_i" data-toggle="popover" data-trigger="hover" data-content="Coordenadas norte iniciales del proyecto a cargar">Coordenas Norte Inicio</label>
+                                    <input type="number" max="1999999"  step="1" class="form-control coordenada" name="coord_norte" required="required" mensaje="Coordenada Norte Inicial"></input>
+                                <div class="hidden">
+                                    <input type="checkbox" value="" id="coordenada" name="coordenada"  data-switch-no-init="True">Coordenadas</input>
+                                </div>
+                                <div class="hidden" id="coord_f">
+                                    <label for="huso" data-toggle="popover" data-trigger="hover" data-content="Huso de las coordenadas iniciales">Huso Coordenadas de Fin</label>
+                                        <select class="form-control" id="husof" name="husof_id">
+                                            <option class="hidden" value=''>Seleccione</option>
+                                        </select>
+                                    <label for="coord_este_f" data-toggle="popover" data-trigger="hover" data-content="Coordenadas este finales del proyecto a cargar">Coordenas Este Final</label>
+                                        <input type="number" max="999999"  step="1" class="form-control coordenada" id="coord_este_f" name="coord_este_f" mensaje="Coordenada Este Final"></input>
+                                    <label for="coord_norte_f" data-toggle="popover" data-trigger="hover" data-content="Coordenadas norte finales del proyecto a cargar">Coordenas Norte Final</label>
+                                        <input type="number" max="1999999"  step="1" class="form-control coordenada" id="coord_norte_f" name="coord_norte_f" mensaje="Coordenada Norte Final"></input>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Fotografia<a href="#" id="ayudas_informacion" ref="fotografia"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                            <div class="panel-body">
+                                <div class="col-md-12">
+                                    <div class="col-md-9">
+                                        <input type="file" class="file-loadig input-imagen_proyecto js_file_apiform_proyecto" name="foto_id" data-toggle="popover" data-trigger="hover" data-content="Fotografia inicial del proyecto a cargar"></input>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                <a href="https://tinyjpg.com/" target="new">Enlace para reducir imagenes .jpg y .jpeg</a>  |
+                                <a href="https://tinypng.com/" target="new">Enlace para reducir imagenes .png</a>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+                
+
+                <t t-call="website_apiform.ajax_error"/>
+        </template>
+    </data>
+</openerp>

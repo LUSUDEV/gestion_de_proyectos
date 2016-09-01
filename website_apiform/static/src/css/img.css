@@ -1,0 +1,45 @@
+.ejemplo_img {
+	position:relative;
+	float:left;
+/*
+	width:128px;
+	height:128px;
+*/
+	border:0px;
+	overflow:hidden;
+}
+
+.ejemplo_img_cont {
+	float:left;
+	position:absolute;
+	background:#000;
+	height:60px;
+	line-height:25px;
+	width:128px;
+	padding:20px;
+	opacity:.8; 
+	filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+	-MS-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+	top:120px;
+	left:0px;
+	color:#FFF;
+	font-size:18px;
+	font-family:"Lucida Grande", Arial, sans-serif;
+	z-index:10;
+}
+
+.panel-body.active {
+    background-color: #F5F5F5;
+}
+.panel-body.info {
+    background-color: #d9edf7;
+}
+.panel-body.warning {
+    background-color: #fcf8e3;
+}
+.panel-body.success {
+    background-color: #dff0d8;
+}
+.panel-body.danger {
+    background-color: #f2dede;
+}

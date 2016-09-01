@@ -1,0 +1,165 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <template id="website_apiform_3" inherit_id="website.assets_frontend" name="website_apiform" >
+            <xpath expr="/t" position="inside">
+                <script type="text/javascript" src="/ept_carga_proyectos/static/src/js/autobusqueda_proyecto.js"/>
+            </xpath>
+        </template>
+        
+        
+        <template   id="assets_proyectos_consultar2" 
+                    name="ept_proyectos_consultar2" 
+                    inherit_id="ept_carga_proyectos.proyecto_template"
+                    customize_show="True">
+            <xpath expr="//table[@class='table table-bordered table-striped mt32']" position="before">
+                <t t-call="ept_carga_proyectos.ept_cp_consultar_proyecto">
+                </t>
+            </xpath>
+        </template>
+        <template id="ept_carga_proyectos.ept_cp_consultar_proyecto" name="Consultar Proyectos" >
+            <div class="row">
+                <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+                        <h3><p class="text-left"> Buscar Proyectos</p></h3>
+                    <div id='buscando' />
+                </div>
+            </div>
+            <div class="row">
+                    <div class="col-md-9 col-xs-9 col-sm-9 col-lg-9">
+                        <input  id="ept_buscador_proyecto" 
+                                type="text" 
+                                class="form-control border_form_input" 
+                                placeholder="Código o Nombre del Proyecto..." 
+                                autocomplete="off" />
+                        <div id="lista_busqueda"></div>
+                    </div>
+                        <div    class="col-md-3 col-xs-3 col-sm-3 col-lg-3 text-right btn btn-link"
+                                id="desplega_busq_avzda">
+                            <h5>Busqueda Avanzada</h5>
+                        </div>
+            </div>
+            
+        <form id="ept_busqueda_avanzada_pro" action="/ept_cp_proyecto_consulta/busqueda_avanzada">
+            <div class="panel panel-default js_busqueda_avanzada_proy" style="display:none">
+                <div class=" panel-heading" >
+                    <h3>Busqueda Avanzada</h3>
+                </div>
+                <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+                                <h4>Por Fechas</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
+                                <label>Fecha de Inicio</label>
+                                <input  type="text" 
+                                        class="form-control border_form_input ept_date_buz_proy"  
+                                        id="fecha_inicio_bq_avz" 
+                                        name="fecha_inicio" 
+                                        placeholder="Desde"
+                                        />
+                            </div>
+                            <div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
+                                <label>Fecha de Fin</label>
+                                <input  type="text" 
+                                        class="form-control border_form_input ept_date_buz_proy"  
+                                        id="fecha_fin_bq_avz" 
+                                        name="fecha_fin" 
+                                        placeholder="Hasta"
+                                        />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+                                <h4>Por Rango de Montos</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
+                                <label>Mínimo</label>
+                                <input  type="text"  class="form-control border_form_input monto"  
+                                        id="monto_proyect_bq_avz" 
+                                        name="monto_proyecto" />
+                                
+                            </div>
+                            <div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
+                                <label>Máximo</label>
+                                <input  type="text" class="form-control border_form_input monto"  
+                                        id="monto_proyect_bq_avz2" 
+                                        name="monto_proyecto2" />
+                                
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+                                <h4>Por Estatus</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-xs-4 col-sm-4 col-lg-4 ">
+                                <label>Estatus</label>
+                                
+                                
+                                        <select id="status_bq_avz_id" 
+                                                name="state" 
+                                                data-width="100%"
+                                                title="Seleccione"
+                                                class="selectpicker show-tick">
+                                            <option value=""></option>
+                                            <option value="carga">Proceso de Carga</option>
+                                            <option value="evaluacion">En Evaluación</option>
+                                            <option value="diferido">Diferido</option>
+                                            <option value="aprobado">Aprobado</option>
+                                            <option value="negado">Negado</option>
+                                            <option value="cancelado">Cancelado</option>
+                                        </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+                                <h4>Por Dirección</h4>
+                            </div>
+                        </div>
+                        <div class="row">    
+                            <div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
+                                <label>Municipio</label>
+                                <select id="municipio_bq_avz_id" 
+                                        name="municipio_id" 
+                                        class="selectpicker show-tick"
+                                        title="Seleccione"
+                                        data-width="100%">
+                                        </select>
+                            </div>
+                            <div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
+                                <label>Parroquia</label>
+                                <select id="parroquia_bq_avz_ids" 
+                                        name="parroquia_id" 
+                                        class="selectpicker show-tick"
+                                        title="Seleccione"
+                                        data-width="100%"/>
+                            </div>
+                        </div>
+                        <div  class="row text-center">
+                            <p><div class="col-md-8 col-xs-8 col-sm-8 col-lg-8">
+                                <button 
+                                    type="button" 
+                                    id="busca_avanzada"
+                                    class="btn btn-info">Buscar</button>
+                                <img style="display:none"
+                                    width="20px"
+                                    id="gifbusq_avanz"
+                                    height="20px"
+                                    src="/web/static/src/img/throbber-large.gif"/>
+                                    <img    class="btn btn-link"
+                                        id="ept_limpia_campos_proy"
+                                        src="ept_carga_proyectos/static/src/img/edit_clear.png"/>
+                            </div></p>
+                        </div>
+                </div>
+            </div>
+        </form>
+        <t t-call="website_apiform.ajax_error"/>
+        </template>
+    </data>
+</openerp>

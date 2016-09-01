@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<report id="id_ficha_proyecto_ept"
+			string="Ficha del Proyecto"
+			model="ept_cp.carga_proyecto"
+			report_type="qweb-pdf"
+			file="ept_carga_proyectos.ficha_proyecto_qweb"
+            name="ept_carga_proyectos.ficha_proyecto_qweb"
+            menu="True"/>
+	</data>
+</openerp>

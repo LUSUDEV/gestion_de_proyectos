@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<openerp>
+<data noupdate="1">
+	#
+	# Sequences for cfg.cargar.proyecto
+	#
+
+	<record model="ir.sequence.type" id="seq_type_ept_cp_cargar_proyecto">
+		<field name="name">ept_cp.carga_proyecto</field>
+		<field name="code">ept_cp.carga_proyecto</field> 
+	</record>
+	<record model="ir.sequence" id="seq_cfg_cargar_proyecto">
+		<field name="name">ept_cp.carga_proyecto</field>
+		<field name="code">ept_cp.carga_proyecto</field>
+		<field name="prefix"></field>
+		<field name="padding">8</field>
+	</record>
+</data>
+</openerp>

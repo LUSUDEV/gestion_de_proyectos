@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ept_ent_redis_gtpg,ept_ent.redis,model_ept_ent_redis,ept_usuarios.group_ger_tpg,1,0,0,0
+access_ept_ent_estados_gtpg,ept_ent.estados,model_ept_ent_estados,ept_usuarios.group_ger_tpg,1,0,0,0
+access_ept_ent_municipios_gtpg,ept_ent.municipios,model_ept_ent_municipios,ept_usuarios.group_ger_tpg,1,0,0,0
+access_ept_ent_parroquias_gtpg,ept_ent.parroquias,model_ept_ent_parroquias,ept_usuarios.group_ger_tpg,1,0,0,0
+access_ept_ent_entidades_gtpg,ept_ent.entidades,model_ept_ent_entidades,ept_usuarios.group_ger_tpg,1,0,0,0
+access_ept_ent_tipo_entidades_gtpg,ept_ent.tipo_entidades,model_ept_ent_tipo_entidades,ept_usuarios.group_ger_tpg,1,0,0,0
+access_ept_ent_partner_gtpg,base.res.partner,base.model_res_partner,ept_usuarios.group_ger_tpg,1,0,0,0
+access_ept_ent_husos_gtpg,ept_ent.husos,model_ept_ent_husos,ept_usuarios.group_ger_tpg,1,0,0,0

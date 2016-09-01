@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data noupdate="1">
+        <record id="monto_minimo_equipo_medico" model="ept_cp.montos_minimos_equipos">
+            <field name="uso">Equipos médico – quirúrgicos y dentales</field>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_equipo_veterinaria" model="ept_cp.montos_minimos_equipos">
+            <field name="uso">Equipos de veterinaria</field>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_equipo_oficina" model="ept_cp.montos_minimos_equipos">
+            <field name="uso">Equipos de oficina</field>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_equipo_comunicaciones" model="ept_cp.montos_minimos_equipos">
+            <field name="uso">Equipos de comunicaciones</field>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_equipo_senalamiento" model="ept_cp.montos_minimos_equipos">
+            <field name="uso">Equipos de señalamiento</field>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_equipo_cientificos" model="ept_cp.montos_minimos_equipos">
+            <field name="uso">Equipos científicos</field>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_equipo_ensenanza_deporte" model="ept_cp.montos_minimos_equipos">
+            <field name="uso">Equipos de enseñanza, deporte y recreación</field>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_equipo_emergencia" model="ept_cp.montos_minimos_equipos">
+            <field name="uso">Equipos para el emergencia, desastre y policial</field>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_equipo_agricola" model="ept_cp.montos_minimos_equipos">
+            <field name="uso">Equipos agrícolas y pecuarios</field>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_equipo_construccion" model="ept_cp.montos_minimos_equipos">
+            <field name="uso">Equipos de construcción</field>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_equipo_mantenimiento" model="ept_cp.montos_minimos_equipos">
+            <field name="uso">Equipos de Mantenimiento Urbano</field>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_equipo_seguridad_industrial" model="ept_cp.montos_minimos_equipos">
+            <field name="uso">Equipos de Seguridad Industrial</field>
+            <field name="monto_minimo">1000000</field>
+        </record>
+        <record id="monto_minimo_equipo_taller" model="ept_cp.montos_minimos_equipos">
+            <field name="uso">Equipos de Taller</field>
+            <field name="monto_minimo">1000000</field>
+        </record>
+</data>
+</openerp>

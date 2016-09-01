@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <openerp>
+     <data>
+    <!--REGISTRO DE ESTADOS-->
+    
+    <record model="ir.ui.view" id="view_ept_ent_husos_form">
+        <field name="name">ept_ent.husos.form</field>
+        <field name="model">ept_ent.husos</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Husos Horarios">
+                <sheet>
+                    <group>
+                    <field name="huso" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_ept_ent_husos_tree">
+        <field name="name">ept_ent.husos.tree</field>
+        <field name="model">ept_ent.husos</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Husos Horarios">
+                <field name="huso"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="action_ept_ent_husos">
+        <field name="name">Huso Horario</field>
+        <field name="res_model">ept_ent.husos</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+
+    
+    <menuitem name="Husos" id="menu_res_husos" parent="ept_entidades.next_id_82" action="action_ept_ent_husos" sequence="25"/>
+
+    </data>
+</openerp>

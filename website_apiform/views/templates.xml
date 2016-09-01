@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        
+<template id="assets_website_switch" inherit_id="website.assets_frontend" name="website_index switch">
+    <xpath expr="/t" position="inside">
+            <link rel="stylesheet" href="/website_apiform/static/src/lib/bootstrap-select/css/bootstrap-select.min.css"/>
+            <script type="text/javascript" src="/website_apiform/static/src/lib/bootstrap-select/js/bootstrap-select.min.js"></script>
+            <link rel="stylesheet" href="/website_apiform/static/src/lib/bootstrap_swish/css/bootstrap-switch.css"/>
+            <script type="text/javascript" src="/website_apiform/static/src/lib/bootstrap_swish/js/bootstrap-switch.js"></script>
+            <script type="text/javascript" src="/website_apiform/static/src/lib/bootstrap_swish/js/highlight.js"></script>
+            <script type="text/javascript" src="/website_apiform/static/src/lib/bootstrap_swish/js/bootstrap-switch.js"></script>
+            <script type="text/javascript" src="/website_apiform/static/src/lib/bootstrap_swish/js/main.js"></script>
+            <link href="/website_apiform/static/src/lib/bootstrap-fileinput/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+            <script src="/website_apiform/static/src/lib/bootstrap-fileinput/js/fileinput.js" type="text/javascript"></script>
+            <script src="/website_apiform/static/src/lib/bootstrap-fileinput/js/fileinput_locale_es.js" type="text/javascript"></script>
+            <link rel="stylesheet" href="/website_apiform/static/src/css/img.css"/>
+            <link rel="stylesheet" href="/website_apiform/static/src/css/input.css"/>
+             <script type="text/javascript" src="/website_apiform/static/src/js/apiform_image.js"></script>
+             <script type="text/javascript" src="/website_apiform/static/src/js/boton_enviar.js"></script>
+             <script type="text/javascript" src="/website_apiform/static/src/js/apiform.js"></script>
+             <link href='/website_apiform/static/src/lib/progression/progression.min.css' rel='stylesheet' type='text/css' />
+            <script type="text/javascript" src="/website_apiform/static/src/lib/progression/progression.min.js"></script>
+            <script type="text/javascript" src="/website_apiform/static/src/js/tabla_scroll_ancho.js"></script>
+            <script type="text/javascript" src="/website_apiform/static/src/lib/sorttable/sorttable.js"></script>
+           
+    </xpath>
+</template>
+
+<template id="lib_tacometro" name="template librerias del tacometro">
+        
+        <script type="text/javascript" src="/website_apiform/static/src/lib/tacometro/xcanvas.js"></script>
+        <script type="text/javascript" src="/website_apiform/static/src/lib/tacometro/tbe.js"></script>
+        <script type="text/javascript" src="/website_apiform/static/src/lib/tacometro/digitaldisplay.js"></script>
+        <script type="text/javascript" src="/website_apiform/static/src/lib/tacometro/speedometer.js"></script>
+        <script type="text/javascript" src="/website_apiform/static/src/lib/tacometro/themes/cfg_jp.js"></script>
+        <script type="text/javascript" src="/website_apiform/static/src/lib/tacometro/themes/default.js"></script>
+        <link href="/website_apiform/static/src/lib/tacometro/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+        <script src="/website_apiform/static/src/lib/tacometro/bootstrap/js/bootstrap.min.js"></script>
+</template>
+    </data>
+</openerp>
