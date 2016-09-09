@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="1">
+	  
+	<!-- jpv_ent.estados -->
+    <record id="geo_est_DTO" model="jpv_ent.estados">
+		<field name="codigo">01</field>
+		<field name="estado">Distrito Capital</field>
+		<field name="redi_id" ref="geo_redi_ZC"/>
+        <field name="husos_ids"  eval="[(4,ref('huso_horario_19'))]"/>
+	</record>
+    
+	<record id="geo_est_AMA" model="jpv_ent.estados">
+		<field name="codigo">02</field>
+		<field name="estado">Amazonas</field>
+		<field name="redi_id" ref="geo_redi_GUA"/>
+        <field name="husos_ids"  eval="[(4,ref('huso_horario_19')),(4,ref('huso_horario_20'))]"/>
+	</record>
+
+	<record id="geo_est_ANZ" model="jpv_ent.estados">
+		<field name="codigo">03</field>
+		<field name="estado">Anzoátegui</field>
+		<field name="redi_id" ref="geo_redi_ORI"/>
+        <field name="husos_ids"  eval="[(4,ref('huso_horario_20'))]"/>
+	</record>
+	
+	<record id="geo_est_APU" model="jpv_ent.estados">
+		<field name="codigo">04</field>
+		<field name="estado">Apure</field>
+		<field name="redi_id" ref="geo_redi_LLL"/>
+        <field name="husos_ids"  eval="[(4,ref('huso_horario_18')),(4,ref('huso_horario_19'))]"/>
+	</record>
+	
+	<record id="geo_est_ARA" model="jpv_ent.estados">
+		<field name="codigo">05</field>
+		<field name="estado">Aragua</field>
+		<field name="redi_id" ref="geo_redi_ZC"/>
+        <field name="husos_ids"  eval="[(4,ref('huso_horario_19'))]"/>
+	</record>
+	
+	<record id="geo_est_BAR" model="jpv_ent.estados">
+		<field name="codigo">06</field>
+		<field name="estado">Barinas</field>
+		<field name="redi_id" ref="geo_redi_LLL"/>
+        <field name="husos_ids"  eval="[(4,ref('huso_horario_19'))]"/>
+	</record>
+
+	<record id="geo_est_BOL" model="jpv_ent.estados">
+		<field name="codigo">07</field>
+		<field name="estado">Bolívar</field>
+		<field name="redi_id" ref="geo_redi_GUA"/>
+        <field name="husos_ids"  eval="[(4,ref('huso_horario_19')),(4,ref('huso_horario_20'))]"/>
+	</record>
+	
+	<record id="geo_est_CAR" model="jpv_ent.estados">
+		<field name="codigo">08</field>
+		<field name="estado">Carabobo</field>
+		<field name="redi_id" ref="geo_redi_ZC"/>
+        <field name="husos_ids"  eval="[(4,ref('huso_horario_19'))]"/>
+	</record>
+	
+	<record id="geo_est_COJ" model="jpv_ent.estados">
+		<field name="codigo">09</field>
+		<field name="estado">Cojedes</field>
+		<field name="redi_id" ref="geo_redi_LLL"/>
+        <field name="husos_ids"  eval="[(4,ref('huso_horario_19'))]"/>
+	</record>
+	
+	<record id="geo_est_DEA" model="jpv_ent.estados">
+		<field name="codigo">10</field>
+		<field name="estado">Delta Amacuro</field>
+		<field name="redi_id" ref="geo_redi_GUA"/>
+        <field name="husos_ids"  eval="[(4,ref('huso_horario_20'))]"/>
+	</record>
+
+	<record id="geo_est_FAL" model="jpv_ent.estados">
+		<field name="codigo">11</field>
+		<field name="estado">Falcón</field>
+		<field name="redi_id" ref="geo_redi_OCC"/>
+        <field name="husos_ids"  eval="[(4,ref('huso_horario_19'))]"/>
+	</record>
+
+	<record id="geo_est_GUA" model="jpv_ent.estados">
+		<field name="codigo">12</field>
+		<field name="estado">Guárico</field>
+		<field name="redi_id" ref="geo_redi_LLL"/>
+        <field name="husos_ids"  eval="[(4,ref('huso_horario_19')),(4,ref('huso_horario_20'))]"/>
+	</record>
+
+	<record id="geo_est_LAR" model="jpv_ent.estados">
+		<field name="codigo">13</field>
+		<field name="estado">Lara</field>
+		<field name="redi_id" ref="geo_redi_OCC"/>
+        <field name="husos_ids"  eval="[(4,ref('huso_horario_19'))]"/>
+	</record>
+
+	<record id="geo_est_MER" model="jpv_ent.estados">
+		<field name="codigo">14</field>
+		<field name="estado">Mérida</field>
+		<field name="redi_id" ref="geo_redi_AND"/>
+        <field name="husos_ids"  eval="[(4,ref('huso_horario_19'))]"/>
+	</record>
+	
+	<record id="geo_est_MIR" model="jpv_ent.estados">
+		<field name="codigo">15</field>
+		<field name="estado">Miranda</field>
+		<field name="redi_id" ref="geo_redi_ZC"/>
+        <field name="husos_ids"  eval="[(4,ref('huso_horario_19')),(4,ref('huso_horario_20'))]"/>
+	</record>
+
+	<record id="geo_est_MON" model="jpv_ent.estados">
+		<field name="codigo">16</field>
+		<field name="estado">Monagas</field>
+		<field name="redi_id" ref="geo_redi_ORI"/>
+        <field name="husos_ids"  eval="[(4,ref('huso_horario_20'))]"/>
+	</record>
+
+	<record id="geo_est_NVA" model="jpv_ent.estados">
+		<field name="codigo">17</field>
+		<field name="estado">Nueva Esparta</field>
+		<field name="redi_id" ref="geo_redi_ORI"/>
+        <field name="husos_ids"  eval="[(4,ref('huso_horario_20'))]"/>
+	</record>
+
+	<record id="geo_est_POR" model="jpv_ent.estados">
+		<field name="codigo">18</field>
+		<field name="estado">Portuguesa</field>
+		<field name="redi_id" ref="geo_redi_LLL"/>
+        <field name="husos_ids"  eval="[(4,ref('huso_horario_19'))]"/>
+	</record>
+
+	<record id="geo_est_SUC" model="jpv_ent.estados">
+		<field name="codigo">19</field>
+		<field name="estado">Sucre</field>
+		<field name="redi_id" ref="geo_redi_ORI"/>
+        <field name="husos_ids"  eval="[(4,ref('huso_horario_20'))]"/>
+	</record>
+
+	<record id="geo_est_TAC" model="jpv_ent.estados">
+		<field name="codigo">20</field>
+		<field name="estado">Táchira</field>
+		<field name="redi_id" ref="geo_redi_AND"/>
+        <field name="husos_ids"  eval="[(4,ref('huso_horario_18')),(4,ref('huso_horario_19'))]"/>
+	</record>
+
+	<record id="geo_est_TRU" model="jpv_ent.estados">
+		<field name="codigo">21</field>
+		<field name="estado">Trujillo</field>
+		<field name="redi_id" ref="geo_redi_AND"/>
+        <field name="husos_ids"  eval="[(4,ref('huso_horario_19'))]"/>
+	</record>
+	
+	<record id="geo_est_VAR" model="jpv_ent.estados">
+		<field name="codigo">24</field>
+		<field name="estado">Vargas</field>
+		<field name="redi_id" ref="geo_redi_ZC"/>
+        <field name="husos_ids"  eval="[(4,ref('huso_horario_19'))]"/>
+	</record>
+
+	<record id="geo_est_YAR" model="jpv_ent.estados">
+		<field name="codigo">22</field>
+		<field name="estado">Yaracuy</field>
+		<field name="redi_id" ref="geo_redi_OCC"/>
+        <field name="husos_ids"  eval="[(4,ref('huso_horario_19'))]"/>
+	</record>
+
+	<record id="geo_est_ZUL" model="jpv_ent.estados">
+		<field name="codigo">23</field>
+		<field name="estado">Zulia</field>
+		<field name="redi_id" ref="geo_redi_OCC"/>
+        <field name="husos_ids"  eval="[(4,ref('huso_horario_18')),(4,ref('huso_horario_19'))]"/>
+	</record>
+
+	<record id="geo_est_TIM" model="jpv_ent.estados">
+		<field name="codigo">25</field>
+		<field name="estado">Territorio Insular Miranda</field>
+		<field name="redi_id" ref="geo_redi_RMI"/>
+        <field name="husos_ids"  eval="[(4,ref('huso_horario_18')),(4,ref('huso_horario_19'))]"/>
+	</record>
+
+	</data>
+</openerp>

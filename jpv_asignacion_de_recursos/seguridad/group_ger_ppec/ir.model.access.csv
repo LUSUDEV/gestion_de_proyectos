@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_jpv_asr_recurso_general_gppec,jpv_asr.recurso_general,model_jpv_asr_recurso_general,jpv_usuarios.group_ger_ppec,1,0,0,0
+access_jpv_asr_recurso_gppec,jpv_asr.recurso,model_jpv_asr_recurso,jpv_usuarios.group_ger_ppec,1,0,0,0
+access_jpv_asr_asignacion_recurso_wizard_gppec,jpv_asr.asignacion_recurso_wizard,model_jpv_asr_asignacion_recurso_wizard,jpv_usuarios.group_ger_ppec,1,0,0,0

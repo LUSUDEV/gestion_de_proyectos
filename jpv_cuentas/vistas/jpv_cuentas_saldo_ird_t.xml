@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+    <template id="id_cta_saldo_ird_report_qweb">
+            <t t-call="ept_valoracion.external_layout_ept">
+                    <div class="page">
+                        <div class="row">
+                                <div class="col-xs-12">
+                                    <h3>
+                                        <span><strong><center>DATOS DE LA ENTIDAD</center></strong></span>
+                                    </h3>
+                                </div> 
+                        </div>
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>NOMBRE</th>
+                                    <th>RIF</th>
+                                </tr>
+                           </thead>
+                           <tbody class="table table-condensed">
+                                <tr >
+                                    <td>
+                                       <span t-esc="data['nombre_entidad']"/>
+                                    </td>
+                                    <td>
+                                       <span t-esc="data['rif_entidad']"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <h3>
+                                        <span><strong><center>SALDOS DE IRD</center></strong></span>
+                                    </h3>
+                                </div> 
+                            </div>
+                                <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>DESCRIPCIÓN</th>
+                                    <th>MONTO</th>
+                                </tr>
+                           </thead>
+                           
+                           <tbody class="table table-condensed">
+                                <tr t-foreach="data['asignacion_recurso_datos']" t-as="asignacion">
+                                    <td>
+                                       <span t-esc="asignacion.asignacion_de_recurso_line_id.descripcion"/>
+                                    </td>
+                                    <td>
+                                       <span t-esc="asignacion.monto"/>
+                                    </td>
+                                </tr>
+                                <tr t-foreach="data['movimiento_cuenta_datos']" t-as="movimiento">
+                                    <td>
+                                       Saldo a la Fecha: <span class="date" 
+                                                                t-field="movimiento.fecha_movimiento"
+                                                                t-field-options='{"format":"d-MM-y"}'/>
+                                    </td>
+                                    <td>
+                                       <span t-esc="movimiento.monto_saldo"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+            </t>
+   </template>
+   
+</data>
+</openerp>

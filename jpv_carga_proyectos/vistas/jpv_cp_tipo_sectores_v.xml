@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+         <record model="ir.ui.view" id="jpv_cp_tipo_sectores_form">
+            <field name="name">jpv_cp_tipo_sectores_form</field>
+            <field name="model">jpv_cp.tipo_sectores</field> 
+            <field name="arch" type="xml">
+                <form string="Tipo de Sectores">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                                <field name="aval_constr"/><label for="name" string="¿requiere aval por construcción?"/><br/>
+                                <field name="aval_ampli"/><label for="name" string="¿requiere aval por ampliación?"/><br/>
+                                <field name="aval_rehab"/><label for="name" string="¿requiere aval por rehabilitación?"/><br/> 
+                                <field name="coordenadas"/><label for="name" string="¿Amerita dos pares de coordenadas?"/> 
+                        </div>
+                        <group>
+                                <group name="parent" col="4">
+                                <field name="parent_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="jpv_cp_tipo_sectores_lista">
+            <field name="name">jpv_cp_tipo_sectores_lista</field>
+            <field name="model">jpv_cp.tipo_sectores</field>
+            <field name="priority">1</field>
+            <field name="arch" type="xml">
+                <tree string="Tipo de Sectores">
+                    <field name="complete_name"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="jpv_cp_tipo_sectores_tree">
+            <field name="name">jpv_cp_tipo_sectores_tree</field>
+            <field name="model">jpv_cp.tipo_sectores</field>
+            <field name="field_parent">child_id</field>
+            <field name="arch" type="xml">
+                <tree toolbar="True" string="Tipo de Sectores">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="jpv_cp_tipo_sectores_2_action">
+        <field name="name">Tipo de Sectores</field>
+        <field name="res_model">jpv_cp.tipo_sectores</field>
+        <field name="view_type">form</field>
+        <field name="field_parent">child_id</field>
+        <field name="view_id" ref="jpv_cp_tipo_sectores_lista"/>
+        </record>
+        
+        <record model="ir.actions.act_window" id="jpv_cp_tipo_sectores_action">
+            <field name="name">Tipo de Sectores</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">jpv_cp.tipo_sectores</field>
+            <field name="domain">[('parent_id','=',False)]</field>
+            <field name="view_type">tree</field>
+            <field name="view_id" ref="jpv_cp_tipo_sectores_tree"/>
+            <field name="help" type="html">
+				<p>
+					Aquí está una lista de todos sus sectores clasificados por categorías. usted
+					puede hacer clic en una categoría para obtener la lista de todos los sectores vinculados a
+					esta categoría o para un hijo de esta categoría.
+				</p>
+            </field>
+        </record>
+
+
+       <menuitem 
+			name="Configuración" 	
+			id="menu_jpv_cp_tipo_sectores" 
+            parent="jpv_usuarios.menu_general_proyectos"
+            groups="base.group_system"
+			sequence="65"/>
+      <menuitem name="Tipo de Sectores" 
+                id="inicio_jpv_cp_tipo_sectores"  
+                action="jpv_cp_tipo_sectores_action" 
+                parent="menu_jpv_cp_tipo_sectores"
+                sequence="10"/>
+    </data>
+    </openerp>
+
+

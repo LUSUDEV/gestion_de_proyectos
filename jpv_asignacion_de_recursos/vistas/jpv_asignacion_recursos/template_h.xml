@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="inherit_js_asignacion" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+        <script type="text/javascript" src="/jpv_asignacion_de_recursos/static/src/js/asignacion_recurso.js"></script>
+        <script type="text/javascript" src="/jpv_asignacion_de_recursos/static/src/js/export_csv.js"></script>
+        </xpath>
+        </template>
+    </data>
+</openerp>

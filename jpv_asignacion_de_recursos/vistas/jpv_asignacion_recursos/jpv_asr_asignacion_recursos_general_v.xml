@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<openerp>
+<data>
+    
+
+    <record model="ir.ui.view" id="view_jpv_asr_recurso_general_form">
+        <field name="name">jpv_asr.recurso_general.form</field>
+        <field name="model">jpv_asr.recurso_general</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Asignacion de Recursos General" version="7.0" duplicate="false">
+                <header>
+                 <button name="pre_validar_asignacion" type="object" class="oe_highlight oe_left" states="Borrador" string="Pre-Validar" groups="jpv_usuarios.group_ger_inf,jpv_usuarios.group_ger_ppeg" style="width:10%"/>
+                 <button name="validar_asignacion" type="object" class="oe_highlight oe_left" states="Borrador" string="Validar" groups="jpv_usuarios.group_jun_dir" style="width:10%"/>
+                 <button name="%(action_jpv_asr_asignacion_recurso_wizard_wizard)d" type="action" string="Exportar Formato csv" states="Borrador" class="oe_left" style="width:20%"/>
+                 <field name="state" widget="statusbar" statusbar_visible="Borrador,Asignado" class="oe_right"/>
+                </header>
+                <sheet>
+                   <group>
+                        <field  name="tipo_cuenta" 
+                                help="Tipo de cuenta a la que se asignara el recurso"
+                                options="{'no_create':True, 'no_open':True}"
+                                on_change="onchange_tipo_cuenta(tipo_cuenta)"
+                                required="1"
+                                attrs="{'readonly': [('state','not in',('Borrador'))]}"
+                                />
+                                
+                        <field  name="descripcion" 
+                                placeholder="Descripción"
+                                required="1"
+                                help="Descripción de la asignación de recurso"
+                                attrs="{'readonly': [('state','not in',('Borrador'))]}"
+                                /> 
+
+                        <field  name="periodo_id" 
+                                placeholder="Periodo"
+                                help="La Asignaciòn es de IRD"
+                                attrs="{'readonly': [('state','not in',('Borrador'))]}"
+                                options="{'no_create':True, 'no_open':True}"
+                                /> 
+                        
+                        <field  name="monto_asignar" 
+                                string="Monto General Asignar"
+                                /> 
+                       
+                        <field  name="asignacion_recursos_line" 
+                                string="Asignaciones"
+                                on_change="onchange_res_partner(asignacion_recursos_line,tipo_cuenta)"
+                                attrs="{'readonly': [('state','not in',('Borrador'))]}"
+                                >
+                                
+                                    <tree string="Asignaciones" editable="botton" >
+                                        <field name="estatus" invisible="1" />
+                                        <field name="tipo_cuenta" invisible="1" on_change="onchange_tipo_cuenta(tipo_cuenta)" />
+                                        <field name="res_partner_id" nolabel="1" 
+                                        on_change="onchange_tipo_cuenta(tipo_cuenta)"
+                                        options="{'no_create':True, 'no_open':True}" 
+                                        attrs="{'readonly': [('estatus','in',('Borrador'))]}"
+                                        string="Entidad o Institución"/>
+                                        <field name="monto" string="Monto" sum="Monto Total">
+                                        </field>
+                                    </tree>
+                                    
+                                </field>
+                                
+                                
+                        
+                                
+                        
+                        
+                   </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    
+    <record model="ir.ui.view" id="view_res_partner_search">
+            <field name="name">res.partner.search</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <search string="Entidades o Instituciones">
+                    <group string='Filters'>
+                    <filter icon="is_" domain="[('cis_entidad','=','True')]" string="Entidades"/>
+                    <filter string="Redis" context="{'group_by': 'redi_id'}"/>
+                    <filter string="Estado" context="{'group_by': 'estado_id'}"/>
+                    </group>
+                    <field name="name"/>
+                    <field name="rif" select="1"/>
+                    <field name="email" select="1"/>
+                    <newline/>
+                </search>
+            </field>
+        </record>
+        
+        
+        
+    
+   
+        
+    <record model="ir.ui.view" id="view_jpv_asr_recursos_general_tree">
+        <field name="name">jpv_asr.recurso_general.tree</field>
+        <field name="model">jpv_asr.recurso_general</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Asignación de Recursos" colors="blue:state == 'Borrador';gray:state == 'Asignado'">
+                <field name="tipo_cuenta"/>
+                <field name="descripcion"/>
+                <field name="asignacion_recursos_line"/>
+                <field name="state" string="Estatus"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="action_jpv_asr_recursos_general">
+        <field name="name">Asignacion de Recursos General</field>
+        <field name="res_model">jpv_asr.recurso_general</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+            Aqui se registran los Datos de las Asignaciones generales.
+            </p>
+        </field>
+    </record>
+    
+    
+    <record model="ir.ui.view" id="view_ape_asr_recurso_general_inherit">
+            <field name="name">jpv_asr.recurso_general.form</field>
+            <field name="model">jpv_asr.recurso_general</field>
+            <field name="inherit_id" ref="view_jpv_asr_recurso_general_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <xpath expr="/form/header/button[@name='validar_asignacion']" position="after">
+                    <button name="%(view_jpv_asr_recurso_general_form)d" id="importar_csv"  string="Importar Formato Masivo" states="Borrador" type="action" class="oe_list_button_import oe_left" style="width:20%"/>
+                </xpath>
+            </field>
+    </record>
+    
+    
+    
+        
+
+        
+            <menuitem name="Asignación de Recursos" 
+                id="menu_jpv_asr_asignacion_general" 
+                action="action_jpv_asr_recursos_general" 
+                parent="menu_jpv_asr_asignacion_de_recursos" 
+                sequence="1"
+                />
+
+
+        
+</data>
+</openerp>

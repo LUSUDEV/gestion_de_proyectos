@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+    <data>
+        
+<!--
+        vista formulario para el tipo de planificación
+-->
+        
+        <record	model="ir.ui.view" id="view_jpv_plf_tipo_planificacion_form">
+            <field name="name">jpv_plf_tipo_planificacion_form</field> 
+            <field name="model">jpv_plf.tipo_planificacion</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Tipo PLanificación">
+                    <group>
+                        <field name="nombre_tipo_planificacion"></field>
+                        <field name="active"></field>
+                    </group>
+                </form>
+            </field>
+        </record>
+        
+<!--
+        vista lista para el tipo de planificación
+-->
+        
+        <record	model="ir.ui.view" id="view_jpv_plf_tipo_planificacion_tree">
+            <field name="name">jpv_plf_tipo_planificacion_tree</field>
+            <field name="model">jpv_plf.tipo_planificacion</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml" >
+                <tree string="Tipo PLanificación">
+                        <field name="nombre_tipo_planificacion"></field>
+                        <field name="active"></field>
+                </tree>
+            </field>
+        </record>
+        
+<!--
+        acción para formulario de tipo de planificación
+-->
+        
+        <record model="ir.actions.act_window" id="action_jpv_plf_tipo_planificacion">
+            <field name="name">Tipo de PLanificación</field>
+            <field name="res_model">jpv_plf.tipo_planificacion</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+            Aqui se registran los Tipos de Planificación
+            </p>
+        </field>
+        </record>
+        <menuitem 
+            name="Tipo de Actividades"
+            id="menu_tipo_planificacion" 
+            sequence="40"
+            parent="menu_planificacion_entidades"
+            groups="base.group_system,jpv_usuarios.group_ger_ppeg,jpv_usuarios.group_ger_ppec,jpv_usuarios.group_ger_ppea,jpv_usuarios.group_jun_dir"
+            action="action_jpv_plf_tipo_planificacion" />
+    </data>
+</openerp> 

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+<template id="lib_index_template" name="template_index">
+
+      &lt;!DOCTYPE html&gt;
+      <html style="height: 100%">
+        <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <title>::Sistema jpv::</title>
+
+        <link rel="icon" href="/jpv_index/static/src/imagenes/favicon.ico"/>
+       <!-- Javascript files plantilla -->
+
+            <!--Carga de Javascritp-->
+        <script src="/jpv_index/static/src/plantilla/assets/js/ie-emulation-modes-warning.js"></script>
+        <script src="/jpv_index/static/src/plantilla/assets/js/vendor/jquery.min.js"></script>
+        <script src="/jpv_index/static/src/plantilla/dist/js/bootstrap.min.js"></script>        
+        <script src="/jpv_index/static/src/plantilla/assets/js/vendor/holder.min.js"></script>
+        <script src="/jpv_index/static/src/plantilla/assets/js/ie10-viewport-bug-workaround.js"></script>
+       
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+             <!-- Custom styles CSS de plantilla -->
+        <link href="/jpv_index/static/src/plantilla/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="screen" />
+        <link href="/jpv_index/static/src/plantilla/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet" type="text/css" media="screen" />
+         <!-- Custom styles CSS principal -->
+        <link href="/jpv_index/static/src/css/jpv_principal.css" type="text/css" rel="stylesheet" />
+        <link href="/jpv_index/static/src/css/jpv_complemeto.css" type="text/css" rel="stylesheet" />
+        <!--<link href="/jpv_index/static/src/css/jpv_secundaria.css" type="text/css" rel="stylesheet" />-->
+        <!-- Custom styles CSS de plantilla -->
+
+        </head>
+        </html>
+
+
+</template>
+
+<template id="jpv_index.index" name="Index">
+    <t t-call="jpv_index.lib_index_template" />
+    <!--<t t-call="website_apiform.lib_tacometro" />-->
+    
+            
+                <!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+        <li data-target="#myCarousel" data-slide-to="4"></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+          <img class="first-slide" src="/jpv_index/static/src/imagenes/slider/a1.png" alt="Bienvenida"/>
+          <div class="container">
+            <div class="carousel-caption">
+              <center><h1>Bienvenidos al Sistema de Gestión del Consejo Federal Gobierno<br/>Fondo de Compensación Interterritorial</h1></center>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img class="second-slide" src="/jpv_index/static/src/imagenes/slider/a2.png" alt="Segunda Informacio"/>
+          <div class="container">
+            <div class="carousel-caption">
+              <h3 class="text-center">El Consejo Federal de Gobierno, es el órgano encargado de la planificación y coordinación de políticas y acciones para el desarrollo del proceso de descentralización y transferencia de competencias del Poder Nacional a los estados y municipios.</h3>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img class="third-slide" src="/jpv_index/static/src/imagenes/slider/a3.png" alt="Tercera Informacio"/>
+          <div class="container">
+            <div class="carousel-caption">
+              <h3 class="text-center">Estará presidido por el Vicepresidente Ejecutivo o Vicepresidenta Ejecutiva e integrado por los Ministros y Ministras, los Gobernadores y Gobernadoras, un Alcalde o Alcaldesa por cada Estado y 
+                        de la sociedad organizada, de acuerdo con la ley.  </h3>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img class="third-slide" src="/jpv_index/static/src/imagenes/slider/a4.png" alt="Tercera Informacio"/>
+          <div class="container">
+            <div class="carousel-caption">
+              <h3 class="text-center">El Consejo Federal de Gobierno contará con una Secretaría, integrada por el Vicepresidente  Ejecutivo o Vicepresidenta Ejecutiva, dos Ministros o Ministras, tres Gobernadores o Gobernadoras y tres Alcaldes o Alcaldesas.</h3>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img class="third-slide" src="/jpv_index/static/src/imagenes/slider/a5.png" alt="Tercera Informacio"/>
+          <div class="container">
+            <div class="carousel-caption">
+              <h3 class="text-center">Del Consejo Federal de Gobierno dependerá el Fondo de Compensación Interterritorial, destinado al financiamiento de inversiones públicas dirigidas a promover el desarrollo equilibrado de las regiones, la cooperación y complementación de las políticas e iniciativas de desarrollo de las distintas entidades públicas territoriales, y a apoyar especialmente la dotación de obras y servicios esenciales en las regiones y comunidades de menor desarrollo relativo.</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div><!-- /.carousel -->
+
+        <div class="container marketing">
+
+      <!-- Three columns of text below the carousel -->
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-3" align="center">
+          <img class="img-circle" src="/jpv_index/static/src/imagenes/pr1.png" alt="Proyectos 2015" width="140" height="140"/>
+          <h2>Proyectos</h2>
+            <p align="justify">Proporcionar recursos  para el desarrollo de las regiones y las instancias del Poder Popular, coordinando y direccionando de manera  integral a las entidades federales y Organizaciones de Base del Poder Popular.</p>
+            <p>Graficas de Proyectos En Construcción</p>
+<!--
+            <p><a class="btn btn-default" href="/paginas/proyecto" role="button">Leer Más</a></p>
+-->
+        </div><!-- /.col-lg-3 -->
+        <div class="col-xs-12 col-sm-6 col-md-3" align="center">
+          <img class="img-circle" src="/jpv_index/static/src/imagenes/fi1.png" alt="Generic placeholder image" width="140" height="140"/>
+          <h2>Financiamiento</h2>
+            <p align="justify">Inversión social  del Estado venezolano para solidificar las diversas estructuras  de la democracia protagónica  y participativa revolucionaria, a través  de la eficaz y eficiente respuesta y apoyo a las necesidades de las entidades.</p>
+            <p>Graficas de Financiamiento En Construcción</p>
+<!--
+            <p><a class="btn btn-default" href="/paginas/financiamiento" role="button">Leer Más</a></p>
+-->
+        </div><!-- /.col-lg-3 -->
+        <div class="col-xs-12 col-sm-6 col-md-3" align="center">
+          <img class="img-circle" src="/jpv_index/static/src/imagenes/es1.png" alt="Generic placeholder image" width="140" height="140"/>
+          <h2>Estadisticas</h2>
+            <p align="justify">Estudiar y planificar el ordenamiento territorial desconcentrado con la creación de Distritos Motores de Desarrollo para potenciar las capacidades de éstos, Discutir  y aprobar los recursos.</p>
+            <p>Estadisticas En Construcción</p>
+<!--
+            <p><a class="btn btn-default" href="/paginas/estadistica" role="button">Leer Más </a></p>
+-->
+        </div><!-- /.col-lg-3 -->
+        <div class="col-xs-12 col-sm-6 col-md-3" align="center">
+        <img src="/jpv_index/static/src/imagenes/logo1.png"/> 
+        <h1>Iniciar Sesión</h1>
+          <div class="login-box">
+            <div class="login-box-body">
+                <t t-if="mensaje!='no'">
+                    <div class="alert alert-danger"><t t-esc="mensaje"></t></div>
+                </t>
+                <form action="/web/login" method="post" onsubmit="this.action = this.action + location.hash">
+                  <div class="form-group has-feedback">
+                    <input type="text" name="login" t-att-value="login" id="login" class="form-control" required="required" autofocus="autofocus"  placeholder="Correo Electrónico"/>
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                  </div>
+                  <div class="form-group has-feedback">
+                    <input type="password" name="password" id="password" class="form-control" required="required" placeholder="Contraseña"/>
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-8">
+                      <div class="checkbox icheck">
+                      <label>
+                      <input type="checkbox"/> Recordarme
+                      </label>
+                      </div>
+                    </div><!-- /.col -->
+                    <div class="col-xs-4">
+                    <input type="hidden" name="redirect" t-att-value="redirect"/>
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Enviar</button>
+                    </div><!-- /.col -->
+                  </div>
+                </form>
+            </div><!-- /.login-box-body -->
+          </div><!-- /.login-box -->
+      </div> <!-- /container -->
+      </div><!-- /.row -->
+      <!-- FOOTER -->
+
+
+    </div><!-- /.container -->
+           <footer>
+        <div class="footer">
+          <strong>Copyright © 2015-2016 <a href="https://www.cfg.gob.ve/" target="blank"> Cncejo Federal Gobierno </a>.</strong> Todos lo Derechos Reservados. <strong> En Colaboracion con <b> Juventud Productiva Bicentenaria</b></strong>
+        </div>
+    </footer>
+
+
+  </template>
+    
+  </data>
+</openerp>

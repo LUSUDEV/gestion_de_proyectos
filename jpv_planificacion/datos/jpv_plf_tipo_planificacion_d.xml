@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        
+        <record id="plf_carga_proyecto" model="jpv_plf.tipo_planificacion">
+            <field name="nombre_tipo_planificacion">CARGA DE PROYECTOS</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="plf_reparacion_proyecto" model="jpv_plf.tipo_planificacion">
+            <field name="nombre_tipo_planificacion">REPARACIÓN DE PROYECTOS</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="plf_evaluacion_proyecto" model="jpv_plf.tipo_planificacion">
+            <field name="nombre_tipo_planificacion">VALORACIÓN DE PROYECTOS</field>
+            <field name="active">True</field>
+        </record>
+
+    </data> 
+</openerp>

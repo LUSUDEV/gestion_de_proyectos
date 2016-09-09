@@ -1,0 +1,67 @@
+<?xml version="1.0"  encoding="utf-8"?>
+<openerp>
+<data>
+    
+
+    <record model="ir.ui.view" id="view_jpv_asignacion_cuentas_form">
+        <field name="name">jpv.asignacion_cuentas.form</field>
+        <field name="model">jpv.asignacion_cuentas</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Asignacion de Cuentas" edit="0">
+                <sheet>
+                    <separator string="Asignación Tipo de Cuentas" colspan="4"/>
+                    <group>
+                        <field  name="tipo_cuenta_id" 
+                                options='{"no_create": True, "no_open": True}'
+                                style="width: 40%%"
+                                on_change="tipo_cuenta_id_change(tipo_cuenta_id)"
+                                />
+                    </group>
+                    <notebook>
+                        <page string="Entidades o Instituciones">
+                            <field  name="jpv_tipo_cuenta_ids" 
+                                    nolabel="1"
+                                    options='{"no_create": True}'
+                                    />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record model="ir.ui.view" id="view_jpv_asignacion_cuentas_tree">
+        <field name="name">jpv.asignacion_cuentas.tree</field>
+        <field name="model">jpv.asignacion_cuentas</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Asignacion de Cuentas">
+                <field name="tipo_cuenta_id"/>
+                <field name="jpv_tipo_cuenta_ids"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="action_jpv_asignacion_cuentas">
+        <field name="name">Registro de Asignación de Cuentas</field>
+        <field name="res_model">jpv.asignacion_cuentas</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+            Aqui se registran los Tipos de Cuentas con las Entidades
+            </p>
+        </field>
+    </record>
+    
+            <menuitem name="Asignación de Cuentas" 
+                id="regsitro_jpv_asignacion_cuentas" 
+                action="action_jpv_asignacion_cuentas" 
+                parent="menu_jpv_cuentas" 
+                sequence="1"
+                />
+
+        
+</data>
+</openerp>

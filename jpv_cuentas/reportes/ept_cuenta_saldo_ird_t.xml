@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<report id="id_cta_saldo_ird_final2"
+			string="Consulta de IRD y Saldo"
+			model="ept_cp.carga_proyecto"
+			report_type="qweb-pdf"
+			file="ept_cuentas.id_cta_saldo_ird_report_qweb"
+            name="ept_cuentas.id_cta_saldo_ird_report_qweb"
+            menu="False"/>
+	</data>
+</openerp>

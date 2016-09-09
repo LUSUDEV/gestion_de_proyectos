@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_jpv_plf_periodo_gjds,jpv_plf.periodos,model_jpv_plf_periodos,jpv_usuarios.group_jun_dir_sec,1,1,1,0
+access_jpv_plf_etapas_gjds,jpv_plf.etapas,model_jpv_plf_etapas,jpv_usuarios.group_jun_dir_sec,1,1,1,1
+access_jpv_plf_actividad_etapas_jds,jpv_plf.actividad_etapas,model_jpv_plf_actividad_etapas,jpv_usuarios.group_jun_dir_sec,1,1,1,1
+access_jpv_plf_tipo_planificacion_jds,jpv_plf.tipo_planificacion,model_jpv_plf_tipo_planificacion,jpv_usuarios.group_jun_dir_sec,1,1,1,0
+access_ir_cron_jds,ir.cron,base.model_ir_cron,jpv_usuarios.group_jun_dir_sec,1,1,1,1

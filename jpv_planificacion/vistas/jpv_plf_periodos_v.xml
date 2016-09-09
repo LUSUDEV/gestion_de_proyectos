@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+<!--
+        vista formulario para la planificación de los periodos 
+-->
+        
+        <record model="ir.ui.view" id="view_jpv_plf_periodos_form">
+            <field name="name">Periodos</field>
+            <field name="model">jpv_plf.periodos</field> 
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Periodos">
+                    <header>
+                        <button name="plf_cambiar_estado_evaluacion" string="Cambio de Estatus Borrador-Valoración"  type="object" class="oe_highlight" groups="base.group_system,jpv_usuarios.group_jun_dir,jpv_usuarios.group_ger_inf"/>
+                        <button name="plf_cambiar_state_diferido_cancelado" string="Cambio de Estatus Diferido-Negado"  type="object" class="oe_highlight" groups="base.group_system,jpv_usuarios.group_jun_dir,jpv_usuarios.group_ger_inf"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                 <field name="periodo_fiscal" on_change="plf_fecha_inicio_fin(periodo_fiscal)" style="width: 40%%"/>
+                            </group>
+                             <group>
+                                 <field name="fecha_inicio" />
+                                 <field name="fecha_fin"/>
+                             </group>
+                        </group>
+                        <group>
+                            <field name="porc_manten" style="width: 10%%"/>
+                        </group>
+                        <notebook>
+                            <page string="Ciclos">
+                                <field name="etapas_ids" />
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+<!--
+        vista lista para la planificación de los periodos
+-->
+        
+        <record model="ir.ui.view" id="view_jpv_plf_periodos_tree">
+            <field name="name">Periodos</field>
+            <field name="model">jpv_plf.periodos</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Periodos">
+                    <field name="periodo_fiscal"/>
+                    <field name="fecha_inicio" />
+                    <field name="fecha_fin" />
+                </tree>
+            </field>
+        </record>
+        
+<!--
+        acción para la planificación de los periodos
+-->
+        
+        <record model="ir.actions.act_window" id="action_jpv_plf_periodos">
+            <field name="name">Periodos</field>
+            <field name="res_model">jpv_plf.periodos</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+            Aqui se registran periodos para la planificación de las entidades
+            </p>
+        </field>
+        </record>
+        
+      <menuitem 
+			name="Planificación" 	
+			id="menu_planificacion_entidades" 
+            parent="jpv_usuarios.menu_general_proyectos"
+            groups="base.group_system,jpv_usuarios.group_ger_ppeg,jpv_usuarios.group_ger_ppec,jpv_usuarios.group_ger_ppea,jpv_usuarios.group_jun_dir,jpv_usuarios.group_ger_tpg"
+			sequence="20"/>
+      <menuitem name="Períodos" 
+                id="menu_pla_periodos"  
+                action="action_jpv_plf_periodos" 
+                parent="menu_planificacion_entidades"
+                sequence="20"/>
+    </data>
+</openerp>

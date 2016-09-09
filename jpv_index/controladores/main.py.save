@@ -1,0 +1,134 @@
+# -*- coding: utf-8 -*-
+import openerp
+from openerp import http
+from openerp.http import request
+from openerp.addons.web.controllers import main
+from openerp import SUPERUSER_ID
+from openerp.addons.website_apiform.controladores import panel, base_tools
+from openerp.addons.web.controllers import main
+from openerp.addons.ept_usuarios.controladores import ept_use_users_c
+from openerp.addons.ept_rendicion.controladores import ept_rnd_rendicion_c
+import os
+
+
+class website(main.Home):
+    @http.route('/', auth='public', website=True)
+    def index(self,**kw):
+        redirect=request.httprequest.url_root+'paginas/home'
+        if request.session.login:
+            return self.home()
+        return http.request.website.render('ept_index.index',
+                                        {'mensaje':'no',
+                                         'redirect':redirect})
+
+    @http.route('/paginas/proyecto', auth='public', website=True)
+    def proyecto(self):        
+        return http.request.website.render('ept_index.proyecto')
+
+    @http.route('/paginas/financiamiento', auth='public', website=True)
+    def financiamiento(self):        
+        return http.request.website.render('ept_index.financiamiento')
+
+    @http.route('/paginas/estadistica', auth='public', website=True)
+    def estadistica(self):        
+        return http.request.website.render('ept_index.estadistica')
+        
+    @http.route('/paginas/home', auth='public', website=True)
+    def home(self,**w):
+        return http.request.website.render('ept_index.home')
+
+    @http.route('/web/login', auth='public',methods=['POST'], website=True)
+    def login(self,redirect=None,**post):
+        registry = http.request.registry
+        cr=http.request.cr
+        uid=http.request.uid
+        context = http.request.context
+        main.ensure_db()
+        if not request.uid:
+            request.uid = openerp.SUPERUSER_ID
+        values = request.params.copy()
+        if not redirect:
+            redirect=request.httprequest.url_root
+        values['redirect'] = redirect
+        try:
+            values['databases'] = http.db_list()
+        except openerp.exceptions.AccessDenied:
+            values['databases'] = None
+        if http.request.httprequest.method == 'POST':
+            old_uid = http.request.uid
+            uid = http.request.session.authenticate(http.request.session.db, http.request.params['login'], http.request.params['password'])
+            if uid is not False:
+                values['error']=''
+                if uid:
+                    return http.redirect_with_hash('/')
+                #~ if uid:
+                    #~ entidad_data=ept_use_users_c.cfg_users().mi_entidad(uid)
+                    #~ if entidad_data['entidad_id']:
+                        #~ entidad_data['entidad_data'].parent_id.id
+                        #~ notification_obj=registry['mail.notification']
+                        #~ notificaciones_ids=notification_obj.search(
+                                                #~ cr,
+                                                #~ SUPERUSER_ID,
+                                                #~ [('partner_id','=',entidad_data['entidad_data'].parent_id.id)]) 
+                        #~ entidad_obj= registry['ept_ent.entidades']
+                        #~ proyectos_migrados_obj= registry['ept_mig.proyectos_migrados']
+                        #~ entidad_data=entidad_obj.browse(cr,SUPERUSER_ID,int(entidad_data['entidad_id']))
+                        #~ cantidad= proyectos_migrados_obj.comprobar_actualizacion_count(cr,SUPERUSER_ID,[],context,entidad_data)
+                        #~ if cantidad:
+                            #~ return http.redirect_with_hash('/proyecto')
+                return http.redirect_with_hash(redirect)
+        values['error']='Error Usuario/Clave'
+        return http.request.website.render('ept_index.index',{
+                                                        'mensaje':values['error']
+                                                        })
+    
+    @http.route('/plan_inversion_redirec', auth='public', website=True)
+    def plan_inveraion_redirec(self):
+        cr, uid, context = request.cr, request.uid, request.context
+        menu_obj = request.registry['ir.ui.menu']
+        menu_id=menu_obj.search(cr,SUPERUSER_ID,[('name','=','Registro de Entidades')])
+        url='/web#view_type=kanban,model=ept_ent.entidades#view_type=kanban&model=ept_ent.entidades&menu_id=%d' % menu_id[0]
+        return request.redirect(url)
+        
+    @http.route('/ept/manual', auth='user', website=True)
+    def ept_manual(self):
+        addons_path = http.addons_manifest['ept_index']['addons_path']
+        ruta_manual=os.path.join(addons_path,'ept_index','documentos', 'Instructivo_EPT.pdf')
+        manual = open(ruta_manual, "r",buffering = 0)  
+        data_manual=manual.read()
+        manual.close()  
+        return request.make_response(data_manual,
+                headers=[('Content-Disposition',
+                                main.content_disposition('Instructivo_EPT.pdf')),
+                         ('Content-Type', 'application/pdf;charset=utf8'),
+                         ('Content-Length', len(data_manual))],
+                cookies={'fileToken': '212123f4646546'})
+                
+    @http.route('/ept/doc/clasificacion', auth='user', website=True)
+    def ept_clasificacion(self):
+        addons_path = http.addons_manifest['ept_index']['addons_path']
+        ruta_manual=os.path.join(addons_path,'ept_index','documentos', 'SISTEMA_CLASIFICACIÓN_DE_PROYECTOS.pdf')
+        manual = open(ruta_manual,"r",buffering = 0)  
+        data_manual=manual.read()
+        manual.close()  
+        return request.make_response(data_manual,
+                headers=[('Content-Disposition',
+                                main.content_disposition('SISTEMA_CLASIFICACIO
+N_DE_PROYECTOS.pdf')),
+                         ('Content-Type', 'application/pdf;charset=utf8'),
+                         ('Content-Length', len(data_manual))],
+                cookies={'fileToken': '212123f4646546'})
+        
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    

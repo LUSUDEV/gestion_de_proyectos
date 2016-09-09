@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<openerp>
+<data>
+    
+
+    <record model="ir.ui.view" id="view_jpv_asr_recurso_form">
+        <field name="name">jpv_asr.recurso.form</field>
+        <field name="model">jpv_asr.recurso</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Asignacion de Recursos" version="7.0" duplicate="false">
+                <sheet>
+                   <group>
+                        <field  name="tipo_cuenta" 
+                                help="Tipo de cuenta a la que se asignara el recurso"
+                                />
+                                
+                        <field  name="descripcion" 
+                                placeholder="Descripción"
+                                required="1"
+                                help="Descripción de la asignación de recurso"
+                                /> 
+                                 
+                        <field  name="res_partner_id" 
+                                placeholder="Entidades"
+                                help="Entidad a la que se le asignara el recurso"
+                                />
+                                
+                        <field  name="monto" 
+                                placeholder="Monto"
+                                required="1"
+                                help="Monto a Asignar"
+                                />
+                                
+                        
+                        
+                   </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+   
+        
+    <record model="ir.ui.view" id="view_jpv_asr_recursos_tree">
+        <field name="name">jpv_asr.recurso.tree</field>
+        <field name="model">jpv_asr.recurso</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Asiganción de Recursos" create="false" edit="false" delete="false" colors="blue:estatus == 'Borrador';gray:estatus == 'Asignado'">
+                <field name="tipo_cuenta" />
+                <field name="descripcion"/>
+                <field name="res_partner_id"/>
+                <field name="periodo_id" string="Periodo fiscal"/>
+                <field name="monto" string="Monto"/>
+                <field name="estatus" string="Estatus"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="action_jpv_asr_recursos">
+        <field name="name">Asignacion de Recursos</field>
+        <field name="res_model">jpv_asr.recurso</field>
+        <field name="view_mode">tree</field>
+        <field name="target">current</field>
+        <field name="help" type="html">
+            <p>
+            Aqui se listan las Asignaciones.
+            </p>
+        </field>
+    </record>
+    
+        
+
+        <menuitem name="Asignación de Recursos" 
+            id="menu_jpv_asr_asignacion_de_recursos" 
+            parent="jpv_usuarios.menu_general_proyectos"
+            groups="base.group_system,jpv_usuarios.group_jun_dir,jpv_usuarios.group_ger_ppeg"
+            sequence="60"
+            />
+            <menuitem name="Lista de Asignaciones" 
+                id="menu_jpv_asr_asignacion_particular" 
+                action="action_jpv_asr_recursos" 
+                parent="menu_jpv_asr_asignacion_de_recursos" 
+                sequence="2"
+                />
+
+        
+</data>
+</openerp>

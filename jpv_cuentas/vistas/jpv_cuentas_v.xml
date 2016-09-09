@@ -1,0 +1,194 @@
+<?xml version="1.0"  encoding="utf-8"?>
+<openerp>
+<data>
+    
+
+    <record model="ir.ui.view" id="view_jpv_cuentas_form">
+        <field name="name">jpv.cuentas.form</field>
+        <field name="model">jpv.cuentas</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Cuentas" create="false" edit="false" delete="false">
+                <header>
+                    <button     name="desactivar_cuenta" 
+                                string="Desactivar Cuenta" 
+                                type="object" 
+                                class="oe_highlight"
+                                attrs="{'invisible': [('active','=',False)]}"
+                                />
+                    
+                    <button     name="activar_cuenta" 
+                                string="Activar Cuenta" 
+                                type="object" 
+                                class="oe_highlight"
+                                attrs="{'invisible': [('active','=',True)]}"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field  name="name" 
+                                style="width: 40%%"
+                                />
+                        <field  name="tipo_cuenta_id" 
+                                style="width: 40%%"
+                                on_change="partner_id_change(tipo_cuenta_id)"
+                                options='{"no_create": True, "no_open":True}'
+                                />
+                        <field  name="partner_id"
+                                style="width: 40%%"
+                                options='{"no_create": True, "no_open":True}'
+                                />
+                        <field  name="active" 
+                                />
+                        
+                    </group>
+                    <notebook>
+                        <page string="Movimientos de Cuenta">
+                            <field  name="movimientos_cuentas_ids" context="{'default_cuenta_id':id}">
+                                <tree string="Movimientos de Cuenta" editable="button" col="6">
+                                    <field  name="cuenta_id" style="width: 40%%" invisible="True"/>
+                                    <field  name="fecha_movimiento" style="width: 40%%"/>
+                                    <field  name="accion" style="width: 40%%"/>
+                                    <field  name="name" style="width: 40%%"/>
+                                    
+                                    <field  name="monto_egreso" sum="Débitos"/>
+                                    <field  name="monto_ingreso" sum="Créditos"/>
+                                    <field  name="monto_saldo" />
+                                </tree>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right">
+                            
+                                <field  name="monto_actual" 
+                                            string="Monto Disponible"
+                                            class="oe_subtotal_footer_separator" 
+                                            />
+                            </group>
+                            <div>
+                                <br/>
+                                <br/>
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record model="ir.ui.view" id="view_jpv_cuentas_consulta_tree">
+        <field name="name">jpv.cuentas.tree</field>
+        <field name="model">jpv.cuentas</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Cuentas">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="tipo_cuenta_id"/>
+                <field  name="monto_actual" 
+                        string="Monto Actual"
+                        sum="Total Monto Actual"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_jpv_cuentas_tree">
+        <field name="name">jpv.cuentas.tree</field>
+        <field name="model">jpv.cuentas</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Cuentas">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="tipo_cuenta_id"/>
+                <field  name="monto_actual" 
+                        string="Monto Actual"
+                        sum="Total Monto Actual"/>
+                
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_jpv_cuentas_tree2">
+        <field name="name">jpv.cuentas.tree</field>
+        <field name="model">jpv.cuentas</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Cuentas">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="tipo_cuenta_id"/>
+                <field  name="monto_actual" 
+                        string="Monto Actual"
+                        sum="Total Monto Actual"/>
+                
+            </tree>
+        </field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="action_jpv_cuentas_consulta">
+        <field name="name">Registro de Cuentas</field>
+        <field name="res_model">jpv.cuentas</field>
+        <field name="view_type">tree</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_jpv_cuentas_consulta_tree"/>
+        <field name="target">inline</field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="action_jpv_cuenta_activas2">
+        <field name="name">Cuentas Activas de las jpv</field>
+        <field name="res_model">jpv.cuentas</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_jpv_cuentas_tree"/>
+        <field name="target">current</field>
+    </record>
+    
+    <record id="view_jpv_cuentas_filter" model="ir.ui.view">
+        <field name="name">jpv.cuentas.select</field>
+        <field name="model">jpv.cuentas</field>
+        <field name="arch" type="xml">
+            <search string="Cuentas">
+                <filter     string="Cuentas Inactivas" 
+                            name="active" 
+                            domain="[('active','=',False)]"/>
+           </search>
+        </field>
+    </record>
+        
+    <record model="ir.actions.act_window" id="action_jpv_cuenta_inactivas">
+        <field name="name">Cuentas Inactivas de las jpv</field>
+        <field name="res_model">jpv.cuentas</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_jpv_cuentas_tree2"/>
+        <field name="domain">[('active','=',False)]</field>
+        <field name="target">current</field>
+    </record>
+    
+        <menuitem name="Cuentas" 
+            id="menu_jpv_cuentas" 
+             parent="jpv_usuarios.menu_general_proyectos"
+            sequence="30"
+            groups="base.group_system,jpv_usuarios.group_ger_inf,jpv_usuarios.group_jun_dir"
+            />
+            <menuitem name="Consultar Cuentas" 
+                id="regsitro_jpv_cuentas_consulta" 
+                action="action_jpv_cuentas_consulta" 
+                parent="menu_jpv_cuentas" 
+                sequence="3"
+                />
+                
+            <menuitem name="Cuentas Activas" 
+                id="regsitro_jpv_cuentas" 
+                action="action_jpv_cuenta_activas2" 
+                parent="menu_jpv_cuentas" 
+                sequence="10"
+                groups="base.group_system,jpv_usuarios.group_jun_dir"
+                />
+            <menuitem name="Cuentas Inactivas" 
+                id="regsitro_jpv_cuentas_inactivas" 
+                action="action_jpv_cuenta_inactivas" 
+                parent="menu_jpv_cuentas" 
+                sequence="20"
+                groups="base.group_system,jpv_usuarios.group_jun_dir"
+                />
+
+        
+</data>
+</openerp>

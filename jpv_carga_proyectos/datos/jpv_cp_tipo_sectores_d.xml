@@ -1,0 +1,1030 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data noupdate="1">
+        <record id="sector_socioproductivo" model="jpv_cp.tipo_sectores">
+            <field name="name">Socioproductivos</field>
+            <field name="parent_id"></field>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="sector_servicio_publico" model="jpv_cp.tipo_sectores">
+            <field name="name">Servicios Públicos</field>
+            <field name="parent_id"></field>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="categoria_agua" model="jpv_cp.tipo_sectores">
+            <field name="name">Agua</field>
+            <field name="parent_id" ref="sector_servicio_publico"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record> 
+        <record id="categoria_ambiente" model="jpv_cp.tipo_sectores">
+            <field name="name">Ambiente</field>
+            <field name="parent_id" ref="sector_servicio_publico"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="categoria_cultura" model="jpv_cp.tipo_sectores">
+            <field name="name">Cultura</field>
+            <field name="parent_id" ref="sector_servicio_publico"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="categoria_deporte" model="jpv_cp.tipo_sectores">
+            <field name="name">Deporte</field>
+            <field name="parent_id" ref="sector_servicio_publico"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="categoria_educacion" model="jpv_cp.tipo_sectores">
+            <field name="name">Educación</field>
+            <field name="parent_id" ref="sector_servicio_publico"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="categoria_electricidad" model="jpv_cp.tipo_sectores">
+            <field name="name">Electricidad</field>
+            <field name="parent_id" ref="sector_servicio_publico"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="categoria_estabilizacion_taludes" model="jpv_cp.tipo_sectores">
+            <field name="name">Estabilización de Taludes</field>
+            <field name="parent_id" ref="sector_servicio_publico"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="categoria_salud" model="jpv_cp.tipo_sectores">
+            <field name="name">Salud</field>
+            <field name="parent_id" ref="sector_servicio_publico"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="categoria_seguridad_ciudadana" model="jpv_cp.tipo_sectores">
+            <field name="name">Seguridad Ciudadana</field>
+            <field name="parent_id" ref="sector_servicio_publico"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="categoria_transporte_publico" model="jpv_cp.tipo_sectores">
+            <field name="name">Transporte Público</field>
+            <field name="parent_id" ref="sector_servicio_publico"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="categoria_vialidad" model="jpv_cp.tipo_sectores">
+            <field name="name">Vialidad</field>
+            <field name="parent_id" ref="sector_servicio_publico"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="categoria_mejoras_habitat" model="jpv_cp.tipo_sectores">
+            <field name="name">Mejoras de hábitat</field>
+            <field name="parent_id" ref="sector_servicio_publico"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="categoria_produccion_primaria" model="jpv_cp.tipo_sectores">
+            <field name="name">Producción Primaria</field>
+            <field name="parent_id" ref="sector_socioproductivo"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="categoria_servicios_conexos" model="jpv_cp.tipo_sectores">
+            <field name="name">Servicios conexos a las actividades productivas</field>
+            <field name="parent_id" ref="sector_socioproductivo"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="categoria_transformacion_industrial" model="jpv_cp.tipo_sectores">
+            <field name="name">Transformación Industrial</field>
+            <field name="parent_id" ref="sector_socioproductivo"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="categoria_turismo" model="jpv_cp.tipo_sectores">
+            <field name="name">Turismo</field>
+            <field name="parent_id" ref="sector_socioproductivo"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_almacenamiento" model="jpv_cp.tipo_sectores">
+            <field name="name">Almacenamiento</field>
+            <field name="parent_id" ref="categoria_agua"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_captacion" model="jpv_cp.tipo_sectores">
+            <field name="name">Captación</field>
+            <field name="parent_id" ref="categoria_agua"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli">True</field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_planta_tratamiento" model="jpv_cp.tipo_sectores">
+            <field name="name">Planta de Tratamiento</field>
+            <field name="parent_id" ref="categoria_agua"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli">True</field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_pozos_profundos_artesanales" model="jpv_cp.tipo_sectores">
+            <field name="name">Pozos Profundos y Artesanales</field>
+            <field name="parent_id" ref="categoria_agua"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli">True</field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_redes_distribucuion_aguas_potables" model="jpv_cp.tipo_sectores">
+            <field name="name">Redes de Distribución de Agua Potable</field>
+            <field name="parent_id" ref="categoria_agua"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli">True</field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas">True</field>
+        </record>
+        <record id="subcategoria_redes_recoleccion_aguas_pluviales" model="jpv_cp.tipo_sectores">
+            <field name="name">Redes de Recolección de Aguas Pluviales</field>
+            <field name="parent_id" ref="categoria_agua"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas">True</field>
+        </record>
+        <record id="subcategoria_redes_recoleccion_aguas_servidas" model="jpv_cp.tipo_sectores">
+            <field name="name">Redes de Recolección de Aguas Servidas</field>
+            <field name="parent_id" ref="categoria_agua"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas">True</field>
+        </record>
+        <record id="subcategoria_dagrado_rio" model="jpv_cp.tipo_sectores">
+            <field name="name">Dragado de Río (con máquina excavadora)</field>
+            <field name="parent_id" ref="categoria_ambiente"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_proteccion_margenes_rios_quebradas" model="jpv_cp.tipo_sectores">
+            <field name="name">Protección de Márgenes de Ríos o Quebradas</field>
+            <field name="parent_id" ref="categoria_ambiente"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_reforestacion" model="jpv_cp.tipo_sectores">
+            <field name="name">Reforestación</field>
+            <field name="parent_id" ref="categoria_ambiente"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_manejo_integral_sesechos_solidos" model="jpv_cp.tipo_sectores">
+            <field name="name">Manejo Integral de los Desechos Sólidos</field>
+            <field name="parent_id" ref="categoria_ambiente"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli">True</field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_canalizacion_embaulamiento_quebradas" model="jpv_cp.tipo_sectores">
+            <field name="name">Canalización y Embaulamiento de Quebradas</field>
+            <field name="parent_id" ref="categoria_ambiente"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli">True</field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas">True</field>
+        </record>
+        <record id="subcategoria_bibliotecas" model="jpv_cp.tipo_sectores">
+            <field name="name">Bibliotecas</field>
+            <field name="parent_id" ref="categoria_cultura"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_casas_culturales_musicales" model="jpv_cp.tipo_sectores">
+            <field name="name">Casas Culturales y Musicales</field>
+            <field name="parent_id" ref="categoria_cultura"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_centros_exposicion" model="jpv_cp.tipo_sectores">
+            <field name="name">Centros de Exposición</field>
+            <field name="parent_id" ref="categoria_cultura"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_medios_comunicacion_impreso" model="jpv_cp.tipo_sectores">
+            <field name="name">Medios de Comunicación Impreso</field>
+            <field name="parent_id" ref="categoria_cultura"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_medios_comunicacion_radial_audiovisual" model="jpv_cp.tipo_sectores">
+            <field name="name">Medios de Comunicación Radial y Audiovisual</field>
+            <field name="parent_id" ref="categoria_cultura"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_museos" model="jpv_cp.tipo_sectores">
+            <field name="name">Museos</field>
+            <field name="parent_id" ref="categoria_cultura"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_rehabilitacion_patrimonio_historico_cultural" model="jpv_cp.tipo_sectores">
+            <field name="name">Rehabilitación de Patrimonio Histórico y Cultural</field>
+            <field name="parent_id" ref="categoria_cultura"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli">True</field>
+            <field name="aval_rehab">True</field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_teatros" model="jpv_cp.tipo_sectores">
+            <field name="name">Teatros</field>
+            <field name="parent_id" ref="categoria_cultura"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_edificaciones_deport_alto_nivel_competicion_intern" model="jpv_cp.tipo_sectores">
+            <field name="name">Edificaciones Deportivas de Alto Nivel con Carácter de Competición Internacional</field>
+            <field name="parent_id" ref="categoria_deporte"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli">True</field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_edificacionnes_deportivas_practica_aire_libre" model="jpv_cp.tipo_sectores">
+            <field name="name">Edificaciones Deportivas Que Permitan La Práctica del deporte Abierto (Canchas de Usos Múltiples, Áreas Al Aire Libre para La Práctica de Actividades Biosaludables, Rutas deportivas )</field>
+            <field name="parent_id" ref="categoria_deporte"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli">True</field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_edificacionnes_complejos_deportivos" model="jpv_cp.tipo_sectores">
+            <field name="name">Edificaciones para Complejos deportivos</field>
+            <field name="parent_id" ref="categoria_deporte"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_edificacionnes_polideportivas_deporte_federaciones" model="jpv_cp.tipo_sectores">
+            <field name="name">Edificaciones Polideportivas Que Permitan Un Uso del deporte Regulado Por Norma de Federaciones deportivas</field>
+            <field name="parent_id" ref="categoria_deporte"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_edificacionnes_educacion_especial" model="jpv_cp.tipo_sectores">
+            <field name="name">Edificaciones para Educación Especial</field>
+            <field name="parent_id" ref="categoria_educacion"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_edificacionnes_educacion_preescolar" model="jpv_cp.tipo_sectores">
+            <field name="name">Edificaciones para Educación Preescolar</field>
+            <field name="parent_id" ref="categoria_educacion"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_edificacionnes_educacion_primaria" model="jpv_cp.tipo_sectores">
+            <field name="name">Edificaciones para Educación Primaria</field>
+            <field name="parent_id" ref="categoria_educacion"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_edificacionnes_educacion_secunadaria" model="jpv_cp.tipo_sectores">
+            <field name="name">Edificaciones para Educación Secundaria</field>
+            <field name="parent_id" ref="categoria_educacion"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_edificacionnes_educacion_universitaria" model="jpv_cp.tipo_sectores">
+            <field name="name">Edificaciones para Educación Universitaria</field>
+            <field name="parent_id" ref="categoria_educacion"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_edificacionnes_escuelas_tecnicas" model="jpv_cp.tipo_sectores">
+            <field name="name">Edificaciones para Escuelas Técnicas</field>
+            <field name="parent_id" ref="categoria_educacion"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_edificacionnes_formacion_organizacion_capacitacion" model="jpv_cp.tipo_sectores">
+            <field name="name">Edificaciones para la Formación, Organización y Capacitación para el Trabajo</field>
+            <field name="parent_id" ref="categoria_educacion"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_edificacionnes_misiones_educativas" model="jpv_cp.tipo_sectores">
+            <field name="name">Edificaciones para Misiones Educativas</field>
+            <field name="parent_id" ref="categoria_educacion"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_edificacionnes_simoncito" model="jpv_cp.tipo_sectores">
+            <field name="name">Edificaciones para Simoncito</field>
+            <field name="parent_id" ref="categoria_educacion"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_alumbrado_publico" model="jpv_cp.tipo_sectores">
+            <field name="name">Alumbrado Público</field>
+            <field name="parent_id" ref="categoria_electricidad"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas">True</field>
+        </record>
+        <record id="subcategoria_distribucion_media_baja_tension" model="jpv_cp.tipo_sectores">
+            <field name="name">Distribución en Media y Baja Tensión</field>
+            <field name="parent_id" ref="categoria_electricidad"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas">True</field>
+        </record>
+        <record id="subcategoria_generacion_diversificada" model="jpv_cp.tipo_sectores">
+            <field name="name">Generación Diversificada</field>
+            <field name="parent_id" ref="categoria_electricidad"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas">True</field>
+        </record>
+        <record id="subcategoria_muro_concreto_armado" model="jpv_cp.tipo_sectores">
+            <field name="name">Muros de Concreto Armado</field>
+            <field name="parent_id" ref="categoria_estabilizacion_taludes"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_pantallas_atirantada" model="jpv_cp.tipo_sectores">
+            <field name="name">Pantallas Atirantadas</field>
+            <field name="parent_id" ref="categoria_estabilizacion_taludes"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_gaviones" model="jpv_cp.tipo_sectores">
+            <field name="name">Gaviones</field>
+            <field name="parent_id" ref="categoria_estabilizacion_taludes"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_tierra_atirantada" model="jpv_cp.tipo_sectores">
+            <field name="name">Tierra Atirantada</field>
+            <field name="parent_id" ref="categoria_estabilizacion_taludes"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_conservacion_taludes" model="jpv_cp.tipo_sectores">
+            <field name="name">Conservación de Taludes</field>
+            <field name="parent_id" ref="categoria_estabilizacion_taludes"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_ambulatorios_rurales_tipo_1" model="jpv_cp.tipo_sectores">
+            <field name="name">Ambulatorios Rurales Tipo I</field>
+            <field name="parent_id" ref="categoria_salud"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_ambulatorios_rurales_tipo_2" model="jpv_cp.tipo_sectores">
+            <field name="name">Ambulatorios Rurales Tipo II</field>
+            <field name="parent_id" ref="categoria_salud"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_ambulatorios_urbano_tipo_1" model="jpv_cp.tipo_sectores">
+            <field name="name">Ambulatorios Urbanos Tipo I</field>
+            <field name="parent_id" ref="categoria_salud"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_ambulatorios_urbano_tipo_2" model="jpv_cp.tipo_sectores">
+            <field name="name">Ambulatorios Urbanos Tipo II</field>
+            <field name="parent_id" ref="categoria_salud"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_ambulatorios_urbano_tipo_3" model="jpv_cp.tipo_sectores">
+            <field name="name">Ambulatorios Urbanos Tipo III</field>
+            <field name="parent_id" ref="categoria_salud"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_centro_salud_mental" model="jpv_cp.tipo_sectores">
+            <field name="name">Centros de Salud Mental</field>
+            <field name="parent_id" ref="categoria_salud"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_centro_atencion_personas_situacion_calle_violencia" model="jpv_cp.tipo_sectores">
+            <field name="name">Centros para la Atención de las Personas en Situación de Calle y Violencia</field>
+            <field name="parent_id" ref="categoria_salud"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_farmacia_populares" model="jpv_cp.tipo_sectores">
+            <field name="name">Farmacias Populares</field>
+            <field name="parent_id" ref="categoria_salud"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_hospitales_tipo_1" model="jpv_cp.tipo_sectores">
+            <field name="name">Hospitales Tipo I</field>
+            <field name="parent_id" ref="categoria_salud"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_hospitales_tipo_2" model="jpv_cp.tipo_sectores">
+            <field name="name">Hospitales Tipo II</field>
+            <field name="parent_id" ref="categoria_salud"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_hospitales_tipo_3" model="jpv_cp.tipo_sectores">
+            <field name="name">Hospitales Tipo III</field>
+            <field name="parent_id" ref="categoria_salud"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_hospitales_tipo_4" model="jpv_cp.tipo_sectores">
+            <field name="name">Hospitales Tipo IV</field>
+            <field name="parent_id" ref="categoria_salud"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_instalaciones_geriatricas" model="jpv_cp.tipo_sectores">
+            <field name="name">Instalaciones Geriátricas</field>
+            <field name="parent_id" ref="categoria_salud"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_barrio_adentro_1" model="jpv_cp.tipo_sectores">
+            <field name="name">Red de Barrio Adentro I</field>
+            <field name="parent_id" ref="categoria_salud"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_barrio_adentro_2" model="jpv_cp.tipo_sectores">
+            <field name="name">Red de Barrio Adentro II</field>
+            <field name="parent_id" ref="categoria_salud"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_cementerio" model="jpv_cp.tipo_sectores">
+            <field name="name">Cementerio</field>
+            <field name="parent_id" ref="categoria_salud"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_bombero_administracion_emergencia" model="jpv_cp.tipo_sectores">
+            <field name="name">Bomberos y Administración de Emergencias</field>
+            <field name="parent_id" ref="categoria_seguridad_ciudadana"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli">True</field>
+            <field name="aval_rehab">True</field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_organismo_administracion_desastres" model="jpv_cp.tipo_sectores">
+            <field name="name">Organismos para la Administración de Desastres</field>
+            <field name="parent_id" ref="categoria_seguridad_ciudadana"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli">True</field>
+            <field name="aval_rehab">True</field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_servicio_policia" model="jpv_cp.tipo_sectores">
+            <field name="name">Servicios de Policias (Equipos de Seguridad No Bélicos)</field>
+            <field name="parent_id" ref="categoria_seguridad_ciudadana"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_terreste" model="jpv_cp.tipo_sectores">
+            <field name="name">Terreste</field>
+            <field name="parent_id" ref="categoria_transporte_publico"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_acuatico" model="jpv_cp.tipo_sectores">
+            <field name="name">Acuático</field>
+            <field name="parent_id" ref="categoria_transporte_publico"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_terminales" model="jpv_cp.tipo_sectores">
+            <field name="name">Terminales</field>
+            <field name="parent_id" ref="categoria_transporte_publico"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli">True</field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_paradas" model="jpv_cp.tipo_sectores">
+            <field name="name">Paradas</field>
+            <field name="parent_id" ref="categoria_transporte_publico"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_aceras_brocales_cunetas" model="jpv_cp.tipo_sectores">
+            <field name="name">Aceras, Brocales y Cunetas</field>
+            <field name="parent_id" ref="categoria_vialidad"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_agricola" model="jpv_cp.tipo_sectores">
+            <field name="name">Agrícola</field>
+            <field name="parent_id" ref="categoria_vialidad"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas">True</field>
+        </record>
+        <record id="subcategoria_alcantarilla_sumidero_ventana" model="jpv_cp.tipo_sectores">
+            <field name="name">Alcantarillas y Sumideros de Ventanas</field>
+            <field name="parent_id" ref="categoria_vialidad"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_bateas_puentes_cajones" model="jpv_cp.tipo_sectores">
+            <field name="name">Bateas, Puentes y Cajones</field>
+            <field name="parent_id" ref="categoria_vialidad"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_ciclovia" model="jpv_cp.tipo_sectores">
+            <field name="name">Ciclovías</field>
+            <field name="parent_id" ref="categoria_vialidad"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas">True</field>
+        </record>
+        <record id="subcategoria_paso_peatonal_camineria_vereda" model="jpv_cp.tipo_sectores">
+            <field name="name">Paso Peatonal, Caminerías y Veredas</field>
+            <field name="parent_id" ref="categoria_vialidad"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas">True</field>
+        </record>
+        <record id="subcategoria_rural" model="jpv_cp.tipo_sectores">
+            <field name="name">Rural</field>
+            <field name="parent_id" ref="categoria_vialidad"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas">True</field>
+        </record>
+        <record id="subcategoria_senalizacion_demarcacion_semaforizacion" model="jpv_cp.tipo_sectores">
+            <field name="name">Señalización, Demarcación y Semaforización</field>
+            <field name="parent_id" ref="categoria_vialidad"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas">True</field>
+        </record>
+        <record id="subcategoria_sistema_final_vial" model="jpv_cp.tipo_sectores">
+            <field name="name">Sistema Vial Nacional (troncal, local, ramal y sub-ramal)</field>
+            <field name="parent_id" ref="categoria_vialidad"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas">True</field>
+        </record>
+        <record id="subcategoria_sistema_vias_acceso" model="jpv_cp.tipo_sectores">
+            <field name="name">Sistemas de Vías de Acceso (calles y avenidas)</field>
+            <field name="parent_id" ref="categoria_vialidad"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas">True</field>
+        </record>
+        <record id="subcategoria_rehabilitacion_vivienda" model="jpv_cp.tipo_sectores">
+            <field name="name">Rehabilitación de Vivienda</field>
+            <field name="parent_id" ref="categoria_mejoras_habitat"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_mercados" model="jpv_cp.tipo_sectores">
+            <field name="name">Mercados</field>
+            <field name="parent_id" ref="categoria_mejoras_habitat"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_plazas_parques_paisajismo" model="jpv_cp.tipo_sectores">
+            <field name="name">Plazas, Parques o Paisajismo</field>
+            <field name="parent_id" ref="categoria_mejoras_habitat"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_extracion_materiales_no_metalicos" model="jpv_cp.tipo_sectores">
+            <field name="name">Extracción De Materiales No Metálicos</field>
+            <field name="parent_id" ref="categoria_produccion_primaria"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_sistema_productivo_agroecologico" model="jpv_cp.tipo_sectores">
+            <field name="name">Sistema Productivo Agroecológico</field>
+            <field name="parent_id" ref="categoria_produccion_primaria"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_sistema_productivo_animal" model="jpv_cp.tipo_sectores">
+            <field name="name">Sistema Productivo Animal</field>
+            <field name="parent_id" ref="categoria_produccion_primaria"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_sistema_productivo_forestal" model="jpv_cp.tipo_sectores">
+            <field name="name">Sistema Productivo Forestal</field>
+            <field name="parent_id" ref="categoria_produccion_primaria"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_sistema_productivo_pesquero" model="jpv_cp.tipo_sectores">
+            <field name="name">Sistema Productivo Pesquero</field>
+            <field name="parent_id" ref="categoria_produccion_primaria"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_sistema_productivo_piscicola" model="jpv_cp.tipo_sectores">
+            <field name="name">Sistema Productivo Piscícola</field>
+            <field name="parent_id" ref="categoria_produccion_primaria"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_sistema_productivo_vegetal" model="jpv_cp.tipo_sectores">
+            <field name="name">Sistema Productivo Vegetal</field>
+            <field name="parent_id" ref="categoria_produccion_primaria"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_almacenamiento_frio_seco" model="jpv_cp.tipo_sectores">
+            <field name="name">Almacenamiento (En Frío, En Seco)</field>
+            <field name="parent_id" ref="categoria_servicios_conexos"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_empaque_envasado" model="jpv_cp.tipo_sectores">
+            <field name="name">Empaque Y Envasado</field>
+            <field name="parent_id" ref="categoria_servicios_conexos"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_matadero" model="jpv_cp.tipo_sectores">
+            <field name="name">Matadero</field>
+            <field name="parent_id" ref="categoria_servicios_conexos"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_centro_comercializacion" model="jpv_cp.tipo_sectores">
+            <field name="name">Centros De Comercialización</field>
+            <field name="parent_id" ref="categoria_servicios_conexos"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_servicios_mecanicos" model="jpv_cp.tipo_sectores">
+            <field name="name">Servicios Mecánicos (Excjpvo Herramientas Menores E Insumos)</field>
+            <field name="parent_id" ref="categoria_servicios_conexos"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_sistema_riesgo" model="jpv_cp.tipo_sectores">
+            <field name="name">Sistema De Riego</field>
+            <field name="parent_id" ref="categoria_servicios_conexos"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_trasporte_carga_asociada_actividades_productivas" model="jpv_cp.tipo_sectores">
+            <field name="name">Transporte De Carga Asociada A Las Actividades Productivas</field>
+            <field name="parent_id" ref="categoria_servicios_conexos"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_alimentos_balanceados_animales" model="jpv_cp.tipo_sectores">
+            <field name="name">Alimentos Balanceados Para Animales (Aba)</field>
+            <field name="parent_id" ref="categoria_transformacion_industrial"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_calzado" model="jpv_cp.tipo_sectores">
+            <field name="name">Calzado</field>
+            <field name="parent_id" ref="categoria_transformacion_industrial"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_cuero" model="jpv_cp.tipo_sectores">
+            <field name="name">Cuero</field>
+            <field name="parent_id" ref="categoria_transformacion_industrial"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_madera" model="jpv_cp.tipo_sectores">
+            <field name="name">Madera</field>
+            <field name="parent_id" ref="categoria_transformacion_industrial"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_metalmecanica" model="jpv_cp.tipo_sectores">
+            <field name="name">Metalmecánica</field>
+            <field name="parent_id" ref="categoria_transformacion_industrial"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_planta_asfaltado" model="jpv_cp.tipo_sectores">
+            <field name="name">Planta De Asfaltado</field>
+            <field name="parent_id" ref="categoria_transformacion_industrial"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_planta_reciclado" model="jpv_cp.tipo_sectores">
+            <field name="name">Planta De Reciclado</field>
+            <field name="parent_id" ref="categoria_transformacion_industrial"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_planta_plastico" model="jpv_cp.tipo_sectores">
+            <field name="name">Plástico</field>
+            <field name="parent_id" ref="categoria_transformacion_industrial"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_productos_construccion_no_metalicos" model="jpv_cp.tipo_sectores">
+            <field name="name">Productos Para La Construcción No Metálicos (Bloque, Vidrio, Arcilla, Cerámica, Cemento)</field>
+            <field name="parent_id" ref="categoria_transformacion_industrial"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_productos_carnicos" model="jpv_cp.tipo_sectores">
+            <field name="name">Productos Cárnicos</field>
+            <field name="parent_id" ref="categoria_transformacion_industrial"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_productos_lacteos" model="jpv_cp.tipo_sectores">
+            <field name="name">Productos Lácteos</field>
+            <field name="parent_id" ref="categoria_transformacion_industrial"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_productos_pesquero" model="jpv_cp.tipo_sectores">
+            <field name="name">Productos Pesqueros</field>
+            <field name="parent_id" ref="categoria_transformacion_industrial"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_productos_vegetal" model="jpv_cp.tipo_sectores">
+            <field name="name">Productos Vegetal</field>
+            <field name="parent_id" ref="categoria_transformacion_industrial"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_textil" model="jpv_cp.tipo_sectores">
+            <field name="name">Textil</field>
+            <field name="parent_id" ref="categoria_transformacion_industrial"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_alojamiento_turistico" model="jpv_cp.tipo_sectores">
+            <field name="name">Alojamiento Turístico</field>
+            <field name="parent_id" ref="categoria_turismo"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_transporte_turistico_acuatico" model="jpv_cp.tipo_sectores">
+            <field name="name">Transporte Turísticos Acuático</field>
+            <field name="parent_id" ref="categoria_turismo"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_transporte_turistico_terrestre" model="jpv_cp.tipo_sectores">
+            <field name="name">Transporte Turísticos Terrestre</field>
+            <field name="parent_id" ref="categoria_turismo"/>
+            <field name="aval_constr"></field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_establecimiento_turismo_recreativo" model="jpv_cp.tipo_sectores">
+            <field name="name">Establecimientos para e l turismo recreativo, activo o complementarios (según normas del ministerio de turismo)</field>
+            <field name="parent_id" ref="categoria_turismo"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        <record id="subcategoria_unidades_gastronomicas" model="jpv_cp.tipo_sectores">
+            <field name="name">Unidades Gastronómicas</field>
+            <field name="parent_id" ref="categoria_turismo"/>
+            <field name="aval_constr">True</field>
+            <field name="aval_ampli"></field>
+            <field name="aval_rehab"></field>
+            <field name="coordenadas"></field>
+        </record>
+        
+</data>
+</openerp>

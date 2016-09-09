@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+     <data>
+         
+<!--
+         vista formulario para la carga de los  equipos
+-->
+         
+        <record model="ir.ui.view" id="view_jpv_cp_equipos_form">
+            <field name="name">jpv_cp_equipos_form</field>
+            <field name="model">jpv_cp.equipos_config</field> 
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Equipos">
+                    <sheet>
+                        <group col="2" colspan="2">
+                            <field name="uso" style="width: 40%%"/>
+                            <field name="active" style="width: 40%%"/>
+                        </group>
+                     </sheet>
+                </form>
+            </field>
+         </record>
+         
+<!--
+         vista lista para los registros  de los equipos
+-->
+         
+        <record model="ir.ui.view" id="view_jpv_cp_equipos_tree">
+            <field name="name">jpv_cp_equipos_tree</field>
+            <field name="model">jpv_cp.equipos_config</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Equipos">
+                    <field name="uso"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="jpv_cp_equipos_action">
+            <field name="name">Equipos</field>
+            <field name="res_model">jpv_cp.equipos_config</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Aqui se registran los equipos
+                </p>
+            </field>
+        </record>
+        
+        <menuitem name="Caracteristicas de Proyectos" 
+                id="inicio_jpv_cp_caracteristicas_proyectos"  
+                parent="menu_jpv_cp_tipo_sectores"
+                sequence="20"/>
+                
+        <menuitem name="Equipos" 
+                id="inicio_jpv_cp_equipos"  
+                action="jpv_cp_equipos_action" 
+                parent="inicio_jpv_cp_caracteristicas_proyectos"
+                sequence="10"/>
+                
+                
+<!--
+         vista formulario para la carga de las  maquinarias
+-->
+         
+        <record model="ir.ui.view" id="view_jpv_cp_maquinarias_form">
+            <field name="name">jpv_cp_maquinarias_form</field>
+            <field name="model">jpv_cp.maquinaria_config</field> 
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Maquinarias">
+                    <sheet>
+                        <group col="2" colspan="2">
+                            <field name="uso" style="width: 40%%"/>
+                            <field name="active" style="width: 40%%"/>
+                        </group>
+                     </sheet>
+                </form>
+            </field>
+         </record>
+         
+<!--
+         vista lista para los registros  de las maquinarias
+-->
+         
+        <record model="ir.ui.view" id="view_jpv_cp_maquinaria_tree">
+            <field name="name">jpv_cp_maquinaria_tree</field>
+            <field name="model">jpv_cp.maquinaria_config</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Maquinarias">
+                    <field name="uso"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="jpv_cp_maquinaria_action">
+            <field name="name">Maquinaria</field>
+            <field name="res_model">jpv_cp.maquinaria_config</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Aqui se registran las maquinarias
+                </p>
+            </field>
+        </record>
+        
+        <menuitem name="Maquinarias" 
+                id="inicio_jpv_cp_maquinarias"  
+                action="jpv_cp_maquinaria_action" 
+                parent="inicio_jpv_cp_caracteristicas_proyectos"
+                sequence="20"/>
+                
+<!--
+         vista formulario para la carga de los vehiculos
+-->
+         
+        <record model="ir.ui.view" id="view_jpv_cp_vehiculos_form">
+            <field name="name">jpv_cp_vehiculos_form</field>
+            <field name="model">jpv_cp.vehiculo_tipo_config</field> 
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Vehiculos">
+                    <sheet>
+                        <group col="2" colspan="2">
+                            <field name="uso_id" style="width: 40%%"/>
+                            <field name="caracteristicas_id" style="width: 40%%"/>
+                            <field name="tipo" style="width: 40%%"/>
+                            <field name="active" style="width: 40%%"/>
+                        </group>
+                     </sheet>
+                </form>
+            </field>
+         </record>
+         
+<!--
+         vista lista para los registros  de los vehiculos
+-->
+         
+        <record model="ir.ui.view" id="view_jpv_cp_vehiculos_tree">
+            <field name="name">jpv_cp_vehiculos_tree</field>
+            <field name="model">jpv_cp.vehiculo_tipo_config</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Vehículos">
+                    <field name="uso_id"/>
+                    <field name="caracteristicas_id"/>
+                    <field name="tipo"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="jpv_cp_vehiculos_action">
+            <field name="name">Vehiculos</field>
+            <field name="res_model">jpv_cp.vehiculo_tipo_config</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Aqui se registran los vehiculos
+                </p>
+            </field>
+        </record>
+        
+        <menuitem name="Vehículos" 
+                id="inicio_jpv_cp_vehiculos"  
+                action="jpv_cp_vehiculos_action" 
+                parent="inicio_jpv_cp_caracteristicas_proyectos"
+                sequence="30"/>
+                
+<!--
+         vista formulario para la carga de los materiales de consumo
+-->
+         
+        <record model="ir.ui.view" id="view_jpv_cp_materiales_form">
+            <field name="name">jpv_cp_materiales_form</field>
+            <field name="model">jpv_cp.materiales_consumo_config</field> 
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Materiales de Consumo">
+                    <sheet>
+                        <group col="2" colspan="2">
+                            <field name="uso" style="width: 40%%"/>
+                            <field name="active" style="width: 40%%"/>
+                        </group>
+                     </sheet>
+                </form>
+            </field>
+         </record>
+         
+<!--
+         vista lista para los registros  de los materiales de consumo
+-->
+         
+        <record model="ir.ui.view" id="view_jpv_cp_materiales_tree">
+            <field name="name">jpv_cp_materiales_tree</field>
+            <field name="model">jpv_cp.materiales_consumo_config</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Materiales de Consumo">
+                    <field name="uso"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="jpv_cp_materiales_consumo_action">
+            <field name="name">Materiales de Consumo</field>
+            <field name="res_model">jpv_cp.materiales_consumo_config</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Aqui se registran los materiales de consumo
+                </p>
+            </field>
+        </record>
+        
+        <menuitem name="Materiales de Consumo" 
+                id="inicio_jpv_cp_materiales"  
+                action="jpv_cp_materiales_consumo_action" 
+                parent="inicio_jpv_cp_caracteristicas_proyectos"
+                sequence="40"/>
+                
+<!--
+         vista formulario para la carga de las unidades de obra civil
+-->
+         
+        <record model="ir.ui.view" id="view_jpv_cp_unidades_form">
+            <field name="name">jpv_cp_unidades_form</field>
+            <field name="model">jpv_cp.unidades_obra_civil_config</field> 
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Unidades">
+                    <sheet>
+                        <group col="2" colspan="2">
+                            <field name="unidad" style="width: 40%%"/>
+                            <field name="active" style="width: 40%%"/>
+                        </group>
+                     </sheet>
+                </form>
+            </field>
+         </record>
+         
+<!--
+         vista formulario para la carga de las unidades de obra civil
+-->
+         
+        <record model="ir.ui.view" id="view_jpv_cp_unidades_tree">
+            <field name="name">jpv_cp_unidades_tree</field>
+            <field name="model">jpv_cp.unidades_obra_civil_config</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Unidades">
+                    <field name="unidad"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="jpv_cp_unidades_action">
+            <field name="name">Unidades</field>
+            <field name="res_model">jpv_cp.unidades_obra_civil_config</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Aqui se registran las unidades de obra civil
+                </p>
+            </field>
+        </record>
+        
+        <menuitem name="Unidades" 
+                id="inicio_jpv_cp_unidades"  
+                action="jpv_cp_unidades_action" 
+                parent="inicio_jpv_cp_caracteristicas_proyectos"
+                sequence="50"/>
+                
+<!--
+         vista formulario para la carga de las unidades con su categorización
+-->
+         
+        <record model="ir.ui.view" id="view_jpv_cp_unidades_categoria_form">
+            <field name="name">jpv_cp_unidades_categoria_form</field>
+            <field name="model">jpv_cp.construccion_unidades_config</field> 
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Unidades-Categoría">
+                    <sheet>
+                        <group col="2" colspan="2">
+                            <field name="tipo_sector_id" on_change="cp_limpiar_campos('categoria_id')" domain="[('parent_id','=',[0])]" style="width: 40%%"/>
+                            <field name="categoria_id" on_change="cp_limpiar_campos('subcategoria_id')" string="Categoria" context="{'default_id':tipo_sector_id}"  domain="[('parent_id','=',tipo_sector_id)]" style="width: 40%%"/>
+                            <field name="subcategoria_id" on_change="cp_limpiar_campos('obra_civil')" context="{'default_id':categoria_id}" domain="[('parent_id','=',categoria_id)]" style="width: 40%%"/>
+                            <field name="unidades_id" style="width: 40%%"/>
+                            <field name="active" style="width: 40%%"/>
+                        </group>
+                     </sheet>
+                </form>
+            </field>
+         </record>
+         
+<!--
+         vista formulario para la carga de las unidades con su categorización
+-->
+         
+        <record model="ir.ui.view" id="view_jpv_cp_unidades-categoria_tree">
+            <field name="name">jpv_cp_unidades_categoria_tree</field>
+            <field name="model">jpv_cp.construccion_unidades_config</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Unidades-Categoría">
+                    <field name="tipo_sector_id" style="width: 40%%"/>
+                    <field name="categoria_id" style="width: 40%%"/>
+                    <field name="subcategoria_id" style="width: 40%%"/>
+                    <field name="unidades_id" style="width: 40%%"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="jpv_cp_unidades_categoria_action">
+            <field name="name">Unidades-Categorías</field>
+            <field name="res_model">jpv_cp.construccion_unidades_config</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Aqui se registran las unidades y sus categorías de obra civil
+                </p>
+            </field>
+        </record>
+        
+        <menuitem name="Categoría-Unidades" 
+                id="inicio_jpv_cp_unidades_categoria"  
+                action="jpv_cp_unidades_categoria_action" 
+                parent="inicio_jpv_cp_caracteristicas_proyectos"
+                sequence="50"/>
+                
+                
+                
+                
+        <!--
+         vista formulario para la carga de las especies en semovientes
+-->
+         
+        <record model="ir.ui.view" id="view_jpv_cp_semovientes_form">
+            <field name="name">jpv_cp_semovientes_form</field>
+            <field name="model">jpv_cp.semovientes_config</field> 
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Semovientes">
+                    <sheet>
+                        <group col="2" colspan="2">
+                            <field name="especie" style="width: 40%%"/>
+                            <field name="active" style="width: 40%%"/>
+                        </group>
+                     </sheet>
+                </form>
+            </field>
+         </record>
+         
+<!--
+         vista lista para los registros de  especies en semovientes
+-->
+         
+        <record model="ir.ui.view" id="view_jpv_cp_semovientes_tree">
+            <field name="name">jpv_cp_semovientes_especie_tree</field>
+            <field name="model">jpv_cp.semovientes_config</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Semovientes">
+                    <field name="especie"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="jpv_cp_semovientes_especie_action">
+            <field name="name">Semovientes</field>
+            <field name="res_model">jpv_cp.semovientes_config</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Aqui se registran las especies de semovientes
+                </p>
+            </field>
+        </record>
+        
+        <menuitem name="Semovientes" 
+                id="inicio_jpv_cp_semovientes_principal"  
+                parent="inicio_jpv_cp_caracteristicas_proyectos"
+                sequence="60"/>
+        <menuitem name="Especies" 
+                id="inicio_jpv_cp_semovientes"  
+                action="jpv_cp_semovientes_especie_action" 
+                parent="inicio_jpv_cp_semovientes_principal"
+                sequence="10"/>
+                
+<!--
+         vista formulario para la carga de los grupos etarios
+-->
+         
+        <record model="ir.ui.view" id="view_jpv_cp_semovientes_grupo_etario_form">
+            <field name="name">jpv_cp_semovientes_grupo_etario_form</field>
+            <field name="model">jpv_cp.semovientes_grupo_etario_config</field> 
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Grupo etario">
+                    <sheet>
+                        <group col="2" colspan="2">
+                            <field name="grupo_etario" style="width: 40%%"/>
+                            <field name="especies_id" style="width: 40%%"/>
+                            <field name="active" style="width: 40%%"/>
+                        </group>
+                     </sheet>
+                </form>
+            </field>
+         </record>
+         
+<!--
+         vista lista para los registros de grupos etarios
+-->
+         
+        <record model="ir.ui.view" id="view_jpv_cp_semovientes_grupo_etario_tree">
+            <field name="name">jpv_cp_semovientes_grupo_etario_tree</field>
+            <field name="model">jpv_cp.semovientes_grupo_etario_config</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Grupo etario">
+                    <field name="grupo_etario"/>
+                    <field name="especies_id"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="jpv_jpv_cp_semovientes_grupo_etario_action">
+            <field name="name">Grupo etario</field>
+            <field name="res_model">jpv_cp.semovientes_grupo_etario_config</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Aqui se registran los grupos etarios
+                </p>
+            </field>
+        </record>
+        
+        <menuitem name="Grupo etario" 
+                id="inicio_jpv_cp_semovientes_grupo_etario"  
+                action="jpv_jpv_cp_semovientes_grupo_etario_action" 
+                parent="inicio_jpv_cp_semovientes_principal"
+                sequence="20"/>
+                
+                
+<!--
+         vista formulario para la carga de los usos de semovientes
+-->
+         
+        <record model="ir.ui.view" id="view_jpv_cp_semovientes_uso_form">
+            <field name="name">jpv_cp_semovientes_uso_form</field>
+            <field name="model">jpv_cp.semovientes_uso_config</field> 
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Usos semovientes">
+                    <sheet>
+                        <group col="2" colspan="2">
+                            <field name="uso" style="width: 40%%"/>
+                            <field name="grupos_id" style="width: 40%%"/>
+                            <field name="active" style="width: 40%%"/>
+                        </group>
+                     </sheet>
+                </form>
+            </field>
+         </record>
+         
+<!--
+         vista lista para los registros de de los usos de semovientes
+-->
+         
+        <record model="ir.ui.view" id="view_jpv_cp_semovientes_uso_tree">
+            <field name="name">jpv_cp_semovientes_uso_tree</field>
+            <field name="model">jpv_cp.semovientes_uso_config</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Usos semovientes">
+                    <field name="uso"/>
+                    <field name="grupos_id"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="jpv_cp_semovientes_uso_action">
+            <field name="name">Usos semovientes</field>
+            <field name="res_model">jpv_cp.semovientes_uso_config</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Aqui se registran los usos de semovientes
+                </p>
+            </field>
+        </record>
+        
+        <menuitem name="Usos" 
+                id="inicio_jpv_cp_semovientes_uso"  
+                action="jpv_cp_semovientes_uso_action" 
+                parent="inicio_jpv_cp_semovientes_principal"
+                sequence="30"/>
+<!--
+         vista formulario para la carga de los propositos de semovientes
+-->
+         
+        <record model="ir.ui.view" id="view_jpv_cp_semovientes_proposito_form">
+            <field name="name">jpv_cp_semovientes_proposito_form</field>
+            <field name="model">jpv_cp.semovientes_proposito_config</field> 
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Proposito semovientes">
+                    <sheet>
+                        <group col="2" colspan="2">
+                            <field name="proposito" style="width: 40%%"/>
+                            <field name="usos_id" style="width: 40%%"/>
+                        </group>
+                     </sheet>
+                </form>
+            </field>
+         </record>
+         
+<!--
+         vista lista para los registros de de los propositos de semovientes
+-->
+         
+        <record model="ir.ui.view" id="view_jpv_cp_semovientes_proposito_tree">
+            <field name="name">jpv_cp_semovientes_uso_tree</field>
+            <field name="model">jpv_cp.semovientes_proposito_config</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Proposito semovientes">
+                    <field name="proposito"/>
+                    <field name="usos_id"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="jpv_cp_semovientes_proposito_action">
+            <field name="name">Proposito semovientes</field>
+            <field name="res_model">jpv_cp.semovientes_proposito_config</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Aqui se registran los propositos de semovientes
+                </p>
+            </field>
+        </record>
+        
+        <menuitem name="Proposito" 
+                id="inicio_jpv_cp_semovientes_proposito"  
+                action="jpv_cp_semovientes_proposito_action" 
+                parent="inicio_jpv_cp_semovientes_principal"
+                sequence="40"/>        
+                
+                
+                
+                
+                
+                
+                
+                
+         
+    </data>
+</openerp>

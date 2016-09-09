@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <openerp>
+     <data>
+    <!--REGISTRO DE MUNICIPIOS-->
+    
+    <record model="ir.ui.view" id="view_jpv_ent_municipios_form">
+        <field name="name">jpv_ent.municipios.form</field>
+        <field name="model">jpv_ent.municipios</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Dirección de Municipios">
+                <sheet>
+                <group>
+                <field name="municipio" select="1"/>
+                <field name="codigo" select="2"/>
+                <field name="estado_id" select="0" attrs="{'readonly': [('estado_id','>',1)]}"/>
+                <field name="active" select="0" />
+                </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record model="ir.ui.view" id="view_jpv_ent_municipios_tree">
+        <field name="name">jpv_ent.municipios.tree</field>
+        <field name="model">jpv_ent.municipios</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Dirección de Municipios">
+                <field name="municipio"/>
+                <field name="estado_id"/>
+                <field name="codigo"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_jpv_ent_municipios">
+        <field name="name">Municipios</field>
+        <field name="res_model">jpv_ent.municipios</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+
+    
+    <menuitem name="Municipios" id="menu_res_municipios" parent="jpv_entidades.next_id_82" action="action_jpv_ent_municipios" sequence="4"/>
+
+    </data>
+</openerp>

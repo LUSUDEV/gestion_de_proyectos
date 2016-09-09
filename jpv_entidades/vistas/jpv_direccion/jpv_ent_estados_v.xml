@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <openerp>
+     <data>
+    <!--REGISTRO DE ESTADOS-->
+    
+    <record model="ir.ui.view" id="view_jpv_ent_estados_form">
+        <field name="name">jpv_ent.estados.form</field>
+        <field name="model">jpv_ent.estados</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Dirección de Estados">
+                <sheet>
+                <group>
+                <field name="estado" />
+                <field name="codigo" />
+                <field name="redi_id" attrs="{'readonly': [('redi_id','>',1)]}"/>
+                <field name="active" />
+                </group>
+                <notebook>
+                    <page string="Husos">
+                        <field name="husos_ids"></field>
+                    </page>
+                </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_jpv_ent_estados_tree">
+        <field name="name">jpv_ent.estados.tree</field>
+        <field name="model">jpv_ent.estados</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Dirección de Estados">
+                <field name="estado"/>
+                <field name="codigo"/>
+                <field name="redi_id"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="action_jpv_ent_estados">
+        <field name="name">Estados</field>
+        <field name="res_model">jpv_ent.estados</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+
+    
+    <menuitem name="Estados" id="menu_res_estados" parent="jpv_entidades.next_id_82" action="action_jpv_ent_estados" sequence="5"/>
+
+    </data>
+</openerp>

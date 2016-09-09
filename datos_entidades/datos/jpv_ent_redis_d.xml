@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="0">
+	<!-- Regiones Estartegicas de Defensa Integral -->
+	
+	<!-- Redi zona Central: Distrito Capital, Miranda, Aragua y Carabobo, Vargas -->
+	<record id="geo_redi_ZC" model="jpv_ent.redis">
+		<field name="name">REDI Central</field>
+		<field name="codigo">RZC</field>
+	</record>
+	<!-- Redi Occidente: Falcón, Lara, Yaracuy y Zulia. -->
+	<record id="geo_redi_OCC" model="jpv_ent.redis">
+		<field name="name">REDI Occidental</field>
+		<field name="codigo">ROC</field>
+	</record>
+	<!-- Redi Los Llanos: Apure, Portuguesa, Barinas, Cojedes y Guárico -->
+	<record id="geo_redi_LLL" model="jpv_ent.redis">
+		<field name="name">REDI Los LLanos</field>
+        <field name="codigo">RLL</field>
+	</record>
+	<!-- Redi Oriental: Anzoátegui, Nueva Esparta, Monagas y Sucre -->
+	<record id="geo_redi_ORI" model="jpv_ent.redis">
+		<field name="name">REDI Oriental</field>
+        <field name="codigo">ROR</field>
+	</record>
+	<!-- Redi Guayana: Bolívar, Delta Amacuro y Amazonas. -->
+	<record id="geo_redi_GUA" model="jpv_ent.redis">
+		<field name="name">REDI Sur</field>
+        <field name="codigo">RGU</field>
+	</record>
+	<!-- Redi Andina: Trujillo, Táchira y Mérida -->
+	<record id="geo_redi_AND" model="jpv_ent.redis">
+		<field name="name">REDI Los Andes</field>
+        <field name="codigo">RAN</field>
+	</record>
+	<!-- Redi Marítima: Territorios Insulares -->
+	<record id="geo_redi_RMI" model="jpv_ent.redis">
+		<field name="name">REDI Marítima e Insular</field>
+        <field name="codigo">RMI</field>
+	</record>
+	
+	</data>
+
+</openerp>

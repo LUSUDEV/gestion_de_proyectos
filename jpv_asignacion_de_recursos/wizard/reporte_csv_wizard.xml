@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="csv_asignacion_wizard_form">
+            <field name="name">jpv_asr.asignacion_recurso_wizard_form</field>
+            <field name="model">jpv_asr.asignacion_recurso_wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group >
+                        <field name="tipo_cuenta" on_change="onchange_tipo_cuenta(tipo_cuenta)" options="{'no_create':True, 'no_open':True}"/>
+                        <field name="res_partner_ids" id="many2many_res" no_open="True"  options="{'no_create':True, 'no_open':True}"/>
+                    </group>
+                    <footer>
+                        <a class="oe_button exportar_csv" icon="gtk-print" type="button"
+                        >Exportar</a>
+                        
+                        
+                        <button string="Cancelar" special="cancel" 
+                        icon="gtk-cancel" class="cerrar"/>
+                        
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="action_jpv_asr_asignacion_recurso_wizard_wizard" 
+        model="ir.actions.act_window">
+        <field name="name">Exportar Formato Masivo CSV </field>
+        <field name="res_model">jpv_asr.asignacion_recurso_wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        </record>
+        
+    </data>
+</openerp>
