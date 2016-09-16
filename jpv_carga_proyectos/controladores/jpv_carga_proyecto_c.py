@@ -12,8 +12,8 @@ from openerp.http import request
 from openerp.addons.website_apiform.controladores import panel, base_tools
 from datetime import datetime, date, time, timedelta
 
-#~ from openerp.addons.jpv_rendicion.controladores import jpv_rnd_rendicion_c
-#~ self_rendicion=jpv_rnd_rendicion_c.rendicion()
+from openerp.addons.jpv_usuarios.controladores.jpv_use_users_c import jpv_users as jpv_usuarios
+
 _logger = logging.getLogger(__name__)
 
 class jpv_cp_carga_proyecto_controlador(http.Controller):
@@ -27,121 +27,7 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
         ids = objeto.search(cr,SUPERUSER_ID,parametro,context=context)
         data = objeto.browse(cr,SUPERUSER_ID,ids,context=context)
         return data
-        
-    def campos_solo_lectura(self,id_proyecto,ciclo_id,campo):
-        registry = http.request.registry
-        cr=http.request.cr
-        uid=http.request.uid
-        context = http.request.context
-        periodos_obj = registry.get('jpv_plf.periodos')
-        carga_proyecto_data=self.instanciar_objetos('jpv_cp.carga_proyecto',[('id','=',int(id_proyecto)),])
-        disabled=''
-        if carga_proyecto_data['state']=='carga':
-            disabled=''
-        if carga_proyecto_data['state']=='negado' or carga_proyecto_data['state']=='cancelado' or carga_proyecto_data['state']=='evaluacion' or carga_proyecto_data['state']=='culminado':
-            disabled='disabled'
-        if carga_proyecto_data['state']=='aprobado' or carga_proyecto_data['state']=='diferido':
-            actividad='REPARACIÓN DE PROYECTOS'
-            reparacion=periodos_obj.plf_control_actividades(cr, uid, [],int(carga_proyecto_data['partner_id']),actividad,int(ciclo_id))
-            if 'periodo' in reparacion.keys():
-                disabled=''
-            else:
-                disabled='disabled'
-            if campo=='monto_proyecto':
-                disabled=''
-                return
-            if carga_proyecto_data['avance']==True:
-                disabled='disabled'
-        return disabled
-    
-    def ocultar_boton_crear(self,partner_id):
-        registry = http.request.registry
-        cr=http.request.cr
-        uid=http.request.uid
-        context = http.request.context
-        hoy=date.today()
-        format="%Y"
-        periodos_obj = registry.get('jpv_plf.periodos')
-        anio=hoy.strftime(format)
-        actividad="CARGA DE PROYECTOS"
-        entidades_data=self.instanciar_objetos('jpv_ent.entidades',[('parent_id','=',int(partner_id)),])
-        carga=periodos_obj.plf_control_actividades(cr, uid, [],int(partner_id),actividad,None,anio)
-        if 'periodo' in carga.keys():
-            if entidades_data['cargar_proyectos']==True:
-                return ''
-            else:
-                return 'hidden'
-        else:
-            return 'hidden'
             
-    def ocultar_boton_editar(self,partner_id,ciclo,state,proyecto_id):
-        registry = http.request.registry
-        cr=http.request.cr
-        uid=http.request.uid
-        context = http.request.context
-        periodos_obj = registry.get('jpv_plf.periodos')
-        actividad="REPARACIÓN DE PROYECTOS"
-        carga_proyecto_data=self.instanciar_objetos('jpv_cp.carga_proyecto',[('id','=',int(proyecto_id)),])
-        entidades_data=self.instanciar_objetos('jpv_ent.entidades',[('parent_id','=',int(partner_id)),])
-        list_user=[]
-        for usuario in entidades_data['user_ids']:
-            if usuario.id==uid:
-                list_user.append(usuario.id)
-        if len(list_user)==0:
-            hidden='hidden'
-            return hidden
-        
-        if len(carga_proyecto_data['foto_id'])==0:
-            hidden=''
-            return hidden
-        reparacion=periodos_obj.plf_control_actividades(cr, uid, [],int(partner_id),actividad,int(ciclo))
-        if state=='carga':
-            return ''
-        if 'periodo' in reparacion.keys():
-            return ''
-        else:
-            if state=='aprobado' or state=='diferido':
-                return ''
-            else:
-                return 'hidden' 
-                
-    def ocultar_boton_aumento(self,proyecto_id):
-        registry = http.request.registry
-        cr=http.request.cr
-        uid=http.request.uid
-        context = http.request.context
-        carga_proyecto_data=self.instanciar_objetos('jpv_cp.carga_proyecto',[('id','=',int(proyecto_id)),])
-        return True
-    
-    def ocultar_elementos(self,id_proyecto,campo):
-        registry = http.request.registry
-        cr=http.request.cr
-        uid=http.request.uid
-        context = http.request.context
-        periodos_obj = registry.get('jpv_plf.periodos')
-        carga_proyecto_data=self.instanciar_objetos('jpv_cp.carga_proyecto',[('id','=',int(id_proyecto))])
-        hidden=''
-        if carga_proyecto_data['state']=='carga':
-            hidden=''
-        if carga_proyecto_data['state']=='negado' or carga_proyecto_data['state']=='cancelado' or carga_proyecto_data['state']=='evaluacion':
-            hidden='hidden'
-        if carga_proyecto_data['state']=='aprobado' or carga_proyecto_data['state']=='diferido':
-            actividad='REPARACIÓN DE PROYECTOS'
-            reparacion=periodos_obj.plf_control_actividades(cr, uid, [],int(carga_proyecto_data['partner_id']),actividad,)
-            if 'periodo' in reparacion.keys():
-                hidden=''
-            else:
-                hidden='hidden'
-        return hidden
-    
-    def ocultar_proyecto_editado(self,proyecto_id):
-        proyecto_data=self.instanciar_objetos('jpv_mig.proyectos_migrados',[('proyectos_id','=',int(proyecto_id)),('actualizado','=',True)])
-        if len(proyecto_data)==1:
-            url='/jpv_carga_proyectos/static/src/img/agt_action_success .png'
-            return url
-        else:
-            return
-    
     @http.route(['/proyecto'], 
             type='http', auth="user", website=True)
     def carga_proyecto(self):
@@ -151,7 +37,6 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
         context = http.request.context
         datos={}
         entidades_obj = registry.get('jpv_ent.entidades')
-        #~ proyectos_migrados_obj = registry.get('jpv_mig.proyectos_migrados')
         entidades_ids = entidades_obj.search(
                                         cr,
                                         SUPERUSER_ID,
@@ -164,42 +49,9 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
                                                 SUPERUSER_ID,
                                                 entidades_ids,
                                                 context=context)
-            
-            gobernacion='false'
-            alcaldia='false'
-            dict_montos_asoci={}
-            partner_asociados_data=[]
-            alcaldias_asociadas={}
-            if entidades_data['tipo_entidad_id'].name=='GOBERNACIÓN':
-                gobernacion="gobernacion"
-                list_alcaldia=[]
-                for alcaldia in entidades_data['entidades_ids']:
-                    list_alcaldia.append(int(alcaldia.parent_id))
-                
-                partner_asociados_data=self.instanciar_objetos('res.partner',[('id','in',list_alcaldia)],)
-            proyectos_gobenacion_data=[]
-            if entidades_data['tipo_entidad_id'].name=='ALCALDÍA':
-                alcaldia="alcaldia"
-                for est in entidades_data['estado_ids']:
-                    estado=est[0].id
-                for mun in entidades_data['municipio_ids']:
-                    municipio=mun[0].id
-                proyectos_gobenacion_data=self.instanciar_objetos('jpv_cp.carga_proyecto',[('estado_id','=',int(estado)),('municipio_id','=',int(municipio)),('state','=','aprobado'),('partner_id','!=',int(entidades_data['parent_id']))])
-                
-                for proyecto in proyectos_gobenacion_data:
-                    monto_aso='%.2f' % proyecto.monto_proyecto
-                    monto_proyecto_aso=str(monto_aso).replace('.',',')
-                    dict_montos_asoci[proyecto.id]=monto_proyecto_aso
             dict_montos={}
-            #~ proyectos_ids= proyectos_migrados_obj.comprobar_actualizacion_ids(cr,SUPERUSER_ID,[],context,entidades_data)
             mensaje_migrados=''
             rendir=True
-            #~ if  proyectos_ids:
-                #~ rendir=False
-                #~ mensaje_migrados=  u"¡Alerta! Para cargar proyectos de este periodo usted debe: \n "\
-                                    #~ "1 - REGISTRAR LAS METAS de los proyectos que están en la siguiente lista. \n"\
-                                    #~ " 2 - Debe hacer los avances correspondientes para dichos proyectos."
-            #~ if not proyectos_ids:
             proyectos_ids=jpv_carga_proyecto.search(cr,uid,[('partner_id','=',int(entidades_data['parent_id']))],limit=30)
             carga_proyecto_data=jpv_carga_proyecto.browse(cr,uid,proyectos_ids)
             proyectos_ids=[]
@@ -217,18 +69,7 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
                             'carga_proyecto_data':carga_proyecto_data,
                             'proyectos_ids':proyectos_ids,
                             'dict_montos':dict_montos,
-                            'dict_montos_asoci':dict_montos_asoci,
-                            'self':jpv_rnd_rendicion_c.rendicion(),
-                            'ocultar_boton_crear':self.ocultar_boton_crear,
-                            'partner_asociados_data':partner_asociados_data,
-                            'proyectos_gobenacion_data':proyectos_gobenacion_data,
                             'partner_id':partner,
-                            'gobernacion':gobernacion,
-                            'alcaldia':alcaldia,
-                            'mensaje_migrados':mensaje_migrados,
-                            'rendir':rendir,
-                            'ocultar_proyecto_editado':self.ocultar_proyecto_editado,
-                            'domain':"proyecto"
                             }
             return panel.panel_lista(datos)
             
@@ -239,6 +80,278 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
                     'volver':'/'
                 }
         return http.request.website.render('website_apiform.mensaje', mensaje)
+        
+    @http.route(['/jpv_mostrar_proyectos'], type='json', auth='public', website=True)
+    def mostrar_proyectos(self, **kwargs):
+        page_limit=kwargs['page_limit']
+        registry = http.request.registry
+        cr, uid, context = http.request.cr, http.request.uid, http.request.context
+        entidad_data=jpv_usuarios().mi_entidad(uid)
+        entidad_data['entidad_data_dict']=registry[entidad_data['entidad_data']._name].read(cr,SUPERUSER_ID,entidad_data['entidad_id'])
+        dict_montos={}
+        if len(entidad_data['entidad_data']):
+            proyecto_obj=registry['jpv_cp.carga_proyecto']
+            proyecto_ids=proyecto_obj.search(cr,SUPERUSER_ID,
+                                            [('partner_id','=',entidad_data['entidad_data'].parent_id.id),])
+            proyectos_data=proyecto_obj.read(cr, SUPERUSER_ID, proyecto_ids[:page_limit])
+            for id_proyecto in proyectos_data:
+                monto_proyecto=str(id_proyecto['monto_proyecto']).replace('.',',')
+                monto=monto_proyecto.split(',')
+                if len(monto[1])==1:
+                    monto_proyecto=monto_proyecto+'0'
+                dict_montos[id_proyecto['id']]=monto_proyecto
+            datos={ 'carga_proyecto_data': proyectos_data,
+                    'entidad_data': entidad_data['entidad_data_dict'],
+                    'proyectos_ids': proyecto_ids,
+                    'dict_montos':dict_montos,
+                    'self':'/self',
+                    'partner_id':entidad_data['entidad_data'].parent_id.id,
+                    'page_limit':page_limit,
+                                }
+            return datos
+        else:
+            mensaje={
+                    'titulo':'Sin Entidad',
+                    'mensaje':'''Disculpe NO esta asociado a ninguna Entidad,
+                                Comuníquese con el administrador del sistema''',
+                    'volver':'/'
+                }
+        return http.request.website.render('website_apiform.mensaje', mensaje)
+    
+    @http.route(['/self'],type='json', auth='user', website=True)
+    def ejecutar_metodo(self,datos):
+        values={}
+        for metodo in datos:
+            metodo_ejec=getattr(self,metodo['metodo'])
+            values[metodo['metodo']]=metodo_ejec(metodo['parametros'])
+        return values 
+    
+    def formato_montos_get(self, monto):
+        monto='{:,.2f}'.format(monto)
+        monto=str(monto)
+        monto=monto.replace('.',' ')
+        monto=monto.replace(',','.')
+        monto=monto.replace(' ',',')
+        return monto
+    
+    def armar_botones_proyectos(self, datos):
+        tr=''
+        num=datos['num']
+        for proyecto in datos['proyectos_data']:
+            num=num+1
+            tr=tr+'<tr id='+str(proyecto['id'])+' class="ept_proyecto">'\
+                    '<td>'+str(num)+'</td>'\
+                    '<td><a href="/proyecto/lectura/'+str(proyecto['id'])+'" >'+proyecto['correlativo']+'</a></td>'\
+                    '<td class="limitar_caracteres_'+str(num)+'" align="justify">'+proyecto['nombre_proyecto']+'</td>'\
+                    '<td>'+str(self.formato_montos_get(proyecto['monto_proyecto']))+'</td>'\
+                    '<td>'+str(self.armar_btn(proyecto['id'],proyecto['state']))+'</td>'\
+                  '</tr>'
+        return tr
+
+    def armar_btn(self,proyecto_id,state):
+        btn=''
+        if state=='negado':
+            btn='<button type="button"'\
+                'class="btn btn-xs btn-default btn-block" >'\
+                '<span class="glyphicon glyphicon-remove-circle"/>'\
+                ' Negado</button>'
+        elif state=='aprobado':
+            btn=self.btn_aprobado(proyecto_id)
+        elif state=='evaluacion':
+            btn='<button type="button" '\
+                  'class="btn btn-xs btn-default btn-block">'\
+                  '<span class="glyphicon glyphicon-pencil" />'\
+                  ' Evaluación</button>'
+        elif state=='carga':
+            btn='<button type="button" class="btn btn-xs btn-default btn-block"  >'\
+                '<span class="glyphicon glyphicon-list-alt" />'\
+                ' Borrador</button>'
+        elif state=='diferido':
+            btn='<button type="button" class="btn btn-xs btn-default btn-block" >'\
+                '<span class="glyphicon glyphicon-refresh" />'\
+                ' Diferido</button>'
+        elif state=='cancelado':
+            btn='<button type="button" class="btn btn-xs btn-default btn-block" >'\
+                '<span class="glyphicon glyphicon-hand-down" />'\
+                ' Cancelado</button>'
+        elif state=='culminado':
+            btn=self.btn_culminado(proyecto_id)
+        return btn
+
+    def btn_aprobado(self,proyecto_id):
+        btn=''
+        tiempo_validez=self.tiempo_validez_get(proyecto_id)
+        cancelar_proyecto=self.cancelar_proyecto_get(proyecto_id)
+        reporte_ejecucion=self.rendicion_proyecto_get(proyecto_id)
+        btn="""<div class="btn-group" >
+                  <button type="button" class="btn btn-xs btn-"""+tiempo_validez+""""><span class="glyphicon glyphicon-check" />Aprobado</button>
+                    <button type="button" class="btn btn-xs btn-"""+tiempo_validez+""" dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret"></span>
+                        <span class="sr-only">Desplegar menú</span>
+                    </button>
+                     <ul class="dropdown-menu">
+                        <li>
+                            <a href="/avance/"""+str(proyecto_id)+"""">
+                                <h5><span class="glyphicon glyphicon-arrow-right"/>Avance</h5>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/avance/"""+str(proyecto_id)+"""/">
+                                <h5><span class="glyphicon glyphicon-ok" />Culminación</h5>
+                            </a>
+                        </li>"""
+        if cancelar_proyecto:
+            btn=btn+"""<li><a href="/cancelar/"""+str(proyecto_id)+"""/">
+                                <h5><span class="glyphicon glyphicon-remove" />Cancelar</h5>
+                            </a>
+                        </li>"""
+        if reporte_ejecucion:
+            btn=btn+"""<li><a href="/descargar/reporte_ejecucion/"""+str(proyecto_id)+"""/">
+                                <h5><span class="glyphicon glyphicon-download" />Reporte de Ejecución</h5>
+                            </a>
+                        </li>"""
+        btn=btn+"""</ul>
+                 </div>"""
+
+        return btn
+
+    def btn_culminado(self,proyecto_id):
+        btn=''
+        btn="""<div class="btn-group" >
+                  <button type="button" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-check" />Culminado</button>
+                    <button type="button" class="btn btn-xs btn-primary dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret"></span>
+                        <span class="sr-only">Desplegar menú</span>
+                    </button>
+                     <ul class="dropdown-menu">
+                        <li>
+                            <a href="/avance/consultar/"""+str(proyecto_id)+"""">
+                                <h5><span class="glyphicon glyphicon-arrow-right"/>Consultar Avances</h5>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/descargar/reporte_ejecucion/"""+str(proyecto_id)+"""/">
+                                <h5><span class="glyphicon glyphicon-ok" />Reporte de Ejecución</h5>
+                            </a>
+                        </li>"""
+        btn=btn+"""</ul>
+                 </div>"""
+
+        return btn
+    
+    @http.route(['/jpvProyectosVerMas'],type='json', auth='user', website=True)
+    def jpv_ver_mas_proyectos(self,**datos):
+        print 78787878787
+        print 78787878787
+        print 78787878787
+        print 78787878787
+        print 78787878787
+        cr, uid, context = request.cr, request.uid, request.context
+        registry = http.request.registry
+        inicio=datos['fin']
+        fin=inicio+datos['page_limit']
+        proyectos_data=registry['jpv_cp.carga_proyecto'].read(cr,SUPERUSER_ID,datos['lista_proyectos_ids'][inicio:fin])
+        print proyectos_data
+        print proyectos_data
+        print proyectos_data
+        print proyectos_data
+        values={'inicio':inicio,
+                'fin':fin,
+                'proyectos_data':proyectos_data
+        }
+        return values
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
     @http.route(['/proyecto/lectura/<int:proyecto_id>'], type='http', auth="user", website=True)
     def proyectos_solo_lectura(self,proyecto_id):

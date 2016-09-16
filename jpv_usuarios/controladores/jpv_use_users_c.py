@@ -339,7 +339,7 @@ class jpv_users(http.Controller):
         uid=http.request.uid
         context = http.request.context
         ret={}
-        entidades_obj = registry['ept_ent.entidades']
+        entidades_obj = registry['jpv_ent.entidades']
         entidades_ids = entidades_obj.search(
                                         cr,
                                         SUPERUSER_ID,

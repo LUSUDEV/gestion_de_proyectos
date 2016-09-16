@@ -14,9 +14,7 @@
                     <script type="text/javascript" src="/jpv_carga_proyectos/static/src/js/jpv_carga_proyecto_ayudas.js"/>
                     <script type="text/javascript" src="/jpv_carga_proyectos/static/src/js/jpv_vaidar_fecha.js"/>
                     <script type="text/javascript" src="/jpv_carga_proyectos/static/src/js/jpv_clonar_elemntos_tr.js"/>
-                    <script type="text/javascript" src="/jpv_carga_proyectos/static/src/js/jpv_alcaldias_asociadas.js"/>
-                    <script type="text/javascript" src="/jpv_carga_proyectos/static/src/js/solicitud_cambio.js"/>
-                    <script type="text/javascript" src="/jpv_rendicion/static/src/js/jpv_lista_proyectos.js"/>
+                    <script type="text/javascript" src="/jpv_carga_proyectos/static/src/js/jpv_lista_proyectos.js"/>
                 </xpath>
             </template>
 
@@ -25,7 +23,7 @@ template para  listar los proyectos creados
 -->
         <template id="jpv_carga_proyectos.proyecto_template" name="Template para listar los proyectos">
             <a href="/proyecto/crear">
-                <button type="button"  t-attf-class="btn btn-info glyphicon glyphicon-folder-open #{ocultar_boton_crear(partner_id)}"> Crear</button>
+                <button type="button"  t-attf-class="btn btn-info glyphicon glyphicon-folder-open "> Crear</button>
             </a>
             <br/>
             <br/>
@@ -38,14 +36,13 @@ template para  listar los proyectos creados
                             <thead>
                                 <tr>
                                     <th>N#</th>
-                                    <th class="col-md-3">Códigoww de Proyecto</th>
+                                    <th class="col-md-3">Código de Proyecto</th>
                                     <th class="col-md-5">Nombre del Proyecto</th>
                                     <th class="col-md-2">Monto de Proyecto</th>
                                     <th class="col-md-2">Estatus</th>
                                 </tr>
                             </thead>
                             <tbody id="proyectos_completos">
-                                <t t-set="cont" t-value="1" />
                             </tbody>
                         </table>
                         </t>
