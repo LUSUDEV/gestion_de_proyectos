@@ -241,20 +241,11 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
     
     @http.route(['/jpvProyectosVerMas'],type='json', auth='user', website=True)
     def jpv_ver_mas_proyectos(self,**datos):
-        print 78787878787
-        print 78787878787
-        print 78787878787
-        print 78787878787
-        print 78787878787
         cr, uid, context = request.cr, request.uid, request.context
         registry = http.request.registry
         inicio=datos['fin']
         fin=inicio+datos['page_limit']
         proyectos_data=registry['jpv_cp.carga_proyecto'].read(cr,SUPERUSER_ID,datos['lista_proyectos_ids'][inicio:fin])
-        print proyectos_data
-        print proyectos_data
-        print proyectos_data
-        print proyectos_data
         values={'inicio':inicio,
                 'fin':fin,
                 'proyectos_data':proyectos_data
@@ -262,104 +253,12 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
         return values
             
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
     @http.route(['/proyecto/lectura/<int:proyecto_id>'], type='http', auth="user", website=True)
     def proyectos_solo_lectura(self,proyecto_id):
         registry = http.request.registry
         cr=http.request.cr
         uid=http.request.uid
         context = http.request.context
-        
         entidades_obj = registry.get('jpv_ent.entidades')
         entidades_ids = entidades_obj.search(
                                         cr,
@@ -368,49 +267,15 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
                                         context=context)
         entidades_data=entidades_obj.browse(cr,uid,entidades_ids)
         entidad=str(entidades_data['name'])
-        jpv_carga_proyecto=registry.get('jpv_cp.carga_proyecto')  #agrgar cambio
+        jpv_carga_proyecto=registry.get('jpv_cp.carga_proyecto') 
         acceso=False
         if len(entidades_ids)==1:
             carga_proyecto_data=self.instanciar_objetos('jpv_cp.carga_proyecto',[('id','=',int(proyecto_id)),('partner_id','=',int(entidades_data['parent_id']))])
             if len(carga_proyecto_data)>0:
                 acceso=True
-            if entidades_data['tipo_entidad_id']['name']=='GOBERNACIÓN':
-                list_alcaldia=[]
-                for alcaldia in entidades_data['entidades_ids']:
-                    list_alcaldia.append(int(alcaldia.parent_id))
-                proyectos_alcaldias_ids=jpv_carga_proyecto.search(cr,uid,[('partner_id','in',list_alcaldia)])
-                proyectos_alcaldias_asociadas_data=jpv_carga_proyecto.browse(cr,uid,proyectos_alcaldias_ids)
-                list_alcaldia_id=[]
-                for i in proyectos_alcaldias_asociadas_data:
-                    list_alcaldia_id.append(int(i))
-                if int(proyecto_id) in list_alcaldia_id:
-                    acceso=True
-                    #~ carga_proyecto_data=self.instanciar_objetos('jpv_cp.carga_proyecto',[('id','=',int(proyecto_id)),],)
-                    #~ entidad=carga_proyecto_data['partner_id'].name
-            
-            
-            
-            if entidades_data['tipo_entidad_id']['name']=='ALCALDÍA':
-                list_proyec_gobern=[]
-                for est in entidades_data['estado_ids']:
-                    estado=est[0].id
-                for mun in entidades_data['municipio_ids']:
-                    municipio=mun[0].id
-                proyectos_gobenacion_data=self.instanciar_objetos('jpv_cp.carga_proyecto',[('estado_id','=',int(estado)),('municipio_id','=',int(municipio)),('state','=','aprobado')])
-                for proyecto in proyectos_gobenacion_data:
-                    list_proyec_gobern.append(int(proyecto))
-                if int(proyecto_id) in list_proyec_gobern:
-                    acceso=True
             carga_proyecto_data=self.instanciar_objetos('jpv_cp.carga_proyecto',[('id','=',int(proyecto_id)),],)
             entidad=carga_proyecto_data['partner_id'].name
             if acceso==True:
-                
-                
-                rendicion_obj=registry['jpv_rnd.rendicion']
-                rendicion_id=rendicion_obj.search(cr,SUPERUSER_ID,[('proyecto_id','=',int(proyecto_id))])
-                rendicion_data=[]
-                if len(rendicion_id):
-                    rendicion_data=rendicion_obj.browse(cr,SUPERUSER_ID,rendicion_id)
                 partner=int(entidades_data['parent_id'])
                 dict_montos={}  
                 for id_proyecto in carga_proyecto_data:
@@ -427,10 +292,6 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
                                 'partner':str(partner),
                                 'carga_proyecto_data':carga_proyecto_data,
                                 'dict_montos':dict_montos,
-                                'ocultar_boton_crear':self.ocultar_boton_crear,
-                                'ocultar_boton_editar':self.ocultar_boton_editar,
-                                'rendicion_data':rendicion_data,
-                                'self':self_rendicion
                                     }
                 return panel.panel_post(datos)
             else:
@@ -443,11 +304,19 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
         else:
             mensaje={
                     'titulo':'Sin jpv',
-                    'mensaje':'''Disculpe NO esta asociado a ninguna jpv,
+                    'mensaje':'''Disculpe NO esta asociado a ninguna Entidad,
                                 Comuníquese con el administrador del sistema''',
                     'volver':'/'
                 }
         return http.request.website.render('website_apiform.mensaje', mensaje)
+        
+        
+        
+        
+        
+        
+        
+        
         
     @http.route(['/proyecto/editar/<int:proyecto_id>'], type='http', auth="user", website=True)
     def proyecto_editar(self,proyecto_id):
@@ -1065,8 +934,7 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
                                                         proyecto.id,
                                                         int(proyecto.periodo_id),
                                                         int(proyecto.partner_id),
-                                                        proyecto.proyect_mantenimiento,
-                                                        float(proyecto.monto_proyecto))
+                                                        )
             valores={
                 'movimiento_ids':[[6, False, [movimiento_id['movimiento_id_ingreso']]]],
                 'state':'cancelado',
@@ -1116,7 +984,7 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
             return ret
         return ret
         
-    @http.route(['/descargar/ficha_proyecto/<model("fnz_clc.conciliacion_bancaria"):proyecto_data>'],
+    @http.route(['/descargar/ficha_proyecto/<model("jpv_cp.carga_proyecto"):proyecto_data>'],
                 type='http', auth='user', website=True)
     def descargar_ficha_proyecto(self,proyecto_data, **post):
         cr, uid, context = request.cr, request.uid, request.context
@@ -1127,20 +995,18 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
         periodo_fiscal= proyecto_data.periodo_id.periodo_fiscal+' ('+proyecto_data.ciclo_id.nombre+')'
         hoy=date.today()
         entidades_obj = registry.get('jpv_ent.entidades')
-        entidades_id=entidades_obj.search(cr,uid,[('parent_id','=',int(proyecto_data['partner_id']))])
-        entidades_data=entidades_obj.browse(cr,uid,entidades_id)
+        entidades_id=entidades_obj.search(cr,SUPERUSER_ID,[('parent_id','=',int(proyecto_data['partner_id']))])
+        entidades_data=entidades_obj.browse(cr,SUPERUSER_ID,entidades_id)
         nombre=''
         for user in entidades_data['user_ids']:
             for group in user.groups_id:
                 if group.name=='Alcaldes, Gobernadores o Alcalde Mayor':
                     nombre=user.name
-        
         print proyecto_data['semoviente_ids']
         print proyecto_data['vehiculos_ids']
         print proyecto_data['maquinaria_ids']
         print proyecto_data['materiales_ids']
         print proyecto_data['equipos_ids']
-        
         valores={
             'correlativo':proyecto_data.correlativo,
             'nombre_proyecto':proyecto_data.nombre_proyecto,

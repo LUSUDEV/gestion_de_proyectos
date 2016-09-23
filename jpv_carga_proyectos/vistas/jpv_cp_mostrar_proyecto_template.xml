@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
     <openerp>
         <data>
-            <template id="ept_carga_proyectos.modal_cancelar_proyectos" name="template para cancelar proyectos">
+            <template id="jpv_carga_proyectos.modal_cancelar_proyectos" name="template para cancelar proyectos">
                 <div class="modal fade" id="modal-switch" role="dialog" aria-labelledby="AJAXErrorModal" aria-hidden="true" >
                     <div class="modal-dialog">
                         <div class="modal-content ">
@@ -30,51 +30,43 @@
             
             
             
-            <template id="ept_carga_proyectos.proyecto_vista_solo_lectura" name="Template para mostrar el proyecto solo lectura">
+            <template id="jpv_carga_proyectos.proyecto_vista_solo_lectura" name="Template para mostrar el proyecto solo lectura">
                 <div> 
                 <t t-foreach="carga_proyecto_data" t-as="proyectos">
                     <a href="/proyecto/crear">
-                        <button type="button"  t-attf-class="btn btn-info glyphicon glyphicon-folder-open #{ocultar_boton_crear(proyectos.partner_id)}" > Crear</button>
+                        <button type="button"  t-attf-class="btn btn-info glyphicon glyphicon-folder-open" > Crear</button>
                     </a>
                     <t t-if="proyectos['state'] in ['aprobado','carga','diferido']">
                         <a t-att-href="'/proyecto/editar/%s' % (carga_proyecto_data['id'])">
-                            <button type="button"  t-attf-class="btn btn-info glyphicon glyphicon-folder-open #{ocultar_boton_editar(proyectos.partner_id,proyectos.ciclo_id,proyectos.state,proyectos.id)}" > Editar</button>
+                            <button type="button"  t-attf-class="btn btn-info glyphicon glyphicon-folder-open" > Editar</button>
                         </a>    
                     </t>
-<!--
-                    <t t-if="proyectos['state'] in ['aprobado']">
-                        <a t-att-href="'/proyecto/solicitar_edicion/crear/%s' % (carga_proyecto_data['id'])">
-                            <button type="button"  t-attf-class="btn btn-info glyphicon glyphicon-folder-open" > Solicitar Edición</button>
-                        </a>
-                    </t>
--->
                     <t t-if="proyectos['state'] in ['carga','diferido']">
                         <a>
                             <button type="button" id="cancelar_proyecto" data-toggle="modal" data-target="#modal-switch" t-attf-class="btn btn-danger glyphicon glyphicon-folder-open" > Cancelar</button>
                         </a>
                     </t>
                     <div class="pull-right">
-                        
                         <t t-if="proyectos['state']=='aprobado'">
-                                <img  src="/ept_carga_proyectos/static/src/img/status.png"><span class="glyphicon glyphicon-check" /> APROBADO</img>
+                                <img  src="/jpv_carga_proyectos/static/src/img/status.png"><span class="glyphicon glyphicon-check" /> APROBADO</img>
                         </t>
                         <t t-if="proyectos['state']=='negado'">
-                                <img  src="/ept_carga_proyectos/static/src/img/status_busy.png"><span class="glyphicon glyphicon-remove-circle"  /> NEGADO</img>
+                                <img  src="/jpv_carga_proyectos/static/src/img/status_busy.png"><span class="glyphicon glyphicon-remove-circle"  /> NEGADO</img>
                         </t>
                         <t t-if="proyectos['state']=='evaluacion'">
-                               <img  src="/ept_carga_proyectos/static/src/img/bullet_blue.png"><span class="glyphicon glyphicon-pencil" /> EN EVALUACIÓN</img>
+                               <img  src="/jpv_carga_proyectos/static/src/img/bullet_blue.png"><span class="glyphicon glyphicon-pencil" /> EN EVALUACIÓN</img>
                         </t>
                         <t t-if="proyectos['state']=='cancelado'">
-                                <img  src="/ept_carga_proyectos/static/src/img/status_busy.png"><span class="glyphicon glyphicon-hand-down" /> CANCELADO</img>
+                                <img  src="/jpv_carga_proyectos/static/src/img/status_busy.png"><span class="glyphicon glyphicon-hand-down" /> CANCELADO</img>
                         </t>
                         <t t-if="proyectos['state']=='carga'">
-                                <img  src="/ept_carga_proyectos/static/src/img/status_offline.png"><span class="glyphicon glyphicon-list-alt" /> BORRADOR</img>
+                                <img  src="/jpv_carga_proyectos/static/src/img/status_offline.png"><span class="glyphicon glyphicon-list-alt" /> BORRADOR</img>
                         </t>
                         <t t-if="proyectos['state']=='diferido'">
-                               <img  src="/ept_carga_proyectos/static/src/img/status_away.png"><span class="glyphicon glyphicon-refresh" /> DIFERIDO</img>
+                               <img  src="/jpv_carga_proyectos/static/src/img/status_away.png"><span class="glyphicon glyphicon-refresh" /> DIFERIDO</img>
                         </t>
                         <t t-if="proyectos['state']=='culminado'">
-                               <img  src="/ept_carga_proyectos/static/src/img/status.png"><span class="glyphicon glyphicon-flag" /> CULMINADO</img>
+                               <img  src="/jpv_carga_proyectos/static/src/img/status.png"><span class="glyphicon glyphicon-flag" /> CULMINADO</img>
                         </t>
                     </div>
                 </t>
@@ -82,21 +74,6 @@
                 <br/><br/>
                 <t t-foreach="carga_proyecto_data" t-as="proyecto">
 					<input type="text" class="form-control hidden" id="id_proyecto" t-att-value="'%s' % (proyecto.id)"></input>
-					<div class="checkbox hidden">
-						
-                        <label>
-                            <t t-if="proyecto.solicitud_cambio==True">
-                                <input id="solicitud" type="checkbox" value='' data-switch-no-init="True" checked="checked">
-                                solicitud_cambio
-                                </input>
-                            </t>
-                            <t t-if="proyecto.solicitud_cambio!=True">
-                                <input id="solicitud" type="checkbox" value='' data-switch-no-init="True" disabled="">
-                                solicitud_cambio
-                                </input>
-                            </t>
-                        </label>
-                    </div>
 					
                     <div class="panel panel-default">
                         <div class="panel-heading">Código de Proyecto</div>
@@ -131,7 +108,7 @@
                                                 <td>
                                                    <table class="table table-bordered">
                                                         <thead >
-                                                            <tr id="tr_ept_scroll_ancho">
+                                                            <tr id="tr_jpv_scroll_ancho">
                                                                 <th class="text-center">Descripción</th>
                                                                 <th class="text-center">Fecha</th>
                                                             </tr>
@@ -144,7 +121,7 @@
                                                     <div style="width:100%; height:260px; overflow:auto;">
                                                          <table class="table table-bordered table-striped" >
                                                                 <t t-foreach="proyecto.historial_ids" t-as="historial">
-                                                                    <tr class="js_tr_ept_scroll_ancho_edit">
+                                                                    <tr class="js_tr_jpv_scroll_ancho_edit">
                                                                         <td class="text-raigh"><t t-esc="historial.descripcion"/></td>
                                                                         <td class="text-center"><t t-esc="historial.create_date"/></td>
                                                                     </tr>
@@ -160,7 +137,7 @@
                                                     <td>
                                                        <table class="table table-bordered">
                                                             <thead >
-                                                                <tr id="tr_ept_scroll_ancho">
+                                                                <tr id="tr_jpv_scroll_ancho">
                                                                     <th class="text-center">Cartas</th>
                                                                 </tr>
                                                             </thead>
@@ -172,7 +149,7 @@
                                                         <div style="width:100%; height:260px; overflow:auto;">
                                                              <table class="table table-bordered table-striped" >
                                                                     <t t-foreach="proyecto.cartas_proyecto" t-as="carta">
-                                                                        <tr class="js_tr_ept_scroll_ancho_edit">
+                                                                        <tr class="js_tr_jpv_scroll_ancho_edit">
                                                                             <td class="text-raigh"><a t-att-href="'data:application/octet-stream;base64,%s' % (carta.datas)" ><t t-esc="carta.name"/></a></td>
                                                                         </tr>
                                                                     </t>
@@ -622,7 +599,7 @@
                         <input name="solo_lectura" type="hidden" id="solo_lectura" value="True"/>
                         <div class="col-md-12">
                             <div class="panel panel-default">
-                                <div class="panel-heading">Fotografia<a href="#" id="ayudas_informacion" ref="fotografia"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                                <div class="panel-heading">Fotografia<a href="#" id="ayudas_informacion" ref="fotografia"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
                                 <div class="panel-body">
                                     <div class="col-md-12">
                                         <div class="col-md-9">
@@ -633,42 +610,8 @@
                             </div>
                         </div>
                     </div>
-                    <t t-call="ept_carga_proyectos.modal_cancelar_proyectos"></t>
+                    <t t-call="jpv_carga_proyectos.modal_cancelar_proyectos"></t>
             </t>
-            <hr></hr>
-            <t t-if="len(rendicion_data)">
-				<h4>Avances</h4>
-				<t t-set="count" t-value="0"/>
-				<t t-foreach="rendicion_data.rendicion_line" t-as="avances">
-				<t t-set="count" t-value="count+1"/>   
-				<hr></hr>
-					<table t-att-id="'%s' % (avances.id)" class="table table-bordered table-striped mt32">
-						<thead>
-							<tr class="desplegar_avance" t-att-ref="'%s' % ('%s' % (avances.id))">
-								<th colspan="2"><div><span style="float:left">Avance Nro <t t-esc="count"/></span><span style="float:right">Fecha:<t t-esc="avances.create_date"/></span></div></th>
-							</tr>
-						</thead>
-						<tbody t-att-id="'%s' % (avances.id)" style="overflow: hidden; display: none;">
-							<t t-foreach="self.input_line_order(avances.respuestas_line)" t-as="respuestas">
-								<tr>
-									<td><t t-esc="respuestas.pregunta_id.nombre"/></td>
-									<td align="justify">
-										<t t-if="respuestas.pregunta_id.tipo == 'file' or respuestas.pregunta_id.tipo == 'img'">
-										<t t-foreach="respuestas.files" t-as="file">
-											<a t-att-href="'data:application/octet-stream;base64,%s' % (file.datas)"><t t-esc="file.name"/></a><t t-if="len(respuestas.files) > 1"><br/></t>
-										</t>
-										</t>
-										<t t-if="not (respuestas.pregunta_id.tipo == 'file' or respuestas.pregunta_id.tipo == 'img')">
-										<t t-esc="respuestas.respuesta"/>
-										</t>
-									</td>
-								</tr>
-							</t>
-					  </tbody>
-					</table>
-				</t>
-			</t>
-            
 </template>
 
 </data>

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<report id="id_ficha_proyecto_jpv"
+			string="Ficha del Proyecto"
+			model="jpv_cp.carga_proyecto"
+			report_type="qweb-pdf"
+			file="jpv_carga_proyectos.ficha_proyecto_qweb"
+            name="jpv_carga_proyectos.ficha_proyecto_qweb"
+            menu="True"/>
+	</data>
+</openerp>

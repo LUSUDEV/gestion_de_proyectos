@@ -1,4 +1,4 @@
 import modelos 
 import controladores 
-#~ import reportes 
+import reportes 
 #~ import wizard 

@@ -3,21 +3,21 @@
     <data>
         <template id="website_apiform_3" inherit_id="website.assets_frontend" name="website_apiform" >
             <xpath expr="/t" position="inside">
-                <script type="text/javascript" src="/ept_carga_proyectos/static/src/js/autobusqueda_proyecto.js"/>
+                <script type="text/javascript" src="/jpv_carga_proyectos/static/src/js/autobusqueda_proyecto.js"/>
             </xpath>
         </template>
         
         
         <template   id="assets_proyectos_consultar2" 
-                    name="ept_proyectos_consultar2" 
-                    inherit_id="ept_carga_proyectos.proyecto_template"
+                    name="jpv_proyectos_consultar2" 
+                    inherit_id="jpv_carga_proyectos.proyecto_template"
                     customize_show="True">
             <xpath expr="//table[@class='table table-bordered table-striped mt32']" position="before">
-                <t t-call="ept_carga_proyectos.ept_cp_consultar_proyecto">
+                <t t-call="jpv_carga_proyectos.jpv_cp_consultar_proyecto">
                 </t>
             </xpath>
         </template>
-        <template id="ept_carga_proyectos.ept_cp_consultar_proyecto" name="Consultar Proyectos" >
+        <template id="jpv_carga_proyectos.jpv_cp_consultar_proyecto" name="Consultar Proyectos" >
             <div class="row">
                 <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
                         <h3><p class="text-left"> Buscar Proyectos</p></h3>
@@ -26,7 +26,7 @@
             </div>
             <div class="row">
                     <div class="col-md-9 col-xs-9 col-sm-9 col-lg-9">
-                        <input  id="ept_buscador_proyecto" 
+                        <input  id="jpv_buscador_proyecto" 
                                 type="text" 
                                 class="form-control border_form_input" 
                                 placeholder="Código o Nombre del Proyecto..." 
@@ -39,7 +39,7 @@
                         </div>
             </div>
             
-        <form id="ept_busqueda_avanzada_pro" action="/ept_cp_proyecto_consulta/busqueda_avanzada">
+        <form id="jpv_busqueda_avanzada_pro" action="/jpv_cp_proyecto_consulta/busqueda_avanzada">
             <div class="panel panel-default js_busqueda_avanzada_proy" style="display:none">
                 <div class=" panel-heading" >
                     <h3>Busqueda Avanzada</h3>
@@ -54,7 +54,7 @@
                             <div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
                                 <label>Fecha de Inicio</label>
                                 <input  type="text" 
-                                        class="form-control border_form_input ept_date_buz_proy"  
+                                        class="form-control border_form_input jpv_date_buz_proy"  
                                         id="fecha_inicio_bq_avz" 
                                         name="fecha_inicio" 
                                         placeholder="Desde"
@@ -63,7 +63,7 @@
                             <div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
                                 <label>Fecha de Fin</label>
                                 <input  type="text" 
-                                        class="form-control border_form_input ept_date_buz_proy"  
+                                        class="form-control border_form_input jpv_date_buz_proy"  
                                         id="fecha_fin_bq_avz" 
                                         name="fecha_fin" 
                                         placeholder="Hasta"
@@ -152,8 +152,8 @@
                                     height="20px"
                                     src="/web/static/src/img/throbber-large.gif"/>
                                     <img    class="btn btn-link"
-                                        id="ept_limpia_campos_proy"
-                                        src="ept_carga_proyectos/static/src/img/edit_clear.png"/>
+                                        id="jpv_limpia_campos_proy"
+                                        src="jpv_carga_proyectos/static/src/img/edit_clear.png"/>
                             </div></p>
                         </div>
                 </div>
