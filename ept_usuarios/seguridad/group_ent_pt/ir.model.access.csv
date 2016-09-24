@@ -1,3 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_res_users_gept,base.ept_res.users,base.model_res_users,group_ent_pt,1,1,1,0
-access_res_partner_gept,ept_res.partner,base.model_res_partner,group_ent_pt,1,1,0,0

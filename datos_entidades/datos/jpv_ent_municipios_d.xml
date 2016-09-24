@@ -1,0 +1,2023 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="1">
+	  
+	<!-- Municipios -->
+	<record id="geo_mun_AMA_ATA" model="jpv_ent.municipios">
+		<field name="codigo">0202</field>
+		<field name="municipio">Autónomo Atabapo</field>
+		<field name="estado_id" ref="geo_est_AMA"/>
+	</record>
+
+	<record id="geo_mun_AMA_ATU" model="jpv_ent.municipios">
+		<field name="codigo">0203</field>
+		<field name="municipio">Autónomo Atures</field>
+		<field name="estado_id" ref="geo_est_AMA"/>
+	</record>
+
+	<record id="geo_mun_AMA_AUT" model="jpv_ent.municipios">
+		<field name="codigo">0204</field>
+		<field name="municipio">Autónomo Autana</field>
+		<field name="estado_id" ref="geo_est_AMA"/>
+	</record>
+
+	<record id="geo_mun_AMA_MAR" model="jpv_ent.municipios">
+		<field name="codigo">0205</field>
+		<field name="municipio">Autónomo Maroa</field>
+		<field name="estado_id" ref="geo_est_AMA"/>
+	</record>
+
+	<record id="geo_mun_AMA_MAN" model="jpv_ent.municipios">
+		<field name="codigo">0206</field>
+		<field name="municipio">Autónomo Manapiare</field>
+		<field name="estado_id" ref="geo_est_AMA"/>
+	</record>
+
+	<record id="geo_mun_AMA_RIO" model="jpv_ent.municipios">
+		<field name="codigo">0207</field>
+		<field name="municipio">Autónomo Río Negro</field>
+		<field name="estado_id" ref="geo_est_AMA"/>
+	</record>
+
+	<record id="geo_mun_AMA_AOR" model="jpv_ent.municipios">
+		<field name="codigo">0201</field>
+		<field name="municipio">Autónomo Alto Orinoco</field>
+		<field name="estado_id" ref="geo_est_AMA"/>
+	</record>
+
+	<record id="geo_mun_ANZ_ANA" model="jpv_ent.municipios">
+		<field name="codigo">0301</field>
+		<field name="municipio">Anaco</field>
+		<field name="estado_id" ref="geo_est_ANZ"/>
+	</record>
+
+	<record id="geo_mun_ANZ_ARA" model="jpv_ent.municipios">
+		<field name="codigo">0302</field>
+		<field name="municipio">Aragua</field>
+		<field name="estado_id" ref="geo_est_ANZ"/>
+	</record>
+
+	<record id="geo_mun_ANZ_FER" model="jpv_ent.municipios">
+		<field name="codigo">0303</field>
+		<field name="municipio">Fernando De Peñalver</field>
+		<field name="estado_id" ref="geo_est_ANZ"/>
+	</record>
+
+	<record id="geo_mun_ANZ_FCC" model="jpv_ent.municipios">
+		<field name="codigo">0304</field>
+		<field name="municipio">Francisco Del Carmen Carvajal</field>
+		<field name="estado_id" ref="geo_est_ANZ"/>
+	</record>
+
+	<record id="geo_mun_ANZ_FMI" model="jpv_ent.municipios">
+		<field name="codigo">0305</field>
+		<field name="municipio">Francisco De Miranda</field>
+		<field name="estado_id" ref="geo_est_ANZ"/>
+	</record>
+
+	<record id="geo_mun_ANZ_GUA" model="jpv_ent.municipios">
+		<field name="codigo">0306</field>
+		<field name="municipio">Guanta</field>
+		<field name="estado_id" ref="geo_est_ANZ"/>
+	</record>
+
+	<record id="geo_mun_ANZ_IND" model="jpv_ent.municipios">
+		<field name="codigo">0307</field>
+		<field name="municipio">Independencia</field>
+		<field name="estado_id" ref="geo_est_ANZ"/>
+	</record>
+
+	<record id="geo_mun_ANZ_JAS" model="jpv_ent.municipios">
+		<field name="codigo">0308</field>
+		<field name="municipio">Juan Antonio Sotillo</field>
+		<field name="estado_id" ref="geo_est_ANZ"/>
+	</record>
+
+	<record id="geo_mun_ANZ_JMC" model="jpv_ent.municipios">
+		<field name="codigo">0309</field>
+		<field name="municipio">Juan Manuel Cajigal</field>
+		<field name="estado_id" ref="geo_est_ANZ"/>
+	</record>
+
+	<record id="geo_mun_ANZ_JGM" model="jpv_ent.municipios">
+		<field name="codigo">0310</field>
+		<field name="municipio">José Gregorio Monagas</field>
+		<field name="estado_id" ref="geo_est_ANZ"/>
+	</record>
+
+	<record id="geo_mun_ANZ_LIB" model="jpv_ent.municipios">
+		<field name="codigo">0311</field>
+		<field name="municipio">Libertad</field>
+		<field name="estado_id" ref="geo_est_ANZ"/>
+	</record>
+
+	<record id="geo_mun_ANZ_MEB" model="jpv_ent.municipios">
+		<field name="codigo">0312</field>
+		<field name="municipio">Manuel Ezequiel Bruzual</field>
+		<field name="estado_id" ref="geo_est_ANZ"/>
+	</record>
+
+	<record id="geo_mun_ANZ_PMF" model="jpv_ent.municipios">
+		<field name="codigo">0313</field>
+		<field name="municipio">Pedro María Freites</field>
+		<field name="estado_id" ref="geo_est_ANZ"/>
+	</record>
+
+	<record id="geo_mun_ANZ_PIR" model="jpv_ent.municipios">
+		<field name="codigo">0314</field>
+		<field name="municipio">Píritu</field>
+		<field name="estado_id" ref="geo_est_ANZ"/>
+	</record>
+
+	<record id="geo_mun_ANZ_SJG" model="jpv_ent.municipios">
+		<field name="codigo">0315</field>
+		<field name="municipio">San José De Guanipa</field>
+		<field name="estado_id" ref="geo_est_ANZ"/>
+	</record>
+
+	<record id="geo_mun_ANZ_SJC" model="jpv_ent.municipios">
+		<field name="codigo">0316</field>
+		<field name="municipio">San Juan De Capistrano</field>
+		<field name="estado_id" ref="geo_est_ANZ"/>
+	</record>
+
+	<record id="geo_mun_ANZ_STA" model="jpv_ent.municipios">
+		<field name="codigo">0317</field>
+		<field name="municipio">Santa Ana</field>
+		<field name="estado_id" ref="geo_est_ANZ"/>
+	</record>
+
+	<record id="geo_mun_ANZ_SBO" model="jpv_ent.municipios">
+		<field name="codigo">0318</field>
+		<field name="municipio">Simón Bolívar</field>
+		<field name="estado_id" ref="geo_est_ANZ"/>
+	</record>
+
+	<record id="geo_mun_ANZ_SRO" model="jpv_ent.municipios">
+		<field name="codigo">0319</field>
+		<field name="municipio">Simón Rodríguez</field>
+		<field name="estado_id" ref="geo_est_ANZ"/>
+	</record>
+
+	<record id="geo_mun_ANZ_SAM" model="jpv_ent.municipios">
+		<field name="codigo">0320</field>
+		<field name="municipio">Sir Arthur Mc Gregor</field>
+		<field name="estado_id" ref="geo_est_ANZ"/>
+	</record>
+
+	<record id="geo_mun_ANZ_DBU" model="jpv_ent.municipios">
+		<field name="codigo">0321</field>
+		<field name="municipio">Diego Bautista Urbaneja</field>
+		<field name="estado_id" ref="geo_est_ANZ"/>
+	</record>
+
+	<record id="geo_mun_APU_ACH" model="jpv_ent.municipios">
+		<field name="codigo">0401</field>
+		<field name="municipio">Achaguas</field>
+		<field name="estado_id" ref="geo_est_APU"/>
+	</record>
+    <record id="geo_mun_APU_BIR" model="jpv_ent.municipios">
+		<field name="codigo">0402</field>
+		<field name="municipio">Biruaca</field>
+		<field name="estado_id" ref="geo_est_APU"/>
+	</record>
+
+	<record id="geo_mun_APU_MUN" model="jpv_ent.municipios">
+		<field name="codigo">0403</field>
+		<field name="municipio">Muñoz</field>
+		<field name="estado_id" ref="geo_est_APU"/>
+	</record>
+
+	<record id="geo_mun_APU_PAE" model="jpv_ent.municipios">
+		<field name="codigo">0404</field>
+		<field name="municipio">Páez</field>
+		<field name="estado_id" ref="geo_est_APU"/>
+	</record>
+
+	<record id="geo_mun_APU_PCA" model="jpv_ent.municipios">
+		<field name="codigo">0405</field>
+		<field name="municipio">Pedro Camejo</field>
+		<field name="estado_id" ref="geo_est_APU"/>
+	</record>
+
+	<record id="geo_mun_APU_RGA" model="jpv_ent.municipios">
+		<field name="codigo">0406</field>
+		<field name="municipio">Rómulo Gallegos</field>
+		<field name="estado_id" ref="geo_est_APU"/>
+	</record>
+
+	<record id="geo_mun_APU_SFE" model="jpv_ent.municipios">
+		<field name="codigo">0407</field>
+		<field name="municipio">San Fernando</field>
+		<field name="estado_id" ref="geo_est_APU"/>
+	</record>
+
+	<record id="geo_mun_ARA_BOL" model="jpv_ent.municipios">
+		<field name="codigo">0501</field>
+		<field name="municipio">Bolívar</field>
+		<field name="estado_id" ref="geo_est_ARA"/>
+	</record>
+
+	<record id="geo_mun_ARA_CAM" model="jpv_ent.municipios">
+		<field name="codigo">0502</field>
+		<field name="municipio">Camatagua</field>
+		<field name="estado_id" ref="geo_est_ARA"/>
+	</record>
+
+	<record id="geo_mun_ARA_GIR" model="jpv_ent.municipios">
+		<field name="codigo">0503</field>
+		<field name="municipio">Atanasio Girardot</field>
+		<field name="estado_id" ref="geo_est_ARA"/>
+	</record>
+
+	<record id="geo_mun_ARA_JAL" model="jpv_ent.municipios">
+		<field name="codigo">0504</field>
+		<field name="municipio">José Angel Lamas</field>
+		<field name="estado_id" ref="geo_est_ARA"/>
+	</record>
+
+	<record id="geo_mun_ARA_JFR" model="jpv_ent.municipios">
+		<field name="codigo">0505</field>
+		<field name="municipio">José Félix Ribas</field>
+		<field name="estado_id" ref="geo_est_ARA"/>
+	</record>
+
+	<record id="geo_mun_ARA_JRR" model="jpv_ent.municipios">
+		<field name="codigo">0506</field>
+		<field name="municipio">José Rafael Revenga</field>
+		<field name="estado_id" ref="geo_est_ARA"/>
+	</record>
+
+	<record id="geo_mun_ARA_LIB" model="jpv_ent.municipios">
+		<field name="codigo">0507</field>
+		<field name="municipio">Libertador</field>
+		<field name="estado_id" ref="geo_est_ARA"/>
+	</record>
+
+	<record id="geo_mun_ARA_MBI" model="jpv_ent.municipios">
+		<field name="codigo">0508</field>
+		<field name="municipio">Mario Briceño Iragorry</field>
+		<field name="estado_id" ref="geo_est_ARA"/>
+	</record>
+
+	<record id="geo_mun_ARA_SCA" model="jpv_ent.municipios">
+		<field name="codigo">0509</field>
+		<field name="municipio">San Casimiro</field>
+		<field name="estado_id" ref="geo_est_ARA"/>
+	</record>
+
+	<record id="geo_mun_ARA_SSE" model="jpv_ent.municipios">
+		<field name="codigo">0510</field>
+		<field name="municipio">San Sebastián</field>
+		<field name="estado_id" ref="geo_est_ARA"/>
+	</record>
+
+	<record id="geo_mun_ARA_SMA" model="jpv_ent.municipios">
+		<field name="codigo">0511</field>
+		<field name="municipio">Santiago Mariño</field>
+		<field name="estado_id" ref="geo_est_ARA"/>
+	</record>
+
+	<record id="geo_mun_ARA_SMI" model="jpv_ent.municipios">
+		<field name="codigo">0512</field>
+		<field name="municipio">Santos Michelena</field>
+		<field name="estado_id" ref="geo_est_ARA"/>
+	</record>
+
+	<record id="geo_mun_ARA_SUC" model="jpv_ent.municipios">
+		<field name="codigo">0513</field>
+		<field name="municipio">Sucre</field>
+		<field name="estado_id" ref="geo_est_ARA"/>
+	</record>
+
+	<record id="geo_mun_ARA_TOV" model="jpv_ent.municipios">
+		<field name="codigo">0514</field>
+		<field name="municipio">Tovar</field>
+		<field name="estado_id" ref="geo_est_ARA"/>
+	</record>
+
+	<record id="geo_mun_ARA_URD" model="jpv_ent.municipios">
+		<field name="codigo">0515</field>
+		<field name="municipio">Urdaneta</field>
+		<field name="estado_id" ref="geo_est_ARA"/>
+	</record>
+
+	<record id="geo_mun_ARA_ZAM" model="jpv_ent.municipios">
+		<field name="codigo">0516</field>
+		<field name="municipio">Zamora</field>
+		<field name="estado_id" ref="geo_est_ARA"/>
+	</record>
+
+	<record id="geo_mun_ARA_FLA" model="jpv_ent.municipios">
+		<field name="codigo">0517</field>
+		<field name="municipio">Francisco Linares Alcántara</field>
+		<field name="estado_id" ref="geo_est_ARA"/>
+	</record>
+
+	<record id="geo_mun_ARA_OCU" model="jpv_ent.municipios">
+		<field name="codigo">0518</field>
+		<field name="municipio">Ocumare De La Costa De Oro</field>
+		<field name="estado_id" ref="geo_est_ARA"/>
+	</record>
+
+	<record id="geo_mun_BAR_AAT" model="jpv_ent.municipios">
+		<field name="codigo">0601</field>
+		<field name="municipio">Alberto Arvelo Torrealba</field>
+		<field name="estado_id" ref="geo_est_BAR"/>
+	</record>
+
+	<record id="geo_mun_BAR_AJS" model="jpv_ent.municipios">
+		<field name="codigo">0602</field>
+		<field name="municipio">Antonio José De Sucre</field>
+		<field name="estado_id" ref="geo_est_BAR"/>
+	</record>
+
+	<record id="geo_mun_BAR_ARI" model="jpv_ent.municipios">
+		<field name="codigo">0603</field>
+		<field name="municipio">Arismendi</field>
+		<field name="estado_id" ref="geo_est_BAR"/>
+	</record>
+
+	<record id="geo_mun_BAR_BAR" model="jpv_ent.municipios">
+		<field name="codigo">0604</field>
+		<field name="municipio">Barinas</field>
+		<field name="estado_id" ref="geo_est_BAR"/>
+	</record>
+
+	<record id="geo_mun_BAR_BOL" model="jpv_ent.municipios">
+		<field name="codigo">0605</field>
+		<field name="municipio">Bolívar</field>
+		<field name="estado_id" ref="geo_est_BAR"/>
+	</record>
+
+	<record id="geo_mun_BAR_CPA" model="jpv_ent.municipios">
+		<field name="codigo">0606</field>
+		<field name="municipio">Cruz Paredes</field>
+		<field name="estado_id" ref="geo_est_BAR"/>
+	</record>
+
+	<record id="geo_mun_BAR_EZM" model="jpv_ent.municipios">
+		<field name="codigo">0607</field>
+		<field name="municipio">Ezequiel Zamora</field>
+		<field name="estado_id" ref="geo_est_BAR"/>
+	</record>
+
+	<record id="geo_mun_BAR_OBI" model="jpv_ent.municipios">
+		<field name="codigo">0608</field>
+		<field name="municipio">Obispos</field>
+		<field name="estado_id" ref="geo_est_BAR"/>
+	</record>
+
+	<record id="geo_mun_BAR_PED" model="jpv_ent.municipios">
+		<field name="codigo">0609</field>
+		<field name="municipio">Pedraza</field>
+		<field name="estado_id" ref="geo_est_BAR"/>
+	</record>
+
+	<record id="geo_mun_BAR_ROJ" model="jpv_ent.municipios">
+		<field name="codigo">0610</field>
+		<field name="municipio">Rojas</field>
+		<field name="estado_id" ref="geo_est_BAR"/>
+	</record>
+
+	<record id="geo_mun_BAR_SOS" model="jpv_ent.municipios">
+		<field name="codigo">0611</field>
+		<field name="municipio">Sosa</field>
+		<field name="estado_id" ref="geo_est_BAR"/>
+	</record>
+
+	<record id="geo_mun_BAR_AEB" model="jpv_ent.municipios">
+		<field name="codigo">0612</field>
+		<field name="municipio">Andrés Eloy Blanco</field>
+		<field name="estado_id" ref="geo_est_BAR"/>
+	</record>
+
+	<record id="geo_mun_BOL_CAR" model="jpv_ent.municipios">
+		<field name="codigo">0701</field>
+		<field name="municipio">Caroní</field>
+		<field name="estado_id" ref="geo_est_BOL"/>
+	</record>
+
+	<record id="geo_mun_BOL_CED" model="jpv_ent.municipios">
+		<field name="codigo">0702</field>
+		<field name="municipio">Cedeño</field>
+		<field name="estado_id" ref="geo_est_BOL"/>
+	</record>
+
+	<record id="geo_mun_BOL_ECA" model="jpv_ent.municipios">
+		<field name="codigo">0703</field>
+		<field name="municipio">El Callao</field>
+		<field name="estado_id" ref="geo_est_BOL"/>
+	</record>
+
+	<record id="geo_mun_BOL_GSA" model="jpv_ent.municipios">
+		<field name="codigo">0704</field>
+		<field name="municipio">Gran Sabana</field>
+		<field name="estado_id" ref="geo_est_BOL"/>
+	</record>
+
+	<record id="geo_mun_BOL_HER" model="jpv_ent.municipios">
+		<field name="codigo">0705</field>
+		<field name="municipio">Heres</field>
+		<field name="estado_id" ref="geo_est_BOL"/>
+	</record>
+
+	<record id="geo_mun_BOL_PIA" model="jpv_ent.municipios">
+		<field name="codigo">0706</field>
+		<field name="municipio">Piar</field>
+		<field name="estado_id" ref="geo_est_BOL"/>
+	</record>
+
+	<record id="geo_mun_BOL_ANG" model="jpv_ent.municipios">
+		<field name="codigo">0707</field>
+		<field name="municipio">Bolivariano De Angostura</field>
+		<field name="estado_id" ref="geo_est_BOL"/>
+	</record>
+
+	<record id="geo_mun_BOL_ROS" model="jpv_ent.municipios">
+		<field name="codigo">0708</field>
+		<field name="municipio">Roscio</field>
+		<field name="estado_id" ref="geo_est_BOL"/>
+	</record>
+
+	<record id="geo_mun_BOL_SIF" model="jpv_ent.municipios">
+		<field name="codigo">0709</field>
+		<field name="municipio">Sifontes</field>
+		<field name="estado_id" ref="geo_est_BOL"/>
+	</record>
+
+	<record id="geo_mun_BOL_SUC" model="jpv_ent.municipios">
+		<field name="codigo">0710</field>
+		<field name="municipio">Sucre</field>
+		<field name="estado_id" ref="geo_est_BOL"/>
+	</record>
+
+	<record id="geo_mun_BOL_PPC" model="jpv_ent.municipios">
+		<field name="codigo">0711</field>
+		<field name="municipio">Padre Pedro Chien</field>
+		<field name="estado_id" ref="geo_est_BOL"/>
+	</record>
+
+	<record id="geo_mun_CAR_BEJ" model="jpv_ent.municipios">
+		<field name="codigo">0801</field>
+		<field name="municipio">Bejuma</field>
+		<field name="estado_id" ref="geo_est_CAR"/>
+	</record>
+
+	<record id="geo_mun_CAR_CAA" model="jpv_ent.municipios">
+		<field name="codigo">0802</field>
+		<field name="municipio">Carlos Arvelo</field>
+		<field name="estado_id" ref="geo_est_CAR"/>
+	</record>
+
+	<record id="geo_mun_CAR_DII" model="jpv_ent.municipios">
+		<field name="codigo">0803</field>
+		<field name="municipio">Diego Ibarra</field>
+		<field name="estado_id" ref="geo_est_CAR"/>
+	</record>
+
+	<record id="geo_mun_CAR_GUA" model="jpv_ent.municipios">
+		<field name="codigo">0804</field>
+		<field name="municipio">Guacara</field>
+		<field name="estado_id" ref="geo_est_CAR"/>
+	</record>
+
+	<record id="geo_mun_CAR_JJM" model="jpv_ent.municipios">
+		<field name="codigo">0805</field>
+		<field name="municipio">Juan José Mora</field>
+		<field name="estado_id" ref="geo_est_CAR"/>
+	</record>
+
+	<record id="geo_mun_CAR_LIB" model="jpv_ent.municipios">
+		<field name="codigo">0806</field>
+		<field name="municipio">Libertador</field>
+		<field name="estado_id" ref="geo_est_CAR"/>
+	</record>
+
+	<record id="geo_mun_CAR_LOG" model="jpv_ent.municipios">
+		<field name="codigo">0807</field>
+		<field name="municipio">Los Guayos</field>
+		<field name="estado_id" ref="geo_est_CAR"/>
+	</record>
+
+	<record id="geo_mun_CAR_MIR" model="jpv_ent.municipios">
+		<field name="codigo">0808</field>
+		<field name="municipio">Miranda</field>
+		<field name="estado_id" ref="geo_est_CAR"/>
+	</record>
+
+	<record id="geo_mun_CAR_MON" model="jpv_ent.municipios">
+		<field name="codigo">0809</field>
+		<field name="municipio">Montalbán</field>
+		<field name="estado_id" ref="geo_est_CAR"/>
+	</record>
+
+	<record id="geo_mun_CAR_NAG" model="jpv_ent.municipios">
+		<field name="codigo">0810</field>
+		<field name="municipio">Naguanagua</field>
+		<field name="estado_id" ref="geo_est_CAR"/>
+	</record>
+
+	<record id="geo_mun_CAR_PUE" model="jpv_ent.municipios">
+		<field name="codigo">0811</field>
+		<field name="municipio">Puerto Cabello</field>
+		<field name="estado_id" ref="geo_est_CAR"/>
+	</record>
+
+	<record id="geo_mun_CAR_SAD" model="jpv_ent.municipios">
+		<field name="codigo">0812</field>
+		<field name="municipio">San Diego</field>
+		<field name="estado_id" ref="geo_est_CAR"/>
+	</record>
+
+	<record id="geo_mun_CAR_SAJ" model="jpv_ent.municipios">
+		<field name="codigo">0813</field>
+		<field name="municipio">San Joaquín</field>
+		<field name="estado_id" ref="geo_est_CAR"/>
+	</record>
+
+	<record id="geo_mun_CAR_VAL" model="jpv_ent.municipios">
+		<field name="codigo">0814</field>
+		<field name="municipio">Valencia</field>
+		<field name="estado_id" ref="geo_est_CAR"/>
+	</record>
+
+	<record id="geo_mun_COJ_ANZ" model="jpv_ent.municipios">
+		<field name="codigo">0901</field>
+		<field name="municipio">Anzoátegui</field>
+		<field name="estado_id" ref="geo_est_COJ"/>
+	</record>
+    
+	<record id="geo_mun_COJ_TIQ" model="jpv_ent.municipios">
+		<field name="codigo">0902</field>
+		<field name="municipio">Tinaquillo</field>
+		<field name="estado_id" ref="geo_est_COJ"/>
+	</record>
+
+	<record id="geo_mun_COJ_GIR" model="jpv_ent.municipios">
+		<field name="codigo">0903</field>
+		<field name="municipio">Girardot</field>
+		<field name="estado_id" ref="geo_est_COJ"/>
+	</record>
+
+	<record id="geo_mun_COJ_LBL" model="jpv_ent.municipios">
+		<field name="codigo">0904</field>
+		<field name="municipio">Lima Blanco</field>
+		<field name="estado_id" ref="geo_est_COJ"/>
+	</record>
+
+	<record id="geo_mun_COJ_PDS" model="jpv_ent.municipios">
+		<field name="codigo">0905</field>
+		<field name="municipio">Pao De San Juan Bautista</field>
+		<field name="estado_id" ref="geo_est_COJ"/>
+	</record>
+
+	<record id="geo_mun_COJ_RIC" model="jpv_ent.municipios">
+		<field name="codigo">0906</field>
+		<field name="municipio">Ricaurte</field>
+		<field name="estado_id" ref="geo_est_COJ"/>
+	</record>
+
+	<record id="geo_mun_COJ_ROM" model="jpv_ent.municipios">
+		<field name="codigo">0907</field>
+		<field name="municipio">Rómulo Gallegos</field>
+		<field name="estado_id" ref="geo_est_COJ"/>
+	</record>
+
+	<record id="geo_mun_COJ_SAC" model="jpv_ent.municipios">
+		<field name="codigo">0908</field>
+		<field name="municipio">Ezequiel Zamora</field>
+		<field name="estado_id" ref="geo_est_COJ"/>
+	</record>
+
+	<record id="geo_mun_COJ_TIN" model="jpv_ent.municipios">
+		<field name="codigo">0909</field>
+		<field name="municipio">Tinaco</field>
+		<field name="estado_id" ref="geo_est_COJ"/>
+	</record>
+
+	<record id="geo_mun_DEA_AND" model="jpv_ent.municipios">
+		<field name="codigo">1001</field>
+		<field name="municipio">Antonio Díaz</field>
+		<field name="estado_id" ref="geo_est_DEA"/>
+	</record>
+
+	<record id="geo_mun_DEA_CAS" model="jpv_ent.municipios">
+		<field name="codigo">1002</field>
+		<field name="municipio">Casacoima</field>
+		<field name="estado_id" ref="geo_est_DEA"/>
+	</record>
+
+	<record id="geo_mun_DEA_PED" model="jpv_ent.municipios">
+		<field name="codigo">1003</field>
+		<field name="municipio">Pedernales</field>
+		<field name="estado_id" ref="geo_est_DEA"/>
+	</record>
+
+	<record id="geo_mun_DEA_TUC" model="jpv_ent.municipios">
+		<field name="codigo">1004</field>
+		<field name="municipio">Tucupita</field>
+		<field name="estado_id" ref="geo_est_DEA"/>
+	</record>
+
+	<record id="geo_mun_DTO_LIB" model="jpv_ent.municipios">
+		<field name="codigo">0101</field>
+		<field name="municipio">Libertador</field>
+		<field name="estado_id" ref="geo_est_DTO"/>
+	</record>
+
+	<record id="geo_mun_FAL_ACO" model="jpv_ent.municipios">
+		<field name="codigo">1101</field>
+		<field name="municipio">Acosta</field>
+		<field name="estado_id" ref="geo_est_FAL"/>
+	</record>
+
+	<record id="geo_mun_FAL_BOL" model="jpv_ent.municipios">
+		<field name="codigo">1102</field>
+		<field name="municipio">Bolívar</field>
+		<field name="estado_id" ref="geo_est_FAL"/>
+	</record>
+
+	<record id="geo_mun_FAL_BUC" model="jpv_ent.municipios">
+		<field name="codigo">1103</field>
+		<field name="municipio">Buchivacoa</field>
+		<field name="estado_id" ref="geo_est_FAL"/>
+	</record>
+
+	<record id="geo_mun_FAL_CAC" model="jpv_ent.municipios">
+		<field name="codigo">1104</field>
+		<field name="municipio">Cacique Manaure</field>
+		<field name="estado_id" ref="geo_est_FAL"/>
+	</record>
+
+	<record id="geo_mun_FAL_CAR" model="jpv_ent.municipios">
+		<field name="codigo">1105</field>
+		<field name="municipio">Carirubana</field>
+		<field name="estado_id" ref="geo_est_FAL"/>
+	</record>
+
+	<record id="geo_mun_FAL_COL" model="jpv_ent.municipios">
+		<field name="codigo">1106</field>
+		<field name="municipio">Colina</field>
+		<field name="estado_id" ref="geo_est_FAL"/>
+	</record>
+
+	<record id="geo_mun_FAL_DAB" model="jpv_ent.municipios">
+		<field name="codigo">1107</field>
+		<field name="municipio">Dabajuro</field>
+		<field name="estado_id" ref="geo_est_FAL"/>
+	</record>
+
+	<record id="geo_mun_FAL_DEM" model="jpv_ent.municipios">
+		<field name="codigo">1108</field>
+		<field name="municipio">Democracia</field>
+		<field name="estado_id" ref="geo_est_FAL"/>
+	</record>
+
+	<record id="geo_mun_FAL_FAL" model="jpv_ent.municipios">
+		<field name="codigo">1109</field>
+		<field name="municipio">Falcón</field>
+		<field name="estado_id" ref="geo_est_FAL"/>
+	</record>
+
+	<record id="geo_mun_FAL_FED" model="jpv_ent.municipios">
+		<field name="codigo">1110</field>
+		<field name="municipio">Federación</field>
+		<field name="estado_id" ref="geo_est_FAL"/>
+	</record>
+
+	<record id="geo_mun_FAL_JAC" model="jpv_ent.municipios">
+		<field name="codigo">1111</field>
+		<field name="municipio">Jacura</field>
+		<field name="estado_id" ref="geo_est_FAL"/>
+	</record>
+
+	<record id="geo_mun_FAL_LTA" model="jpv_ent.municipios">
+		<field name="codigo">1112</field>
+		<field name="municipio">Los Taques</field>
+		<field name="estado_id" ref="geo_est_FAL"/>
+	</record>
+
+	<record id="geo_mun_FAL_MAU" model="jpv_ent.municipios">
+		<field name="codigo">1113</field>
+		<field name="municipio">Mauroa</field>
+		<field name="estado_id" ref="geo_est_FAL"/>
+	</record>
+
+	<record id="geo_mun_FAL_MIR" model="jpv_ent.municipios">
+		<field name="codigo">1114</field>
+		<field name="municipio">Miranda</field>
+		<field name="estado_id" ref="geo_est_FAL"/>
+	</record>
+
+	<record id="geo_mun_FAL_MIT" model="jpv_ent.municipios">
+		<field name="codigo">1115</field>
+		<field name="municipio">Monseñor Iturriza</field>
+		<field name="estado_id" ref="geo_est_FAL"/>
+	</record>
+
+	<record id="geo_mun_FAL_PAL" model="jpv_ent.municipios">
+		<field name="codigo">1116</field>
+		<field name="municipio">Palmasola</field>
+		<field name="estado_id" ref="geo_est_FAL"/>
+	</record>
+
+	<record id="geo_mun_FAL_PET" model="jpv_ent.municipios">
+		<field name="codigo">1117</field>
+		<field name="municipio">Petit</field>
+		<field name="estado_id" ref="geo_est_FAL"/>
+	</record>
+
+	<record id="geo_mun_FAL_PIR" model="jpv_ent.municipios">
+		<field name="codigo">1118</field>
+		<field name="municipio">Píritu</field>
+		<field name="estado_id" ref="geo_est_FAL"/>
+	</record>
+
+	<record id="geo_mun_FAL_JLS" model="jpv_ent.municipios">
+		<field name="codigo">1120</field>
+		<field name="municipio">Silva</field>
+		<field name="estado_id" ref="geo_est_FAL"/>
+	</record>
+
+	<record id="geo_mun_FAL_SFR" model="jpv_ent.municipios">
+		<field name="codigo">1119</field>
+		<field name="municipio">San Francisco</field>
+		<field name="estado_id" ref="geo_est_FAL"/>
+	</record>
+
+	<record id="geo_mun_FAL_SUC" model="jpv_ent.municipios">
+		<field name="codigo">1121</field>
+		<field name="municipio">Sucre</field>
+		<field name="estado_id" ref="geo_est_FAL"/>
+	</record>
+
+	<record id="geo_mun_FAL_TOC" model="jpv_ent.municipios">
+		<field name="codigo">1122</field>
+		<field name="municipio">Tocópero</field>
+		<field name="estado_id" ref="geo_est_FAL"/>
+	</record>
+
+	<record id="geo_mun_FAL_UNI" model="jpv_ent.municipios">
+		<field name="codigo">1123</field>
+		<field name="municipio">Unión</field>
+		<field name="estado_id" ref="geo_est_FAL"/>
+	</record>
+
+	<record id="geo_mun_FAL_URU" model="jpv_ent.municipios">
+		<field name="codigo">1124</field>
+		<field name="municipio">Urumaco</field>
+		<field name="estado_id" ref="geo_est_FAL"/>
+	</record>
+
+	<record id="geo_mun_FAL_ZAM" model="jpv_ent.municipios">
+		<field name="codigo">1125</field>
+		<field name="municipio">Zamora</field>
+		<field name="estado_id" ref="geo_est_FAL"/>
+	</record>
+
+
+	<record id="geo_mun_GUA_CAM" model="jpv_ent.municipios">
+		<field name="codigo">1201</field>
+		<field name="municipio">Camaguán</field>
+		<field name="estado_id" ref="geo_est_GUA"/>
+	</record>
+
+	<record id="geo_mun_GUA_CHA" model="jpv_ent.municipios">
+		<field name="codigo">1202</field>
+		<field name="municipio">Chaguaramas</field>
+		<field name="estado_id" ref="geo_est_GUA"/>
+	</record>
+
+	<record id="geo_mun_GUA_ESO" model="jpv_ent.municipios">
+		<field name="codigo">1203</field>
+		<field name="municipio">El Socorro</field>
+		<field name="estado_id" ref="geo_est_GUA"/>
+	</record>
+
+	<record id="geo_mun_GUA_SGG" model="jpv_ent.municipios">
+		<field name="codigo">1204</field>
+		<field name="municipio">San Gerónimo De Guayabal</field>
+		<field name="estado_id" ref="geo_est_GUA"/>
+	</record>
+
+	<record id="geo_mun_GUA_LIN" model="jpv_ent.municipios">
+		<field name="codigo">1205</field>
+		<field name="municipio">Leonardo Infante</field>
+		<field name="estado_id" ref="geo_est_GUA"/>
+	</record>
+
+	<record id="geo_mun_GUA_LME" model="jpv_ent.municipios">
+		<field name="codigo">1206</field>
+		<field name="municipio">Las Mercedes</field>
+		<field name="estado_id" ref="geo_est_GUA"/>
+	</record>
+
+	<record id="geo_mun_GUA_JML" model="jpv_ent.municipios">
+		<field name="codigo">1207</field>
+		<field name="municipio">Julián Mellado</field>
+		<field name="estado_id" ref="geo_est_GUA"/>
+	</record>
+
+	<record id="geo_mun_GUA_FMI" model="jpv_ent.municipios">
+		<field name="codigo">1208</field>
+		<field name="municipio">Francisco De Miranda</field>
+		<field name="estado_id" ref="geo_est_GUA"/>
+	</record>
+
+	<record id="geo_mun_GUA_JTM" model="jpv_ent.municipios">
+		<field name="codigo">1209</field>
+		<field name="municipio">José Tadeo Monagas</field>
+		<field name="estado_id" ref="geo_est_GUA"/>
+	</record>
+
+	<record id="geo_mun_GUA_ORT" model="jpv_ent.municipios">
+		<field name="codigo">1210</field>
+		<field name="municipio">Ortiz</field>
+		<field name="estado_id" ref="geo_est_GUA"/>
+	</record>
+
+	<record id="geo_mun_GUA_JFR" model="jpv_ent.municipios">
+		<field name="codigo">1211</field>
+		<field name="municipio">José Félix Ribas</field>
+		<field name="estado_id" ref="geo_est_GUA"/>
+	</record>
+
+	<record id="geo_mun_GUA_JGR" model="jpv_ent.municipios">
+		<field name="codigo">1212</field>
+		<field name="municipio">Juan Germán Roscio Nieves</field>
+		<field name="estado_id" ref="geo_est_GUA"/>
+	</record>
+
+	<record id="geo_mun_GUA_SJG" model="jpv_ent.municipios">
+		<field name="codigo">1213</field>
+		<field name="municipio">San José De Guaribe</field>
+		<field name="estado_id" ref="geo_est_GUA"/>
+	</record>
+
+	<record id="geo_mun_GUA_SMI" model="jpv_ent.municipios">
+		<field name="codigo">1214</field>
+		<field name="municipio">Santa María De Ipire</field>
+		<field name="estado_id" ref="geo_est_GUA"/>
+	</record>
+
+	<record id="geo_mun_GUA_PZA" model="jpv_ent.municipios">
+		<field name="codigo">1215</field>
+		<field name="municipio">Pedro Zaraza</field>
+		<field name="estado_id" ref="geo_est_GUA"/>
+	</record>
+
+	<record id="geo_mun_LAR_AEB" model="jpv_ent.municipios">
+		<field name="codigo">1301</field>
+		<field name="municipio">Andrés Eloy Blanco</field>
+		<field name="estado_id" ref="geo_est_LAR"/>
+	</record>
+
+	<record id="geo_mun_LAR_CRE" model="jpv_ent.municipios">
+		<field name="codigo">1302</field>
+		<field name="municipio">Crespo</field>
+		<field name="estado_id" ref="geo_est_LAR"/>
+	</record>
+
+	<record id="geo_mun_LAR_IRI" model="jpv_ent.municipios">
+		<field name="codigo">1303</field>
+		<field name="municipio">Iribarren</field>
+		<field name="estado_id" ref="geo_est_LAR"/>
+	</record>
+
+	<record id="geo_mun_LAR_JIM" model="jpv_ent.municipios">
+		<field name="codigo">1304</field>
+		<field name="municipio">Jiménez</field>
+		<field name="estado_id" ref="geo_est_LAR"/>
+	</record>
+
+	<record id="geo_mun_LAR_MOR" model="jpv_ent.municipios">
+		<field name="codigo">1305</field>
+		<field name="municipio">Morán</field>
+		<field name="estado_id" ref="geo_est_LAR"/>
+	</record>
+
+	<record id="geo_mun_LAR_PAL" model="jpv_ent.municipios">
+		<field name="codigo">1306</field>
+		<field name="municipio">Palavecino</field>
+		<field name="estado_id" ref="geo_est_LAR"/>
+	</record>
+
+	<record id="geo_mun_LAR_SPL" model="jpv_ent.municipios">
+		<field name="codigo">1307</field>
+		<field name="municipio">Simón Planas</field>
+		<field name="estado_id" ref="geo_est_LAR"/>
+	</record>
+
+	<record id="geo_mun_LAR_TOR" model="jpv_ent.municipios">
+		<field name="codigo">1308</field>
+		<field name="municipio">Torres</field>
+		<field name="estado_id" ref="geo_est_LAR"/>
+	</record>
+
+	<record id="geo_mun_LAR_URD" model="jpv_ent.municipios">
+		<field name="codigo">1309</field>
+		<field name="municipio">Urdaneta</field>
+		<field name="estado_id" ref="geo_est_LAR"/>
+	</record>
+
+	<record id="geo_mun_MER_AAD" model="jpv_ent.municipios">
+		<field name="codigo">1401</field>
+		<field name="municipio">Alberto Adriani</field>
+		<field name="estado_id" ref="geo_est_MER"/>
+	</record>
+
+	<record id="geo_mun_MER_ABE" model="jpv_ent.municipios">
+		<field name="codigo">1402</field>
+		<field name="municipio">Andrés Bello</field>
+		<field name="estado_id" ref="geo_est_MER"/>
+	</record>
+
+	<record id="geo_mun_MER_APS" model="jpv_ent.municipios">
+		<field name="codigo">1403</field>
+		<field name="municipio">Antonio Pinto Salinas</field>
+		<field name="estado_id" ref="geo_est_MER"/>
+	</record>
+
+	<record id="geo_mun_MER_ARI" model="jpv_ent.municipios">
+		<field name="codigo">1404</field>
+		<field name="municipio">Aricagua</field>
+		<field name="estado_id" ref="geo_est_MER"/>
+	</record>
+
+	<record id="geo_mun_MER_ACH" model="jpv_ent.municipios">
+		<field name="codigo">1405</field>
+		<field name="municipio">Arzobispo Chacón</field>
+		<field name="estado_id" ref="geo_est_MER"/>
+	</record>
+
+	<record id="geo_mun_MER_CEL" model="jpv_ent.municipios">
+		<field name="codigo">1406</field>
+		<field name="municipio">Campo Elías</field>
+		<field name="estado_id" ref="geo_est_MER"/>
+	</record>
+
+	<record id="geo_mun_MER_CPO" model="jpv_ent.municipios">
+		<field name="codigo">1407</field>
+		<field name="municipio">Caracciolo Parra Olmedo</field>
+		<field name="estado_id" ref="geo_est_MER"/>
+	</record>
+
+	<record id="geo_mun_MER_CQU" model="jpv_ent.municipios">
+		<field name="codigo">1408</field>
+		<field name="municipio">Cardenal Quintero</field>
+		<field name="estado_id" ref="geo_est_MER"/>
+	</record>
+
+	<record id="geo_mun_MER_GUA" model="jpv_ent.municipios">
+		<field name="codigo">1409</field>
+		<field name="municipio">Guaraque</field>
+		<field name="estado_id" ref="geo_est_MER"/>
+	</record>
+
+	<record id="geo_mun_MER_JCS" model="jpv_ent.municipios">
+		<field name="codigo">1410</field>
+		<field name="municipio">Julio César Salas</field>
+		<field name="estado_id" ref="geo_est_MER"/>
+	</record>
+
+	<record id="geo_mun_MER_JBR" model="jpv_ent.municipios">
+		<field name="codigo">1411</field>
+		<field name="municipio">Justo Briceño</field>
+		<field name="estado_id" ref="geo_est_MER"/>
+	</record>
+
+	<record id="geo_mun_MER_LIB" model="jpv_ent.municipios">
+		<field name="codigo">1412</field>
+		<field name="municipio">Libertador</field>
+		<field name="estado_id" ref="geo_est_MER"/>
+	</record>
+
+	<record id="geo_mun_MER_MIR" model="jpv_ent.municipios">
+		<field name="codigo">1413</field>
+		<field name="municipio">Miranda</field>
+		<field name="estado_id" ref="geo_est_MER"/>
+	</record>
+
+	<record id="geo_mun_MER_ORL" model="jpv_ent.municipios">
+		<field name="codigo">1414</field>
+		<field name="municipio">Obispo Ramos De Lora</field>
+		<field name="estado_id" ref="geo_est_MER"/>
+	</record>
+
+	<record id="geo_mun_MER_PNO" model="jpv_ent.municipios">
+		<field name="codigo">1415</field>
+		<field name="municipio">Padre Noguera</field>
+		<field name="estado_id" ref="geo_est_MER"/>
+	</record>
+
+	<record id="geo_mun_MER_PLL" model="jpv_ent.municipios">
+		<field name="codigo">1416</field>
+		<field name="municipio">Pueblo Llano</field>
+		<field name="estado_id" ref="geo_est_MER"/>
+	</record>
+
+	<record id="geo_mun_MER_RAN" model="jpv_ent.municipios">
+		<field name="codigo">1417</field>
+		<field name="municipio">Rangel</field>
+		<field name="estado_id" ref="geo_est_MER"/>
+	</record>
+
+	<record id="geo_mun_MER_RDA" model="jpv_ent.municipios">
+		<field name="codigo">1418</field>
+		<field name="municipio">Rivas Dávila</field>
+		<field name="estado_id" ref="geo_est_MER"/>
+	</record>
+
+	<record id="geo_mun_MER_SMA" model="jpv_ent.municipios">
+		<field name="codigo">1419</field>
+		<field name="municipio">Santos Marquina</field>
+		<field name="estado_id" ref="geo_est_MER"/>
+	</record>
+
+	<record id="geo_mun_MER_SUC" model="jpv_ent.municipios">
+		<field name="codigo">1420</field>
+		<field name="municipio">Sucre</field>
+		<field name="estado_id" ref="geo_est_MER"/>
+	</record>
+
+	<record id="geo_mun_MER_TOV" model="jpv_ent.municipios">
+		<field name="codigo">1421</field>
+		<field name="municipio">Tovar</field>
+		<field name="estado_id" ref="geo_est_MER"/>
+	</record>
+
+	<record id="geo_mun_MER_TFC" model="jpv_ent.municipios">
+		<field name="codigo">1422</field>
+		<field name="municipio">Tulio Febres Cordero</field>
+		<field name="estado_id" ref="geo_est_MER"/>
+	</record>
+
+	<record id="geo_mun_MER_ZEA" model="jpv_ent.municipios">
+		<field name="codigo">1423</field>
+		<field name="municipio">Zea</field>
+		<field name="estado_id" ref="geo_est_MER"/>
+	</record>
+
+	<record id="geo_mun_MIR_ACE" model="jpv_ent.municipios">
+		<field name="codigo">1501</field>
+		<field name="municipio">Acevedo</field>
+		<field name="estado_id" ref="geo_est_MIR"/>
+	</record>
+
+	<record id="geo_mun_MIR_ABE" model="jpv_ent.municipios">
+		<field name="codigo">1502</field>
+		<field name="municipio">Andrés Bello</field>
+		<field name="estado_id" ref="geo_est_MIR"/>
+	</record>
+
+	<record id="geo_mun_MIR_BAR" model="jpv_ent.municipios">
+		<field name="codigo">1503</field>
+		<field name="municipio">Baruta</field>
+		<field name="estado_id" ref="geo_est_MIR"/>
+	</record>
+
+	<record id="geo_mun_MIR_BRI" model="jpv_ent.municipios">
+		<field name="codigo">1504</field>
+		<field name="municipio">Brión</field>
+		<field name="estado_id" ref="geo_est_MIR"/>
+	</record>
+
+	<record id="geo_mun_MIR_BUR" model="jpv_ent.municipios">
+		<field name="codigo">1505</field>
+		<field name="municipio">Buroz</field>
+		<field name="estado_id" ref="geo_est_MIR"/>
+	</record>
+
+	<record id="geo_mun_MIR_CAR" model="jpv_ent.municipios">
+		<field name="codigo">1506</field>
+		<field name="municipio">Carrizal</field>
+		<field name="estado_id" ref="geo_est_MIR"/>
+	</record>
+
+	<record id="geo_mun_MIR_CHA" model="jpv_ent.municipios">
+		<field name="codigo">1507</field>
+		<field name="municipio">Chacao</field>
+		<field name="estado_id" ref="geo_est_MIR"/>
+	</record>
+
+	<record id="geo_mun_MIR_CRO" model="jpv_ent.municipios">
+		<field name="codigo">1508</field>
+		<field name="municipio">Cristóbal Rojas</field>
+		<field name="estado_id" ref="geo_est_MIR"/>
+	</record>
+
+	<record id="geo_mun_MIR_EHA" model="jpv_ent.municipios">
+		<field name="codigo">1509</field>
+		<field name="municipio">El Hatillo</field>
+		<field name="estado_id" ref="geo_est_MIR"/>
+	</record>
+
+	<record id="geo_mun_MIR_GUA" model="jpv_ent.municipios">
+		<field name="codigo">1510</field>
+		<field name="municipio">Guaicaipuro</field>
+		<field name="estado_id" ref="geo_est_MIR"/>
+	</record>
+
+	<record id="geo_mun_MIR_IND" model="jpv_ent.municipios">
+		<field name="codigo">1511</field>
+		<field name="municipio">Independencia</field>
+		<field name="estado_id" ref="geo_est_MIR"/>
+	</record>
+
+	<record id="geo_mun_MIR_TLA" model="jpv_ent.municipios">
+		<field name="codigo">1512</field>
+		<field name="municipio">Lander</field>
+		<field name="estado_id" ref="geo_est_MIR"/>
+	</record>
+
+	<record id="geo_mun_MIR_LSA" model="jpv_ent.municipios">
+		<field name="codigo">1513</field>
+		<field name="municipio">Los Salias</field>
+		<field name="estado_id" ref="geo_est_MIR"/>
+	</record>
+
+	<record id="geo_mun_MIR_PAE" model="jpv_ent.municipios">
+		<field name="codigo">1514</field>
+		<field name="municipio">Páez</field>
+		<field name="estado_id" ref="geo_est_MIR"/>
+	</record>
+
+	<record id="geo_mun_MIR_PCA" model="jpv_ent.municipios">
+		<field name="codigo">1515</field>
+		<field name="municipio">Paz Castillo</field>
+		<field name="estado_id" ref="geo_est_MIR"/>
+	</record>
+
+	<record id="geo_mun_MIR_PGU" model="jpv_ent.municipios">
+		<field name="codigo">1516</field>
+		<field name="municipio">Pedro Gual</field>
+		<field name="estado_id" ref="geo_est_MIR"/>
+	</record>
+
+	<record id="geo_mun_MIR_PLA" model="jpv_ent.municipios">
+		<field name="codigo">1517</field>
+		<field name="municipio">Plaza</field>
+		<field name="estado_id" ref="geo_est_MIR"/>
+	</record>
+
+	<record id="geo_mun_MIR_SBO" model="jpv_ent.municipios">
+		<field name="codigo">1518</field>
+		<field name="municipio">Simón Bolívar</field>
+		<field name="estado_id" ref="geo_est_MIR"/>
+	</record>
+
+	<record id="geo_mun_MIR_SUC" model="jpv_ent.municipios">
+		<field name="codigo">1519</field>
+		<field name="municipio">Sucre</field>
+		<field name="estado_id" ref="geo_est_MIR"/>
+	</record>
+
+	<record id="geo_mun_MIR_URD" model="jpv_ent.municipios">
+		<field name="codigo">1520</field>
+		<field name="municipio">Urdaneta</field>
+		<field name="estado_id" ref="geo_est_MIR"/>
+	</record>
+
+	<record id="geo_mun_MIR_ZAM" model="jpv_ent.municipios">
+		<field name="codigo">1521</field>
+		<field name="municipio">Zamora</field>
+		<field name="estado_id" ref="geo_est_MIR"/>
+	</record>
+
+	<record id="geo_mun_MON_ACO" model="jpv_ent.municipios">
+		<field name="codigo">1601</field>
+		<field name="municipio">Acosta</field>
+		<field name="estado_id" ref="geo_est_MON"/>
+	</record>
+
+	<record id="geo_mun_MON_AGU" model="jpv_ent.municipios">
+		<field name="codigo">1602</field>
+		<field name="municipio">Aguasay</field>
+		<field name="estado_id" ref="geo_est_MON"/>
+	</record>
+
+	<record id="geo_mun_MON_BOL" model="jpv_ent.municipios">
+		<field name="codigo">1603</field>
+		<field name="municipio">Bolívar</field>
+		<field name="estado_id" ref="geo_est_MON"/>
+	</record>
+
+	<record id="geo_mun_MON_CAR" model="jpv_ent.municipios">
+		<field name="codigo">1604</field>
+		<field name="municipio">Caripe</field>
+		<field name="estado_id" ref="geo_est_MON"/>
+	</record>
+
+	<record id="geo_mun_MON_CED" model="jpv_ent.municipios">
+		<field name="codigo">1605</field>
+		<field name="municipio">Cedeño</field>
+		<field name="estado_id" ref="geo_est_MON"/>
+	</record>
+
+	<record id="geo_mun_MON_EZA" model="jpv_ent.municipios">
+		<field name="codigo">1606</field>
+		<field name="municipio">Ezequiel Zamora</field>
+		<field name="estado_id" ref="geo_est_MON"/>
+	</record>
+
+	<record id="geo_mun_MON_LIB" model="jpv_ent.municipios">
+		<field name="codigo">1607</field>
+		<field name="municipio">Libertador</field>
+		<field name="estado_id" ref="geo_est_MON"/>
+	</record>
+
+	<record id="geo_mun_MON_MAT" model="jpv_ent.municipios">
+		<field name="codigo">1608</field>
+		<field name="municipio">Maturín</field>
+		<field name="estado_id" ref="geo_est_MON"/>
+	</record>
+
+	<record id="geo_mun_MON_PIA" model="jpv_ent.municipios">
+		<field name="codigo">1609</field>
+		<field name="municipio">Piar</field>
+		<field name="estado_id" ref="geo_est_MON"/>
+	</record>
+
+	<record id="geo_mun_MON_PUN" model="jpv_ent.municipios">
+		<field name="codigo">1610</field>
+		<field name="municipio">Punceres</field>
+		<field name="estado_id" ref="geo_est_MON"/>
+	</record>
+
+	<record id="geo_mun_MON_SBA" model="jpv_ent.municipios">
+		<field name="codigo">1611</field>
+		<field name="municipio">Santa Bárbara</field>
+		<field name="estado_id" ref="geo_est_MON"/>
+	</record>
+
+	<record id="geo_mun_MON_SOT" model="jpv_ent.municipios">
+		<field name="codigo">1612</field>
+		<field name="municipio">Sotillo</field>
+		<field name="estado_id" ref="geo_est_MON"/>
+	</record>
+
+	<record id="geo_mun_MON_URA" model="jpv_ent.municipios">
+		<field name="codigo">1613</field>
+		<field name="municipio">Uracoa</field>
+		<field name="estado_id" ref="geo_est_MON"/>
+	</record>
+
+	<record id="geo_mun_NVA_ADC" model="jpv_ent.municipios">
+		<field name="codigo">1701</field>
+		<field name="municipio">Antolín Del Campo</field>
+		<field name="estado_id" ref="geo_est_NVA"/>
+	</record>
+
+	<record id="geo_mun_NVA_ARI" model="jpv_ent.municipios">
+		<field name="codigo">1702</field>
+		<field name="municipio">Arismendi</field>
+		<field name="estado_id" ref="geo_est_NVA"/>
+	</record>
+
+	<record id="geo_mun_NVA_DIA" model="jpv_ent.municipios">
+		<field name="codigo">1703</field>
+		<field name="municipio">Díaz</field>
+		<field name="estado_id" ref="geo_est_NVA"/>
+	</record>
+
+	<record id="geo_mun_NVA_GAR" model="jpv_ent.municipios">
+		<field name="codigo">1704</field>
+		<field name="municipio">García</field>
+		<field name="estado_id" ref="geo_est_NVA"/>
+	</record>
+
+	<record id="geo_mun_NVA_GOM" model="jpv_ent.municipios">
+		<field name="codigo">1705</field>
+		<field name="municipio">Gómez</field>
+		<field name="estado_id" ref="geo_est_NVA"/>
+	</record>
+
+	<record id="geo_mun_NVA_MAN" model="jpv_ent.municipios">
+		<field name="codigo">1706</field>
+		<field name="municipio">Maneiro</field>
+		<field name="estado_id" ref="geo_est_NVA"/>
+	</record>
+
+	<record id="geo_mun_NVA_MAR" model="jpv_ent.municipios">
+		<field name="codigo">1707</field>
+		<field name="municipio">Marcano</field>
+		<field name="estado_id" ref="geo_est_NVA"/>
+	</record>
+
+	<record id="geo_mun_NVA_SMA" model="jpv_ent.municipios">
+		<field name="codigo">1708</field>
+		<field name="municipio">Mariño</field>
+		<field name="estado_id" ref="geo_est_NVA"/>
+	</record>
+
+	<record id="geo_mun_NVA_PDM" model="jpv_ent.municipios">
+		<field name="codigo">1709</field>
+		<field name="municipio">Península De Macanao</field>
+		<field name="estado_id" ref="geo_est_NVA"/>
+	</record>
+
+	<record id="geo_mun_NVA_TUB" model="jpv_ent.municipios">
+		<field name="codigo">1710</field>
+		<field name="municipio">Tubores</field>
+		<field name="estado_id" ref="geo_est_NVA"/>
+	</record>
+
+	<record id="geo_mun_NVA_VIL" model="jpv_ent.municipios">
+		<field name="codigo">1711</field>
+		<field name="municipio">Villalba</field>
+		<field name="estado_id" ref="geo_est_NVA"/>
+	</record>
+
+	<record id="geo_mun_POR_ABL" model="jpv_ent.municipios">
+		<field name="codigo">1801</field>
+		<field name="municipio">Agua Blanca</field>
+		<field name="estado_id" ref="geo_est_POR"/>
+	</record>
+
+	<record id="geo_mun_POR_ARA" model="jpv_ent.municipios">
+		<field name="codigo">1802</field>
+		<field name="municipio">Araure</field>
+		<field name="estado_id" ref="geo_est_POR"/>
+	</record>
+
+	<record id="geo_mun_POR_EST" model="jpv_ent.municipios">
+		<field name="codigo">1803</field>
+		<field name="municipio">Esteller</field>
+		<field name="estado_id" ref="geo_est_POR"/>
+	</record>
+
+	<record id="geo_mun_POR_GUA" model="jpv_ent.municipios">
+		<field name="codigo">1804</field>
+		<field name="municipio">Guanare</field>
+		<field name="estado_id" ref="geo_est_POR"/>
+	</record>
+
+	<record id="geo_mun_POR_GTO" model="jpv_ent.municipios">
+		<field name="codigo">1805</field>
+		<field name="municipio">Guanarito</field>
+		<field name="estado_id" ref="geo_est_POR"/>
+	</record>
+
+	<record id="geo_mun_POR_MJV" model="jpv_ent.municipios">
+		<field name="codigo">1806</field>
+		<field name="municipio">Monseñor José Vicente De Unda</field>
+		<field name="estado_id" ref="geo_est_POR"/>
+	</record>
+
+	<record id="geo_mun_POR_OSP" model="jpv_ent.municipios">
+		<field name="codigo">1807</field>
+		<field name="municipio">Ospino</field>
+		<field name="estado_id" ref="geo_est_POR"/>
+	</record>
+
+	<record id="geo_mun_POR_PAE" model="jpv_ent.municipios">
+		<field name="codigo">1808</field>
+		<field name="municipio">Páez</field>
+		<field name="estado_id" ref="geo_est_POR"/>
+	</record>
+
+	<record id="geo_mun_POR_PAP" model="jpv_ent.municipios">
+		<field name="codigo">1809</field>
+		<field name="municipio">Papelón</field>
+		<field name="estado_id" ref="geo_est_POR"/>
+	</record>
+
+	<record id="geo_mun_POR_SGB" model="jpv_ent.municipios">
+		<field name="codigo">1810</field>
+		<field name="municipio">San Genaro De Boconoito</field>
+		<field name="estado_id" ref="geo_est_POR"/>
+	</record>
+
+	<record id="geo_mun_POR_SRON" model="jpv_ent.municipios">
+		<field name="codigo">1811</field>
+		<field name="municipio">San Rafael De Onoto</field>
+		<field name="estado_id" ref="geo_est_POR"/>
+	</record>
+
+	<record id="geo_mun_POR_SRO" model="jpv_ent.municipios">
+		<field name="codigo">1812</field>
+		<field name="municipio">Santa Rosalía</field>
+		<field name="estado_id" ref="geo_est_POR"/>
+	</record>
+
+	<record id="geo_mun_POR_SUC" model="jpv_ent.municipios">
+		<field name="codigo">1813</field>
+		<field name="municipio">Sucre</field>
+		<field name="estado_id" ref="geo_est_POR"/>
+	</record>
+
+	<record id="geo_mun_POR_TUR" model="jpv_ent.municipios">
+		<field name="codigo">1814</field>
+		<field name="municipio">Turén</field>
+		<field name="estado_id" ref="geo_est_POR"/>
+	</record>
+
+	<record id="geo_mun_SUC_AEB" model="jpv_ent.municipios">
+		<field name="codigo">1901</field>
+		<field name="municipio">Andrés Eloy Blanco</field>
+		<field name="estado_id" ref="geo_est_SUC"/>
+	</record>
+
+	<record id="geo_mun_SUC_AMA" model="jpv_ent.municipios">
+		<field name="codigo">1902</field>
+		<field name="municipio">Andrés Mata</field>
+		<field name="estado_id" ref="geo_est_SUC"/>
+	</record>
+
+	<record id="geo_mun_SUC_ARI" model="jpv_ent.municipios">
+		<field name="codigo">1903</field>
+		<field name="municipio">Arismendi</field>
+		<field name="estado_id" ref="geo_est_SUC"/>
+	</record>
+
+	<record id="geo_mun_SUC_BEN" model="jpv_ent.municipios">
+		<field name="codigo">1904</field>
+		<field name="municipio">Benítez</field>
+		<field name="estado_id" ref="geo_est_SUC"/>
+	</record>
+
+	<record id="geo_mun_SUC_BER" model="jpv_ent.municipios">
+		<field name="codigo">1905</field>
+		<field name="municipio">Bermúdez</field>
+		<field name="estado_id" ref="geo_est_SUC"/>
+	</record>
+
+	<record id="geo_mun_SUC_BOL" model="jpv_ent.municipios">
+		<field name="codigo">1906</field>
+		<field name="municipio">Bolívar</field>
+		<field name="estado_id" ref="geo_est_SUC"/>
+	</record>
+
+	<record id="geo_mun_SUC_CAJ" model="jpv_ent.municipios">
+		<field name="codigo">1907</field>
+		<field name="municipio">Cajigal</field>
+		<field name="estado_id" ref="geo_est_SUC"/>
+	</record>
+
+	<record id="geo_mun_SUC_CSA" model="jpv_ent.municipios">
+		<field name="codigo">1908</field>
+		<field name="municipio">Cruz Salmerón Acosta</field>
+		<field name="estado_id" ref="geo_est_SUC"/>
+	</record>
+
+	<record id="geo_mun_SUC_LIB" model="jpv_ent.municipios">
+		<field name="codigo">1909</field>
+		<field name="municipio">Libertador</field>
+		<field name="estado_id" ref="geo_est_SUC"/>
+	</record>
+
+	<record id="geo_mun_SUC_MAR" model="jpv_ent.municipios">
+		<field name="codigo">1910</field>
+		<field name="municipio">Mariño</field>
+		<field name="estado_id" ref="geo_est_SUC"/>
+	</record>
+
+	<record id="geo_mun_SUC_MEJ" model="jpv_ent.municipios">
+		<field name="codigo">1911</field>
+		<field name="municipio">Mejía</field>
+		<field name="estado_id" ref="geo_est_SUC"/>
+	</record>
+
+	<record id="geo_mun_SUC_MON" model="jpv_ent.municipios">
+		<field name="codigo">1912</field>
+		<field name="municipio">Montes</field>
+		<field name="estado_id" ref="geo_est_SUC"/>
+	</record>
+
+	<record id="geo_mun_SUC_RIB" model="jpv_ent.municipios">
+		<field name="codigo">1913</field>
+		<field name="municipio">Ribero</field>
+		<field name="estado_id" ref="geo_est_SUC"/>
+	</record>
+
+	<record id="geo_mun_SUC_SUC" model="jpv_ent.municipios">
+		<field name="codigo">1914</field>
+		<field name="municipio">Sucre</field>
+		<field name="estado_id" ref="geo_est_SUC"/>
+	</record>
+
+	<record id="geo_mun_SUC_VAL" model="jpv_ent.municipios">
+		<field name="codigo">1915</field>
+		<field name="municipio">Valdez</field>
+		<field name="estado_id" ref="geo_est_SUC"/>
+	</record>
+
+	<record id="geo_mun_TAC_ABE" model="jpv_ent.municipios">
+		<field name="codigo">2001</field>
+		<field name="municipio">Andrés Bello</field>
+		<field name="estado_id" ref="geo_est_TAC"/>
+	</record>
+
+	<record id="geo_mun_TAC_ARC" model="jpv_ent.municipios">
+		<field name="codigo">2002</field>
+		<field name="municipio">Antonio Rómulo Costa</field>
+		<field name="estado_id" ref="geo_est_TAC"/>
+	</record>
+
+	<record id="geo_mun_TAC_AYA" model="jpv_ent.municipios">
+		<field name="codigo">2003</field>
+		<field name="municipio">Ayacucho</field>
+		<field name="estado_id" ref="geo_est_TAC"/>
+	</record>
+
+	<record id="geo_mun_TAC_BOL" model="jpv_ent.municipios">
+		<field name="codigo">2004</field>
+		<field name="municipio">Bolívar</field>
+		<field name="estado_id" ref="geo_est_TAC"/>
+	</record>
+
+	<record id="geo_mun_TAC_CAR" model="jpv_ent.municipios">
+		<field name="codigo">2005</field>
+		<field name="municipio">Cárdenas</field>
+		<field name="estado_id" ref="geo_est_TAC"/>
+	</record>
+
+	<record id="geo_mun_TAC_COR" model="jpv_ent.municipios">
+		<field name="codigo">2006</field>
+		<field name="municipio">Córdoba</field>
+		<field name="estado_id" ref="geo_est_TAC"/>
+	</record>
+
+	<record id="geo_mun_TAC_FFE" model="jpv_ent.municipios">
+		<field name="codigo">2007</field>
+		<field name="municipio">Fernández Feo</field>
+		<field name="estado_id" ref="geo_est_TAC"/>
+	</record>
+
+	<record id="geo_mun_TAC_FDM" model="jpv_ent.municipios">
+		<field name="codigo">2008</field>
+		<field name="municipio">Francisco De Miranda</field>
+		<field name="estado_id" ref="geo_est_TAC"/>
+	</record>
+
+	<record id="geo_mun_TAC_GDH" model="jpv_ent.municipios">
+		<field name="codigo">2009</field>
+		<field name="municipio">García De Hevia</field>
+		<field name="estado_id" ref="geo_est_TAC"/>
+	</record>
+
+	<record id="geo_mun_TAC_GUA" model="jpv_ent.municipios">
+		<field name="codigo">2010</field>
+		<field name="municipio">Guásimos</field>
+		<field name="estado_id" ref="geo_est_TAC"/>
+	</record>
+
+	<record id="geo_mun_TAC_IND" model="jpv_ent.municipios">
+		<field name="codigo">2011</field>
+		<field name="municipio">Independencia</field>
+		<field name="estado_id" ref="geo_est_TAC"/>
+	</record>
+
+	<record id="geo_mun_TAC_JAU" model="jpv_ent.municipios">
+		<field name="codigo">2012</field>
+		<field name="municipio">Jáuregui</field>
+		<field name="estado_id" ref="geo_est_TAC"/>
+	</record>
+
+	<record id="geo_mun_TAC_JMV" model="jpv_ent.municipios">
+		<field name="codigo">2013</field>
+		<field name="municipio">José María Vargas</field>
+		<field name="estado_id" ref="geo_est_TAC"/>
+	</record>
+
+	<record id="geo_mun_TAC_JUN" model="jpv_ent.municipios">
+		<field name="codigo">2014</field>
+		<field name="municipio">Junín</field>
+		<field name="estado_id" ref="geo_est_TAC"/>
+	</record>
+
+	<record id="geo_mun_TAC_LIB" model="jpv_ent.municipios">
+		<field name="codigo">2015</field>
+		<field name="municipio">Libertad</field>
+		<field name="estado_id" ref="geo_est_TAC"/>
+	</record>
+
+	<record id="geo_mun_TAC_LBD" model="jpv_ent.municipios">
+		<field name="codigo">2016</field>
+		<field name="municipio">Libertador</field>
+		<field name="estado_id" ref="geo_est_TAC"/>
+	</record>
+
+	<record id="geo_mun_TAC_LOB" model="jpv_ent.municipios">
+		<field name="codigo">2017</field>
+		<field name="municipio">Lobatera</field>
+		<field name="estado_id" ref="geo_est_TAC"/>
+	</record>
+
+	<record id="geo_mun_TAC_MIC" model="jpv_ent.municipios">
+		<field name="codigo">2018</field>
+		<field name="municipio">Michelena</field>
+		<field name="estado_id" ref="geo_est_TAC"/>
+	</record>
+
+	<record id="geo_mun_TAC_PAN" model="jpv_ent.municipios">
+		<field name="codigo">2019</field>
+		<field name="municipio">Panamericano</field>
+		<field name="estado_id" ref="geo_est_TAC"/>
+	</record>
+
+	<record id="geo_mun_TAC_PMU" model="jpv_ent.municipios">
+		<field name="codigo">2020</field>
+		<field name="municipio">Pedro María Ureña</field>
+		<field name="estado_id" ref="geo_est_TAC"/>
+	</record>
+
+	<record id="geo_mun_TAC_RUR" model="jpv_ent.municipios">
+		<field name="codigo">2021</field>
+		<field name="municipio">Rafael Urdaneta</field>
+		<field name="estado_id" ref="geo_est_TAC"/>
+	</record>
+
+	<record id="geo_mun_TAC_SDM" model="jpv_ent.municipios">
+		<field name="codigo">2022</field>
+		<field name="municipio">Samuel Darío Maldonado</field>
+		<field name="estado_id" ref="geo_est_TAC"/>
+	</record>
+
+	<record id="geo_mun_TAC_SCR" model="jpv_ent.municipios">
+		<field name="codigo">2023</field>
+		<field name="municipio">San Cristóbal</field>
+		<field name="estado_id" ref="geo_est_TAC"/>
+	</record>
+
+	<record id="geo_mun_TAC_SEB" model="jpv_ent.municipios">
+		<field name="codigo">2024</field>
+		<field name="municipio">Seboruco</field>
+		<field name="estado_id" ref="geo_est_TAC"/>
+	</record>
+
+	<record id="geo_mun_TAC_SRO" model="jpv_ent.municipios">
+		<field name="codigo">2025</field>
+		<field name="municipio">Simón Rodríguez</field>
+		<field name="estado_id" ref="geo_est_TAC"/>
+	</record>
+
+	<record id="geo_mun_TAC_SUC" model="jpv_ent.municipios">
+		<field name="codigo">2026</field>
+		<field name="municipio">Sucre</field>
+		<field name="estado_id" ref="geo_est_TAC"/>
+	</record>
+
+	<record id="geo_mun_TAC_TOR" model="jpv_ent.municipios">
+		<field name="codigo">2027</field>
+		<field name="municipio">Torbes</field>
+		<field name="estado_id" ref="geo_est_TAC"/>
+	</record>
+
+	<record id="geo_mun_TAC_URI" model="jpv_ent.municipios">
+		<field name="codigo">2028</field>
+		<field name="municipio">Uribante</field>
+		<field name="estado_id" ref="geo_est_TAC"/>
+	</record>
+
+	<record id="geo_mun_TAC_SJT" model="jpv_ent.municipios">
+		<field name="codigo">2029</field>
+		<field name="municipio">San Judas Tadeo</field>
+		<field name="estado_id" ref="geo_est_TAC"/>
+	</record>
+
+	<record id="geo_mun_TRU_ABE" model="jpv_ent.municipios">
+		<field name="codigo">2101</field>
+		<field name="municipio">Andrés Bello</field>
+		<field name="estado_id" ref="geo_est_TRU"/>
+	</record>
+
+	<record id="geo_mun_TRU_BOC" model="jpv_ent.municipios">
+		<field name="codigo">2102</field>
+		<field name="municipio">Boconó</field>
+		<field name="estado_id" ref="geo_est_TRU"/>
+	</record>
+
+	<record id="geo_mun_TRU_BOL" model="jpv_ent.municipios">
+		<field name="codigo">2103</field>
+		<field name="municipio">Bolívar</field>
+		<field name="estado_id" ref="geo_est_TRU"/>
+	</record>
+
+	<record id="geo_mun_TRU_CAN" model="jpv_ent.municipios">
+		<field name="codigo">2104</field>
+		<field name="municipio">Candelaria</field>
+		<field name="estado_id" ref="geo_est_TRU"/>
+	</record>
+
+	<record id="geo_mun_TRU_CAR" model="jpv_ent.municipios">
+		<field name="codigo">2105</field>
+		<field name="municipio">Carache</field>
+		<field name="estado_id" ref="geo_est_TRU"/>
+	</record>
+
+	<record id="geo_mun_TRU_ESC" model="jpv_ent.municipios">
+		<field name="codigo">2106</field>
+		<field name="municipio">Escuque</field>
+		<field name="estado_id" ref="geo_est_TRU"/>
+	</record>
+
+	<record id="geo_mun_TRU_JFM" model="jpv_ent.municipios">
+		<field name="codigo">2107</field>
+		<field name="municipio">José Felipe Márquez Cañizales</field>
+		<field name="estado_id" ref="geo_est_TRU"/>
+	</record>
+
+	<record id="geo_mun_TRU_JVC" model="jpv_ent.municipios">
+		<field name="codigo">2108</field>
+		<field name="municipio">Juan Vicente Campo Elías</field>
+		<field name="estado_id" ref="geo_est_TRU"/>
+	</record>
+
+	<record id="geo_mun_TRU_LCE" model="jpv_ent.municipios">
+		<field name="codigo">2109</field>
+		<field name="municipio">La Ceiba</field>
+		<field name="estado_id" ref="geo_est_TRU"/>
+	</record>
+
+	<record id="geo_mun_TRU_MIR" model="jpv_ent.municipios">
+		<field name="codigo">2110</field>
+		<field name="municipio">Miranda</field>
+		<field name="estado_id" ref="geo_est_TRU"/>
+	</record>
+
+	<record id="geo_mun_TRU_MCA" model="jpv_ent.municipios">
+		<field name="codigo">2111</field>
+		<field name="municipio">Monte Carmelo</field>
+		<field name="estado_id" ref="geo_est_TRU"/>
+	</record>
+
+	<record id="geo_mun_TRU_MOT" model="jpv_ent.municipios">
+		<field name="codigo">2113</field>
+		<field name="municipio">Motatán</field>
+		<field name="estado_id" ref="geo_est_TRU"/>
+	</record>
+
+	<record id="geo_mun_TRU_PAM" model="jpv_ent.municipios">
+		<field name="codigo">2113</field>
+		<field name="municipio">Pampán</field>
+		<field name="estado_id" ref="geo_est_TRU"/>
+	</record>
+
+	<record id="geo_mun_TRU_PPA" model="jpv_ent.municipios">
+		<field name="codigo">2114</field>
+		<field name="municipio">Pampanito</field>
+		<field name="estado_id" ref="geo_est_TRU"/>
+	</record>
+
+	<record id="geo_mun_TRU_RRA" model="jpv_ent.municipios">
+		<field name="codigo">2115</field>
+		<field name="municipio">Rafael Rangel</field>
+		<field name="estado_id" ref="geo_est_TRU"/>
+	</record>
+
+	<record id="geo_mun_TRU_SRC" model="jpv_ent.municipios">
+		<field name="codigo">2116</field>
+		<field name="municipio">San Rafael De Carvajal</field>
+		<field name="estado_id" ref="geo_est_TRU"/>
+	</record>
+
+	<record id="geo_mun_TRU_SUC" model="jpv_ent.municipios">
+		<field name="codigo">2117</field>
+		<field name="municipio">Sucre</field>
+		<field name="estado_id" ref="geo_est_TRU"/>
+	</record>
+
+	<record id="geo_mun_TRU_TRU" model="jpv_ent.municipios">
+		<field name="codigo">2118</field>
+		<field name="municipio">Trujillo</field>
+		<field name="estado_id" ref="geo_est_TRU"/>
+	</record>
+
+	<record id="geo_mun_TRU_URD" model="jpv_ent.municipios">
+		<field name="codigo">2119</field>
+		<field name="municipio">Urdaneta</field>
+		<field name="estado_id" ref="geo_est_TRU"/>
+	</record>
+
+	<record id="geo_mun_TRU_VAL" model="jpv_ent.municipios">
+		<field name="codigo">2120</field>
+		<field name="municipio">Valera</field>
+		<field name="estado_id" ref="geo_est_TRU"/>
+	</record>
+
+	<record id="geo_mun_VAR_VAR" model="jpv_ent.municipios">
+		<field name="codigo">2401</field>
+		<field name="municipio">Vargas</field>
+		<field name="estado_id" ref="geo_est_VAR"/>
+	</record>
+
+	<record id="geo_mun_YAR_ABA" model="jpv_ent.municipios">
+		<field name="codigo">2201</field>
+		<field name="municipio">Arístides Bastidas</field>
+		<field name="estado_id" ref="geo_est_YAR"/>
+	</record>
+
+	<record id="geo_mun_YAR_BOL" model="jpv_ent.municipios">
+		<field name="codigo">2202</field>
+		<field name="municipio">Bolívar</field>
+		<field name="estado_id" ref="geo_est_YAR"/>
+	</record>
+
+	<record id="geo_mun_YAR_BRU" model="jpv_ent.municipios">
+		<field name="codigo">2203</field>
+		<field name="municipio">Bruzual</field>
+		<field name="estado_id" ref="geo_est_YAR"/>
+	</record>
+
+	<record id="geo_mun_YAR_COC" model="jpv_ent.municipios">
+		<field name="codigo">2204</field>
+		<field name="municipio">Cocorote</field>
+		<field name="estado_id" ref="geo_est_YAR"/>
+	</record>
+
+	<record id="geo_mun_YAR_IND" model="jpv_ent.municipios">
+		<field name="codigo">2205</field>
+		<field name="municipio">Independencia</field>
+		<field name="estado_id" ref="geo_est_YAR"/>
+	</record>
+
+	<record id="geo_mun_YAR_JAP" model="jpv_ent.municipios">
+		<field name="codigo">2206</field>
+		<field name="municipio">José Antonio Páez</field>
+		<field name="estado_id" ref="geo_est_YAR"/>
+	</record>
+
+	<record id="geo_mun_YAR_LTR" model="jpv_ent.municipios">
+		<field name="codigo">2207</field>
+		<field name="municipio">La Trinidad</field>
+		<field name="estado_id" ref="geo_est_YAR"/>
+	</record>
+
+	<record id="geo_mun_YAR_MMO" model="jpv_ent.municipios">
+		<field name="codigo">2208</field>
+		<field name="municipio">Manuel Monge</field>
+		<field name="estado_id" ref="geo_est_YAR"/>
+	</record>
+
+	<record id="geo_mun_YAR_NIR" model="jpv_ent.municipios">
+		<field name="codigo">2209</field>
+		<field name="municipio">Nirgua</field>
+		<field name="estado_id" ref="geo_est_YAR"/>
+	</record>
+
+	<record id="geo_mun_YAR_PEN" model="jpv_ent.municipios">
+		<field name="codigo">2210</field>
+		<field name="municipio">Peña</field>
+		<field name="estado_id" ref="geo_est_YAR"/>
+	</record>
+
+	<record id="geo_mun_YAR_SFE" model="jpv_ent.municipios">
+		<field name="codigo">2211</field>
+		<field name="municipio">San Felipe</field>
+		<field name="estado_id" ref="geo_est_YAR"/>
+	</record>
+
+	<record id="geo_mun_YAR_SUC" model="jpv_ent.municipios">
+		<field name="codigo">2212</field>
+		<field name="municipio">Sucre</field>
+		<field name="estado_id" ref="geo_est_YAR"/>
+	</record>
+
+	<record id="geo_mun_YAR_URA" model="jpv_ent.municipios">
+		<field name="codigo">2213</field>
+		<field name="municipio">Urachiche</field>
+		<field name="estado_id" ref="geo_est_YAR"/>
+	</record>
+
+	<record id="geo_mun_YAR_JJV" model="jpv_ent.municipios">
+		<field name="codigo">2214</field>
+		<field name="municipio">Veroes</field>
+		<field name="estado_id" ref="geo_est_YAR"/>
+	</record>
+
+	<record id="geo_mun_ZUL_APA" model="jpv_ent.municipios">
+		<field name="codigo">2301</field>
+		<field name="municipio">Almirante Padilla</field>
+		<field name="estado_id" ref="geo_est_ZUL"/>
+	</record>
+
+	<record id="geo_mun_ZUL_BAR" model="jpv_ent.municipios">
+		<field name="codigo">2302</field>
+		<field name="municipio">Baralt</field>
+		<field name="estado_id" ref="geo_est_ZUL"/>
+	</record>
+
+	<record id="geo_mun_ZUL_CAB" model="jpv_ent.municipios">
+		<field name="codigo">2303</field>
+		<field name="municipio">Cabimas</field>
+		<field name="estado_id" ref="geo_est_ZUL"/>
+	</record>
+
+	<record id="geo_mun_ZUL_CAT" model="jpv_ent.municipios">
+		<field name="codigo">2304</field>
+		<field name="municipio">Catatumbo</field>
+		<field name="estado_id" ref="geo_est_ZUL"/>
+	</record>
+
+	<record id="geo_mun_ZUL_COL" model="jpv_ent.municipios">
+		<field name="codigo">2305</field>
+		<field name="municipio">Colón</field>
+		<field name="estado_id" ref="geo_est_ZUL"/>
+	</record>
+
+	<record id="geo_mun_ZUL_FJP" model="jpv_ent.municipios">
+		<field name="codigo">2306</field>
+		<field name="municipio">Francisco Javier Pulgar</field>
+		<field name="estado_id" ref="geo_est_ZUL"/>
+	</record>
+
+	<record id="geo_mun_ZUL_JEL" model="jpv_ent.municipios">
+		<field name="codigo">2307</field>
+		<field name="municipio">Jesús Enrique Lossada</field>
+		<field name="estado_id" ref="geo_est_ZUL"/>
+	</record>
+
+	<record id="geo_mun_ZUL_JMS" model="jpv_ent.municipios">
+		<field name="codigo">2308</field>
+		<field name="municipio">Jesús María Semprún</field>
+		<field name="estado_id" ref="geo_est_ZUL"/>
+	</record>
+
+	<record id="geo_mun_ZUL_LCU" model="jpv_ent.municipios">
+		<field name="codigo">2309</field>
+		<field name="municipio">La Cañada De Urdaneta</field>
+		<field name="estado_id" ref="geo_est_ZUL"/>
+	</record>
+
+	<record id="geo_mun_ZUL_LAG" model="jpv_ent.municipios">
+		<field name="codigo">2310</field>
+		<field name="municipio">Lagunillas</field>
+		<field name="estado_id" ref="geo_est_ZUL"/>
+	</record>
+
+	<record id="geo_mun_ZUL_MDP" model="jpv_ent.municipios">
+		<field name="codigo">2311</field>
+		<field name="municipio">Machiques De Perijá</field>
+		<field name="estado_id" ref="geo_est_ZUL"/>
+	</record>
+
+	<record id="geo_mun_ZUL_MAR" model="jpv_ent.municipios">
+		<field name="codigo">2312</field>
+		<field name="municipio">Mara</field>
+		<field name="estado_id" ref="geo_est_ZUL"/>
+	</record>
+
+	<record id="geo_mun_ZUL_MBO" model="jpv_ent.municipios">
+		<field name="codigo">2313</field>
+		<field name="municipio">Maracaibo</field>
+		<field name="estado_id" ref="geo_est_ZUL"/>
+	</record>
+
+	<record id="geo_mun_ZUL_MIR" model="jpv_ent.municipios">
+		<field name="codigo">2314</field>
+		<field name="municipio">Miranda</field>
+		<field name="estado_id" ref="geo_est_ZUL"/>
+	</record>
+
+	<record id="geo_mun_ZUL_PAE" model="jpv_ent.municipios">
+		<field name="codigo">2315</field>
+		<field name="municipio">Páez</field>
+		<field name="estado_id" ref="geo_est_ZUL"/>
+	</record>
+
+	<record id="geo_mun_ZUL_RDP" model="jpv_ent.municipios">
+		<field name="codigo">2316</field>
+		<field name="municipio">Rosario De Perijá</field>
+		<field name="estado_id" ref="geo_est_ZUL"/>
+	</record>
+
+	<record id="geo_mun_ZUL_SFR" model="jpv_ent.municipios">
+		<field name="codigo">2317</field>
+		<field name="municipio">San Francisco</field>
+		<field name="estado_id" ref="geo_est_ZUL"/>
+	</record>
+
+	<record id="geo_mun_ZUL_SRI" model="jpv_ent.municipios">
+		<field name="codigo">2318</field>
+		<field name="municipio">Santa Rita</field>
+		<field name="estado_id" ref="geo_est_ZUL"/>
+	</record>
+
+	<record id="geo_mun_ZUL_SBO" model="jpv_ent.municipios">
+		<field name="codigo">2319</field>
+		<field name="municipio">Simón Bolívar</field>
+		<field name="estado_id" ref="geo_est_ZUL"/>
+	</record>
+
+	<record id="geo_mun_ZUL_SUC" model="jpv_ent.municipios">
+		<field name="codigo">2320</field>
+		<field name="municipio">Sucre</field>
+		<field name="estado_id" ref="geo_est_ZUL"/>
+	</record>
+
+	<record id="geo_mun_ZUL_VRO" model="jpv_ent.municipios">
+		<field name="codigo">2321</field>
+		<field name="municipio">Valmore Rodríguez</field>
+		<field name="estado_id" ref="geo_est_ZUL"/>
+	</record>
+
+	<record id="geo_mun_TIM_ALR" model="jpv_ent.municipios">
+		<field name="codigo">2501</field>
+		<field name="municipio">Archipiélago de los Roques</field>
+		<field name="estado_id" ref="geo_est_TIM"/>
+	</record>
+
+	</data>
+</openerp>

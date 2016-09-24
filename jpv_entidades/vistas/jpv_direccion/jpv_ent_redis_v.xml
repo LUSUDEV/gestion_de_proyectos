@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <openerp>
+     <data>
+    <!--REGISTRO DE REDIS-->
+    <record model="ir.ui.view" id="view_jpv_ent_redis_form">
+        <field name="name">jpv_ent.redis.form</field>
+        <field name="model">jpv_ent.redis</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Direccion de Redis">
+                <sheet>
+                <group>
+                <field name="name"/>
+                <field name="codigo"/>
+                <field name="active"/>
+                </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record model="ir.ui.view" id="view_jpv_ent_redis_tree">
+        <field name="name">jpv_ent.redis.tree</field>
+        <field name="model">jpv_ent.redis</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Dirección de Redis">
+                <field name="name"/>
+                <field name="codigo"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="action_jpv_ent_redis">
+        <field name="name">REDIS</field>
+        <field name="res_model">jpv_ent.redis</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+
+    
+    <menuitem name="Direccion" id="next_id_82" parent="base.menu_administration"  />
+    <menuitem name="REDIS" id="menu_res_redis" parent="jpv_entidades.next_id_82" action="action_jpv_ent_redis" sequence="3"/>
+
+    </data>
+</openerp>

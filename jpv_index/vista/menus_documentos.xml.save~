@@ -1,0 +1,30 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data >
+        <record id="descargar_documentos_jpv" model="website.menu">
+            <field name="name">Descargar Documentos</field>
+            <field name="url">''</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">45</field>
+        </record>
+        <record id="menu_manual_jpv" model="website.menu">
+            <field name="name">Manual del Sistema</field>
+            <field name="url">/jpv/manual</field>
+            <field name="parent_id" ref="descargar_documentos_jpv"/>
+            <field name="sequence" type="int">45</field>
+        </record>
+        <record id="menu_manual_comunicaciones_jpv" model="website.menu">
+            <field name="name">Manual de Comunicaciones Oficiales</field>
+            <field name="url">/apiform/enlace_descarga_user?modulo=jpv_index&amp;carpeta=documentos&amp;nombre_file=Instructivo_Comunicaciones.pdf</field>
+            <field name="parent_id" ref="descargar_documentos_jpv"/>
+            <field name="sequence" type="int">45</field>
+        </record>
+        <record id="menu_clasificaciones_jpv" model="website.menu">
+            <field name="name">Clasificacion de Proyectos</field>
+            <field name="url">/jpv/doc/clasificacion</field>
+            <field name="parent_id" ref="descargar_documentos_jpv"/>
+            <field name="sequence" type="int">55</field>
+        </record>
+    </data>
+</openerp>

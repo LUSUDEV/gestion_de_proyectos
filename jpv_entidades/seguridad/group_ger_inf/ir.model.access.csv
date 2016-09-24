@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_jpv_ent_redis_ggi,jpv_ent.redis,model_jpv_ent_redis,jpv_usuarios.group_ger_inf,1,1,1,0
+access_jpv_ent_estados_ggi,jpv_ent.estados,model_jpv_ent_estados,jpv_usuarios.group_ger_inf,1,1,1,0
+access_jpv_ent_municipios_ggi,jpv_ent.municipios,model_jpv_ent_municipios,jpv_usuarios.group_ger_inf,1,1,1,0
+access_jpv_ent_parroquias_ggi,jpv_ent.parroquias,model_jpv_ent_parroquias,jpv_usuarios.group_ger_inf,1,1,1,0
+access_jpv_ent_entidades_ggi,jpv_ent.entidades,model_jpv_ent_entidades,jpv_usuarios.group_ger_inf,1,1,1,0
+access_jpv_ent_tipo_entidades_ggi,jpv_ent.tipo_entidades,model_jpv_ent_tipo_entidades,jpv_usuarios.group_ger_inf,1,1,1,0
+access_jpv_ent_partner_ggi,base.res.partner,base.model_res_partner,jpv_usuarios.group_ger_inf,1,1,1,0
+access_jpv_ent_husos_ggi,jpv_ent.husos,model_jpv_ent_husos,jpv_usuarios.group_ger_inf,1,1,1,0

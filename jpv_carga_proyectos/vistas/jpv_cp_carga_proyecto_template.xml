@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+    <openerp>
+        <data>
+            <template id="website_apiform_2" inherit_id="website.assets_frontend" name="website_apiform" >
+                <xpath expr="/t" position="inside">
+                    <link rel="stylesheet" href="/web/static/lib/jquery.ui.bootstrap/css/custom-theme/jquery-ui-1.9.0.custom.css"/>
+                    <t t-call="web.jqueryui_conflict">
+                        <script type="text/javascript" src="/web/static/lib/jquery.ui/js/jquery-ui-1.9.1.custom.js"></script>
+                    </t>
+                    <link rel="stylesheet" href="/web/static/lib/jquery.ui.timepicker/css/jquery-ui-timepicker-addon.css"/>
+                    <link rel="stylesheet" href="/jpv_carga_proyectos/static/src/css/jpv_cp_carga_proyecto.css"/>
+                    <script type="text/javascript" src="/web/static/lib/jquery.ui.timepicker/js/jquery-ui-timepicker-addon.js"></script>
+                    <script type="text/javascript" src="/jpv_carga_proyectos/static/src/js/jpv_carga_proyecto.js"/>
+                    <script type="text/javascript" src="/jpv_carga_proyectos/static/src/js/jpv_carga_proyecto_ayudas.js"/>
+                    <script type="text/javascript" src="/jpv_carga_proyectos/static/src/js/jpv_vaidar_fecha.js"/>
+                    <script type="text/javascript" src="/jpv_carga_proyectos/static/src/js/jpv_clonar_elemntos_tr.js"/>
+                    <script type="text/javascript" src="/jpv_carga_proyectos/static/src/js/jpv_lista_proyectos.js"/>
+                </xpath>
+            </template>
+
+<!--
+template para  listar los proyectos creados
+-->
+        <template id="jpv_carga_proyectos.proyecto_template" name="Template para listar los proyectos">
+            <a href="/proyecto/crear">
+                <button type="button"  t-attf-class="btn btn-info glyphicon glyphicon-folder-open "> Crear</button>
+            </a>
+            <br/>
+            <br/>
+            
+            
+            <div class="tab-content" id="tabla_proyectos">
+                <div class="" id="entidades">
+                    <t t-if="len(proyectos_ids)>0">
+                        <table class="table table-bordered table-striped mt32">
+                            <thead>
+                                <tr>
+                                    <th>N#</th>
+                                    <th class="col-md-3">Código de Proyecto</th>
+                                    <th class="col-md-5">Nombre del Proyecto</th>
+                                    <th class="col-md-2">Monto de Proyecto</th>
+                                    <th class="col-md-2">Estatus</th>
+                                </tr>
+                            </thead>
+                            <tbody id="proyectos_completos">
+                            </tbody>
+                        </table>
+                        </t>
+                    <br/>
+                    <br/>
+                    <t t-if="len(proyectos_ids)==0">
+                        <div id="proyecto_no" class="alert alert-info">
+                            <p>
+                                Presione el boton de CREAR para cargar un nuevo proyecto.
+                            </p>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </template>
+        
+<!--
+        template para el estado aprobado de los proyectos
+-->
+
+        <template id="jpv_carga_proyectos.bontonEstadoAprobado">
+            <div class="btn-group" >
+                
+                <t t-set="tiempo_validez" t-value="self.tiempo_validez_get(proyecto['id'])"/>
+                <t t-set="cancelar_proyecto" t-value="self.cancelar_proyecto_get(proyecto['id'])"/>
+                <t t-set="reporte_ejecucion" t-value="self.rendicion_proyecto_get(proyecto['id'])"/>
+                <button type="button" t-att-class="'btn btn-xs btn-%s' % (tiempo_validez) "><span class="glyphicon glyphicon-check" />Aprobado</button>
+                    <button type="button" t-att-class="'btn btn-xs btn-%s dropdown-toggle' % (tiempo_validez)" data-toggle="dropdown">
+                        <span class="caret"></span>
+                        <span class="sr-only">Desplegar menú</span>
+                    </button>
+                     <ul class="dropdown-menu" t-if="rendir">
+                        <li>
+                            <a t-att-href="url_for('/avance/%s/' % proyecto['id'])">
+                                <h5><span class="glyphicon glyphicon-arrow-right"/>Avance</h5>
+                            </a>
+                        </li>
+                        <li>
+                            <a t-att-href="url_for('/avance/%s/' % proyecto['id'])">
+                                <h5><span class="glyphicon glyphicon-ok" />Culminación</h5>
+                            </a>
+                        </li>
+                        <t t-if="cancelar_proyecto">
+                        <li><a t-att-href="url_for('/cancelar/%s/' % proyecto['id'])">
+                                <h5><span class="glyphicon glyphicon-remove" />Cancelar</h5>
+                            </a>
+                        </li>
+                        </t>
+                        <t t-if="reporte_ejecucion">
+                        <li><a t-att-href="url_for('/descargar/reporte_ejecucion/%s/' % proyecto['id'])">
+                                <h5><span class="glyphicon glyphicon-download" />Reporte de Ejecución</h5>
+                            </a>
+                        </li>
+                        </t>
+                    </ul>
+            </div>
+        </template>
+        
+        
+        <template id="jpv_carga_proyectos.bontonEstadoCulminado">
+            <div class="btn-group" >
+                <button type="button" t-att-class="'btn btn-xs btn-primary'" ><span class="glyphicon glyphicon-check" />Culminado</button>
+                    <button type="button" t-att-class="'btn btn-xs btn-primary dropdown-toggle'" data-toggle="dropdown">
+                        <span class="caret"></span>
+                        <span class="sr-only">Desplegar menú</span>
+                    </button>
+                     <ul class="dropdown-menu" t-if="rendir">
+                        <li>
+                            <a t-att-href="url_for('/avance/consultar/%s/' % proyecto['id'])">
+                                <h5><span class="glyphicon glyphicon-check"/>Consultar Avances</h5>
+                            </a>
+                        </li>
+                        <li>
+                            <a t-att-href="url_for('/descargar/reporte_ejecucion/%s/' % proyecto['id'])">
+                                <h5><span class="glyphicon glyphicon-download"/>Reporte de Ejecución</h5>
+                            </a>
+                        </li>
+                    </ul>
+            </div>
+        </template>
+        
+        <template id="jpv_carga_proyectos.bontonEstadoOtros">
+            <div class="btn-group">
+                <button type="button" t-attf-class="btn btn-%-#{bcss}" ><span class="glyphicon glyphicon-list-alt" />Borrador</button>
+            </div>
+        </template>
+    </data>
+</openerp>
+
+

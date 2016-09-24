@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="mi_cuenta" model="ir.rule">
+            <field name="name">Mis Cuentas</field>
+            <field name="model_id" ref="model_jpv_cuentas"/>
+            <field name="domain_force">[('id','in',[ p.id for p in user.entidades_ids ])]</field>
+            <field name="perm_read" eval='True'/>
+            <field name="perm_write" eval='False'/>
+            <field name="perm_create" eval='False'/>
+            <field name="perm_unlink" eval='False'/>
+            <field name="groups" eval="[(4,ref('jpv_usuarios.group_ent_pt')),(4,ref('jpv_usuarios.group_ent_pts')),(4,ref('jpv_usuarios.group_ent_ptio'))]"/>
+        </record>
+        
+        
+    </data>
+</openerp>

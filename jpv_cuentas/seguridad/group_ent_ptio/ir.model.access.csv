@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_jpv_cuentas_gptio,jpv.cuentas,model_jpv_cuentas,jpv_usuarios.group_ent_ptio,1,1,0,0
+access_jpv_tipo_cuentas_gptio,jpv.tipo_cuentas,model_jpv_tipo_cuentas,jpv_usuarios.group_ent_ptio,1,0,0,0
+access_jpv_asignacion_cuentas_gptio,jpv.asignacion_cuentas,model_jpv_asignacion_cuentas,jpv_usuarios.group_ent_ptio,1,0,0,0
+access_jpv_movimientos_cuentas_gptio,jpv.movimientos_cuentas,model_jpv_movimientos_cuentas,jpv_usuarios.group_ent_ptio,1,1,1,0
+access_jpv_movimientos_cuentas_eliminadas_gptio,jpv.movimientos_cuentas_eliminadas,model_jpv_movimientos_cuentas_eliminadas,jpv_usuarios.group_ent_ptio,1,1,1,0

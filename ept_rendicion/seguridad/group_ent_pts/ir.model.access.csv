@@ -1,6 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_ept_rnd_rendicion_gepts,ept_rnd.rendicion,model_ept_rnd_rendicion,ept_usuarios.group_ent_pts,0,0,0,0
-access_ept_rnd_avance_gepts,ept_rnd.avance,model_ept_rnd_avance,ept_usuarios.group_ent_pts,0,0,0,0
-access_ept_rnd_input_line_gepts,ept_rnd.input_line,model_ept_rnd_input_line,ept_usuarios.group_ent_pts,0,0,0,0
-access_ept_rnd_cancelacion_proyecto_gepts,ept_rnd.cancelacion_proyecto,model_ept_rnd_cancelacion_proyecto,ept_usuarios.group_ent_pts,0,0,0,0
-access_ept_rnd_tiempo_validez_gepts,ept_rnd.tiempo_validez,model_ept_rnd_tiempo_validez,ept_usuarios.group_ent_pts,0,0,0,0

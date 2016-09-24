@@ -1,0 +1,158 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+    <template id="lib_proyecto" name="proyectos">
+    &lt;!DOCTYPE html&gt;
+    <html style="height: 100%">
+        <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <title>::Proyectos::</title>
+            <link rel="icon" href="/jpv_index/static/src/imagenes/favicon.ico"/>        
+            <script type="text/javascript" src="/jpv_index/static/src/plantilla/assets/js/ie10-viewport-bug-workaround.js"></script>
+            <script type="text/javascript" src="/jpv_index/static/src/plantilla/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+            <script type="text/javascript" src="/jpv_index/static/src/plantilla/bootstrap/js/bootstrap.min.js"></script>        
+            <script type="text/javascript" src="/jpv_index/static/src/plantilla/plugins/chartjs/Chart.min.js"></script>
+            <script type="text/javascript" src="/jpv_index/static/src/plantilla/plugins/fastclick/fastclick.min.js"></script>
+            <script type="text/javascript" src="/jpv_index/static/src/plantilla/assets/js/ie-emulation-modes-warning.js"></script>
+            <script type="text/javascript" src="/jpv_index/static/src/plantilla/dist/js/app.min.js"></script>
+            <script type="text/javascript" src="/jpv_index/static/src/plantilla/dist/js/demo.js"></script>
+            <script type="text/javascript" src="/jpv_index/static/src/js/proyectos.js"></script>       
+                 
+            <!-- CSS de plantilla -->
+            <link href="/jpv_index/static/src/plantilla/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+            <link href="/jpv_index/static/src/css/font-awesome.min.css" rel="stylesheet" />
+            <link href="/jpv_index/static/src/css/ionicons.min.css" rel="stylesheet" />
+            <link href="/jpv_index/static/src/plantilla/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet" type="text/css"/>
+            <link href="/jpv_index/static/src/css/jpv_secundaria.css" type="text/css" rel="stylesheet" />
+            <link href="/jpv_index/static/src/css/jpv_complemeto.css" type="text/css" rel="stylesheet" />
+            <!-- CSS de plantilla -->
+        </head>
+    </html>
+    </template >
+
+    <template id="lib_financiamiento" name="financiamiento">
+    &lt;!DOCTYPE html&gt;
+    <html style="height: 100%">
+        <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <title>::Financiamiento::</title>
+            <link rel="icon" href="/jpv_index/static/src/imagenes/favicon.ico"/>
+            <!--javascript-->
+            <script type="text/javascript" src="/jpv_index/static/src/plantilla/assets/js/ie10-viewport-bug-workaround.js"></script>
+            <script type="text/javascript" src="/jpv_index/static/src/plantilla/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+            <script type="text/javascript" src="/jpv_index/static/src/plantilla/bootstrap/js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="/jpv_index/static/src/plantilla/bootstrap/js/bootstrap.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+            <script type="text/javascript" src="/jpv_index/static/src/plantilla/plugins/morris/morris.min.js"></script>
+            <script type="text/javascript" src="/jpv_index/static/src/plantilla/plugins/fastclick/fastclick.min.js"></script>
+            <script type="text/javascript" src="/jpv_index/static/src/plantilla/dist/js/app.min.js"></script>
+            <script type="text/javascript" src="/jpv_index/static/src/plantilla/dist/js/demo.js"></script>
+            <script type="text/javascript" src="/jpv_index/static/src/js/financiamiento.js"></script>
+            <!--javascript-->
+
+            <!-- CSS de plantilla -->
+            <link href="/jpv_index/static/src/plantilla/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+            <link href="/jpv_index/static/src/css/font-awesome.min.css" rel="stylesheet" />
+            <link href="/jpv_index/static/src/css/ionicons.min.css" rel="stylesheet" />
+            <link href="/jpv_index/static/src/plantilla/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet" type="text/css"/>
+            <link href="/jpv_index/static/src/plantilla/plugins/morris/morris.css" rel="stylesheet" type="text/css"/>
+            <link href="/jpv_index/static/src/plantilla/skins/_all-skins.min.css" rel="stylesheet" type="text/css"/>
+            <link href="/jpv_index/static/src/css/jpv_secundaria.css" type="text/css" rel="stylesheet" />
+            <link href="/jpv_index/static/src/css/jpv_complemeto.css" type="text/css" rel="stylesheet" />
+            <!-- CSS de plantilla -->
+        </head>
+    </html>         
+    </template>
+
+    <template id="lib_estadistica" name="estadisticas">
+    &lt;!DOCTYPE html&gt;
+    <html style="height: 100%">
+        <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <title>:::Estadisticas:::</title>
+            <link rel="icon" href="/jpv_index/static/src/imagenes/favicon.ico"/>
+            <!--javascript-->
+            <script type="text/javascript" src="/jpv_index/static/src/plantilla/assets/js/ie10-viewport-bug-workaround.js"></script>
+            <script type="text/javascript" src="/jpv_index/static/src/plantilla/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+            <script type="text/javascript" src="/jpv_index/static/src/plantilla/bootstrap/js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="/jpv_index/static/src/plantilla/plugins/fastclick/fastclick.min.js"></script>
+            <script type="text/javascript" src="/jpv_index/static/src/plantilla/dist/js/app.min.js"></script>
+            <script type="text/javascript" src="/jpv_index/static/src/plantilla/dist/js/demo.js"></script>
+            <script type="text/javascript" src="/jpv_index/static/src/plantilla/plugins/flot/jquery.flot.min.js"></script>
+            <script type="text/javascript" src="/jpv_index/static/src/plantilla/plugins/flot/jquery.flot.resize.min.js"></script>
+            <script type="text/javascript" src="/jpv_index/static/src/plantilla/plugins/flot/jquery.flot.pie.min.js"></script>
+            <script type="text/javascript" src="/jpv_index/static/src/plantilla/plugins/flot/jquery.flot.categories.min.js"></script>
+            <script type="text/javascript" src="/jpv_index/static/src/js/estadistica.js"></script>
+            <!--javascript-->
+            <!-- CSS de plantilla -->
+            <link href="/jpv_index/static/src/plantilla/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+            <link href="/jpv_index/static/src/css/font-awesome.min.css" rel="stylesheet" />
+            <link href="/jpv_index/static/src/css/ionicons.min.css" rel="stylesheet" />
+            <link href="/jpv_index/static/src/plantilla/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet" type="text/css"/>
+            <link href="/jpv_index/static/src/plantilla/skins/_all-skins.min.css" rel="stylesheet" type="text/css"/>
+            <link href="/jpv_index/static/src/css/jpv_secundaria.css" type="text/css" rel="stylesheet" />
+            <link href="/jpv_index/static/src/css/jpv_complemeto.css" type="text/css" rel="stylesheet" />
+            <!-- CSS de plantilla -->
+        </head>
+    </html>
+    </template>
+
+    <template id="lib_home" name="home">
+        &lt;!DOCTYPE html&gt;
+        <html style="height: 100%">
+            <head>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+            <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+            <title>::jpv | Panel Control::</title>
+                <link rel="icon" href="/jpv_index/static/src/imagenes/favicon.ico"/>
+            <!--javascript-->
+            <script type="text/javascript" src="/jpv_index/static/src/plantilla/jquery/dist/jquery.min.js"></script>
+                 <!--<script type="text/javascript" src="/jpv_index/static/src/js/datos2.js"></script>-->
+<!--
+                <script type="text/javascript" src="/jpv_index/static/src/js/Chart.js"></script>
+-->
+				<script type="text/javascript" src="/jpv_index/static/src/js/grafic_1.js"></script> 
+                <script type="text/javascript" src="/jpv_index/static/src/js/grafic_2.js"></script>              
+                <script type="text/javascript" src="/jpv_index/static/src/js/grafic_3.js"></script>               
+                
+                <script type="text/javascript" src="/jpv_index/static/src/plantilla/morrisjs/morris.min.js"></script>
+                <script type="text/javascript" src="/jpv_index/static/src/plantilla/raphael/raphael-min.js"></script>
+                <script type="text/javascript" src="/jpv_index/static/src/plantilla/plugins/fastclick/fastclick.min.js"></script>
+                <script type="text/javascript" src="/jpv_index/static/src/js/jquery.min.js"></script>
+                <script type="text/javascript" src="/jpv_index/static/src/js/highcharts.js"></script>                
+                <script type="text/javascript" src="/jpv_index/static/src/js/exporting.js"></script>
+
+
+<!--
+                <script type="text/javascript" src="/jpv_index/static/src/js/jquery.js"></script>
+-->
+<!--
+                <script type="text/javascript" src="/jpv_index/static/src/plantilla/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+-->
+                
+            <!--javascript-->
+            
+            <!--CSS Principal-->
+                <link href="/jpv_index/static/src/plantilla/dist/css/style7.css" rel="stylesheet" type="text/css"/>
+                <link href="/jpv_index/static/src/plantilla/dist/css/common.css" rel="stylesheet" type="text/css"/>
+                <link href="/jpv_index/static/src/plantilla/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+                
+                <link href="/jpv_index/static/src/plantilla/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css"/>
+                <link href="/jpv_index/static/src/plantilla/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css"/>
+                <link href="/jpv_index/static/src/plantilla/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+            <!--CSS Principal-->
+
+            </head>
+        </html>
+    </template>
+    
+    
+
+
+    </data>
+</openerp>

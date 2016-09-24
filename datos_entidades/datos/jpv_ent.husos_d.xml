@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="1">    
+    <record id="huso_horario_18" model="jpv_ent.husos">
+		<field name="huso">18</field>
+	</record>
+    <record id="huso_horario_19" model="jpv_ent.husos">
+		<field name="huso">19</field>
+	</record>
+    <record id="huso_horario_20" model="jpv_ent.husos">
+		<field name="huso">20</field>
+	</record>
+    
+   	</data>
+</openerp>

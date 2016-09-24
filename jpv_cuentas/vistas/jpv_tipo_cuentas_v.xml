@@ -1,0 +1,76 @@
+<?xml version="1.0"  encoding="utf-8"?>
+<openerp>
+<data>
+    
+
+    <record model="ir.ui.view" id="view_jpv_tipo_cuentas_form">
+        <field name="name">jpv.tipo_cuentas.form</field>
+        <field name="model">jpv.tipo_cuentas</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Tipo de Cuentas" >
+                <header>
+                    <button name="asignar_cuenta" 
+                            string="Asignar Cuentas" 
+                            type="object" 
+                            class="oe_highlight"
+                            attrs="{'invisible': [('id', '>=', '1')]}"
+                            />
+                </header>
+                <sheet>
+                    <separator string="Registro Tipo de Cuentas" colspan="4"/>
+                    <group>
+                        <field name="id" invisible="1"/>
+                        <field  name="name"
+                                style="width: 40%%"
+                                />
+                        <field  name="descripcion" 
+                                />
+                        <field  name="active"
+                                groups="base.group_system,jpv_usuarios.group_jun_dir"
+                                />
+                        <separator string="Seleccione para quien van a ser creadas las Cuentas" colspan="4"/>
+                                />
+                        <field  name="jpv_tipo_field_ids" 
+                                widget="many2many_checkboxes"
+                                />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record model="ir.ui.view" id="view_jpv_tipo_cuentas_tree">
+        <field name="name">jpv.tipo_cuentas.tree</field>
+        <field name="model">jpv.tipo_cuentas</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Tipo de Cuentas">
+                <field name="name"/>
+                <field name="jpv_tipo_field_ids"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="action_jpv_tipo_cuentas">
+        <field name="name">Registro de Tipo de Cuenta</field>
+        <field name="res_model">jpv.tipo_cuentas</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+            Aqui se registran los Tipos de Cuentas
+            </p>
+        </field>
+    </record>
+    
+            <menuitem name="Registro Tipos de Cuentas" 
+                id="regsitro_jpv_tipos_cuentas" 
+                action="action_jpv_tipo_cuentas" 
+                parent="menu_jpv_cuentas" 
+                sequence="1"
+                />
+
+        
+</data>
+</openerp>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<openerp>
+<data noupdate="1">
+    
+	<record model="ir.sequence.type" id="seq_type_jpv_cuentas">
+		<field name="name">Nombre de las Cuentas</field>
+		<field name="code">jpv.cuentas</field>
+	</record>
+	<record model="ir.sequence" id="seq_jpv_cuentas">
+		<field name="name">Secuencia Nombre de la Cuenta</field>
+		<field name="code">jpv.cuentas</field>
+		<field name="prefix">C-</field>
+		<field name="padding">10</field>
+	</record>
+</data>
+</openerp>

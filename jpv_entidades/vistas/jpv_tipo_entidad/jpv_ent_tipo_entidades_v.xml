@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<openerp>
+<data>
+    
+
+    <record model="ir.ui.view" id="view_jpv_ent_tipo_entidades_form">
+        <field name="name">jpv_ent.tipo_entidades.form</field>
+        <field name="model">jpv_ent.tipo_entidades</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Tipos de Entidad">
+                <sheet>
+                    <group>
+                        <separator string="Registro del Tipo de Entidades" colspan="4"/>
+                        <field name="name" style="width:50%"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+        
+    <record model="ir.ui.view" id="view_jpv_ent_tipo_entidades_tree">
+        <field name="name">jpv_ent.tipo_entidades.tree</field>
+        <field name="model">jpv_ent.tipo_entidades</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Tipos de Entidad">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="action_jpv_ent_tipo_entidades">
+        <field name="name">Registro de Tipos Entidad</field>
+        <field name="res_model">jpv_ent.tipo_entidades</field>
+        <field name="view_type">form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+            Aqui se registran los Tipos de Entidad
+            </p>
+        </field>
+    </record>
+
+            <menuitem name="Registro de Tipos de Entidad" 
+                id="regsitro_jpv_ent_tipo_entidades" 
+                action="action_jpv_ent_tipo_entidades" 
+                parent="menu_jpv_ent_entidades" 
+                sequence="10"
+                />
+
+        
+</data>
+</openerp>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<template id="jpv_index.estadistica" name="estadistica"> 
+    		<t t-call="jpv_index.lib_estadistica" />
+    		    <div class="container">
+              <!-- The justified navigation menu is meant for single line per list item.
+              Multiple lines will require custom code not provided by Bootstrap. -->
+                <div class="masthead">
+                  <img src="/jpv_index/static/src/imagenes/logo1.png"/>
+                  <nav>
+                    <ul class="nav nav-justified">
+                    <li><a href="/">Inicio</a></li>
+                    <li><a href="/paginas/proyecto">Proyectos</a></li>
+                    <li ><a href="/paginas/financiamiento">Financiamiento</a></li>
+                    <li class="active"><a href="/paginas/estadistica">Estadisticas</a></li>
+                    </ul>
+                  </nav>
+                </div>
+                  <div class="jumbotron">
+                    <h1>Estadistica Proyectos 2014-2015</h1>
+                    <p class="lead">Estadisticas de la gestión 2014-2015.</p>
+                  </div>
+                  <div class="row">
+                           <section class="content">
+                      <div class="row">
+                        <div class="col-xs-12">
+                          <!-- interactive chart -->
+                          <div class="box box-primary">
+                            <div class="box-header with-border">
+                              <i class="fa fa-bar-chart-o"></i>
+                              <h3 class="box-title">Proyectos en Ejecución a Nivel Nacional</h3>
+                              <div class="box-tools pull-right">
+                                <div class="btn-group" id="realtime" data-toggle="btn-toggle">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="box-body">
+                              <div id="interactive" style="height: 300px;"></div>
+                            </div><!-- /.box-body-->
+                          </div><!-- /.box -->
+
+                        </div><!-- /.col -->
+                      </div><!-- /.row -->
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <!-- Line chart -->
+                          <div class="box box-primary">
+                            <div class="box-header with-border">
+                              <i class="fa fa-bar-chart-o"></i>
+                              <h3 class="box-title">Estadistica jpv OBPP</h3>
+                              <div class="box-tools pull-right">
+                              </div>
+                            </div>
+                            <div class="box-body">
+                              <div id="line-chart" style="height: 300px;"></div>
+                            </div><!-- /.box-body-->
+                          </div><!-- /.box -->
+
+                          <!-- Area chart -->
+                          <div class="box box-primary">
+                            <div class="box-header with-border">
+                              <i class="fa fa-bar-chart-o"></i>
+                              <h3 class="box-title">Estadistica jpv OBPP</h3>
+                              <div class="box-tools pull-right">
+                              </div>
+                            </div>
+                            <div class="box-body">
+                              <div id="area-chart" style="height: 338px;" class="full-width-chart"></div>
+                            </div><!-- /.box-body-->
+                          </div><!-- /.box -->
+
+                        </div><!-- /.col -->
+
+                        <div class="col-md-6">
+                          <!-- Bar chart -->
+                          <div class="box box-primary">
+                            <div class="box-header with-border">
+                              <i class="fa fa-bar-chart-o"></i>
+                              <h3 class="box-title">Estadistica Proyectos</h3>
+                              <div class="box-tools pull-right">
+                              </div>
+                            </div>
+                            <div class="box-body">
+                              <div id="bar-chart" style="height: 300px;"></div>
+                            </div><!-- /.box-body-->
+                          </div><!-- /.box -->
+
+                          <!-- Donut chart -->
+                          <div class="box box-primary">
+                            <div class="box-header with-border">
+                              <i class="fa fa-bar-chart-o"></i>
+                              <h3 class="box-title">Estadistica Proyectos</h3>
+                              <div class="box-tools pull-right">
+                              </div>
+                            </div>
+                            <div class="box-body">
+                              <div id="donut-chart" style="height: 300px;"></div>
+                            </div><!-- /.box-body-->
+                          </div><!-- /.box -->
+                        </div><!-- /.col -->
+                      </div><!-- /.row -->
+                    </section><!-- /.content -->
+                  </div>
+                  <hr></hr>
+
+    
+
+    </div> <!-- /container -->
+    	
+
+    	</template>
+    </data>
+</openerp>

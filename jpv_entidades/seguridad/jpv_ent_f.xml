@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="mi_entidad" model="ir.rule">
+            <field name="name">Mis Entidades</field>
+            <field name="model_id" ref="model_jpv_ent_entidades"/>
+            <field name="domain_force">[('id','in',[ p.id for p in user.entidades_ids ])]</field>
+            <field name="perm_read" eval='True'/>
+            <field name="perm_write" eval='False'/>
+            <field name="perm_create" eval='False'/>
+            <field name="perm_unlink" eval='False'/>
+            <field name="groups" eval="[(4,ref('jpv_usuarios.group_ent_pt')),(4,ref('jpv_usuarios.group_ent_pts')),(4,ref('jpv_usuarios.group_ent_ptio'))]"/>
+        </record>
+        
+        <record id="mi_entidad_usuarios" model="ir.rule">
+            <field name="name">Usuarios de las entidades que pueden ver las Entidades Asociadas</field>
+            <field name="model_id" ref="model_jpv_ent_entidades"/>
+            <field name="domain_force">[('id','in',[ e.id for ent in user.entidades_ids for e in ent.entidades_ids])]</field>
+            <field name="perm_read" eval='True'/>
+            <field name="perm_write" eval='True'/>
+            <field name="perm_create" eval='True'/>
+            <field name="perm_unlink" eval='True'/>
+            <field name="groups" eval="[(4,ref('jpv_usuarios.group_ent_pt')),(4,ref('jpv_usuarios.group_ent_pts'))]"/>
+        </record>
+        
+        
+    </data>
+</openerp>

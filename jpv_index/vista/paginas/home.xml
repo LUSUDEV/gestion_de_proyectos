@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<template id="jpv_index.home" name="home">
+            <t t-call="website.layout">
+                <script type="text/javascript" src="/jpv_index/static/src/js/version_navegador.js"></script>
+                <div id="wrap">
+               	<div class="row" groups="jpv_usuarios.group_ent_pt,jpv_usuarios.group_ent_pts,jpv_usuarios.group_ent_ptio">
+                    <div class="col-lg-12">
+    	                <div class="col-md-4">
+                            <div class="panel panel-info"  align="center">
+                                <div class="panel-heading">
+                                    <i class="fa fa-bar-chart-o fa-fw"></i> Grafica Principal Proyectos
+                                </div>
+                                <div style="width: 100%">
+                                    <div id="container1" style="min-width: 400px; height: 437px; margin: 0 auto"></div>
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>
+                            <!-- /.panel -->
+                        </div>
+    	                <!-- /.col-lg-8 -->
+    	                <div class="col-md-4"><!-- /.panel -->
+                            <div class="panel panel-info" groups="jpv_usuarios.group_ent_pt,jpv_usuarios.group_ent_pts,jpv_usuarios.group_ent_ptio">
+                                <div class="panel-heading" align="center">
+                                    <i class="fa fa-bar-chart-o fa-fw"></i> Estatus de Renciones
+                                </div>
+                                <div class="col-md-12" id="container2">
+                                <div class="panel-body">
+                                    <!--cargar segunda grafica-->
+                                    <h2 class="panel-title" align="center" ><strong>Estatus de Proyectos</strong></h2>
+                                    <div id="morris-donut-chart" style="height: 300px" ></div>
+
+                                      <ul class="chart-legend clearfix">
+                                        <li><i class="fa fa-circle-o text-green"></i> Proyectos en Ejecución</li>
+                                        <li><i class="fa fa-circle-o text-aqua"></i> Proyectos Culminado</li>
+                                        <li><i class="fa fa-circle-o text-yellow"></i> Proyectos Paralizados</li>
+                                        <li><i class="fa fa-circle-o text-red"></i> Proyectos Sin Iniciar</li>
+                                      </ul>
+                                </div>
+                                </div>
+                                <div class="box-body chart-responsive">
+                                <div class="chart" id="donut-chart" height="370" ></div>
+                                </div>
+                                <!-- /.col -->
+                                <!-- /.panel-body -->
+                            </div>
+                            <!-- /.panel -->
+
+    	                    <!-- /.panel .chat-panel -->
+    	                </div>
+                    <!-- /.col-lg-4 -->
+                    <div class="col-md-4">
+                            <div class="panel panel-info" groups="jpv_usuarios.group_ent_pt,jpv_usuarios.group_ent_pts,jpv_usuarios.group_ent_ptio">
+                                <div class="panel-heading"  align="center">
+                                    <i class="fa fa-bar-chart-o fa-fw" ></i> Porcentaje de Montos Proyectos
+                                </div>
+                                <div style="width: 100%">
+                                    <div id="container3" style="min-width: 400px; height: 437px; margin: 0 auto"></div>
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>
+                            <!-- /.panel -->
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+            </t>
+            <t t-call="website_apiform.modal_sinBoton"/>
+    	</template>
+
+<template id="jpv_index.hidden_navbar" inherit_id="website.user_navbar" name="ocultar el navbar principal">
+    <xpath expr="//nav['id=oe_main_menu_navbar']" position="replace">
+
+</xpath>
+</template>
+
+<template id="jpv_index.layout_cfg" inherit_id="website.layout" name="Layaut de CFG">
+    <xpath expr="//div['id=wrapwrap']" position="replace">
+        <div id="wrawrap"></div>
+
+
+<header class="main-header">
+<t t-call="jpv_index.lib_home"/>
+
+
+<div class="navbar navbar-default navbar-static-top">
+                        <div class="container">
+                            <div class="navbar-header"><div id="version_navegador"></div><div id="mesaje_version"></div>
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-top-collapse">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <a class="navbar-brand" href="/" t-field="res_company.name" style="display:none"/>
+                            </div>
+                            <div class="collapse navbar-collapse navbar-top-collapse">
+                                <ul class="nav navbar-nav navbar-right" id="top_menu">
+
+                                    <li class="divider" t-ignore="true" t-if="website.user_id != user_id"/>
+                                    <li class="dropdown" t-ignore="true" t-if="website.user_id != user_id">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <b>
+                                                 <img class="oe_topbar_avatar" height="25px" t-attf-src="#{'data:image/png;base64,%s' % user_id.image_small if user_id.image_small else '/web/static/src/img/user_menu_avatar.png'}"/>
+                                                <span t-esc="user_id.name"/>
+                                                <span class="caret"></span>
+                                            </b>
+                                        </a>
+                                        <ul class="dropdown-menu js_usermenu" role="menu">
+                                            <li><a href="/web" role="menuitem">Mi Cuenta</a></li>
+                                            <li class="divider"/>
+                                            <li><a t-attf-href="/web/session/logout?redirect=/" role="menuitem">Cerrar Sesión</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+</header>
+
+                <div class="hold-transition skin-blue sidebar-mini">
+    		<aside class="main-sidebar">
+		        <!-- sidebar: style can be found in sidebar.less -->
+		        <section class="sidebar">
+		          <!-- Sidebar user panel -->
+		          <div class="user-panel">
+		            <div class="pull-left image">
+                    <a href="/" >
+                        <img src="/logo.png" t-att-alt="'Logo of %s' % res_company.name" t-att-title="res_company.name"/>
+                    </a>
+		            </div>
+		          </div>
+		          <!-- sidebar menu: : style can be found in sidebar.less -->
+		          <ul class="sidebar-menu"><br>
+                    <t t-foreach="website.menu_id.child_id" t-as="submenu">
+                        <t t-call="website.submenu"/>
+                    </t>
+
+		            </br></ul>
+		        </section>
+		        <!-- /.sidebar -->
+		      </aside>
+		    <div class="content-wrapper">
+		        <!-- Content Header (Page header) -->
+		        <section class="content-header">
+		          <h3 align="center">Bienvenidos al Sistema de Gestión de Proyectos de las Entidades Político Territoriales.</h3>
+		        </section>
+
+		        <!-- Main content -->
+		    <section class="content">
+		          <!-- Info boxes -->
+
+			 	<div class="row">
+
+			 		   <section class="main">
+                        <ul class="ch-grid">
+                            <li groups="jpv_usuarios.group_jun_dir,base.group_system,jpv_usuarios.group_jun_dir_sec,jpv_usuarios.group_ger_fcto,jpv_usuarios.group_ger_inf,jpv_usuarios.group_ger_tpg,jpv_usuarios.group_ger_csg,jpv_usuarios.group_ger_ppeg,jpv_usuarios.group_ggu_ures,jpv_usuarios.group_coor_ures">
+                                <div class="ch-item">
+                                    <div class="ch-info">
+                                        <div class="ch-info-front ch-img-1"><img src="/jpv_index/static/src/imagenes/charts_folder_badged.png" width="140" height="140">
+                                            <b>Estadísticas</b>
+                                        </img></div>
+                                        <div class="ch-info-back">
+                                            <h2>Estadísticas</h2>
+                                            <p><a href="/jpvEstadisticas">Tablero Estadístico</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li groups="jpv_usuarios.group_jun_dir,base.group_system,jpv_usuarios.group_jun_dir_sec,jpv_usuarios.group_ger_fcto,jpv_usuarios.group_sec_fcto,jpv_usuarios.group_ger_inf,jpv_usuarios.group_ger_tpg,jpv_usuarios.group_ger_tpc,jpv_usuarios.group_ger_tpa,jpv_usuarios.group_ger_csg,jpv_usuarios.group_ger_csc,jpv_usuarios.group_ger_csa,jpv_usuarios.group_ger_ppeg,jpv_usuarios.group_ger_ppec,jpv_usuarios.group_ger_ppea,jpv_usuarios.group_coor_ures,jpv_usuarios.group_ggu_ures,jpv_usuarios.group_ger_varias">
+                                <div class="ch-item">
+                                    <div class="ch-info">
+                                        <div class="ch-info-front ch-img-2">
+                                            <img src="/jpv_index/static/src/imagenes/documents_black.png" width="140" height="140">
+                                            <b>Plan de Inversión</b>
+                                            </img>
+                                            </div>
+                                        <div class="ch-info-back">
+                                            <a href="/plan_inversion_redirec"><h3> Plan de Inversión</h3></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li groups="jpv_usuarios.group_ent_pt,jpv_usuarios.group_ent_pts,jpv_usuarios.group_ent_ptio,base.group_system">
+                                <div class="ch-item">
+                                    <div class="ch-info">
+                                        <div class="ch-info-front ch-img-2"><img src="/jpv_index/static/src/imagenes/ico-menu/c2.png" width="170" height="170"/></div>
+                                        <div class="ch-info-back">
+                                            <h3>Proyecto</h3>
+                                            <p><a href="/proyecto">Carga de Proyectos</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+<!--
+                            jpv_usuarios.group_ent_pt,jpv_usuarios.group_ent_pts,jpv_usuarios.group_ent_ptio,
+-->
+                            <li groups="jpv_usuarios.group_ent_pt,jpv_usuarios.group_ent_pts,jpv_usuarios.group_ent_ptio,base.group_system">
+                                <div class="ch-item">
+                                    <div class="ch-info">
+                                        <div class="ch-info-front ch-img-2"><img src="/jpv_index/static/src/imagenes/logo_sinco.png" width="170" height="170"/></div>
+                                        <div class="ch-info-back">
+                                            <h3>SINCO</h3>
+                                            <p><a href="/jpvObpp">Proyectos OBPP</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li groups="jpv_usuarios.group_ent_pt,jpv_usuarios.group_ent_pts,jpv_usuarios.group_ent_ptio,base.group_system">
+                                <div class="ch-item">
+                                    <div class="ch-info">
+                                        <div class="ch-info-front ch-img-3"><img src="/jpv_index/static/src/imagenes/ico-menu/c3.png" width="170" height="170"/></div>
+                                        <div class="ch-info-back">
+                                            <h3>Rendición</h3>
+                                            <p><a href="/rendicion">Rendición de Cuentas</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li groups="jpv_usuarios.group_ent_pt,jpv_usuarios.group_ent_pts,jpv_usuarios.group_ent_ptio,base.group_system">
+                                <div class="ch-item">
+                                    <div class="ch-info">
+                                        <div class="ch-info-front ch-img-4"><img src="/jpv_index/static/src/imagenes/ico-menu/c4.png" width="170" height="170"/></div>
+                                        <div class="ch-info-back">
+                                            <h3>Cuentas</h3>
+                                            <p><a href="/jpv_cuentas"> Estado Cuentas</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li groups="jpv_usuarios.group_ent_pt,jpv_usuarios.group_ent_pts,jpv_usuarios.group_ent_ptio,base.group_system">
+                                <div class="ch-item">
+                                    <div class="ch-info">
+                                        <div class="ch-info-front ch-img-5"><img src="/jpv_index/static/src/imagenes/ico-menu/c5.png" width="170" height="170"/></div>
+                                        <div class="ch-info-back">
+                                            <h3>INFO</h3>
+                                            <p><a href="/jpvcomunicaciones">Comunicaciones Oficiales</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li groups="base.group_system,cem_usuarios.group_cementera_central_gerente,cem_usuarios.group_cementera_central_coordinador">
+                                <div class="ch-item">
+                                    <div class="ch-info">
+                                        <div class="ch-info-front ch-img-2"><img src="/jpv_index/static/src/imagenes/corporacion_cemento.png" width="170" height="170"/></div>
+                                        <div class="ch-info-back">
+                                            <h3>CSC</h3>
+                                            <p><a href="/corporacionCemento/proyectos">Corporación de cemento</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    <!-- /.col-lg-12 -->
+
+		          <!-- Main row -->
+	               <div class="col-xs-12 col-sm-12 col-md-12">
+	                    <t t-raw="0"/>
+	               </div>
+
+			    </div>
+
+		    </section><!-- /.content -->
+		      </div><!-- /.content-wrapper -->
+		</div>
+
+
+</xpath>
+</template>
+
+<!--
+ocultando el logo que por defecto trae odoo
+-->
+<template id="jpv_index.layout_logo_show" inherit_id="website.layout_logo_show" name="ocultando el logo">
+<xpath expr="//a[@class='navbar-brand logo']" position="replace">
+      <a href="/" class="navbar-brand logo" style="display:none">
+            <img src="/logo.png" t-att-alt="'Logo of %s' % res_company.name" t-att-title="res_company.name"/>
+        </a>
+ </xpath>
+</template>
+
+    </data>
+</openerp>

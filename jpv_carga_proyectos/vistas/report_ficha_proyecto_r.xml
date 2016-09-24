@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+
+
+
+<template id="jpv_carga_proyectos.ficha_proyecto_qweb"> 
+			<t t-call="jpv_carga_proyectos.external_layout_header2"/>
+                <div class="page">
+						<t t-foreach="data['proyecto_data']" t-as="proyecto">
+                            <table colspan="6" class="table table-bordered" style="border: 2px solid black" >
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="6" style="background-color: F90303;text-align: center"><p style="color: white">FICHA DEL PROYECTO <t t-esc="proyecto.correlativo"/></p></td>
+                                        </tr>
+										<tr>
+											<td 
+												style="background-color: red;text-align: center"
+												colspan="6"><strong><p style="color: white">NOMBRE DEL PROYECTO</p></strong></td>
+										</tr>
+										<tr>
+											<td 
+											style="border: 2px solid black;color: black"
+											colspan="6"><p><t t-esc="proyecto.nombre_proyecto"></t></p></td>
+										</tr>
+										<tr>
+											<td colspan="6" style="background-color: F90303;text-align: center"><strong><p style="color: white">DESCRIPCIÓN DEL PROYECTO</p></strong></td>
+										</tr>
+										<tr>
+											<td colspan="6" style="border: 2px solid black;color: black"><p><t t-esc="data['descripcion_proyecto']"></t></p></td>
+										</tr>
+										<tr>
+											<td colspan="6" style="background-color: F90303"><strong><p style="color: white">PERÍODO FISCAL: <t t-esc="data['periodo_fiscal']"></t></p></strong></td>
+										</tr>
+										<tr>
+											<td colspan="2" style="border: 2px solid black;color: black"><p><strong>Sector a invertir</strong></p></td>
+											<td colspan="2" style="border: 2px solid black;color: black"><p><strong>Categoría</strong></p></td>
+											<td colspan="2" style="border: 2px solid black;color: black"><p><strong>Subcategoría</strong></p></td>
+										</tr>
+										<tr>
+											<td colspan="2" style="border: 2px solid black;color: black"><p><t t-esc="proyecto.tipo_sector_id.name"></t></p></td>
+											<td colspan="2" style="border: 2px solid black;color: black"><p><t t-esc="proyecto.categoria_id.name"></t></p></td>
+											<td colspan="2" style="border: 2px solid black;color: black"><p><t t-esc="proyecto.subcategoria_id.name"></t></p></td>
+										</tr>
+										<t t-if="proyecto.proyect_mantenimiento==True">
+											<tr>
+												<td colspan="3" style="border: 2px solid black;color: black"><p><strong>Proyecto de Mantenimiento</strong></p></td>
+												<td colspan="3" style="border: 2px solid black;color: black"><p>Si</p></td>
+											</tr>
+										</t>
+										<t t-if="proyecto.obra_civil==True">
+											<tr>
+												<td colspan="3" style="border: 2px solid black;color: black"><p><strong>Obra Civil</strong></p></td>
+												<td colspan="3" style="border: 2px solid black;color: black"><p>Si</p></td>
+											</tr>
+											<tr>
+												<td colspan="3" style="border: 2px solid black;color: black"><p><strong>Tipo de Obra</strong></p></td>
+												<td colspan="3" style="border: 2px solid black;color: black"><p><strong>Meta Asociada</strong></p></td>
+											</tr>
+											<tr>
+												<t t-if="proyecto.tipo_obra=='construccion'">
+													<td colspan="3" style="border: 2px solid black;color: black"><p>Construcción Inicial</p></td>
+												</t>
+												<t t-if="proyecto.tipo_obra=='ampliacion'">
+													<td colspan="3" style="border: 2px solid black;color: black"><p>Ampliación</p></td>
+												</t>
+												<t t-if="proyecto.tipo_obra=='rehabilitacion'">
+													<td colspan="3" style="border: 2px solid black;color: black"><p>Rehabilitación o Mejora</p></td>
+												</t>
+												<td colspan="3" style="border: 2px solid black;color: black"><p><t t-esc="proyecto.cantidad_estimada_obra"></t> <t t-esc="proyecto.unidad_medicion_obra.unidad"></t></p></td>
+											</tr>
+										</t>
+										<t t-if="proyecto.equipos==True">
+											<tr>
+												<td colspan="3" style="border: 2px solid black;color: black"><p><strong>Adquisición de Equipos</strong></p></td>
+												<td colspan="3" style="border: 2px solid black;color: black"><p>Si</p></td>
+											</tr>
+											<tr>
+												<td colspan="6" style="border: 2px solid black;color: black"> 
+													<table class="table table-bordered table-striped mt32" >
+														<thead>
+															<tr>
+																<th colspan="2">Uso</th>
+																<th colspan="2">Tipo</th>
+																<th colspan="2">Cantidad</th>
+															</tr>
+														</thead>  
+																  
+														<tbody>
+															<t t-foreach="proyecto['equipos_ids']" t-as="equipo">
+																<tr >
+																	<td colspan="2"><t t-esc="equipo['uso_id']['uso']"/></td>
+																	<td colspan="2"><t t-esc="equipo['tipo']"/></td>
+																	<td colspan="2"><t t-esc="equipo['cantidad']"/></td>
+																</tr>
+															</t>        
+														</tbody>
+													</table>
+										
+												</td>
+											</tr>
+											
+										</t>
+										<t t-if="proyecto.maquinaria==True">
+											<tr>
+												<td colspan="3" style="border: 2px solid black;color: black"><p><strong>Adquisición de Maquinarias</strong></p></td>
+												<td colspan="3" style="border: 2px solid black;color: black"><p>Si</p></td>
+											</tr>
+											<tr>
+												<td colspan="6" style="border: 2px solid black;color: black">
+												
+													<table class="table table-bordered table-striped mt32" >
+														<thead>
+															<tr>
+																<th colspan="2">Uso</th>
+																<th colspan="2">Tipo</th>
+																<th colspan="2">Cantidad</th>
+															</tr>
+														</thead>                       
+														<tbody>
+															<t t-foreach="proyecto['maquinaria_ids']" t-as="maquinaria">
+																<tr >
+																	<td colspan="2"><t t-esc="maquinaria['uso_id']['uso']"/></td>
+																	<td colspan="2"><t t-esc="maquinaria['tipo']"/></td>
+																	<td colspan="2"><t t-esc="maquinaria['cantidad']"/></td>
+																</tr>
+															</t>        
+														</tbody>
+													</table>
+												</td>
+												
+											</tr>
+										</t>
+										<t t-if="proyecto.vehiculos==True">
+											<tr>
+												<td colspan="3" style="border: 2px solid black;color: black"><p><strong>Adquisición de Vehiculos</strong></p></td>
+												<td colspan="3" style="border: 2px solid black;color: black"><p>Si</p></td>
+											</tr>
+											<tr>
+												<td colspan="6" style="border: 2px solid black;color: black">
+													<table class="table table-bordered table-striped mt32" >
+														<thead>
+															<tr>
+																<th colspan="2">Uso</th>
+																<th colspan="2">Caracteristica</th>
+																<th colspan="2">Tipo</th>
+																<th colspan="2">Cantidad</th>
+															</tr>
+														</thead>
+														<tbody>
+														 <t t-foreach="proyecto['vehiculos_ids']" t-as="vehiculo">
+															<tr >
+																<td colspan="2"><t t-esc="vehiculo['uso_id']['uso']"/></td>
+																<td colspan="2"><t t-esc="vehiculo['caracteristica_id']['caracteristicas']"/></td>
+																<td colspan="2"><t t-esc="vehiculo['tipo_id']['tipo']"/></td>
+																<td colspan="2"><t t-esc="vehiculo['cantidad']"/></td>
+															</tr>
+														</t>        
+														</tbody>
+													</table> 
+												</td>
+												
+											</tr>
+										</t>
+										<t t-if="proyecto.materiales_consumo==True">
+											<tr>
+												<td colspan="3" style="border: 2px solid black;color: black"><p><strong>Adquisición de Materiales de Consumo</strong></p></td>
+												<td colspan="3" style="border: 2px solid black;color: black"><p>Si</p></td>
+											</tr>
+											<tr>
+												<td colspan="6" style="border: 2px solid black;color: black">
+													<table class="table table-bordered table-striped mt32">
+														<thead>
+															<tr>
+																<th colspan="2">Uso</th>
+																<th colspan="2">Tipo</th>
+																<th colspan="2">Cantidad</th>
+															</tr>
+														</thead>
+														<tbody>
+															 <t t-foreach="proyecto['materiales_ids']" t-as="material">
+																<tr class="active"  >
+																	<td colspan="2"><t t-esc="material['uso_id']['uso']"/></td>
+																	<td colspan="2"><t t-esc="material['tipo']"/></td>
+																	<td colspan="2"><t t-esc="material['cantidad']"/></td>
+																</tr>
+															</t>        
+														</tbody>
+													</table> 
+												</td>
+												
+											</tr>
+										</t>
+										<t t-if="proyecto.semoviente==True">
+											<tr>
+												<td colspan="3" style="border: 2px solid black;color: black"><p><strong>Adquisición de Semovientes</strong></p></td>
+												<td colspan="3" style="border: 2px solid black;color: black"><p>Si</p></td>
+											</tr>
+											<tr>
+												<td colspan="6" style="border: 2px solid black;color: black">
+													<table class="table table-bordered table-striped mt32" >
+														<thead>
+															<tr>
+																<th colspan="2">Especie</th>
+																<th colspan="2">Grupo</th>
+																<th colspan="2">Uso</th>
+																<th colspan="2">Proposito</th>
+																<th colspan="2">Cantidad</th>
+															</tr>
+														</thead>
+														<tbody >
+															<t t-foreach="proyecto['semoviente_ids']" t-as="semo">
+																<tr class="active" id="semoviente_1">
+																	<td colspan="2"><t t-esc="semo['especie_id']['especie']"/></td>
+																	<td colspan="2"><t t-esc="semo['grupo']"/></td>
+																	<td colspan="2"><t t-esc="semo['uso']"/></td>
+																	<td colspan="2"><t t-esc="semo['proposito']"/></td>
+																	<td colspan="2"><t t-esc="semo['cantidad']"/></td>
+																</tr>
+															</t>
+														</tbody>
+													</table>
+												</td>
+												
+											</tr>
+										</t>
+										
+										<tr>
+											<td colspan="6" style="background-color: F90303;text-align: center"><p style="color: white"><strong>UBICACIÓN DEL PROYECTO</strong></p></td>
+										</tr>
+										<tr>
+											<td colspan="2" style="border: 2px solid black;color: black"><p><strong>Estado</strong></p></td>
+											<td colspan="2" style="border: 2px solid black;color: black"><p><strong>Municipio</strong></p></td>
+											<td colspan="2" style="border: 2px solid black;color: black"><p><strong>Parroquia</strong></p></td>
+										</tr>
+										<tr>
+											<td colspan="2" style="border: 2px solid black;color: black"><p><t t-esc="proyecto.estado_id.estado"></t></p></td>
+											<td colspan="2" style="border: 2px solid black;color: black"><p><t t-esc="proyecto.municipio_id.municipio"></t></p></td>
+											<td colspan="2" style="border: 2px solid black;color: black"><p><t t-esc="proyecto.parroquia_id.parroquia"></t></p></td>
+										</tr>
+										<tr>
+											<td  colspan="2" style="border: 2px solid black"><p><strong>Coordenadas UTM</strong></p></td>
+											<td  colspan="4" style="border: 2px solid black;color: black"><p><t t-esc="data['coordenadas']"></t></p>
+												<t t-if="proyecto.coordenada==True">
+													<br/><p><t t-esc="data['coordenadasf']"></t></p>
+												</t>
+											
+											</td>
+											
+										</tr>
+										<tr>
+											<td colspan="6" style="background-color: F90303;text-align: center"><p style="color: white"><strong>INFORMACIÓN FINANCIERA</strong></p></td>
+										</tr>
+										<tr>
+											<td colspan="3" style="border: 2px solid black"><p><strong>Tiempo estimado de ejecución</strong></p></td>
+											<td colspan="3" style="border: 2px solid black"><p><strong>Monto total del proyecto (Bs. F)</strong></p></td>
+										</tr>
+										<tr>
+											<td colspan="3" style="border: 2px solid black;color: black"><p><t t-esc="proyecto.duracion_proyec"></t></p></td>
+											<td colspan="3" style="border: 2px solid black;color: black"><p><t t-esc="proyecto.monto_proyecto"></t></p></td>
+										</tr>
+										<tr>
+											<td colspan="2" style="border: 2px solid black"><p><strong>Población Beneficiada</strong></p></td>
+											<td colspan="4" style="border: 2px solid black"><p><strong>Numero de empleos</strong></p></td>
+										</tr>
+										<tr>
+											<td colspan="1" style="border: 2px solid black"><p><strong>Masculino</strong></p></td>
+											<td colspan="1" style="border: 2px solid black"><p><strong>Femenino</strong></p></td>
+											<td colspan="2" style="border: 2px solid black"><p><strong>Directos</strong></p></td>
+											<td colspan="2" style="border: 2px solid black"><p><strong>Indirectos</strong></p></td>
+										</tr>
+										<tr>
+											<td colspan="1" style="border: 2px solid black"><p><t t-esc="proyecto.benef_masculino"/></p></td>
+											<td colspan="1" style="border: 2px solid black"><p><t t-esc="proyecto.benef_femenino"/></p></td>
+											<td colspan="1" style="border: 2px solid black"><p>M: <t t-esc="proyecto.empleo_direct_masculino"/></p></td>
+											<td colspan="1" style="border: 2px solid black"><p>F: <t t-esc="proyecto.empleo_direct_femenino"/></p></td>
+											<td colspan="1" style="border: 2px solid black"><p>M: <t t-esc="proyecto.empleo_indirect_masculino"/></p></td>
+											<td colspan="1" style="border: 2px solid black"><p>F: <t t-esc="proyecto.empleo_indirect_femenino"/></p></td>
+										</tr>
+										<tr>
+											<td colspan="4" style="background-color: F90303;text-align: center"><p style="color: white"><strong>Nombre y apellido Gobernador y/o Alcalde</strong></p></td>
+											<td colspan="2" style="background-color: F90303;text-align: center"><p style="color: white"><strong>Firma y sello</strong></p></td>
+										</tr>
+										<tr>
+											<td colspan="4" style="border: 2px solid black"><p><t t-esc="data['nombre']"/></p></td>
+											<td colspan="2" style="border: 2px solid black"></td>
+										</tr>
+										<tr>
+											<td colspan="4" style="border: 2px solid black"><p>Fecha de Impresión</p></td>
+											<td colspan="2" style="border: 2px solid black"><p><t t-esc="data['hoy']"/></p></td>
+										</tr>
+                                    </tbody>
+             
+                                </table>
+                                
+								</t>
+            
+                </div>
+<!--
+              </t>
+-->
+    </template>
+    
+<template id="external_layout_ept">
+    <!-- Multicompany -->
+    <t t-call="jpv_carga_proyectos.external_layout_header2" />
+    <t t-raw="0" ></t>
+    <t t-call="jpv_carga_proyectos.external_layout_footer2" />
+</template>
+
+
+
+
+<template id="external_layout_header2">
+    <div class="header">
+        <div class="contains" >
+        <div class="row">
+            <div class="col-xs-12">
+                 <img class="img-responsive" src="/jpv_carga_proyectos/static/img/cabecera.png"/>
+            </div>
+        </div>
+        </div>
+    </div>
+</template>
+
+<template id="external_layout_footer2">
+    <footer>
+    <div class='footer'>
+        <div class="row">
+            <div class="col-xs-12">
+                <img class="img-responsive" src="/jpv_carga_proyectos/static/img/pie4.png" height="100"/>
+            </div>
+        </div>
+    </div> 
+    </footer>     
+</template>
+    
+    
+
+
+</data>
+</openerp>
