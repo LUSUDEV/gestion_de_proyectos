@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
     <openerp>
         <data>
-            <template id="ept_carga_proyectos.registrar_proyecto_template" name="Template para el registro de proyecto">
+            <template id="jpv_carga_proyectos.registrar_proyecto_template" name="Template para el registro de proyecto">
                 <div class="panel panel-default hidden">
                     <div class="panel-heading">Entidad Político Territorial</div>
                     <div class="panel-body">
@@ -20,7 +20,7 @@
                     </div>
             </div>    
             <div class="panel panel-default">
-                <div class="panel-heading">Nombre y Descripción<a href="#" id="ayudas_informacion" ref="nombre_descripcion"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                <div class="panel-heading">Nombre y Descripción<a href="#" id="ayudas_informacion" ref="nombre_descripcion"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
                 <div class="panel-body">
                     <label for="nombre_proyecto" data-toggle="popover" data-trigger="hover" data-content="Nombre del proyecto a cargar">Nombre del Proyecto</label>
                         <textarea class="form-control" name="nombre_proyecto" mensaje="Nombre del Proyecto" required="required"  rows="3" maxlength="500"  ></textarea>
@@ -32,15 +32,15 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">Tiempo de Ejecución Estimado<a href="#" id="ayudas_informacion" ref="tiempo_ejecucion"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                        <div class="panel-heading">Tiempo de Ejecución Estimado<a href="#" id="ayudas_informacion" ref="tiempo_ejecucion"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
                         <div class="panel-body">
                             <div class="col-md-4">
                                 <label for="fecha_inicio" data-toggle="popover" data-trigger="hover" data-content="Fecha de inicio estimada del proyecto a cargar">Fecha de Inicio</label>
-                                <input type="text" class="form-control border_form_input date_proyecto_ept"  id="fecha_inicio" name="fecha_inicio" mensaje="Fecha de inicio" required="required"/>
+                                <input type="text" class="form-control border_form_input date_proyecto_jpv"  id="fecha_inicio" name="fecha_inicio" mensaje="Fecha de inicio" required="required"/>
                             </div>
                             <div class="col-md-4">
                                     <label for="fecha_fin" data-toggle="popover" data-trigger="hover" data-content="Fecha de fin estimada del proyecto a cargar">Fecha de Fin</label>
-                                    <input type="text" class="form-control border_form_input date_proyecto_ept"  id="fecha_fin" name="fecha_fin" mensaje="Fecha de Fin" required="required"/>
+                                    <input type="text" class="form-control border_form_input date_proyecto_jpv"  id="fecha_fin" name="fecha_fin" mensaje="Fecha de Fin" required="required"/>
                             </div>
                             <div class="col-md-4">
                                     <label for="duracion_proyec" data-toggle="popover" data-trigger="hover" data-content="Duración estimada del proyecto">Duración del proyecto</label>
@@ -52,7 +52,7 @@
                 </div>
                 <div class="col-md-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">Monto del Proyecto<a href="#" id="ayudas_informacion" ref="monto_proyecto"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                        <div class="panel-heading">Monto del Proyecto<a href="#" id="ayudas_informacion" ref="monto_proyecto"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
                         <div class="panel-body">
                             <div class="col-md-6">
                                 <label for="monto_proyecto" data-toggle="popover" data-trigger="hover" data-content="Monto disponilble del proyecto">Monto del Proyecto</label>
@@ -69,7 +69,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">Clasificación de Inversión<a href="#" id="ayudas_informacion" ref="clasificacion"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                        <div class="panel-heading">Clasificación de Inversión<a href="#" id="ayudas_informacion" ref="clasificacion"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
                         <div class="panel-body">             
                             <div class="col-md-12">
                                 <label for="tipo_sector" data-toggle="popover" data-trigger="hover" data-content="Tipo de sector del proyecto a cargar">Tipo de Sector</label>
@@ -93,7 +93,7 @@
                 </div>
             </div>
             <div class="panel panel-default">
-                <div class="panel-heading">Proyecto de Mantenimiento<a href="#" id="ayudas_informacion" ref="proyecto_mantenimiento"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                <div class="panel-heading">Proyecto de Mantenimiento<a href="#" id="ayudas_informacion" ref="proyecto_mantenimiento"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
                     <div class="panel-body">
                         <div class="col-md-12">
                             <div class="checkbox col-md-6">
@@ -103,18 +103,13 @@
                                     </input>
                                 </label>
                             </div>
-                            <div class="col-md-6 hidden" id="monto_mant_disp">
-                                <label data-toggle="popover" data-trigger="hover" data-content="Monto disponible del la entidad">Monto Disponible de Mantenimiento</label>
-                                    <p class="monto" id="monto_disponible_mantenimiento"><t t-esc="monto_manteni_disp"/></p>
-
-                            </div>
                         </div>
                     </div>
             </div>
             <div class="row" id="caracteristicas_generales">
                 <div class="col-md-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">Caracteristicas Generales<a href="#" id="ayudas_informacion" ref="caracteristicas_generales"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                        <div class="panel-heading">Caracteristicas Generales<a href="#" id="ayudas_informacion" ref="caracteristicas_generales"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="checkbox col-md-2">
@@ -283,7 +278,7 @@
                                 <button type="button" class="btn btn-primary btn-xs hidden agregarFila" value="Adicionar" ref='t_adquis_vehiculo1'  id="agregarFila3">Adicionar</button> 
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" value="True" id="adquis_materiales" data-switch-no-init="True" name="materiales_consumo"  data-toggle="popover" data-trigger="hover" data-content="Seleccione si el proyecto a cargar es para adquisición de materiales">
+                                        <input type="checkbox" value="True" id="adquis_materiales" data-switch-no-init="True" name="materiale_consumo"  data-toggle="popover" data-trigger="hover" data-content="Seleccione si el proyecto a cargar es para adquisición de materiales">
                                            Adquisición de Materiales de Consumo
                                         </input>
                                     </label>
@@ -322,38 +317,6 @@
                                         </input>
                                     </label>
                                 </div>
-<!--
-                                <table class="table table-bordered table-striped mt32 hidden" id="t_adquis_semovientes">
-                                    <thead>
-                                        <tr>
-                                            <th class="col-md-2">Especie</th>
-                                            <th class="col-md-3">Grupo</th>
-                                            <th class="col-md-3">Uso</th>
-                                            <th class="col-md-2">Proposito</th>
-                                            <th class="col-md-2">Cantidad</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="t_adquis_semovientes1">
-                                        <tr class="active" id="semoviente_1">
-                                            <td >
-                                                <select class="form-control" name="semovientes_especie_select_1">
-                                                    <option class="hidden" value=''>Seleccione</option>
-                                                        <t t-foreach="semoviente_data" t-as="semoviente">
-                                                            <option t-att-value="'%s' % (semoviente.id)"><t t-esc="semoviente.especie"/></option>
-                                                        </t>
-                                                </select>
-                                            </td>
-                                            <td ><input type="text" class="form-control" name="semovientes_grupo_text_1" value=""></input></td>
-                                            <td ><input type="text" class="form-control" name="semovientes_uso_text_1" value=""></input></td>
-                                            <td ><input type="text" class="form-control" name="semovientes_proposito_text_1" value=""></input></td>
-                                            <td ><input type="number" class="form-control" name="semovientes_cantidad_number_1" min="1"  step="1" value=""></input></td>
-                                            <td><button type="button" value="Eliminar" class="eliminarFila" ref_body='t_adquis_semovientes1'>
-                                                <span class="glyphicon glyphicon-trash"></span></button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
--->
                                 <table class="table table-bordered table-striped mt32 hidden" id="t_adquis_semovientes">
                                     <thead>
                                         <tr>
@@ -404,7 +367,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="panel panel-default">
-                            <div class="panel-heading">Beneficiarios del Proyecto<a href="#" id="ayudas_informacion" ref="beneficiarios"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                            <div class="panel-heading">Beneficiarios del Proyecto<a href="#" id="ayudas_informacion" ref="beneficiarios"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
                             <div class="panel-body">
                                 <table class="table table-bordered table-striped mt32">
                                     <thead>
@@ -430,7 +393,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="panel panel-default">
-                            <div class="panel-heading">Empleo Asociado<a href="#" id="ayudas_informacion" ref="empleo"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                            <div class="panel-heading">Empleo Asociado<a href="#" id="ayudas_informacion" ref="empleo"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
                             <div class="panel-body">
                                 <table class="table table-bordered table-striped mt32">
                                     <thead>
@@ -465,7 +428,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="panel panel-default">
-                            <div class="panel-heading">Político Territorial<a href="#" id="ayudas_informacion" ref="politica_territorial"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                            <div class="panel-heading">Político Territorial<a href="#" id="ayudas_informacion" ref="politica_territorial"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
                             <div class="panel-body">
                                 <label for="estado" data-toggle="popover" data-trigger="hover" data-content="Estado donde se desarrolla el proyecto">Estado</label>
                                     <select class="form-control" id="estado" name="estado_id" mensaje="Estado" required="required">
@@ -491,7 +454,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="panel panel-default">
-                            <div class="panel-heading">Geograficas<a href="#" id="ayudas_informacion" ref="geo_espacial"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                            <div class="panel-heading">Geograficas<a href="#" id="ayudas_informacion" ref="geo_espacial"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
                             <div class="panel-body">
                                 <label for="huso" data-toggle="popover" data-trigger="hover" data-content="Huso de las coordenadas iniciales">Huso Coordenadas de Inicio</label>
                                     <select class="form-control" id="huso" name="huso_id" mensaje="Huso Inicial" required="required">
@@ -521,7 +484,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="panel panel-default">
-                            <div class="panel-heading">Fotografia<a href="#" id="ayudas_informacion" ref="fotografia"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                            <div class="panel-heading">Fotografia<a href="#" id="ayudas_informacion" ref="fotografia"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
                             <div class="panel-body">
                                 <div class="col-md-12">
                                     <div class="col-md-9">
