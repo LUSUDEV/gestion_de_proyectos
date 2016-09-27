@@ -34,22 +34,22 @@ from openerp import http,tools, api,SUPERUSER_ID
 from openerp.http import request
 from openerp.addons.website_apiform.controladores import panel, base_tools
 from datetime import date, timedelta
-import ept_carga_proyecto_c
-from openerp.addons.ept_cuentas.controladores import ept_cuentas_c
+import jpv_carga_proyecto_c
+from openerp.addons.jpv_cuentas.controladores import jpv_cuentas_c
 
 _logger = logging.getLogger(__name__)
 
-class ept_cp_consulta_proyectos(http.Controller):
+class jpv_cp_consulta_proyectos(http.Controller):
     
     @http.route(
-        ['/ept_cp_proyecto_consulta'],
+        ['/jpv_cp_proyecto_consulta'],
         type='json', auth='user', website=True)
     def consulta_proyectos(self,**post):
         registry = http.request.registry
         cr, uid, context = request.cr, request.uid, request.context
-        entidad_id=ept_cuentas_c.ept_cuentas_web().mi_entidad(uid)
+        entidad_id=jpv_cuentas_c.jpv_cuentas_web().mi_entidad(uid)
         res=[]
-        proyectos_obj=registry['ept_cp.carga_proyecto']
+        proyectos_obj=registry['jpv_cp.carga_proyecto']
         if post['code']==13:
             proyectos_ids = proyectos_obj.search(cr,
                                     SUPERUSER_ID,
@@ -69,7 +69,7 @@ class ept_cp_consulta_proyectos(http.Controller):
                         'nombre_proyecto':proyecto.nombre_proyecto,
                         'state':proyecto.state,
                         'monto_proyecto':monto_proyecto,
-                        'editar_migracion':proyecto.editar_migracion,})
+                       })
         else:
             proyectos_ids = proyectos_obj.search(cr,
                                     SUPERUSER_ID,
@@ -89,26 +89,20 @@ class ept_cp_consulta_proyectos(http.Controller):
                         'nombre_proyecto':proyecto.nombre_proyecto,
                         'state':proyecto.state,
                         'monto_proyecto':monto_proyecto,
-                        'editar_migracion':proyecto.editar_migracion,})
+                        })
         ret =  {'datos':res,'code': post['code']}
         return ret
         
     @http.route(
-        ['/ept_cp_proyecto_consulta/seleccion'],
+        ['/jpv_cp_proyecto_consulta/seleccion'],
         type='json', auth='user', website=True)
     def consulta_proyectos_seleccion(self,**post):
         registry = http.request.registry
         cr, uid, context = request.cr, request.uid, request.context
-        entidad_id=ept_cuentas_c.ept_cuentas_web().mi_entidad(uid)
+        entidad_id=jpv_cuentas_c.jpv_cuentas_web().mi_entidad(uid)
         res=[]
         proyectos_rendidos_ids=[]
-        proyectos_migrados_obj = registry.get('ept_mig.proyectos_migrados')
-        proyectos__edit_ids= proyectos_migrados_obj.comprobar_actualizacion_ids(cr,SUPERUSER_ID,[],context,entidad_id['entidad_data'])
-        if not len(proyectos__edit_ids):
-            rendir=True
-        else:
-            rendir=False
-        proyectos_obj=registry['ept_cp.carga_proyecto']
+        proyectos_obj=registry['jpv_cp.carga_proyecto']
         proyectos_ids = proyectos_obj.search(cr,
                                     SUPERUSER_ID,
                                     [('id','=',post['id']),
@@ -123,20 +117,19 @@ class ept_cp_consulta_proyectos(http.Controller):
                 'nombre_proyecto':proyecto.nombre_proyecto,
                 'state':proyecto.state,
                 'monto_proyecto':proyecto.monto_proyecto,
-                'editar_migracion':rendir,
             })
         ret =  {'datos':res,'code': post['id']}
         return ret
     
     @http.route(
-        ['/ept_cp_proyecto_consulta/busqueda_avanzada'],
+        ['/jpv_cp_proyecto_consulta/busqueda_avanzada'],
         type='json', auth='user', website=True)
     def consulta_proyectos_busq_avanzada(self,**post):
         registry = http.request.registry
         cr, uid, context = request.cr, request.uid, request.context
-        entidad_id=ept_cuentas_c.ept_cuentas_web().mi_entidad(uid)
+        entidad_id=jpv_cuentas_c.jpv_cuentas_web().mi_entidad(uid)
         proyectos_rendidos_ids=[]
-        proyectos_migrados_obj = registry.get('ept_mig.proyectos_migrados')
+        proyectos_migrados_obj = registry.get('jpv_mig.proyectos_migrados')
         proyectos__edit_ids= proyectos_migrados_obj.comprobar_actualizacion_ids(cr,SUPERUSER_ID,[],context,entidad_id['entidad_data'])
         if not len(proyectos__edit_ids):
             rendir=True
@@ -183,7 +176,7 @@ class ept_cp_consulta_proyectos(http.Controller):
             where.append(('municipio_id','=',post['municipio_id']))
         if post['parroquia_id']:
             where.append(('parroquia_id','=',post['parroquia_id']))
-        proyectos_obj=registry['ept_cp.carga_proyecto']
+        proyectos_obj=registry['jpv_cp.carga_proyecto']
         proyectos_ids = proyectos_obj.search(cr,
                                     SUPERUSER_ID,
                                     where,
@@ -213,13 +206,13 @@ class ept_cp_consulta_proyectos(http.Controller):
         return ret
     
     @http.route(
-        ['/ept_cp_proyecto_consulta/busqueda_municipios'],
+        ['/jpv_cp_proyecto_consulta/busqueda_municipios'],
         type='json', auth='user', website=True)
     def consulta_proyectos_busq_municipios(self):
         registry = http.request.registry
         cr, uid, context = request.cr, request.uid, request.context
-        proyectos_obj=registry['ept_cp.carga_proyecto']
-        entidades_obj = registry['ept_ent.entidades']
+        proyectos_obj=registry['jpv_cp.carga_proyecto']
+        entidades_obj = registry['jpv_ent.entidades']
         entidades_ids = entidades_obj.search(cr,
                                         SUPERUSER_ID,
                                         [('user_ids','in',uid)],
@@ -233,7 +226,7 @@ class ept_cp_consulta_proyectos(http.Controller):
         estado_data=entidad_datos.values()[0].values()[0]
         estado_data=estado_data[0]
         estado_data=estado_data[2]
-        estado_obj = registry.get('ept_ent.estados')
+        estado_obj = registry.get('jpv_ent.estados')
         estado_ids = estado_obj.search(cr,SUPERUSER_ID,
                                                 [('id','in',estado_data)],
                                                 context=context)
@@ -241,15 +234,15 @@ class ept_cp_consulta_proyectos(http.Controller):
                                                     context=context)
         municipios=[]
         for estados in estado_data:
-            valores=ept_carga_proyecto_c.ept_cp_carga_proyecto_controlador().buscar_municipios(int(estados.id),int(entidades_data.id))
+            valores=jpv_carga_proyecto_c.jpv_cp_carga_proyecto_controlador().buscar_municipios(int(estados.id),int(entidades_data.id))
             municipios.append(valores)
         return municipios
         
     @http.route(
-        ['/ept_cp_proyecto_consulta/busqueda_parroquias'],
+        ['/jpv_cp_proyecto_consulta/busqueda_parroquias'],
         type='json', auth='user', website=True)
     def consulta_proyectos_busq_parroquias(self,municipio_id):
         registry = http.request.registry
         cr, uid, context = request.cr, request.uid, request.context
-        valores=ept_carga_proyecto_c.ept_cp_carga_proyecto_controlador().buscar_parroquias(municipio_id)
+        valores=jpv_carga_proyecto_c.jpv_cp_carga_proyecto_controlador().buscar_parroquias(municipio_id)
         return valores

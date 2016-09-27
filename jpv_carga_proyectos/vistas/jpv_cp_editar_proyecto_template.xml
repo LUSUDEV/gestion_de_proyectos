@@ -4,11 +4,11 @@
             
             <template id="website_apiform__3" inherit_id="website.assets_frontend" name="website_apiform" >
                 <xpath expr="/t" position="inside">
-                    <script type="text/javascript" src="/ept_carga_proyectos/static/src/js/ept_cp_cambio_montos_proyectos.js"/>
+                    <script type="text/javascript" src="/jpv_carga_proyectos/static/src/js/jpv_cp_cambio_montos_proyectos.js"/>
                 </xpath>
             </template>
             
-            <template id="ept_carga_proyectos.modal_editar_proyectos" name="template para editar proyectos">
+            <template id="jpv_carga_proyectos.modal_editar_proyectos" name="template para editar proyectos">
                 <div class="modal fade" id="modal_editar_proyecto" role="dialog" aria-labelledby="AJAXErrorModal2" aria-hidden="true" >
                         <div class="modal-dialog">
                             <div class="modal-content ">
@@ -17,16 +17,16 @@
                                     <h4 class="modal-title titulo " >Editar Proyecto</h4>
                                 </div>
                                 <div class="modal-body" >
-                                    <t t-if="proyecto['editar_migracion']!=True">
+                                    
                                     <p>Una vez que usted guarde el proyecto
-                                    , este sera sometido nuevamente al proceso de  VALORACIÓN.</p> </t>
+                                    , este sera sometido nuevamente al proceso de  VALORACIÓN.</p>
                                 <br/>
                         <button
                             type="button"
                             class="btn btn-danger"
                             form="idform1"
                             data-dismiss="modal" id="editar_proyecto_confirm" >
-                            Acepto Editar el proyecto <t t-esc="proyecto['correlativo']"/>
+                            Acjpvo Editar el proyecto <t t-esc="proyecto['correlativo']"/>
                         </button>
                                 </div>
                                 <div class="modal-footer "><span class="pie"></span><button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button></div>
@@ -36,7 +36,7 @@
             </template>
             
             
-            <template id="ept_carga_proyectos.proyecto_vista_editar" name="Template para mostrar el proyecto para su edición">
+            <template id="jpv_carga_proyectos.proyecto_vista_editar" name="Template para mostrar el proyecto para su edición">
                 <form id="form_editar_principal" action="/proyecto/editar/guardar" enctype="multipart/form-data" runat="server">
                     <t t-foreach="carga_proyecto_data" t-as="proyecto">
                         <div>
@@ -58,7 +58,6 @@
                                     </select>
                             </div>
                         </div> 
-                        <input type="text" class="form-control hidden"  id="editar_migracion" name="editar_migracion" t-att-value="'%s' % (proyecto.editar_migracion)"/>  
                         <input type="text" class="form-control hidden"  id="id" name="id" t-att-value="'%s' % (proyecto.id)"/>  
                         <input type="text" class="form-control hidden"  id="ciclo_id" name="ciclo_id" t-att-value="'%s' % (proyecto.ciclo_id)"/>  
                         <div class="panel panel-default">
@@ -70,7 +69,7 @@
                             </div>
                         </div>
                         <div class="panel panel-default">
-                            <div class="panel-heading">Nombre y Descripción<a href="#" id="ayudas_informacion" ref="nombre_descripcion"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                            <div class="panel-heading">Nombre y Descripción<a href="#" id="ayudas_informacion" ref="nombre_descripcion"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
                             <div class="panel-body">
                                 <label for="nombre_proyecto" data-toggle="popover" data-trigger="hover" data-content="Nombre del proyecto a cargar">Nombre del Proyecto</label>
                                     <textarea class="form-control" name="nombre_proyecto" mensaje="Nombre del Proyecto" required="required" rows="3" maxlength="500" t-attf-disabled="#{campos_solo_lectura(proyecto.id,proyecto.ciclo_id,'nombre_proyecto')}" ><t t-esc="proyecto.nombre_proyecto"/></textarea>
@@ -82,15 +81,15 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="panel panel-default">
-                                    <div class="panel-heading">Tiempo de Ejecución Estimado<a href="#" id="ayudas_informacion" ref="tiempo_ejecucion"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                                    <div class="panel-heading">Tiempo de Ejecución Estimado<a href="#" id="ayudas_informacion" ref="tiempo_ejecucion"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
                                     <div class="panel-body">
                                         <div class="col-md-4">
                                             <label for="fecha_inicio" data-toggle="popover" data-trigger="hover" data-content="Fecha de inicio estimada del proyecto a cargar">Fecha de Inicio</label>
-                                            <input type="text" class="form-control border_form_input date_proyecto_ept" mensaje="Fecha de Inicio" required="required" id="fecha_inicio" name="fecha_inicio"  t-att-value="'%s' % (fecha_inicio)" t-attf-disabled="#{campos_solo_lectura(proyecto.id,proyecto.ciclo_id,'fecha_inicio')}"/>
+                                            <input type="text" class="form-control border_form_input date_proyecto_jpv" mensaje="Fecha de Inicio" required="required" id="fecha_inicio" name="fecha_inicio"  t-att-value="'%s' % (fecha_inicio)" t-attf-disabled="#{campos_solo_lectura(proyecto.id,proyecto.ciclo_id,'fecha_inicio')}"/>
                                         </div>
                                         <div class="col-md-4">
                                                 <label for="fecha_fin" data-toggle="popover" data-trigger="hover" data-content="Fecha de fin estimada del proyecto a cargar">Fecha de Fin</label>
-                                                <input type="text" class="form-control border_form_input date_proyecto_ept"  id="fecha_fin" name="fecha_fin" mensaje="Fecha de Fin" required="required" t-att-value="'%s' % (fecha_fin)" t-attf-disabled="#{campos_solo_lectura(proyecto.id,proyecto.ciclo_id,'fecha_fin')}"/>
+                                                <input type="text" class="form-control border_form_input date_proyecto_jpv"  id="fecha_fin" name="fecha_fin" mensaje="Fecha de Fin" required="required" t-att-value="'%s' % (fecha_fin)" t-attf-disabled="#{campos_solo_lectura(proyecto.id,proyecto.ciclo_id,'fecha_fin')}"/>
                                         </div>
                                         <div class="col-md-4">
                                                 <label for="duracion_proyec" data-toggle="popover" data-trigger="hover" data-content="Duración estimada del proyecto">Duración del proyecto</label>
@@ -102,7 +101,7 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="panel panel-default">
-                                    <div class="panel-heading">Monto del Proyecto<a href="#" id="ayudas_informacion" ref="monto_proyecto"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                                    <div class="panel-heading">Monto del Proyecto<a href="#" id="ayudas_informacion" ref="monto_proyecto"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
                                     <div class="panel-body">
                                         <div class="col-md-8">
                                             <div class="col-md-5">
@@ -111,7 +110,7 @@
                                                     <input type="text" class="form-control monto" name="monto_proyecto_vista" id="monto_proyecto_vista" t-att-value="'%s' % (monto_proyecto)" disabled="disabled"></input>
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <a href="#" t-attf-class="cambio_monto #{ocultar_boton_aumento(proyecto.id)}" id="restaurar_monto" data-toggle="popover" data-trigger="hover" data-content="Pulse esta opción para descartar cambios en el monto del proyecto"><img class="" src="/ept_carga_proyectos/static/src/img/undo.png"/></a>
+                                                    <a href="#" t-attf-class="cambio_monto" id="restaurar_monto" data-toggle="popover" data-trigger="hover" data-content="Pulse esta opción para descartar cambios en el monto del proyecto"><img class="" src="/jpv_carga_proyectos/static/src/img/undo.png"/></a>
                                                 </div>
                                             </div>
 
@@ -124,10 +123,10 @@
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="col-md-12">
-                                                    <a href="#" t-attf-class="cambio_monto #{ocultar_boton_aumento(proyecto.id)}" id="aumento_monto" data-toggle="popover" data-trigger="hover" data-content="Pulse esta opción para aumentar el monto del proyecto"><img class="" src="/ept_carga_proyectos/static/src/img/increase.png"/></a>
+                                                    <a href="#" t-attf-class="cambio_monto" id="aumento_monto" data-toggle="popover" data-trigger="hover" data-content="Pulse esta opción para aumentar el monto del proyecto"><img class="" src="/jpv_carga_proyectos/static/src/img/increase.png"/></a>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <a href="#" t-attf-class="cambio_monto #{ocultar_boton_aumento(proyecto.id)}" id="restar_monto" data-toggle="popover" data-trigger="hover" data-content="Pulse esta opción para disminuir el monto del proyecto"><img class="" src="/ept_carga_proyectos/static/src/img/minus_white.png"/></a>
+                                                    <a href="#" t-attf-class="cambio_monto" id="restar_monto" data-toggle="popover" data-trigger="hover" data-content="Pulse esta opción para disminuir el monto del proyecto"><img class="" src="/jpv_carga_proyectos/static/src/img/minus_white.png"/></a>
                                                 </div>
                                             </div>
                                             <input type="text" class="form-control monto hidden" name="monto_proyecto" id="monto_proyecto" t-att-value="'%s' % (monto_proyecto)"></input>
@@ -145,7 +144,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="panel panel-default">
-                                    <div class="panel-heading">Clasificación de Inversión<a href="#" id="ayudas_informacion" ref="clasificacion"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                                    <div class="panel-heading">Clasificación de Inversión<a href="#" id="ayudas_informacion" ref="clasificacion"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
                                     <div class="panel-body">             
                                         <div class="col-md-12">
                                             <label for="tipo_sector" data-toggle="popover" data-trigger="hover" data-content="Tipo de sector del proyecto a cargar">Tipo de Sector</label>
@@ -190,7 +189,7 @@
                             </div>
                         </div>
                         <div class="panel panel-default">
-                        <div class="panel-heading">Proyecto de Mantenimiento<a href="#" id="ayudas_informacion" ref="proyecto_mantenimiento" ><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                        <div class="panel-heading">Proyecto de Mantenimiento<a href="#" id="ayudas_informacion" ref="proyecto_mantenimiento" ><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
                             <div class="panel-body">
                             <div class="col-md-12">
                                 <div class="checkbox col-md-6">
@@ -228,15 +227,12 @@
                              <div class="row" id="caracteristicas_generales">
                                 <div class="col-md-12">
                                     <div class="panel panel-default">
-                                        <div class="panel-heading">Caracteristicas Generales<a href="#" id="ayudas_informacion" ref="caracteristicas_generales"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                                        <div class="panel-heading">Caracteristicas Generales<a href="#" id="ayudas_informacion" ref="caracteristicas_generales"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
                                         <div class="panel-body">
                                             <div class="checkbox">
                                                 <label>
                                                     <t t-if="proyecto.obra_civil==True">
                                                         <input type="checkbox" class="hidden" name="obra_confirm"  data-switch-no-init="True" id="obra_confirm"  checked="checked" ></input>
-<!--
-                                                        <input type="text" class="hidden" name="obra_confirm" value="true"/>
--->
                                                         <input type="checkbox" data-switch-no-init="True" id="obra_civil" name="obra_civil" value="True" data-toggle="popover" data-trigger="hover" data-content="Seleccione si el proyecto a cargar es de infraestructura" checked="checked" t-attf-disabled="#{campos_solo_lectura(proyecto.id,proyecto.ciclo_id,'obra_civil')}">
                                                             Obra Civil
                                                         </input>
@@ -394,9 +390,6 @@
                                                 <label>
                                                     <t t-if="proyecto.equipos==True">
                                                         <input type="checkbox" class="hidden" name="equi_confirm"  data-switch-no-init="True" id="equi_confirm"  checked="checked" ></input>
-<!--
-                                                        <input type="text" class="hidden" name="equi_confirm" value="true"/>
--->
                                                         <input type="checkbox"  id="adquisi_equipo" name="equipos"  data-switch-no-init="True" data-toggle="popover" data-trigger="hover" data-content="Seleccione si el proyecto a cargar es para adquisición de equipos" checked="checked" t-attf-disabled="#{campos_solo_lectura(proyecto.id,proyecto.ciclo_id,'equipos')}">
                                                         Adquisición de Equipos
                                                         </input>
@@ -481,9 +474,6 @@
                                                 <label>
                                                     <t t-if="proyecto.maquinaria==True">
                                                         <input type="checkbox" class="hidden" name="maqui_confirm"  data-switch-no-init="True" id="maqui_confirm"  checked="checked" ></input>
-<!--
-                                                        <input type="text" class="hidden" name="maqui_confirm" value="true"/>
--->
                                                         <input type="checkbox"  id="adquis_maqui" data-switch-no-init="True" name="maquinaria"  data-toggle="popover" data-trigger="hover" data-content="Seleccione si el proyecto a cargar es para adquisición de maquinarias" checked="checked" t-attf-disabled="#{campos_solo_lectura(proyecto.id,proyecto.ciclo_id,'maquinaria')}">
                                                             Adquisición de Maquinaria
                                                         </input>
@@ -568,9 +558,6 @@
                                                 <label>
                                                     <t t-if="proyecto.vehiculos==True">
                                                         <input type="checkbox" class="hidden" name="vehic_confirm"  data-switch-no-init="True" id="vehic_confirm" checked="checked" ></input>
-<!--
-                                                        <input type="text" class="hidden" name="vehic_confirm" value="true"/>
--->
                                                         <input type="checkbox" id="adquis_vehiculo" data-switch-no-init="True" name="vehiculos"  data-toggle="popover" data-trigger="hover" data-content="Seleccione si el proyecto a cargar es para adquisición de vehiculos" checked="checked" t-attf-disabled="#{campos_solo_lectura(proyecto.id,proyecto.ciclo_id,'vehiculos')}">
                                                             Adquisición de Vehículos
                                                         </input>
@@ -695,9 +682,6 @@
                                             <label>
                                                 <t t-if="proyecto.materiales_consumo==True">
                                                     <input type="checkbox" class="hidden" name="mater_confirm"  data-switch-no-init="True" id="mater_confirm"  checked="checked" ></input>
-<!--
-                                                    <input type="text" class="hidden" name="mater_confirm" value="true"/>
--->
                                                     <input type="checkbox" id="adquis_materiales" data-switch-no-init="True" name="materiales_consumo"  data-toggle="popover" data-trigger="hover" data-content="Seleccione si el proyecto a cargar es para adquisición de materiales" checked="checked" t-attf-disabled="#{campos_solo_lectura(proyecto.id,proyecto.ciclo_id,'materiales_consumo')}">
                                                         Adquisición de Materiales de Consumo
                                                     </input>
@@ -784,9 +768,6 @@
                                                 <label>
                                                     <t t-if="proyecto.semoviente==True">
                                                         <input type="checkbox" class="hidden" name="semovi_confirm"  data-switch-no-init="True" id="semovi_confirm"  checked="checked" ></input>
-<!--
-                                                        <input type="text" class="hidden" name="semovi_confirm" value="true"/>
--->
                                                         <input type="checkbox" id="adquis_semovientes" name="semoviente"  data-switch-no-init="True" data-toggle="popover" data-trigger="hover" data-content="Seleccione si el proyecto a cargar es para adquisición de semovientes" checked="checked" t-attf-disabled="#{campos_solo_lectura(proyecto.id,proyecto.ciclo_id,'semoviente')}">
                                                             Adquisición de Semovientes
                                                         </input>
@@ -845,13 +826,6 @@
                                                                                 </t>
                                                                             </t>
                                                                     </select>
-																	
-																	
-																	
-																	
-<!--
-																	<input type="text" class="form-control" t-att-name="'semovientes_grupo_text_%s' % (cont)" t-att-value="'%s' % (semovientes.grupo)" t-attf-disabled="#{campos_solo_lectura(proyecto.id,proyecto.ciclo_id,'semoviente_ids')}"></input>
--->
 																	</td>
                                                                 <td >
 																	<select class="form-control semoviente_uso" t-att-id="'semovientes_uso_select_%s' % (cont)" t-att-name="'semovientes_uso_select_%s' % (cont)" t-attf-disabled="#{campos_solo_lectura(proyecto.id,proyecto.ciclo_id,'semoviente_ids')}">
@@ -869,11 +843,6 @@
                                                                                 </t>
                                                                             </t>
                                                                     </select>
-																	
-																	
-<!--
-																	<input type="text" class="form-control" t-att-name="'semovientes_uso_text_%s' % (cont)"   t-att-value="'%s' % (semovientes.uso)" t-attf-disabled="#{campos_solo_lectura(proyecto.id,proyecto.ciclo_id,'semoviente_ids')}"></input>
--->
 																	</td>
 																	<td>
 																	
@@ -894,14 +863,6 @@
                                                                     </select>
 																	
 																	</td>
-																
-																
-<!--
-                                                                <td ><input type="text" class="form-control" t-att-name="'semovientes_proposito_text_%s' % (cont)"   t-att-value="'%s' % (semovientes.proposito)" t-attf-disabled="#{campos_solo_lectura(proyecto.id,proyecto.ciclo_id,'semoviente_ids')}"></input></td>
--->
-                                                                
-                                                                
-                                                                
                                                                 <td ><input type="number" class="form-control" t-att-name="'semovientes_cantidad_number_%s' % (cont)" min="1"  step="1"  t-att-value="'%s' % (semovientes.cantidad)"></input></td>
                                                                 <td><button type="button" value="Eliminar" t-attf-class="eliminarFila #{ocultar_elementos(proyecto.id,'semoviente_ids')}" ref_body='t_adquis_semovientes1'>
                                                                     <span class="glyphicon glyphicon-trash"></span></button>
@@ -1021,7 +982,7 @@
                                          <div class="row hidden" id="caracteristicas_generales">
                                             <div class="col-md-12">
                                                 <div class="panel panel-default">
-                                                    <div class="panel-heading">Caracteristicas Generales<a href="#" id="ayudas_informacion" ref="caracteristicas_generales"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                                                    <div class="panel-heading">Caracteristicas Generales<a href="#" id="ayudas_informacion" ref="caracteristicas_generales"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
                                                     <div class="panel-body">
                                                         <div class="row">
                                                             <div class="checkbox col-md-2">
@@ -1280,7 +1241,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="panel panel-default">
-                                                    <div class="panel-heading">Beneficiarios del Proyecto<a href="#" id="ayudas_informacion" ref="beneficiarios"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                                                    <div class="panel-heading">Beneficiarios del Proyecto<a href="#" id="ayudas_informacion" ref="beneficiarios"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
                                                     <div class="panel-body">
                                                         <table class="table table-bordered table-striped mt32">
                                                             <thead>
@@ -1306,7 +1267,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="panel panel-default">
-                                                    <div class="panel-heading">Empleo Asociado<a href="#" id="ayudas_informacion" ref="empleo"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                                                    <div class="panel-heading">Empleo Asociado<a href="#" id="ayudas_informacion" ref="empleo"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
                                                     <div class="panel-body">
                                                         <table class="table table-bordered table-striped mt32">
                                                             <thead>
@@ -1342,7 +1303,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="panel panel-default">
-                                                    <div class="panel-heading">Política Territorial<a href="#" id="ayudas_informacion" ref="politica_territorial"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                                                    <div class="panel-heading">Política Territorial<a href="#" id="ayudas_informacion" ref="politica_territorial"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
                                                     <div class="panel-body">
                                                         <label for="estado" data-toggle="popover" data-trigger="hover" data-content="Estado donde se desarrolla el proyecto">Estado</label>
                                                             <select class="form-control" id="estado" name="estado_id" required="required" mensaje="Estado" t-attf-disabled="#{campos_solo_lectura(proyecto.id,proyecto.ciclo_id,'estado_id')}">
@@ -1389,7 +1350,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="panel panel-default">
-                                                    <div class="panel-heading">Geo-espacial<a href="#" id="ayudas_informacion" ref="geo_espacial"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                                                    <div class="panel-heading">Geo-espacial<a href="#" id="ayudas_informacion" ref="geo_espacial"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
                                                     <div class="panel-body">
                                                         <label for="huso" data-toggle="popover" data-trigger="hover" data-content="Huso de las coordenadas iniciales">Huso Coordenadas de Inicio</label>
                                                             
@@ -1468,7 +1429,7 @@
                                             
                                             <div class="col-md-12">
                                                 <div class="panel panel-default">
-                                                    <div class="panel-heading">Fotografia<a href="#" id="ayudas_informacion" ref="fotografia"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                                                    <div class="panel-heading">Fotografia<a href="#" id="ayudas_informacion" ref="fotografia"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
                                                     <div class="panel-body">
                                                         <div class="col-md-12">
                                                             <div class="col-md-9">
@@ -1483,7 +1444,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    <t t-call="ept_carga_proyectos.modal_editar_proyectos"></t>
+                                    <t t-call="jpv_carga_proyectos.modal_editar_proyectos"></t>
                                     <t t-if="proyecto.state!='carga'">
                                         <button type="button" id="editar_proyecto" data-toggle="modal" data-target="#modal_editar_proyecto" css=" js_submit" class="btn btn-primary center-block glyphicon glyphicon-send"> Guardar</button>
                                     </t>
@@ -1494,7 +1455,7 @@
                                
                             </form>
                 
-                <t t-call="ept_carga_proyectos.proyecto_vista_editar2"/>
+                <t t-call="jpv_carga_proyectos.proyecto_vista_editar2"/>
         </template>
         
         
@@ -1507,7 +1468,7 @@
         
         
         
-        <template id="ept_carga_proyectos.proyecto_vista_editar2" name="Template para mostrar el proyecto para su edición">
+        <template id="jpv_carga_proyectos.proyecto_vista_editar2" name="Template para mostrar el proyecto para su edición">
             
             <form id="form_editar_auxiliar" enctype="multipart/form-data" class="hidden" runat="server">
                 <t t-foreach="carga_proyecto_data" t-as="proyecto">
@@ -1525,7 +1486,7 @@
                         </div>
                     </div>    
                     <div class="panel panel-default">
-                        <div class="panel-heading">Nombre y Descripción<a href="#" id="ayudas_informacion_2" ref="nombre_descripcion"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                        <div class="panel-heading">Nombre y Descripción<a href="#" id="ayudas_informacion_2" ref="nombre_descripcion"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
                         <div class="panel-body">
                             <label for="nombre_proyecto" data-toggle="popover" data-trigger="hover" data-content="Nombre del proyecto a cargar">Nombre del Proyecto</label>
                                 <textarea class="form-control" name="nombre_proyecto" rows="3"><t t-esc="proyecto.nombre_proyecto" t-attf-disabled="#{campos_solo_lectura(proyecto.id,proyecto.ciclo_id,'nombre_proyecto')}"/></textarea>
@@ -1538,15 +1499,15 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="panel panel-default">
-                                <div class="panel-heading">Tiempo de Ejecución Estimado<a href="#" id="ayudas_informacion_2" ref="tiempo_ejecucion"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                                <div class="panel-heading">Tiempo de Ejecución Estimado<a href="#" id="ayudas_informacion_2" ref="tiempo_ejecucion"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
                                 <div class="panel-body">
                                     <div class="col-md-4">
                                         <label for="fecha_inicio" data-toggle="popover" data-trigger="hover" data-content="Fecha de inicio estimada del proycto a cargar">Fecha de Inicio</label>
-                                        <input type="text" class="form-control border_form_input date_proyecto_ept"  id="fecha_inicio_2" name="fecha_inicio" required="True" t-att-value="'%s' % (fecha_inicio)" t-attf-disabled="#{campos_solo_lectura(proyecto.id,proyecto.ciclo_id,'fecha_inicio')}"/>
+                                        <input type="text" class="form-control border_form_input date_proyecto_jpv"  id="fecha_inicio_2" name="fecha_inicio" required="True" t-att-value="'%s' % (fecha_inicio)" t-attf-disabled="#{campos_solo_lectura(proyecto.id,proyecto.ciclo_id,'fecha_inicio')}"/>
                                     </div>
                                     <div class="col-md-4">
                                             <label for="fecha_fin" data-toggle="popover" data-trigger="hover" data-content="Fecha de fin estimada del proycto a cargar">Fecha de Fin</label>
-                                            <input type="text" class="form-control border_form_input date_proyecto_ept"  id="fecha_fin_2" name="fecha_fin" required="True" t-att-value="'%s' % (fecha_fin)" t-attf-disabled="#{campos_solo_lectura(proyecto.id,proyecto.ciclo_id,'fecha_fin')}"/>
+                                            <input type="text" class="form-control border_form_input date_proyecto_jpv"  id="fecha_fin_2" name="fecha_fin" required="True" t-att-value="'%s' % (fecha_fin)" t-attf-disabled="#{campos_solo_lectura(proyecto.id,proyecto.ciclo_id,'fecha_fin')}"/>
                                     </div>
                                     <div class="col-md-4">
                                             <label for="duracion_proyec" data-toggle="popover" data-trigger="hover" data-content="Duración estimada del proyecto">Duración del proyecto</label>
@@ -1558,7 +1519,7 @@
                         </div>
                         <div class="col-md-12">
                             <div class="panel panel-default">
-                                <div class="panel-heading">Monto del Proyecto<a href="#" id="ayudas_informacion_2" ref="monto_proyecto"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                                <div class="panel-heading">Monto del Proyecto<a href="#" id="ayudas_informacion_2" ref="monto_proyecto"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
                                 <div class="panel-body">
                                     <div class="col-md-6">
                                         <label for="monto_proyecto" data-toggle="popover" data-trigger="hover" data-content="Monto del proyecto a  cargar">Monto del Proyecto</label>
@@ -1575,7 +1536,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="panel panel-default">
-                                <div class="panel-heading">Clasificación de Inversión<a href="#" id="ayudas_informacion_2" ref="clasificacion"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                                <div class="panel-heading">Clasificación de Inversión<a href="#" id="ayudas_informacion_2" ref="clasificacion"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
                                 <div class="panel-body">             
                                     <div class="col-md-12">
                                         <label for="tipo_sector" data-toggle="popover" data-trigger="hover" data-content="Tipo de sector del proyecto a cargar">Tipo de Sector</label>
@@ -2046,13 +2007,6 @@
                                                                                 </t>
                                                                             </t>
                                                                     </select>
-																	
-																	
-																	
-																	
-<!--
-																	<input type="text" class="form-control" t-att-name="'semovientes_grupo_text_%s' % (cont)" t-att-value="'%s' % (semovientes.grupo)" t-attf-disabled="#{campos_solo_lectura(proyecto.id,proyecto.ciclo_id,'semoviente_ids')}"></input>
--->
 																	</td>
                                                                 <td >
 																	<select class="form-control semoviente_uso" t-att-id="'semovientes_uso_select_%s' % (cont)" t-att-name="'semovientes_uso_select_%s' % (cont)" t-attf-disabled="#{campos_solo_lectura(proyecto.id,proyecto.ciclo_id,'semoviente_ids')}">
@@ -2070,11 +2024,6 @@
                                                                                 </t>
                                                                             </t>
                                                                     </select>
-																	
-																	
-<!--
-																	<input type="text" class="form-control" t-att-name="'semovientes_uso_text_%s' % (cont)"   t-att-value="'%s' % (semovientes.uso)" t-attf-disabled="#{campos_solo_lectura(proyecto.id,proyecto.ciclo_id,'semoviente_ids')}"></input>
--->
 																	</td>
 																	<td>
 																	
@@ -2095,14 +2044,6 @@
                                                                     </select>
 																	
 																	</td>
-																
-																
-<!--
-                                                                <td ><input type="text" class="form-control" t-att-name="'semovientes_proposito_text_%s' % (cont)"   t-att-value="'%s' % (semovientes.proposito)" t-attf-disabled="#{campos_solo_lectura(proyecto.id,proyecto.ciclo_id,'semoviente_ids')}"></input></td>
--->
-                                                                
-                                                                
-                                                                
                                                                 <td ><input type="number" class="form-control" t-att-name="'semovientes_cantidad_number_%s' % (cont)" min="1"  step="1"  t-att-value="'%s' % (semovientes.cantidad)"></input></td>
                                                                 <td><button type="button" value="Eliminar" t-attf-class="eliminarFila #{ocultar_elementos(proyecto.id,'semoviente_ids')}" ref_body='t_adquis_semovientes1'>
                                                                     <span class="glyphicon glyphicon-trash"></span></button>
@@ -2112,51 +2053,6 @@
                                                         </t>
                                                     </tbody>
                                                 </table>
-											
-											
-<!--
-                                            <table class="table table-bordered table-striped mt32" id="t_adquis_semovientes_2">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="hidden">id</th>
-                                                        <th class="col-md-2">Especie</th>
-                                                        <th class="col-md-3">Grupo</th>
-                                                        <th class="col-md-3">Uso</th>
-                                                        <th class="col-md-2">Proposito</th>
-                                                        <th class="col-md-2">Cantidad</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <t t-set="cont" t-value="1" />
-                                                    <t t-foreach="proyecto.semoviente_ids" t-as="semovientes">
-                                                    <tr class="active" t-att-id="'semoviente_%s' % (cont)">
-                                                        <td class="hidden"><input type="text" class="form-control" t-att-name="'semovientes_id_text_%s' % (cont)" t-att-value="'%s' % (semovientes.id)"></input></td>
-                                                        <td >
-                                                            <select class="form-control" t-att-name="'semovientes_especie_select_%s' % (cont)" t-attf-disabled="#{campos_solo_lectura(proyecto.id,proyecto.ciclo_id,'semoviente_ids')}" >
-                                                                <option class="hidden" value=''>Seleccione</option>
-                                                                    <t t-foreach="semoviente_data" t-as="semoviente">
-                                                                        <t t-if="semovientes.especie_id==semoviente">
-                                                                            <option t-att-value="'%s' % (semoviente.id)" selected="selected"><t t-esc="semoviente.especie"/></option>
-                                                                        </t>
-                                                                        <t t-if="semovientes.especie_id!=semoviente">
-                                                                            <option t-att-value="'%s' % (semoviente.id)" ><t t-esc="semoviente.especie"/></option>
-                                                                        </t>
-                                                                    </t>
-                                                            </select>
-                                                        </td>
-                                                        <td ><input type="text" class="form-control" t-att-name="'semovientes_grupo_text_%s' % (cont)" t-att-value="'%s' % (semovientes.grupo)" t-attf-disabled="#{campos_solo_lectura(proyecto.id,proyecto.ciclo_id,'semoviente_ids')}"></input></td>
-                                                        <td ><input type="text" class="form-control" t-att-name="'semovientes_uso_text_%s' % (cont)"   t-att-value="'%s' % (semovientes.uso)" t-attf-disabled="#{campos_solo_lectura(proyecto.id,proyecto.ciclo_id,'semoviente_ids')}"></input></td>
-                                                        <td ><input type="text" class="form-control" t-att-name="'semovientes_proposito_text_%s' % (cont)"   t-att-value="'%s' % (semovientes.proposito)" t-attf-disabled="#{campos_solo_lectura(proyecto.id,proyecto.ciclo_id,'semoviente_ids')}"></input></td>
-                                                        <td ><input type="number" class="form-control" t-att-name="'semovientes_cantidad_number_%s' % (cont)" min="1"  step="1"  t-att-value="'%s' % (semovientes.cantidad)" t-attf-disabled="#{campos_solo_lectura(proyecto.id,proyecto.ciclo_id,'semoviente_ids')}"></input></td>
-                                                        <td><button type="button" value="Eliminar" class="eliminarFila">
-                                                            <span class="glyphicon glyphicon-trash"></span></button>
-                                                        </td>
-                                                    </tr>
-                                                     <t t-set="cont" t-value="cont+1" />
-                                                    </t>
-                                                </tbody>
-                                            </table>
--->
                                         </t>
                                     </t>
                                 </div>
@@ -2166,7 +2062,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="panel panel-default">
-                                                <div class="panel-heading">Beneficiarios del Proyecto<a href="#" id="ayudas_informacion_2" ref="beneficiarios"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                                                <div class="panel-heading">Beneficiarios del Proyecto<a href="#" id="ayudas_informacion_2" ref="beneficiarios"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
                                                 <div class="panel-body">
                                                     <table class="table table-bordered table-striped mt32">
                                                         <thead>
@@ -2191,7 +2087,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="panel panel-default">
-                                                <div class="panel-heading">Empleo Asociado<a href="#" id="ayudas_informacion_2" ref="empleo"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                                                <div class="panel-heading">Empleo Asociado<a href="#" id="ayudas_informacion_2" ref="empleo"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
                                                 <div class="panel-body">
                                                     <table class="table table-bordered table-striped mt32">
                                                         <thead>
@@ -2224,7 +2120,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="panel panel-default">
-                                                <div class="panel-heading">Política Territorial<a href="#" id="ayudas_informacion_2" ref="politica_territorial"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                                                <div class="panel-heading">Política Territorial<a href="#" id="ayudas_informacion_2" ref="politica_territorial"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
                                                 <div class="panel-body">
                                                     <label for="estado" data-toggle="popover" data-trigger="hover" data-content="Estado donde se ubica el proyecto a cargar">Estado</label>
                                                         <select class="form-control" id="estado_2" name="estado_id" t-attf-disabled="#{campos_solo_lectura(proyecto.id,proyecto.ciclo_id,'estado_id')}">
@@ -2271,7 +2167,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="panel panel-default">
-                                                <div class="panel-heading">Geo-espacial<a href="#" id="ayudas_informacion_2" ref="geo_espacial"><img class="pull-right" src="/ept_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
+                                                <div class="panel-heading">Geo-espacial<a href="#" id="ayudas_informacion_2" ref="geo_espacial"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a></div>
                                                 <div class="panel-body">
                                                     <label for="huso" data-toggle="popover" data-trigger="hover" data-content="Huso de las coordenadas iniciales">Huso Coordenadas de Inicio</label>
                                                         <select class="form-control" id="huso_2" name="huso_id" t-attf-disabled="#{campos_solo_lectura(proyecto.id,proyecto.ciclo_id,'huso_id')}">

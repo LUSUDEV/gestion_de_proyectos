@@ -155,8 +155,8 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
                 'class="btn btn-xs btn-default btn-block" >'\
                 '<span class="glyphicon glyphicon-remove-circle"/>'\
                 ' Negado</button>'
-        elif state=='aprobado':
-            btn=self.btn_aprobado(proyecto_id)
+        #~ elif state=='aprobado':
+            #~ btn=self.btn_aprobado(proyecto_id)
         elif state=='evaluacion':
             btn='<button type="button" '\
                   'class="btn btn-xs btn-default btn-block">'\
@@ -310,17 +310,62 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
                 }
         return http.request.website.render('website_apiform.mensaje', mensaje)
         
+    def campos_solo_lectura(self,id_proyecto,ciclo_id,campo):
+        registry = http.request.registry
+        cr=http.request.cr
+        uid=http.request.uid
+        context = http.request.context
+        periodos_obj = registry.get('jpv_plf.periodos')
+        carga_proyecto_data=self.instanciar_objetos('jpv_cp.carga_proyecto',[('id','=',int(id_proyecto)),])
         
-        
-        
-        
-        
-        
-        
+        campo_migracion=['obra_civil','equipos','maquinaria','materiales_consumo','vehiculos','tipo_obra','cantidad_estimada_obra','unidad_medicion_obra',
+                          'equipos_ids','maquinaria_ids','materiales_ids','vehiculos_ids']
+        disabled=''
+        if carga_proyecto_data['state']=='carga':
+            disabled=''
+        if carga_proyecto_data['state']=='negado' or carga_proyecto_data['state']=='cancelado' or carga_proyecto_data['state']=='evaluacion' or carga_proyecto_data['state']=='culminado':
+            disabled='disabled'
+        if carga_proyecto_data['state']=='aprobado' or carga_proyecto_data['state']=='diferido':
+            actividad='REPARACIÓN DE PROYECTOS'
+            reparacion=periodos_obj.plf_control_actividades(cr, uid, [],int(carga_proyecto_data['partner_id']),actividad,int(ciclo_id))
+            if 'periodo' in reparacion.keys():
+                disabled=''
+            else:
+                disabled='disabled'
+            if campo=='monto_proyecto':
+                disabled=''
+                return
+            if carga_proyecto_data['avance']==True:
+                disabled='disabled'
+        return disabled
+    
+    def ocultar_elementos(self,id_proyecto,campo):
+        registry = http.request.registry
+        cr=http.request.cr
+        uid=http.request.uid
+        context = http.request.context
+        carga_proyecto_data=self.instanciar_objetos('jpv_cp.carga_proyecto',[('id','=',int(id_proyecto))])
+        if len(carga_proyecto_data)==1:
+            hidden=''
+            return hidden
+        periodos_obj = registry.get('jpv_plf.periodos')
+        carga_proyecto_data=self.instanciar_objetos('jpv_cp.carga_proyecto',[('id','=',int(id_proyecto))])
+        hidden=''
+        if carga_proyecto_data['state']=='carga':
+            hidden=''
+        if carga_proyecto_data['state']=='negado' or carga_proyecto_data['state']=='cancelado' or carga_proyecto_data['state']=='evaluacion':
+            hidden='hidden'
+        if carga_proyecto_data['state']=='aprobado' or carga_proyecto_data['state']=='diferido':
+            actividad='REPARACIÓN DE PROYECTOS'
+            reparacion=periodos_obj.plf_control_actividades(cr, uid, [],int(carga_proyecto_data['partner_id']),actividad,)
+            if 'periodo' in reparacion.keys():
+                hidden=''
+            else:
+                hidden='hidden'
+        return hidden
         
     @http.route(['/proyecto/editar/<int:proyecto_id>'], type='http', auth="user", website=True)
     def proyecto_editar(self,proyecto_id):
-        
         registry = http.request.registry
         cr=http.request.cr
         uid=http.request.uid
@@ -333,150 +378,129 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
                                         [('user_ids','in',uid)],
                                         context=context)
         entidades_data=self.instanciar_objetos('jpv_ent.entidades',[('user_ids','in',uid)])
-        if len(entidades_ids)==1:
+        carga_proyecto_obj = registry.get('jpv_cp.carga_proyecto')
         
-            carga_proyecto_obj = registry.get('jpv_cp.carga_proyecto')
+        carga_proyecto_data=self.instanciar_objetos('jpv_cp.carga_proyecto',[('id','=',int(proyecto_id)),('partner_id','=',int(entidades_data['parent_id']))])
+        
+        if len(carga_proyecto_data)>0:
+            tipo_sectores_data=self.instanciar_objetos('jpv_cp.tipo_sectores',[('parent_id','=',False)])
             
-            carga_proyecto_data=self.instanciar_objetos('jpv_cp.carga_proyecto',[('id','=',int(proyecto_id)),('partner_id','=',int(entidades_data['parent_id']))])
+            categoria_data=self.instanciar_objetos('jpv_cp.tipo_sectores',[('parent_id','=',int(carga_proyecto_data['tipo_sector_id']))])
             
-            if len(carga_proyecto_data)>0:
-                tipo_sectores_data=self.instanciar_objetos('jpv_cp.tipo_sectores',[('parent_id','=',False)])
-                
-                categoria_data=self.instanciar_objetos('jpv_cp.tipo_sectores',[('parent_id','=',int(carga_proyecto_data['tipo_sector_id']))])
-                
-                subcategoria_data=self.instanciar_objetos('jpv_cp.tipo_sectores',[('parent_id','=',int(carga_proyecto_data['categoria_id']))])
-                
-                partner=int(entidades_data['parent_id'])
-                
-                cuenta_data=self.instanciar_objetos('jpv.cuentas',[('tipo_cuenta_id.name','=','PLAN DE INVERSIÓN'),('partner_id','=',int(partner))])
-                
-                equipos_data=self.instanciar_objetos('jpv_cp.montos_minimos_equipos',[])
-                
-                maquinaria_data=self.instanciar_objetos('jpv_cp.montos_minimos_maquinaria',[])
-                
-                vehiculo_uso_data=self.instanciar_objetos('jpv_cp.montos_minimos_vehiculo_uso',[])
-                
-                vehiculo_caract_data=self.instanciar_objetos('jpv_cp.montos_minimos_vehiculo_caracteristicas',[])
-                
-                vehiculo_tipo_data=self.instanciar_objetos('jpv_cp.montos_minimos_vehiculo_tipo',[])
-                
-                material_data=self.instanciar_objetos('jpv_cp.montos_minimos_materiales_consumo',[])
-                
-                semoviente_data=self.instanciar_objetos('jpv_cp.semovientes',[])
-                
-                semoviente_grupo_data=self.instanciar_objetos('jpv_cp.semovientes_grupo_etario',[])
-                
-                semoviente_uso_data=self.instanciar_objetos('jpv_cp.semovientes_uso',[])
-                
-                semoviente_proposito_data=self.instanciar_objetos('jpv_cp.semovientes_proposito',[])
-                
-                unidad=carga_proyecto_obj.cp_filtrar_unidades_medidas (cr, uid, 
-                                                                            [], 
-                                    int(carga_proyecto_data['subcategoria_id']),
-                                    str(carga_proyecto_data['tipo_obra']))
-                unidad= unidad.values()[0]
-                unidad=unidad[0]
-                unidades_data=self.instanciar_objetos('jpv_cp.unidades_obra_civil',[('id','in',unidad[2])])
-                
-                fecha_inicio=carga_proyecto_data['fecha_inicio'].split('-')
-                fecha_inicio=fecha_inicio[2]+'-'+fecha_inicio[1]+'-'+fecha_inicio[0]
-                fecha_fin=carga_proyecto_data['fecha_fin'].split('-')
-                fecha_fin=fecha_fin[2]+'-'+fecha_fin[1]+'-'+fecha_fin[0]
-                
-                monto_proyecto=carga_proyecto_data['monto_proyecto']
-                monto_proyecto=str(monto_proyecto).split('.')
-                if len(monto_proyecto[1])==1:
-                    monto_proyecto=monto_proyecto[0]+','+monto_proyecto[1]+'0'
-                else:
-                    monto_proyecto=monto_proyecto[0]+','+monto_proyecto[1]
-                monto=carga_proyecto_obj.cp_monto_disponible(cr,uid,[],cuenta_data['id'],context=None)
-                monto=monto.values()[0].values()[0]
-                monto='%.2f' % monto
-                monto_total=str(monto).replace('.',',')
-                entidad_datos=carga_proyecto_obj.cp_filtro_estados(cr,uid,[],
-                                            int(carga_proyecto_data['partner_id']),context)
-                estado_data=entidad_datos.values()[0].values()[0]
-                estado_data=estado_data[0]
-                estado_data=estado_data[2]
-                estado_data=self.instanciar_objetos('jpv_ent.estados',[('id','in',estado_data)])
-                
-                municipios_datos=carga_proyecto_obj.cp_filtro_municipios(
-                                        cr,uid,[],
-                                        int(carga_proyecto_data['partner_id']),
-                                        int(carga_proyecto_data['estado_id']),
-                                        'campo',context)
-                municipios_datos=municipios_datos.values()[0].values()[2]
-                municipios_datos=municipios_datos[0]
-                municipios_datos=municipios_datos[2]
-                municipio_data=self.instanciar_objetos('jpv_ent.municipios',[('id','in',municipios_datos)])
-                
-                parroquia_data=self.instanciar_objetos('jpv_ent.parroquias',[('municipio_id','=',int(carga_proyecto_data['municipio_id']),)])
-                
-                id_huso=carga_proyecto_obj.cp_filtro_municipios(cr,uid,[],int(carga_proyecto_data['partner_id']),int(carga_proyecto_data['estado_id']),'campo')
-                id_huso=id_huso['domain']
-                id_huso=id_huso['huso_id'][0]
-                id_huso=id_huso[2]
-                huso_data=self.instanciar_objetos('jpv_ent.husos',[('id','in',id_huso)],)
-                
-                monto_manteni_disp=self.calculo_monto_mantenimiento(int(carga_proyecto_data['periodo_id']),int(carga_proyecto_data['partner_id']))
-                monto_manteni_disp=str(monto_manteni_disp).replace('.',',')
-                
-                rendicion_data=self.instanciar_objetos('jpv_rnd.rendicion',[('proyecto_id','=',int(proyecto_id),)])
-                
-                monto_rendido=rendicion_data['monto_gastado']
-                if monto_rendido==False:
-                    monto_rendido='0,00'
-                
-                datos={'parametros':{
-                                'titulo':'Proyecto '+str(entidades_data['name']),
-                                'template':'jpv_carga_proyectos.proyecto_vista_editar',
-                                'url_boton_list':'/proyecto',
-                                'id_form':'form2',
-                                'remover_btn_enviar':'si',
-                                'action':'/proyecto/editar/guardar',
-                                },
-                                'partner':str(partner),
-                                'carga_proyecto_data':carga_proyecto_data,
-                                'tipo_sectores_data':tipo_sectores_data,
-                                'monto_total':monto_total,
-                                'monto_proyecto':monto_proyecto,
-                                'fecha_inicio':fecha_inicio,
-                                'fecha_fin':fecha_fin,
-                                'categoria_data':categoria_data,
-                                'subcategoria_data':subcategoria_data,
-                                'unidades_data':unidades_data,
-                                'equipos_data':equipos_data,
-                                'maquinaria_data':maquinaria_data,
-                                'vehiculo_uso_data':vehiculo_uso_data,
-                                'vehiculo_caract_data':vehiculo_caract_data,
-                                'vehiculo_tipo_data':vehiculo_tipo_data,
-                                'material_data':material_data,
-                                'semoviente_data':semoviente_data,
-                                'semoviente_grupo_data':semoviente_grupo_data,
-                                'semoviente_uso_data':semoviente_uso_data,
-                                'semoviente_proposito_data':semoviente_proposito_data,
-                                'estado_data':estado_data,
-                                'municipio_data':municipio_data,
-                                'parroquia_data':parroquia_data,
-                                'huso_data':huso_data,
-                                'campos_solo_lectura':self.campos_solo_lectura,
-                                'ocultar_boton_aumento':self.ocultar_boton_aumento,
-                                'ocultar_elementos':self.ocultar_elementos,
-                                'monto_manteni_disp':monto_manteni_disp,
-                                'monto_rendido':monto_rendido,
-                                    }
-                return panel.panel_post(datos)
+            subcategoria_data=self.instanciar_objetos('jpv_cp.tipo_sectores',[('parent_id','=',int(carga_proyecto_data['categoria_id']))])
+            
+            partner=int(entidades_data['parent_id'])
+            
+            cuenta_data=self.instanciar_objetos('jpv.cuentas',[('tipo_cuenta_id.name','=','PLAN DE INVERSIÓN'),('partner_id','=',int(partner))])
+            
+            equipos_data=self.instanciar_objetos('jpv_cp.equipos_config',[])
+            
+            maquinaria_data=self.instanciar_objetos('jpv_cp.maquinaria_config',[])
+            
+            vehiculo_uso_data=self.instanciar_objetos('jpv_cp.vehiculo_uso_config',[])
+            
+            vehiculo_caract_data=self.instanciar_objetos('jpv_cp.vehiculo_caracteristicas_config',[])
+            
+            vehiculo_tipo_data=self.instanciar_objetos('jpv_cp.vehiculo_tipo_config',[])
+            
+            material_data=self.instanciar_objetos('jpv_cp.materiales_consumo_config',[])
+            
+            semoviente_data=self.instanciar_objetos('jpv_cp.semovientes_config',[])
+            
+            semoviente_grupo_data=self.instanciar_objetos('jpv_cp.semovientes_grupo_etario_config',[])
+            
+            semoviente_uso_data=self.instanciar_objetos('jpv_cp.semovientes_uso_config',[])
+            
+            semoviente_proposito_data=self.instanciar_objetos('jpv_cp.semovientes_proposito_config',[])
+            
+            unidad=carga_proyecto_obj.cp_filtrar_unidades_medidas (cr, uid, 
+                                                                        [], 
+                                int(carga_proyecto_data['subcategoria_id']),
+                                str(carga_proyecto_data['tipo_obra']))
+            unidad= unidad.values()[0]
+            unidad=unidad[0]
+            unidades_data=self.instanciar_objetos('jpv_cp.unidades_obra_civil_config',[('id','in',unidad[2])])
+            
+            fecha_inicio=carga_proyecto_data['fecha_inicio'].split('-')
+            fecha_inicio=fecha_inicio[2]+'-'+fecha_inicio[1]+'-'+fecha_inicio[0]
+            fecha_fin=carga_proyecto_data['fecha_fin'].split('-')
+            fecha_fin=fecha_fin[2]+'-'+fecha_fin[1]+'-'+fecha_fin[0]
+            
+            monto_proyecto=carga_proyecto_data['monto_proyecto']
+            monto_proyecto=str(monto_proyecto).split('.')
+            if len(monto_proyecto[1])==1:
+                monto_proyecto=monto_proyecto[0]+','+monto_proyecto[1]+'0'
             else:
-                mensaje={
-                        'titulo':'Aviso!',
-                        'mensaje':'''Disculpe, Este proyecto no pertenece a la entidad a la cual usted esta asociado,
-                                    Comuníquese con el administrador del sistema''',
-                        'volver':'/'
-                    }
+                monto_proyecto=monto_proyecto[0]+','+monto_proyecto[1]
+            monto=carga_proyecto_obj.cp_monto_disponible(cr,uid,[],cuenta_data['id'],context=None)
+            monto=monto.values()[0].values()[0]
+            monto='%.2f' % monto
+            monto_total=str(monto).replace('.',',')
+            entidad_datos=carga_proyecto_obj.cp_filtro_estados(cr,uid,[],
+                                        int(carga_proyecto_data['partner_id']),context)
+            estado_data=entidad_datos.values()[0].values()[0]
+            estado_data=estado_data[0]
+            estado_data=estado_data[2]
+            estado_data=self.instanciar_objetos('jpv_ent.estados',[('id','in',estado_data)])
+            
+            municipios_datos=carga_proyecto_obj.cp_filtro_municipios(
+                                    cr,uid,[],
+                                    int(carga_proyecto_data['partner_id']),
+                                    int(carga_proyecto_data['estado_id']),
+                                    'campo',context)
+            municipios_datos=municipios_datos.values()[0].values()[2]
+            municipios_datos=municipios_datos[0]
+            municipios_datos=municipios_datos[2]
+            municipio_data=self.instanciar_objetos('jpv_ent.municipios',[('id','in',municipios_datos)])
+            
+            parroquia_data=self.instanciar_objetos('jpv_ent.parroquias',[('municipio_id','=',int(carga_proyecto_data['municipio_id']),)])
+            
+            id_huso=carga_proyecto_obj.cp_filtro_municipios(cr,uid,[],int(carga_proyecto_data['partner_id']),int(carga_proyecto_data['estado_id']),'campo')
+            id_huso=id_huso['domain']
+            id_huso=id_huso['huso_id'][0]
+            id_huso=id_huso[2]
+            huso_data=self.instanciar_objetos('jpv_ent.husos',[('id','in',id_huso)],)
+            
+            datos={'parametros':{
+                            'titulo':'Proyecto '+str(entidades_data['name']),
+                            'template':'jpv_carga_proyectos.proyecto_vista_editar',
+                            'url_boton_list':'/proyecto',
+                            'id_form':'form2',
+                            'remover_btn_enviar':'si',
+                            'action':'/proyecto/editar/guardar',
+                            },
+                            'partner':str(partner),
+                            'carga_proyecto_data':carga_proyecto_data,
+                            'tipo_sectores_data':tipo_sectores_data,
+                            'monto_total':monto_total,
+                            'monto_proyecto':monto_proyecto,
+                            'fecha_inicio':fecha_inicio,
+                            'fecha_fin':fecha_fin,
+                            'categoria_data':categoria_data,
+                            'subcategoria_data':subcategoria_data,
+                            'unidades_data':unidades_data,
+                            'equipos_data':equipos_data,
+                            'maquinaria_data':maquinaria_data,
+                            'vehiculo_uso_data':vehiculo_uso_data,
+                            'vehiculo_caract_data':vehiculo_caract_data,
+                            'vehiculo_tipo_data':vehiculo_tipo_data,
+                            'material_data':material_data,
+                            'semoviente_data':semoviente_data,
+                            'semoviente_grupo_data':semoviente_grupo_data,
+                            'semoviente_uso_data':semoviente_uso_data,
+                            'semoviente_proposito_data':semoviente_proposito_data,
+                            'estado_data':estado_data,
+                            'municipio_data':municipio_data,
+                            'parroquia_data':parroquia_data,
+                            'huso_data':huso_data,
+                            'campos_solo_lectura':self.campos_solo_lectura,
+                            'ocultar_elementos':self.ocultar_elementos,
+                                }
+            return panel.panel_post(datos)
         else:
             mensaje={
-                    'titulo':'Sin jpv',
-                    'mensaje':'''Disculpe NO esta asociado a ninguna jpv,
+                    'titulo':'Aviso!',
+                    'mensaje':'''Disculpe, Este proyecto no pertenece a la entidad a la cual usted esta asociado,
                                 Comuníquese con el administrador del sistema''',
                     'volver':'/'
                 }
@@ -497,106 +521,94 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
                                         SUPERUSER_ID,
                                         [('user_ids','in',uid)],
                                         context=context)
-        if len(entidades_ids)==1:
-            entidades_data = entidades_obj.browse(
-                                                    cr,
-                                                    SUPERUSER_ID,
-                                                    entidades_ids,
-                                                    context=context)
-            plf_periodos_objeto=registry.get('jpv_plf.periodos')
-            actividad='CARGA DE PROYECTOS'
-            autorizacion_fechas=plf_periodos_objeto.plf_control_actividades(
-                                                                         cr, 
-                                                                    uid, [],
-                                                    int(entidades_data['parent_id']),
-                                                                 actividad,)
-            if 'message' not in autorizacion_fechas.keys():
-                periodo_id=int(autorizacion_fechas['periodo'])
-                tipo_sectores_data=self.instanciar_objetos('jpv_cp.tipo_sectores',[('parent_id','=',False)])
-                
-                categ_subca_data=self.instanciar_objetos('jpv_cp.tipo_sectores',[])
-                
-                partner_data=self.instanciar_objetos('res.partner',[('id','=',int(entidades_data['parent_id']))])
-                
-                cuenta_data=self.instanciar_objetos('jpv.cuentas',[('tipo_cuenta_id.name','=','PLAN DE INVERSIÓN'),('partner_id','=',int(partner_data['id']))])
-                
-                equipos_data=self.instanciar_objetos('jpv_cp.montos_minimos_equipos',[])
+        
+        entidades_data = entidades_obj.browse(
+                                                cr,
+                                                SUPERUSER_ID,
+                                                entidades_ids,
+                                                context=context)
+        plf_periodos_objeto=registry.get('jpv_plf.periodos')
+        actividad='CARGA DE PROYECTOS'
+        autorizacion_fechas=plf_periodos_objeto.plf_control_actividades(
+                                                                     cr, 
+                                                                uid, [],
+                                                int(entidades_data['parent_id']),
+                                                             actividad,)
+        if 'message' not in autorizacion_fechas.keys():
+            periodo_id=int(autorizacion_fechas['periodo'])
+            tipo_sectores_data=self.instanciar_objetos('jpv_cp.tipo_sectores',[('parent_id','=',False)])
+            
+            categ_subca_data=self.instanciar_objetos('jpv_cp.tipo_sectores',[])
+            
+            partner_data=self.instanciar_objetos('res.partner',[('id','=',int(entidades_data['parent_id']))])
+            cuenta_data=self.instanciar_objetos('jpv.cuentas',[('tipo_cuenta_id.name','=','PLAN DE INVERSIÓN'),('partner_id','=',int(partner_data['id']))])
+            
+            equipos_data=self.instanciar_objetos('jpv_cp.equipos_config',[])
 
-                maquinaria_data=self.instanciar_objetos('jpv_cp.montos_minimos_maquinaria',[])
-                
-                vehiculo_uso_data=self.instanciar_objetos('jpv_cp.montos_minimos_vehiculo_uso',[])
-                
-                material_data=self.instanciar_objetos('jpv_cp.montos_minimos_materiales_consumo',[])
-                
-                semoviente_data=self.instanciar_objetos('jpv_cp.semovientes',[])
-                
-                carga_proyecto_obj = registry.get('jpv_cp.carga_proyecto')
-                
-                monto=carga_proyecto_obj.cp_monto_disponible(cr,uid,[],cuenta_data['id'],context=None)
-                monto=monto.values()[0].values()[0]
-                if monto!=False:
-                    monto='%.2f' % monto
-                    monto=str(monto).split('.')
-                    monto_total=monto[0]+','+monto[1]
-                else:
-                    mensaje={
-                    'titulo':'Error!',
-                    'mensaje':'''No tiene asignado recursos para este Periodo Fiscal,
-                                Comuníquese con el administrador del sistema''',
-                    'volver':'/proyecto'
-                        }
-                    return http.request.website.render('website_apiform.mensaje', mensaje)
-                entidad_datos=carga_proyecto_obj.cp_filtro_estados(cr,uid,[],
-                                                             int(entidades_data['parent_id']),context)
-                estado_data=entidad_datos.values()[0].values()[0]
-                estado_data=estado_data[0]
-                estado_data=estado_data[2]
-                
-                estado_data=self.instanciar_objetos('jpv_ent.estados',[('id','in',estado_data)])
-                
-                monto_manteni_disp=self.calculo_monto_mantenimiento(int(periodo_id),int(partner_data['id']))
-                monto_manteni_disp=str(monto_manteni_disp).replace('.',',')
-                
-                datos={'parametros':{
-                            'titulo':'Registrar Proyecto '+partner_data['name'],
-                            'template':'jpv_carga_proyectos.registrar_proyecto_template',
-                            'url_boton_list':'/proyecto',
-                            'css':'info',
-                            'id_form':'formcrearproyecto',
-                            'id_enviar':'enviar_proyecto',
-                            'action':'/proyecto/crear/guardar',
-                            },
-                            'partner_data':partner_data,
-                            'cuenta_data':cuenta_data,
-                            'monto_total':monto_total,
-                            'tipo_sectores_data':tipo_sectores_data,
-                            'categ_subca_data':categ_subca_data,
-                            'estado_data':estado_data,
-                            'equipos_data':equipos_data,
-                            'maquinaria_data':maquinaria_data,
-                            'vehiculo_uso_data':vehiculo_uso_data,
-                            'material_data':material_data,
-                            'semoviente_data':semoviente_data,
-                            'periodo_id':periodo_id,
-                            'monto_manteni_disp':monto_manteni_disp,
-                            
-                            }
-                return panel.panel_post(datos)
+            maquinaria_data=self.instanciar_objetos('jpv_cp.maquinaria_config',[])
+            
+            vehiculo_uso_data=self.instanciar_objetos('jpv_cp.vehiculo_uso_config',[])
+            
+            material_data=self.instanciar_objetos('jpv_cp.materiales_consumo_config',[])
+            
+            semoviente_data=self.instanciar_objetos('jpv_cp.semovientes_config',[])
+            
+            carga_proyecto_obj = registry.get('jpv_cp.carga_proyecto')
+            
+            monto=carga_proyecto_obj.cp_monto_disponible(cr,uid,[],cuenta_data['id'],context=None)
+            monto=monto.values()[0].values()[0]
+    
+            if monto!=False:
+                monto='%.2f' % monto
+                monto=str(monto).split('.')
+                monto_total=monto[0]+','+monto[1]
             else:
                 mensaje={
-                    'titulo':'Sin permiso de carga de proyectos',
-                    'mensaje':'''NO esta habilitada la opción de cargar proyectos,
-                                Comuníquese con el administrador del sistema''',
-                    'volver':'/proyecto'
-                }
-        return http.request.website.render('website_apiform.mensaje', mensaje)
-                
-        mensaje={
-                    'titulo':'Sin jpv',
-                    'mensaje':'''Disculpe NO esta asociado a ninguna jpv,
-                                Comuníquese con el administrador del sistema''',
-                    'volver':'/'
-                }
+                'titulo':'Error!',
+                'mensaje':'''No tiene asignado recursos para este Periodo Fiscal,
+                            Comuníquese con el administrador del sistema''',
+                'volver':'/proyecto'
+                    }
+                return http.request.website.render('website_apiform.mensaje', mensaje)
+            entidad_datos=carga_proyecto_obj.cp_filtro_estados(cr,uid,[],
+                                                         int(entidades_data['parent_id']),context)
+            estado_data=entidad_datos.values()[0].values()[0]
+            estado_data=estado_data[0]
+            estado_data=estado_data[2]
+            
+            estado_data=self.instanciar_objetos('jpv_ent.estados',[('id','in',estado_data)])
+            
+            datos={'parametros':{
+                        'titulo':'Registrar Proyecto '+partner_data['name'],
+                        'template':'jpv_carga_proyectos.registrar_proyecto_template',
+                        'url_boton_list':'/proyecto',
+                        'css':'info',
+                        'id_form':'formcrearproyecto',
+                        'id_enviar':'enviar_proyecto',
+                        'action':'/proyecto/crear/guardar',
+                        },
+                        'partner_data':partner_data,
+                        'cuenta_data':cuenta_data,
+                        'monto_total':monto_total,
+                        'tipo_sectores_data':tipo_sectores_data,
+                        'categ_subca_data':categ_subca_data,
+                        'estado_data':estado_data,
+                        'equipos_data':equipos_data,
+                        'maquinaria_data':maquinaria_data,
+                        'vehiculo_uso_data':vehiculo_uso_data,
+                        'material_data':material_data,
+                        'semoviente_data':semoviente_data,
+                        'periodo_id':periodo_id,
+                        
+                        }
+            return panel.panel_post(datos)
+        else:
+            mensaje={
+                'titulo':'Sin permiso de carga de proyectos',
+                'mensaje':'''NO esta habilitada la opción de cargar proyectos,
+                            Comuníquese con el administrador del sistema''',
+                'volver':'/proyecto'
+            }
         return http.request.website.render('website_apiform.mensaje', mensaje)
         
         
@@ -685,7 +697,7 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
         registry = http.request.registry
         cr, uid, context = request.cr, request.uid, request.context
         
-        vehiculo_caract_data=self.instanciar_objetos('jpv_cp.montos_minimos_vehiculo_caracteristicas',[('uso_id','=',int(id_uso))])
+        vehiculo_caract_data=self.instanciar_objetos('jpv_cp.vehiculo_caracteristicas_config',[('uso_id','=',int(id_uso))])
         
         name_caracteristica=[]
         ids_caracteristica=[]
@@ -703,7 +715,7 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
         registry = http.request.registry
         cr, uid, context = request.cr, request.uid, request.context
         
-        vehiculo_tipo_data=self.instanciar_objetos('jpv_cp.montos_minimos_vehiculo_tipo',[('caracteristicas_id','=',int(id_tipo))])
+        vehiculo_tipo_data=self.instanciar_objetos('jpv_cp.vehiculo_tipo_config',[('caracteristicas_id','=',int(id_tipo))])
 
         name_tipo=[]
         ids_tipo=[]
@@ -722,7 +734,7 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
         cr, uid, context = request.cr, request.uid, request.context
         semoviente_data_data=[]
         if id_tipo!='':
-            semoviente_data_data=self.instanciar_objetos('jpv_cp.semovientes_grupo_etario',[('especies_id','=',int(id_tipo))])
+            semoviente_data_data=self.instanciar_objetos('jpv_cp.semovientes_grupo_etario_config',[('especies_id','=',int(id_tipo))])
         name_grupo=[]
         ids_grupo=[]
         valores=[]
@@ -739,7 +751,7 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
         cr, uid, context = request.cr, request.uid, request.context
         semoviente_uso_data=[]
         if id_tipo!='':
-            semoviente_uso_data=self.instanciar_objetos('jpv_cp.semovientes_uso',[('grupos_id','=',int(id_tipo))])
+            semoviente_uso_data=self.instanciar_objetos('jpv_cp.semovientes_uso_config',[('grupos_id','=',int(id_tipo))])
         name_uso=[]
         ids_uso=[]
         valores=[]
@@ -756,7 +768,7 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
         cr, uid, context = request.cr, request.uid, request.context
         semoviente_proposito_data=[]
         if id_tipo!='':
-            semoviente_proposito_data=self.instanciar_objetos('jpv_cp.semovientes_proposito',[('usos_id','=',int(id_tipo))])
+            semoviente_proposito_data=self.instanciar_objetos('jpv_cp.semovientes_proposito_config',[('usos_id','=',int(id_tipo))])
         name_proposito=[]
         ids_proposito=[]
         valores=[]
@@ -795,7 +807,7 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
         unidad= unidad.values()[0]
         unidad=unidad[0]
         
-        unidades_data=self.instanciar_objetos('jpv_cp.unidades_obra_civil',[('id','in',unidad[2])])
+        unidades_data=self.instanciar_objetos('jpv_cp.unidades_obra_civil_config',[('id','in',unidad[2])])
         
         name_unidad=[]
         ids_unidad=[]
@@ -848,71 +860,6 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
     def fecha_servidor(self,**kw):
         fecha=str(date.today())
         return fecha
-    
-    @http.route('/proyecto/solicitud_cambio',type='json', auth="public", website=True)
-    def buscar_solicitud_cambio(self,id_proyecto,**km):
-        solicitud_data=self.instanciar_objetos('jpv_cp.solicitud_cambios',[('proyecto_id','=',int(id_proyecto)),('state','=','enviado')])
-        dicts={}
-        list_cambios=[]
-        for records in solicitud_data:
-            list_cambios.append(records.id)
-            for campos in records.campos_solicitud_ids:
-                if campos.tipo_campo=='char':
-                    dicts={'char_viejo': campos.char_viejo, 'char_nuevo':campos.char_nuevo, 'tipo_campo':campos.tipo_campo,'campo':campos.campo_id.field_description}
-                    list_cambios.append(dicts)
-                    dicts={}
-                if campos.tipo_campo=='integer':
-                    dicts={'integer_viejo': campos.integer_viejo, 'integer_nuevo':campos.integer_nuevo,'tipo_campo':campos.tipo_campo,'campo':campos.campo_id.field_description}
-                    list_cambios.append(dicts)
-                    dicts={}
-                if campos.tipo_campo=='float':
-                    dicts={'float_viejo': campos.float_viejo, 'float_nuevo':campos.float_nuevo,'tipo_campo':campos.tipo_campo,'campo':campos.campo_id.field_description}
-                    list_cambios.append(dicts)
-                    dicts={}
-                if campos.tipo_campo=='text':
-                    dicts={'text_viejo': campos.text_viejo, 'text_nuevo':campos.text_nuevo,'tipo_campo':campos.tipo_campo,'campo':campos.campo_id.field_description}
-                    list_cambios.append(dicts)
-                    dicts={}
-                if campos.tipo_campo=='date':
-                    dicts={'date_viejo': campos.date_viejo, 'date_nuevo':campos.date_nuevo,'tipo_campo':campos.tipo_campo,'campo':campos.campo_id.field_description}
-                    list_cambios.append(dicts)
-                    dicts={}
-                if campos.tipo_campo=='datetime':
-                    dicts={'datetime_viejo': campos.datetime_viejo, 'datetime_nuevo':campos.datetime_nuevo,'tipo_campo':campos.tipo_campo,'campo':campos.campo_id.field_description}
-                    list_cambios.append(dicts)
-                    dicts={}
-                if campos.tipo_campo=='estado_id':
-                    dicts={'estado_id_viejo': campos.estado_id_viejo.estado, 'estado_id_nuevo':campos.estado_id_nuevo.estado,'tipo_campo':campos.tipo_campo,'campo':campos.campo_id.field_description}
-                    list_cambios.append(dicts)
-                    dicts={}
-                if campos.tipo_campo=='municipio_id':
-                    dicts={'municipio_id_viejo': campos.municipio_id_viejo.municipio, 'municipio_id_nuevo':campos.municipio_id_nuevo.municipio,'tipo_campo':campos.tipo_campo,'campo':campos.campo_id.field_description}
-                    list_cambios.append(dicts)
-                    dicts={}
-                if campos.tipo_campo=='parroquia_id':
-                    dicts={'parroquia_id_viejo': campos.parroquia_id_viejo.parroquia, 'parroquia_id_nuevo':campos.parroquia_id_nuevo.parroquia,'tipo_campo':campos.tipo_campo,'campo':campos.campo_id.field_description}
-                    list_cambios.append(dicts)
-                    dicts={}
-                if campos.tipo_campo=='huso_id':
-                    dicts={'huso_id_viejo': campos.huso_id_viejo.huso, 'huso_id_nuevo':campos.huso_id_nuevo.huso,'tipo_campo':campos.tipo_campo,'campo':campos.campo_id.field_description}
-                    list_cambios.append(dicts)
-                    dicts={}
-                if campos.tipo_campo=='husof_id':
-                    dicts={'husof_id_viejo': campos.husof_id_viejo.huso, 'husof_id_nuevo':campos.husof_id_nuevo.huso,'tipo_campo':campos.tipo_campo,'campo':campos.campo_id.field_description}
-                    list_cambios.append(dicts)
-                    dicts={}
-        
-        return list_cambios
-    
-    
-    @http.route('/proyecto/calculo/monto_mantenimiento',type='json', auth="public", website=True)
-    def calculo_monto_mantenimiento(self,periodo_id,entidad_id,**kw):
-        registry = http.request.registry
-        cr, uid, context = request.cr, request.uid, request.context
-        entidades_data=self.instanciar_objetos('jpv_ent.entidades',[('parent_id','=',int(entidad_id))])
-        monto_disponible=entidades_data['monto_disp_mantenimiento']
-        monto_disponible='%.2f' % monto_disponible
-        return monto_disponible
     
     @http.route('/proyecto/cancelar',type='json', auth="public", website=True)
     def cancelar_proyecto(self,proyecto_id, **kw):
@@ -967,23 +914,6 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
         else:
             return False
             
-    def validar_proyecto_mantenimiento(self,ids,periodo_id,res_partner,monto):
-        entidades_data=self.instanciar_objetos('jpv_ent.entidades',[('parent_id','=',int(res_partner))])
-        monto_disponible=entidades_data['monto_disp_mantenimiento']
-        monto_disponible='%.2f' % monto_disponible
-        ret=1
-        if float(monto_disponible)<float(monto):
-            ret =  {'modal':{
-                    'titulo':'<strong>Error!</strong>',
-                    'cuerpo':'''<h4 class="text-danger" >
-                                Este proyecto sobrepasa el monto maximo para proyectos de mantenimiento.
-                                </h4>
-                                ''',
-                        },
-                }
-            return ret
-        return ret
-        
     @http.route(['/descargar/ficha_proyecto/<model("jpv_cp.carga_proyecto"):proyecto_data>'],
                 type='http', auth='user', website=True)
     def descargar_ficha_proyecto(self,proyecto_data, **post):
@@ -1037,7 +967,7 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
         datos_campos=[]
         proyecto_id=''
         carga_proyecto_obj = registry.get('jpv_cp.carga_proyecto')
-        lista_booleanos=['proyect_mantenimiento','obra_civil','equipos','maquinaria','materiales_consumo','vehiculos','semovientes']
+        lista_booleanos=['proyect_mantenimiento','obra_civil','equipos','maquinaria','materiale_consumo','vehiculos','semovientes']
         list_boole_activo=[]
        
         for booleano in lista_booleanos:
@@ -1105,11 +1035,7 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
                                 },
                             }
             return ret
-        else:
-            if 'proyect_mantenimiento' in post.keys() :
-                ret=self.validar_proyecto_mantenimiento([],periodo,int(post['partner_id']),monto_proyecto)
-                if ret!=1:
-                    return ret
+    
         datos_campos=[
                       {'name':'nombre_proyecto',
                       'type':'text',
@@ -1244,7 +1170,6 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
                                   'type':'number',
                                   'cantidad_max':1999999,
                                   'attr':'Coordenadas Norte Final,' },)
-                     
         equipos_ids=[]
         equipos=False
         if 'equipos' in post.keys() :
@@ -1279,7 +1204,7 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
             vehiculos_ids=panel.validar().construir_one_2_many(post,'vehiculo_',vehiculos_ids_p)
         materiales_ids=[]
         materiales=False
-        if 'materiales' in post.keys() :
+        if 'materiale_consumo' in post.keys():
             materiales=True
             materiale=panel.validar().validar_one_2_many(post,'materiales_',datos_campos)
             materiales_ids_p={'uso_id': '', 
@@ -1690,163 +1615,12 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
                     for kc in keys_coordenada:
                         vals[kc]=''
                     vals['coordenada']=False
-            
-            for datos in proyecto_datos:
-                if 'proyect_mantenimiento' in dict_editar_principal.keys():
-                    if carga_proyecto_data['proyect_mantenimiento']==True:
-                        #~ if 'monto_proyecto' in vals.keys() and carga_proyecto_data['proyect_mantenimiento']<vals['monto_proyecto']:
-                        if 'monto_proyecto' in vals.keys():
-                            print 
-                            #~ monto_evaluar=float(carga_proyecto_data['proyect_mantenimiento'])-float(vals['monto_proyecto'])
-                            monto_evaluar=abs(float(carga_proyecto_data['monto_proyecto'])-float(vals['monto_proyecto']))
-                            ret=self.validar_proyecto_mantenimiento([int(dict_editar_principal['id'])],int(datos.periodo_id),int(datos.partner_id),monto_evaluar,)
-                            if ret!=1:
-                                return ret
-                    else:
-                        #~ if 'monto_proyecto' in vals.keys() and carga_proyecto_data['proyect_mantenimiento']<vals['monto_proyecto']:
-                        if 'monto_proyecto' in vals.keys():
-                            monto_evaluar=abs(float(carga_proyecto_data['monto_proyecto'])-float(vals['monto_proyecto']))
-                            ret=self.validar_proyecto_mantenimiento([int(dict_editar_principal['id'])],int(datos.periodo_id),int(datos.partner_id),vals['monto_proyecto'],)
-                            if ret!=1:
-                                return ret
-                        if 'monto_proyecto' not in vals.keys():
-                            ret=self.validar_proyecto_mantenimiento([int(dict_editar_principal['id'])],int(datos.periodo_id),int(datos.partner_id),datos.monto_proyecto)
-                            if ret!=1:
-                                return ret        
-                else:
-                    if datos.proyect_mantenimiento==True and 'monto_proyecto' in vals.keys():
-                        if abs(float(vals['monto_proyecto']) > float(datos.monto_proyecto)):
-                            monto_evaluar=abs(float(vals['monto_proyecto'])- float(datos.monto_proyecto))
-                            ret=self.validar_proyecto_mantenimiento([int(dict_editar_principal['id'])],int(datos.periodo_id),int(datos.partner_id),monto_evaluar)
-                            if ret!=1:
-                                return ret
             edicion=carga_proyecto_obj.write(cr,uid,int(dict_editar_principal['id']),vals,1,1)
         else:
             ret={'error_campos':errors}
         if edicion==True:
             ret={'redirect':'/proyecto/lectura/%s' % (int(dict_editar_principal['id']))}
         return ret
-     
-        
-        
-
-
-
-    @http.route('/proyecto/acjpvar/solicitud_cambio',type='json', auth="public", website=True)
-    def acjpvar_solicitud_cambio(self, solicitud, **kw):
-        registry = http.request.registry
-        cr, uid, context = request.cr, request.uid, request.context
-        solicitud_obj = registry.get('jpv_cp.solicitud_cambios')
-        solicitud_campos_obj = registry.get('jpv.campos_solicitud_cambio')
-        proyectos_obj = registry.get('jpv_cp.carga_proyecto')
-        cp_historial_obj=registry.get('jpv_cp.historial_proyecto')
-        solicitud_data= solicitud_obj.browse(cr,uid,int(solicitud))
-        vals={}
-        list_ids_solicitud=[]
-        for sol in solicitud_data:
-            proyecto_id=sol['proyecto_id'].id
-            for campos in sol.campos_solicitud_ids:
-                list_ids_solicitud.append(campos.id)
-                if campos.tipo_campo=='char':
-                    vals[campos.campo_id.name]=campos.char_nuevo
-                if campos.tipo_campo=='integer':
-                    vals[campos.campo_id.name]=campos.integer_nuevo
-                if campos.tipo_campo=='float':
-                    vals[campos.campo_id.name]=campos.float_nuevo
-                if campos.tipo_campo=='text':
-                    vals[campos.campo_id.name]=campos.text_nuevo
-                if campos.tipo_campo=='booelan':
-                    vals[campos.campo_id.name]=campos.boolean_nuevo
-                if campos.tipo_campo=='date':
-                    vals[campos.campo_id.name]=campos.date_nuevo
-                if campos.tipo_campo=='datetime':
-                    vals[campos.campo_id.name]=campos.datetime_nuevo
-                if campos.tipo_campo=='estado_id':
-                    vals[campos.campo_id.name]=campos.estado_id_nuevo.id
-                if campos.tipo_campo=='municipio_id':
-                    vals[campos.campo_id.name]=campos.municipio_id_nuevo.id
-                if campos.tipo_campo=='parroquia_id':
-                    vals[campos.campo_id.name]=campos.parroquia_id_nuevo.id
-                if campos.tipo_campo=='huso_id':
-                    vals[campos.campo_id.name]=campos.huso_id_nuevo.id
-                if campos.tipo_campo=='husof_id':
-                    vals[campos.campo_id.name]=campos.husof_id_nuevo.id
-        vals['solicitud_cambio']=False
-        self.registro_solicitud_firma_carta_solicitud_cambio(solicitud_data)
-        
-        solicitud_obj.write(cr,SUPERUSER_ID,int(solicitud),{'state':'aprobado'})
-        solicitud_campos_obj.write(cr,SUPERUSER_ID,list_ids_solicitud,{'state':'aprobado'})
-        proyectos_obj.write(cr,SUPERUSER_ID,proyecto_id,vals,0)
-        vals_solicitud={
-            'descripcion':'Usted ha acjpvado una solicitud de cambios para su proyecto',
-            'proyecto_id': proyecto_id,
-            }
-        cp_historial_obj.create(cr,SUPERUSER_ID,vals_solicitud,context=context)
-        return True
-        
-        
-    @http.route('/proyecto/rechazar/solicitud_cambio',type='json', auth="public", website=True)
-    def rechazar_solicitud_cambio(self, solicitud, **kw):
-        registry = http.request.registry
-        cr, uid, context = request.cr, request.uid, request.context
-        solicitud_obj = registry.get('jpv_cp.solicitud_cambios')
-        solicitud_campos_obj = registry.get('jpv.campos_solicitud_cambio')
-        proyectos_obj = registry.get('jpv_cp.carga_proyecto')
-        cp_historial_obj=registry.get('jpv_cp.historial_proyecto')
-        solicitud_data= solicitud_obj.browse(cr,uid,int(solicitud))
-        vals={}
-        list_ids_solicitud=[]
-        for sol in solicitud_data:
-            proyecto_id=sol['proyecto_id'].id
-            for campos in sol.campos_solicitud_ids:
-                list_ids_solicitud.append(campos.id)
-        vals['solicitud_cambio']=False
-        solicitud_obj.write(cr,SUPERUSER_ID,int(solicitud),{'state':'rechazado'})
-        solicitud_campos_obj.write(cr,SUPERUSER_ID,list_ids_solicitud,{'state':'rechazado'})
-        proyectos_obj.write(cr,SUPERUSER_ID,proyecto_id,vals,0)
-        vals_solicitud={
-            'descripcion':'Usted ha rechazado una solicitud de cambios para su proyecto',
-            'proyecto_id': proyecto_id,
-            }
-        cp_historial_obj.create(cr,SUPERUSER_ID,vals_solicitud,context=context)
-        return True
-    
-    
-    def registro_solicitud_firma_carta_solicitud_cambio(self,solicitud_data):
-        registry = http.request.registry
-        cr, uid, context = request.cr, request.uid, request.context
-       
-        correlativo_carta=registry.get('ir.sequence').get(cr,uid,
-                                                    'jpv_fir.cartas_x_firmar'),
-        
-        
-        nombre_file=solicitud_data['partner_id']['name']+'_solicitudCambio#'
-        
-        list_datos_adicionales=[]
-        list_datos_adicionales.append([0,False,{'objeto_ratro':'jpv_cp.solicitud_cambios', 'objeto_ratro_id':solicitud_data['id'], 'referncia':'',}])
-        value_x_firmar={
-            'correlativo':correlativo_carta[0],
-            'tipo_cartas':'modificación',
-            'mensaje':'Su projecto tiene una solicitud de cambio aprobada',
-            'referencia':'Carta por solicitud de cambios de la Entidad '+solicitud_data['partner_id']['name'],
-            'state':'porfirmar',
-            'metodo':'descarga_carta_solicitud_cambio',
-            'objeto_ratro_principal':'jpv_cp.solicitud_cambios',
-            'objeto_principal_id':solicitud_data['id'],
-            'objeto_rastro_ids':'jpv_cp.carga_proyecto',
-            'metodoGenerarCartas':'crear_carta_solicitud_cambio',
-            'nombre_file':nombre_file,
-            'objeto_rastro_ids':list_datos_adicionales,
-            }
-        cartas_x_firmar_obj = registry.get('jpv_fir.cartas_x_firmar')
-        cartas_x_firmar_id=cartas_x_firmar_obj.create(cr,uid,value_x_firmar)
-        return True
-
-
-
-
-        
-        
 
 
         

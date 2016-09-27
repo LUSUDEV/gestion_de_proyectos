@@ -15,6 +15,7 @@
                     <script type="text/javascript" src="/jpv_carga_proyectos/static/src/js/jpv_vaidar_fecha.js"/>
                     <script type="text/javascript" src="/jpv_carga_proyectos/static/src/js/jpv_clonar_elemntos_tr.js"/>
                     <script type="text/javascript" src="/jpv_carga_proyectos/static/src/js/jpv_lista_proyectos.js"/>
+                    <script type="text/javascript" src="/jpv_carga_proyectos/static/src/js/autobusqueda_proyecto.js"/>
                 </xpath>
             </template>
 
