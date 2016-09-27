@@ -42,7 +42,7 @@
         'vistas/jpv_cp_crear_proyecto_template.xml',
         'vistas/jpv_cp_mostrar_proyecto_template.xml',
         'vistas/jpv_cp_editar_proyecto_template.xml',
-        #~ 'vistas/jpv_cp_template_consultar.xml',
+        'vistas/jpv_cp_template_consultar.xml',
         'vistas/report_ficha_proyecto_r.xml',
         'reportes/jpv_cp_ficha_proyecto_rv.xml',
         'seguridad/group_ent_pt/ir.model.access.csv',

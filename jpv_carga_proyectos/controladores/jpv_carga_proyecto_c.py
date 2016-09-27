@@ -155,8 +155,8 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
                 'class="btn btn-xs btn-default btn-block" >'\
                 '<span class="glyphicon glyphicon-remove-circle"/>'\
                 ' Negado</button>'
-        elif state=='aprobado':
-            btn=self.btn_aprobado(proyecto_id)
+        #~ elif state=='aprobado':
+            #~ btn=self.btn_aprobado(proyecto_id)
         elif state=='evaluacion':
             btn='<button type="button" '\
                   'class="btn btn-xs btn-default btn-block">'\
