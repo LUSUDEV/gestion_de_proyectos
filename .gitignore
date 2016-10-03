@@ -63,3 +63,6 @@ fi_subcuenta/modelos/report/
 *.sql
 *.zip
 *orig*
+
+# Archivos generados por IDE's
+.idea/
