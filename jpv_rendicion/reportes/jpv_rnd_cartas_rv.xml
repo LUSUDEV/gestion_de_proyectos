@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<report id="id_carta_cancelacion_proyecto_jpv"
+			string="Carta para el Cambio del Monto"
+			model="jpv_rnd.cancelacion_proyecto"
+			report_type="qweb-pdf"
+			file="jpv_rendicion.cancelacion_proyecto_qweb"
+            name="jpv_rendicion.cancelacion_proyecto_qweb"
+            menu="False"/>
+	</data>
+</openerp>

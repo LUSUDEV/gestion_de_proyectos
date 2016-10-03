@@ -1,0 +1,244 @@
+<openerp>
+    <data>
+      
+        <template id="jpv_rendicion.rendicion" name="Rendiciones">
+                    <table class="table table-bordered table-striped mt32">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Correlativo</th>
+                <th>Fecha de Inicio</th>
+                <th>Fecha Fin</th>
+                <th>Monto</th>
+                <th ><span class="glyphicon glyphicon-wrench">...</span></th>
+            </tr>
+        </thead>
+        <tbody id="tbody_proyecto_id">
+            <t t-set="cont" t-value="0" />
+            <t t-foreach="proyectos_data" t-as="proyectos">
+                 
+                   <tr class="active" >
+                    <td ><t t-esc="cont+1"/></td>
+                    <t t-set="cont" t-value="cont+1" />
+                    <td ><t t-esc="proyectos['correlativo']"/></td>
+                    <td ><t t-esc="proyectos['fecha_inicio']"/></td>
+                    <td ><t t-esc="proyectos['fecha_fin']"/></td>
+                    <td ><t t-esc="proyectos['monto_proyecto']"/></td>
+                    <td>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary "><span class="glyphicon glyphicon-cog" /></button>
+                              <button type="button" class="btn btn-primary dropdown-toggle"
+                                      data-toggle="dropdown">
+                                <span class="caret"></span>
+                                <span class="sr-only">Desplegar menú</span>
+                              </button>
+                              <ul class="dropdown-menu">
+                            <li><a t-att-href="url_for('/avance/%s/' % proyectos['id'])">
+                                <h5><span class="glyphicon glyphicon-arrow-right"/>
+                                Avance</h5>
+                                </a>
+                            </li>
+                            <li><a t-att-href="url_for('/avance/%s/' % proyectos['id'])">
+                                <h5><span class="glyphicon glyphicon-ok" />
+                                Culminación</h5>
+                                </a>
+                            </li>
+                            <li><a t-att-href="url_for('/cancelar/%s/' % proyectos['id'])">
+                                <h5><span class="glyphicon glyphicon-remove" />
+                                Cancelar</h5>
+                                </a>
+                            </li>
+                              </ul>
+                        </div>
+                    </td>
+                </tr>
+           </t>
+            
+        </tbody>
+    </table>
+        </template>
+        
+        <template id="jpv_rendicion.avance" name="Rendiciones">
+            <t t-call="jpv_conf_preguntas.question"/>
+        </template>
+        
+        <template id="jpv_rendicion.consulta" name="Rendiciones">
+        <t t-if="len(rendicion_data)">
+              <t t-call="jpv_conf_preguntas.historico"/>
+        </t>
+        </template>
+       
+       <template id="jpv_rendicion.tipo_de_ejecucion" name="Tipo de Ejecucion">
+            <input name="tipo_de_ejecucion" value="Autogestión" class="hidden" />
+            <input name="inicio_administrativo_t" value="No" class="hidden"/>
+            <div class="row mt16">
+            <div class="form-group">
+                <label class="col-md-4 col-sm-4 col-md-offset-2 control-label" 
+                            for="tipo_ejecución">El Proyecto se ejecutará por:</label>
+                 <input 
+                        type="checkbox" 
+                        name="tipo_ejecucion"
+                        data-on-text="Contratació" 
+                        data-off-text="Autogestión" 
+                        data-on-color="info"
+                        data-off-color="success"
+                        class="rendicion"
+                         />
+            </div>
+            </div>
+       </template>
+       
+        <template id="jpv_rendicion.inicio_administrativo" name="Rendiciones">
+            <div class="row mt16">
+            <div class="form-group">
+                <label class="col-md-4 col-md-offset-2 control-label" 
+                            for="inicio_administrativo">Inicio Administrativo:</label>
+                 <input 
+                        type="checkbox" 
+                        name="inicio_administrativo"
+                        data-on-text="Si" 
+                        data-off-text="No" 
+                        data-on-color="success"
+                        data-off-color="default"
+                        class="rendicion"
+                         />
+            </div>
+            </div>
+        </template>
+        <template id="jpv_rendicion.inicio_administrativo_etapa" name="Rendiciones">
+            <div t-attf-class="row mt16
+             #{'hidden' if not rendicion_data or not (rendicion_data.tipo_ejecucion == 'Contratacion' and rendicion_data.inicio_administrativo) else ''} 
+             etapa">
+               <center><h4><strong>Indique en la etapa que se encuentra el Proyecto</strong></h4></center>
+               <br/>
+            <div class="col-md-offset-4  col-md-4 form-group">
+                 <select class="selectpicker show-tick" name="etapa_proyecto" required='1'>
+                     <option class="hidden" value="">Seleccione Etapa</option>
+                     <option>Concurso de contratación</option>
+                      <option>Adjudicación de contrato</option>
+                      <option>Otro</option>
+                </select>
+            </div>
+            </div>
+            <div class="row mt16 hidden otro">
+            <div class="col-md-offset-4 form-group">
+                <label for="otra_etapa">Indique:</label>
+                <textarea name="otra_etapa" class="form-control" rows="3" id="otra_etapa" style="max-width:40%%"></textarea>
+            </div>
+            </div>
+        </template>
+        
+        <template id="jpv_rendicion.avance-1" name="Rendiciones">
+            <input name="pagina" class="hidden"  t-att-value="page"/>
+            <input name="proyecto_id" class="hidden" t-att-value="proyectos_data.id"/>
+            <t t-if="not rendicion_data">
+                <t t-call="jpv_rendicion.tipo_de_ejecucion"/>
+                <t t-call="jpv_rendicion.inicio_administrativo"/>
+            </t>
+            <t t-if="rendicion_data">
+                <input name="rendicion_id" t-att-value="rendicion_data.id" class="hidden"/>
+                <input name="tipo_de_ejecucion" t-att-value="rendicion_data.tipo_ejecucion" class="hidden"/>
+                <input name="inicio_administrativo_t" t-att-value="rendicion_data.inicio_administrativo" class="hidden"/>
+                <t t-if="not rendicion_data.inicio_administrativo">
+                    <t t-call="jpv_rendicion.inicio_administrativo"/>
+                </t>
+            </t>
+            <t t-call="jpv_rendicion.inicio_administrativo_etapa"/>
+        </template>
+        
+        
+        <template id="jpv_rendicion.avance-2" name="Rendiciones">
+            <input name="pagina" class="hidden"  t-att-value="page"/>
+            <input name="proyecto_id" class="hidden" t-att-value="proyectos_data.id"/>
+            <input name="rendicion_id" t-att-value="rendicion_data.id" class="hidden"/>
+            <div class="panel panel-default">
+                <div class="panel-heading"><h4>Datos del Contrato</h4></div>
+                <div class="panel-body">
+            <div class="row mt16">
+            <div class="form-group">
+                <div class="col-md-4 col-md-offset-1">
+                <label class="control-label" 
+                            for="nro_contrato">Número de Contrato de la Obra</label>
+                 <input type="text" name="numero_contrato" class="form-control input-sm" id="nro_contrato"/>
+                </div>
+                <div class="col-md-4 col-md-offset-2">
+                <label class="control-label" 
+                            for="rif">Rif de la Empresa Contratada</label>
+                 <input type="text" name="numero_contrato" class="form-control input-sm" id="rif"/>
+                </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading"><h4>Inicio del Proyecto</h4></div>
+                <div class="panel-body">
+            <div class="row mt16">
+            <div class="form-group">
+                <div class="col-md-4 col-md-offset-1">
+                <label class="control-label" 
+                            for="nro_contrato">Fecha de Inicio de Proyecto</label>
+                 <input type="text" name="numero_contrato" class="form-control input-sm" id="nro_contrato"/>
+                </div>
+                <div class="col-md-4 col-md-offset-2">
+                <label class="control-label"
+                            for="input-acta-inicio" >Cargue el Acta de Inicio</label>
+                <input id="input-acta-inicio" type="file" class="file file-loading" multiple="true"/>
+                </div>
+            </div>
+            </div>
+            
+            <div class="row mt16">
+            
+            </div>
+            </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading"><h4>Estatus y Avances</h4></div>
+                <div class="panel-body">
+            <div class="row mt16">
+            <div class="form-group">
+                <div class="col-md-4 col-md-offset-1">
+                <label class="control-label" 
+                            for="avance_fisico">Avance Fisico del Proyecto</label>
+                <select id="avance_fisico" class="selectpicker show-tick col-md-12" name="etapa_proyecto" required='1'>
+                     <option class="hidden" value="">Seleccione el % de avance</option>
+                     <t t-foreach="range(5,105,5)" t-as="i">
+                     <option t-att-value="i"><t t-esc="i"/>%</option>
+                      </t>
+                </select>
+                </div>
+                <div class="col-md-4 col-md-offset-2">
+                <label class="control-label" 
+                            for="rif">Monto Pagado Hasta la Fecha</label>
+                 <input type="text" name="numero_contrato" class="form-control input-sm" id="rif"/>
+                </div>
+            </div>
+            </div>
+            <div class="row mt16">
+            <div class="form-group">
+                 <div class="col-md-4 col-md-offset-1">
+                    <label for="actividades_realizadas">Actividades Realizadas hasta la fecha:</label>
+                    <textarea name="actividades_realizadas" class="form-control" rows="3" id="otra_etapa" ></textarea>
+                </div>
+            </div>
+                <div class="col-md-4 col-md-offset-2">
+                <label class="control-label" 
+                            for="state_proyecto">Estatus Actual del Proyecto</label>
+                  <input 
+                        type="checkbox" 
+                        name="state_proyecto"
+                        data-on-text="Ejecución" 
+                        data-off-text="Paralizado" 
+                        data-on-color="info"
+                        data-off-color="warning"
+                        class="status_proyecto"
+                         />
+                </div>
+            </div>
+            </div>
+            </div>
+        </template>
+    </data>
+</openerp>

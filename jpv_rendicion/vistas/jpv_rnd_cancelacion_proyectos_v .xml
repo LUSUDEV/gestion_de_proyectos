@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <openerp>
+     <data>
+         
+
+    <record model="ir.ui.view" id="view_jpv_rnd_cancelacion_proyecto_form">
+        <field name="name">jpv_rnd_cancelacion_proyecto</field>
+        <field name="model">jpv_rnd.cancelacion_proyecto</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Proyectos Cancelados" >
+                <sheet>
+                    <separator string="Cancelar Proyecto" colspan="4"/>
+                    <group>
+                        <field  name="proyecto_id" 
+                        domain="[('state','=','aprobado')]" 
+                        options="{'no_create':True, 'no_open':True}"/>
+                        <field  name="razon" />
+                        </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+     
+     <record model="ir.ui.view" id="view_jpv_rnd_cancelacion_proyecto_tree">
+        <field name="name">jpv_rnd_cancelacion_proyecto</field>
+        <field name="model">jpv_rnd.cancelacion_proyecto</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Proyectos Cancelados">           
+                <field  name="proyecto_id"/>
+                <field  name="razon" />
+            </tree>
+        </field>
+     </record>
+     
+
+    
+    <record model="ir.actions.act_window" id="action_jpv_rnd_cancelacion_proyecto">
+        <field name="name">Proyectos Cancelados</field>
+        <field name="res_model">jpv_rnd.cancelacion_proyecto</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_jpv_rnd_cancelacion_proyecto_tree"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+            Aqui se registran los proyectos cancelados
+            </p>
+        </field>
+    </record>
+
+            
+        <menuitem name="Proyectos Cancelados" 
+            id="menu_jpv_rnd_cancelacion_proyecto"
+            action="action_jpv_rnd_cancelacion_proyecto"
+            parent="menu_jpv_rendiciones_avances"
+            sequence="20"/>
+            
+    </data>
+</openerp>

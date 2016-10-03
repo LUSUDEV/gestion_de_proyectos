@@ -196,7 +196,7 @@ class jpv_plf_periodos(osv.osv):
        
         hoy=date.today()
         if not entidad_id:
-            raise osv.excjpv_osv(
+            raise osv.except_osv(
                                 ('Alerta!'),
                                 (u'Debe seleccionar una entidad.'))
         if not actividad:

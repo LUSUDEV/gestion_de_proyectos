@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<openerp>
+<data>
+        <report id="id_menu_reporte_ejecucion"
+                string="Reporte de Ejecución"
+                model="jpv_rnd.rendicion"
+                report_type="qweb-pdf"
+                file="jpv_rendicion.id_template_reporte_ejecucion_qweb"
+                name="jpv_rendicion.id_template_reporte_ejecucion_qweb"
+                menu="True"/>
+       
+        <report id="id_menu_reporte_ejecucion_website"
+                string="Reporte de Ejecución"
+                model="jpv_rnd.rendicion"
+                report_type="qweb-pdf"
+                file="jpv_rendicion.id_template_reporte_ejecucion_qweb_website"
+                name="jpv_rendicion.id_template_reporte_ejecucion_qweb_website"
+                menu="False"/>
+    </data>
+</openerp>

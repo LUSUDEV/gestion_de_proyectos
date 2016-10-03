@@ -1,0 +1,772 @@
+<openerp>
+    <data>
+        <template id="jpv_conf_preguntas.question" name="Rendiciones">
+        <input type="hidden" name="proyecto_id" t-att-value="'%s' % (proyectos_data.id)"/>
+        <t t-if="len(rendicion_data)">
+              <t t-call="jpv_conf_preguntas.historico"/>  
+        </t>
+        <t t-if="not len(rendicion_data)">
+              <t t-call="jpv_conf_preguntas.inf_proyecto"/>  
+        </t>
+        <div>
+           <t t-foreach="rendicion_question_data.preguntas_ids" t-as="question">
+                   <t t-if="question.field_ids">
+                       <t t-set="field" t-value="field_get(question.field_ids.name,proyectos_data)"/>
+                    </t>
+                   <t t-if="not question.field_ids">
+                       <t t-set="field" t-value="True"/>
+                    </t>
+                    
+                   
+                   <t t-if="question.tipo == 'radio'"><t t-if="field"><t t-call="jpv_conf_preguntas.radio"/></t></t>
+                   <t t-if="question.tipo == 'checkbox'"><t t-if="field"><t t-call="jpv_conf_preguntas.checkbox"/></t></t>
+                   <t t-if="question.tipo == 'textarea'"><t t-if="field"><t t-call="jpv_conf_preguntas.textarea"/></t></t>
+                   <t t-if="question.tipo == 'text'"><t t-if="field"><t t-call="jpv_conf_preguntas.text"/></t></t>
+                   <t t-if="question.tipo == 'numerico'"><t t-if="field"><t t-call="jpv_conf_preguntas.text"/></t></t>
+                   <t t-if="question.tipo == 'rif'"><t t-if="field"><t t-call="jpv_conf_preguntas.text"/></t></t>
+                   <t t-if="question.tipo == 'date'"><t t-if="field"><t t-call="jpv_conf_preguntas.date"/></t></t>
+                   <t t-if="question.tipo == 'select'"><t t-if="field"><t t-call="jpv_conf_preguntas.select"/></t></t>
+                   <t t-if="question.tipo == 'file'"><t t-if="field"><t t-call="jpv_conf_preguntas.file"/></t></t>
+                   <t t-if="question.tipo == 'img'"><t t-if="field"><t t-call="jpv_conf_preguntas.img"/></t></t>
+                   <t t-if="question.tipo == 'titulo'"><t t-if="field"><t t-call="jpv_conf_preguntas.titulo"/></t></t>
+                   <t t-if="question.tipo == 'subtitulo'"><t t-if="field"><t t-call="jpv_conf_preguntas.subtitulo"/></t></t>
+                   <t t-if="question.tipo == 'adquisiciones'"><t t-if="field"><t t-call="jpv_conf_preguntas.adquisiciones"/></t></t>
+                   <t t-if="question.tipo == 'obra'"><t t-if="field"><t t-call="jpv_conf_preguntas.obra"/></t></t>
+                   
+           </t>
+           </div>
+           <input type="hidden" name="fields_required" value=""/>
+           <input type="hidden" name="culminacion" value="False"/>
+           <input type="hidden" name="declarar_culminacion" value="False"/>
+           <input type="hidden" name="edicion" value="False"/>
+           <div class="hidden" id="advertencia"><t t-esc="rendicion_question_data.advertencia"/></div>
+           <input type="hidden" name="nombre_responsable" t-att-value="'%s' % (responsable.name)"/>
+           <input type="hidden" name="nombre_entidad" t-att-value="'%s' % (entidad_data.name)"/>
+           <input type="hidden" name="tipo_entidad" t-att-value="'%s' % (entidad_data.tipo_entidad_id.name)"/>
+           
+           <div class="modal fade" id="AJAX_Modal_rendicion" role="dialog" aria-labelledby="AJAXErrorModal" aria-hidden="true" >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&amp;times;</button>
+                        <h4 class="modal-title r_titulo" ></h4>
+                    </div>
+                    <div class="modal-body r_cuerpo"></div>
+                    <div class="modal-footer "><span class="pie"></span>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" id="id_enviar_rendicion_jpv" class="btn btn-primary glyphicon glyphicon-send" data-dismiss="modal">Declarar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+           
+        </template>
+        
+        <template id="inf_proyecto" name="Historico de rendiciones">
+        <div t-attf-class="panel panel-#{css}">
+                 <div class="panel-heading">
+                 <strong>Información</strong>
+                 </div>
+                 <div class="panel-body">
+                   <table class="table table-bordered table-striped mt32">
+                       <thead><tr>
+                                <th colspan="2">Datos del Proyecto</th>
+                            </tr>
+                      </thead>
+                       <tbody>
+                            <tr>
+                                <td><t t-set="var" t-value="proyectos_data.fields_get('correlativo')"/>Codigo de Proyecto</td>
+                                <td><t t-esc="proyectos_data.correlativo"/></td>
+                            </tr>
+                            <tr>
+                                <td><t t-set="var" t-value="proyectos_data.fields_get('nombre_proyecto')"/><t t-esc="var['nombre_proyecto']['string']"/></td>
+                                <td align="justify"><t t-esc="proyectos_data.nombre_proyecto"/></td>
+                            </tr>
+                            <tr>
+                                <td><t t-set="var" t-value="proyectos_data.fields_get('monto_proyecto')"/><t t-esc="var['monto_proyecto']['string']"/></td>
+                                <td><t t-set="monto" t-value="self.formato_montos_get(proyectos_data.monto_proyecto)"/><t t-esc="monto"/></td>
+                            </tr>
+                      </tbody>
+                       </table>
+                       
+                    </div>
+                </div>
+        </template>
+        
+        <template id="historico" name="Historico de rendiciones">
+        <input type="hidden" name="rendicion_id" t-att-value="'%s' % (rendicion_data.id)"/>
+        <div t-attf-class="panel panel-#{css}">
+                 <div class="panel-heading">
+                 <strong>Histórico</strong>
+                 </div>
+                 <div class="panel-body">
+                   <table class="table table-bordered table-striped mt32">
+                       <thead><tr>
+                                <th colspan="2">Datos del Proyecto</th>
+                            </tr>
+                      </thead>
+                       <tbody>
+                            <tr>
+                                <td><t t-set="var" t-value="rendicion_data.fields_get('proyecto_id')"/><t t-esc="var['proyecto_id']['string']"/></td>
+                                <td><t t-esc="rendicion_data.proyecto_id.correlativo"/></td>
+                            </tr>
+                            <tr>
+                                <td>Nombre del Proyecto</td>
+                                <td align="justify"><t t-esc="rendicion_data.proyecto_id.nombre_proyecto"/></td>
+                            </tr>
+                            <tr>
+                                <td><t t-set="var" t-value="rendicion_data.fields_get('monto')"/><t t-esc="var['monto']['string']"/></td>
+                                <td><t t-set="monto" t-value="self.formato_montos_get(proyectos_data.monto_proyecto)"/><t t-esc="monto"/></td>
+                            </tr>
+                            <t t-if="rendicion_data.tipo_ejecucion">
+                            <tr>
+                                <td><t t-set="var" t-value="rendicion_data.fields_get('tipo_ejecucion')"/><t t-esc="var['tipo_ejecucion']['string']"/></td>
+                                <td><t t-esc="rendicion_data.tipo_ejecucion"/></td>
+                            </tr>
+                            </t>
+                            <t t-if="rendicion_data.inicio_administrativo">
+                            <tr>
+                                <td><t t-set="var" t-value="rendicion_data.fields_get('inicio_administrativo')"/><t t-esc="var['inicio_administrativo']['string']"/></td>
+                                <td><t t-esc="rendicion_data.inicio_administrativo"/></td>
+                            </tr>
+                            </t>
+                            <t t-if="rendicion_data.adjudicacion">
+                            <tr>
+                                <td><t t-set="var" t-value="rendicion_data.fields_get('adjudicacion')"/><t t-esc="var['adjudicacion']['string']"/></td>
+                                <td><t t-esc="rendicion_data.adjudicacion"/></td>
+                            </tr>
+                            </t>
+                            <t t-if="rendicion_data.nro_contrato">
+                            <tr>
+                                <td><t t-set="var" t-value="rendicion_data.fields_get('nro_contrato')"/><t t-esc="var['nro_contrato']['string']"/></td>
+                                <td><t t-esc="rendicion_data.nro_contrato"/></td>
+                            </tr>
+                            </t>
+                            <t t-if="rendicion_data.rif_empresa">
+                            <tr>
+                                <td><t t-set="var" t-value="rendicion_data.fields_get('rif_empresa')"/><t t-esc="var['rif_empresa']['string']"/></td>
+                                <td><t t-esc="rendicion_data.rif_empresa"/></td>
+                            </tr>
+                            </t>
+                            <t t-if="rendicion_data.fecha_inicio_proyecto">
+                            <tr>
+                                <td><t t-set="var" t-value="rendicion_data.fields_get('fecha_inicio_proyecto')"/><t t-esc="var['fecha_inicio_proyecto']['string']"/></td>
+                                <td><t t-esc="rendicion_data.fecha_inicio_proyecto"/></td>
+                                <input type="hidden" name="fecha_inicio_proyecto" t-att-value="'%s' % (rendicion_data.fecha_inicio_proyecto)"/>
+                            </tr>
+                            </t>
+                            <t t-if="rendicion_data.estatus">
+                            <tr>
+                                <td><t t-set="var" t-value="rendicion_data.fields_get('estatus')"/><t t-esc="var['estatus']['string']"/></td>
+                                <td><t t-esc="rendicion_data.estatus"/></td><input type="hidden" name="status" t-att-value="'%s' % (rendicion_data.estatus)"/>
+                            </tr>
+                            </t>
+                            <t t-if="rendicion_data.monto_gastado">
+                            <tr>
+                                <td><t t-set="var" t-value="rendicion_data.fields_get('monto_gastado')"/><t t-esc="var['monto_gastado']['string']"/></td>
+                                <td><t t-esc="rendicion_data.monto_gastado"/><input type="hidden" name="monto_pagado" t-att-value="'%s' % (rendicion_data.monto_gastado)"/></td>
+                            </tr>
+                            </t>
+                            <t t-if="rendicion_data.avance_fisico">
+                            <tr>
+                                <td><t t-set="var" t-value="rendicion_data.fields_get('avance_fisico')"/><t t-esc="var['avance_fisico']['string']"/></td>
+                                <td><t t-esc="rendicion_data.avance_fisico"/><input type="hidden" name="avance_fisico" t-att-value="'%s' % (rendicion_data.avance_fisico)"/></td>
+                            </tr>
+                            </t>
+                      </tbody>
+                       </table>
+                       
+                    <hr></hr>
+                    <h4>Avances</h4>
+                    <t t-set="count" t-value="0"/>
+                    <t t-foreach="rendicion_data.rendicion_line" t-as="avances">
+                     <t t-set="count" t-value="count+1"/>   
+                    <hr></hr>
+                   <table t-att-id="'%s' % (avances.id)" class="table table-bordered table-striped mt32">
+                           <thead><tr class="desplegar_avance" t-att-ref="'%s' % ('%s' % (avances.id))">
+                                <th colspan="2"><div><span style="float:left">Avance Nro <t t-esc="count"/></span><span style="float:right">Fecha:<t t-esc="avances.create_date"/></span></div></th>
+                            </tr>
+                      </thead>
+                       <tbody t-att-id="'%s' % (avances.id)" style="overflow: hidden; display: none;">
+                            <t t-foreach="self.input_line_order(avances.respuestas_line)" t-as="respuestas">
+                            <tr>
+                                <td><t t-esc="respuestas.pregunta_id.nombre"/></td>
+                                <td align="justify">
+                                    <t t-if="respuestas.pregunta_id.tipo == 'file' or respuestas.pregunta_id.tipo == 'img'">
+                                    <t t-foreach="respuestas.files" t-as="file">
+                                        <a t-att-href="'data:application/octet-stream;base64,%s' % (file.datas)"><t t-esc="file.name"/></a><t t-if="len(respuestas.files) > 1"><br/></t>
+                                    </t>
+                                    </t>
+                                    <t t-if="not (respuestas.pregunta_id.tipo == 'file' or respuestas.pregunta_id.tipo == 'img')">
+                                    <t t-esc="respuestas.respuesta"/>
+                                    </t>
+                                    </td>
+                            </tr>
+                            </t>
+                      </tbody>
+                       </table>
+                       </t>
+                    </div>
+                </div>
+        </template>
+        
+        <template id="radio" name="Preguntas tipo radio">
+            <div class="hidden" t-att-id="'descripcion-%s' % (question.id)"><t t-esc="question.description"/></div>
+            <div class="hidden" t-att-id="'titulo-%s' % (question.id)"><strong><t t-esc="question.nombre"/></strong></div>
+            <div t-att-class="'col-md-%s' % (question.divs)" t-attf-color="#{'panel-success' if question.state == 'avance' else 'panel-warning' if question.state == 'paralizacion' else 'panel-info' if question.state == 'culminacion' else 'panel-danger'}"
+            t-attf-style="#{'overflow: hidden; display: none;' if question.dependiente else ''}" t-att-id="'%s' % (question.id)" t-attf-dependencia="#{dependencia(question.dependencias_id)}">
+            <div t-attf-class="panel panel-#{css}">
+                 <div class="panel-heading">
+                 <strong><t t-esc="question.nombre"/></strong><a href="#" class="question_description" t-att-ref-contenido="'descripcion-%s' % (question.id)" t-att-ref-titulo="'titulo-%s' % (question.id)"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a>
+                 </div>
+                 <div class="panel-body">
+                   <div class="row mt16">
+                    <div class="form-group">
+                        
+                            <t t-foreach="question.respuesta_ids" t-as="answer">
+                                <div class="col-md-6">
+                                 <input 
+                                        t-att-id="'%s-%s-%s' % (question.id,question.tipo,answer.id)"
+                                        t-att-respuesta_id="'%s' % (answer.id)"
+                                        t-attf-dependiente="#{dependiente(answer.dependencia_line)}"
+                                        t-att-type="question.tipo" 
+                                        t-att-name="'%s-%s' % (question.id,question.tipo)"
+                                        t-att-value="'%s' % (answer.respuesta)"
+                                        data-switch-no-init="True"
+                                        ><label t-att-for="'%s-%s-%s' % (question.id,question.tipo,answer.id)"><h5><t t-esc="answer.respuesta"/></h5></label></input>
+                                    </div>
+                                </t>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+        
+        
+        <template id="checkbox" name="Preguntas tipo checkbox">
+            <div class="hidden" t-att-id="'descripcion-%s' % (question.id)"><t t-esc="question.description"/></div>
+            <div class="hidden" t-att-id="'titulo-%s' % (question.id)"><strong><t t-esc="question.nombre"/></strong></div>
+            <div t-att-class="'col-md-%s' % (question.divs)" t-attf-color="#{'panel-success' if question.state == 'avance' else 'panel-warning' if question.state == 'paralizacion' else 'panel-info' if question.state == 'culminacion' else 'panel-danger'}"
+             t-attf-style="#{'overflow: hidden; display: none;' if question.dependiente else ''}" t-att-id="'%s' % (question.id)" t-attf-dependencia="#{dependencia(question.dependencias_id)}">
+            <div t-attf-class="panel panel-#{css}">
+                 <div class="panel-heading">
+                      <strong><t t-esc="question.nombre"/></strong><a href="#" class="question_description" t-att-ref-contenido="'descripcion-%s' % (question.id)" t-att-ref-titulo="'titulo-%s' % (question.id)"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a>
+                     </div>
+                 <div class="panel-body">
+                       <div class="row mt16">
+                        <div class="form-group">
+<!--
+                            <label class="col-md-4 col-sm-4 col-md-offset-1 control-label" 
+                                        t-att-for="'%s-%s' % (question.id,question.tipo)"><h4><t t-esc="question.nombre"/></h4></label>
+-->
+                                <t t-foreach="question.respuesta_ids" t-as="answer">
+                            <div class="col-md-6 checkbox">
+                                <label class="checkbox-inline">
+                                     <input 
+                                            t-att-name="'%s-%s-%s' % (question.id,question.tipo,answer.id)"
+                                            t-att-id="'%s-%s-%s' % (question.id,question.tipo,answer.id)"
+                                            t-att-respuesta_id="'%s' % (answer.id)"
+                                            t-attf-dependiente="#{dependiente(answer.dependencia_line)}"
+                                            t-attf-accion="#{accion_answer(answer.accion_line)}"
+                                            t-att-type="question.tipo" 
+                                            data-switch-no-init="True"
+                                            t-att-value="'%s' % (answer.respuesta)"
+                                            /><h5><t t-esc="answer.respuesta"/></h5></label>
+                                        </div>
+                                    </t>
+                        </div>
+                        </div>
+                </div>
+            </div>
+            </div>
+        </template>
+        
+        
+        
+        <template id="titulo" name="Titulo">
+            <hr/>
+            <div t-att-class="'col-md-%s' % (question.divs)" t-attf-color="#{'panel-success' if question.state == 'avance' else 'panel-warning' if question.state == 'paralizacion' else 'panel-info' if question.state == 'culminacion' else 'panel-danger'}"
+            t-attf-style="#{'overflow: hidden; display: none;' if question.dependiente else ''}"  t-att-id="'%s' % (question.id)" t-attf-dependencia="#{dependencia(question.dependencias_id)}">
+            <div class="container row">
+                 <div>
+                       <h3><p style="color:gray;"><t t-esc="question.nombre"/></p></h3>
+                    </div>
+                </div>
+                </div>
+        </template>
+        
+        <template id="subtitulo" name="Sub-titulo">
+            <div t-att-class="'col-md-%s' % (question.divs)" t-attf-color="#{'panel-success' if question.state == 'avance' else 'panel-warning' if question.state == 'paralizacion' else 'panel-info' if question.state == 'culminacion' else 'panel-danger'}"
+            t-attf-style="#{'overflow: hidden; display: none;' if question.dependiente else ''}"  t-att-id="'%s' % (question.id)" t-attf-dependencia="#{dependencia(question.dependencias_id)}">
+            <div class="container row">
+                 <div style="word-wrap: break-word;" class="col-md-12 col-sm-12">
+                       <h5><p style="color:gray;"><t t-esc="question.nombre"/></p></h5>
+                       <div style="word-wrap: break-word;" class="col-md-8 col-sm-9" t-field="question.description"/>
+                    </div>
+                </div>
+                </div>
+        </template>
+        
+        <template id="textarea" name="Preguntas tipo textarea">
+            <div class="hidden" t-att-id="'descripcion-%s' % (question.id)"><t t-esc="question.description"/></div>
+            <div class="hidden" t-att-id="'titulo-%s' % (question.id)"><strong><t t-esc="question.nombre"/></strong></div>
+            <div t-att-class="'col-md-%s' % (question.divs)" t-attf-color="#{'panel-success' if question.state == 'avance' else 'panel-warning' if question.state == 'paralizacion' else 'panel-info' if question.state == 'culminacion' else 'panel-danger'}"
+            t-attf-style="#{'overflow: hidden; display: none;' if question.dependiente else ''}"  t-att-id="'%s' % (question.id)" t-attf-dependencia="#{dependencia(question.dependencias_id)}">
+            <div t-attf-class="panel panel-#{css} ">
+                 <div class="panel-heading">
+                      <strong><t t-esc="question.nombre"/></strong><a href="#" class="question_description" t-att-ref-contenido="'descripcion-%s' % (question.id)" t-att-ref-titulo="'titulo-%s' % (question.id)"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a>
+                     </div>
+                 <div class="panel-body">
+                   <div class="row mt16">
+<!--
+                        <label class="col-md-4 col-sm-4 col-md-offset-1 control-label" t-att-for="'%s-%s' % (question.id,question.tipo)"><h4><t t-esc="question.nombre"/></h4></label>
+-->
+                        <div class="form-group col-md-12">
+                        <textarea t-att-name="'%s-%s' % (question.id,question.tipo)" class="form-control" rows="3" t-att-id="'%s-%s' % (question.id,question.tipo)"></textarea>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </template>
+        
+        
+        <template id="text" name="Preguntas tipo text">
+            <div class="hidden" t-att-id="'descripcion-%s' % (question.id)"><t t-esc="question.description"/></div>
+            <div class="hidden" t-att-id="'titulo-%s' % (question.id)"><strong><t t-esc="question.nombre"/></strong></div>
+            <div t-att-class="'col-md-%s' % (question.divs)" t-attf-color="#{'panel-success' if question.state == 'avance' else 'panel-warning' if question.state == 'paralizacion' else 'panel-info' if question.state == 'culminacion' else 'panel-danger'}"
+            t-attf-style="#{'overflow: hidden; display: none;' if question.dependiente else ''}" t-att-id="'%s' % (question.id)" t-attf-dependencia="#{dependencia(question.dependencias_id)}">
+            <div t-attf-class="panel panel-#{css}">
+                 <div class="panel-heading">
+                      <strong><t t-esc="question.nombre"/></strong><a href="#" class="question_description" t-att-ref-contenido="'descripcion-%s' % (question.id)" t-att-ref-titulo="'titulo-%s' % (question.id)"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a>
+                     </div>
+                 <div class="panel-body">
+                   <div class="row mt16">
+                        <div class="form-group">
+                        
+<!--
+                        <label class="col-md-4 col-sm-4 col-md-offset-1 control-label" 
+                        t-att-for="'%s-%s' % (question.id,question.tipo)"><h4><t t-esc="question.nombre"/></h4></label>
+-->
+                        <div class="col-md-12">
+                         <input type="text" t-att-name="'%s-%s' % (question.id,question.tipo)" 
+                         t-att-class="'form-control input-sm %s' % (question.tipo)" 
+                         t-att-id="'%s-%s' % (question.id,question.tipo)"
+                         />
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </template>
+        
+        <template id="date" name="Preguntas tipo text">
+            <div class="hidden" t-att-id="'descripcion-%s' % (question.id)"><t t-esc="question.description"/></div>
+            <div class="hidden" t-att-id="'titulo-%s' % (question.id)"><strong><t t-esc="question.nombre"/></strong></div>
+            <div t-att-class="'col-md-%s' % (question.divs)" t-attf-color="#{'panel-success' if question.state == 'avance' else 'panel-warning' if question.state == 'paralizacion' else 'panel-info' if question.state == 'culminacion' else 'panel-danger'}"
+            t-attf-style="#{'overflow: hidden; display: none;' if question.dependiente else ''}" t-att-id="'%s' % (question.id)" t-attf-dependencia="#{dependencia(question.dependencias_id)}">
+            <div t-attf-class="panel panel-#{css}">
+                 <div class="panel-heading">
+                      <strong><t t-esc="question.nombre"/></strong><a href="#" class="question_description" t-att-ref-contenido="'descripcion-%s' % (question.id)" t-att-ref-titulo="'titulo-%s' % (question.id)"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a>
+                     </div>
+                 <div class="panel-body">
+                   <div class="row mt16">
+                        <div class="form-group">
+                        
+<!--
+                        <label class="col-md-4 col-sm-4 col-md-offset-1 control-label" 
+                        t-att-for="'%s-%s' % (question.id,question.tipo)"><h4><t t-esc="question.nombre"/></h4></label>
+-->
+                        <div class="col-md-12">
+                         <input type="text" t-att-name="'%s-%s' % (question.id,question.tipo)" 
+                         t-att-class="'form-control input-sm jpv_conf_%s' % (question.tipo)"
+                         t-att-id="'%s-%s' % (question.id,question.tipo)"
+                         data-inputmask="'mask': 'G-99999999-9'"/>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </template>
+        
+        
+        
+        <template id="adquisiciones" name="Template Adquisiciones">
+            <t t-set="adquisicion_data" t-value="field_get(question.nombre,proyectos_data)"/>
+            <t t-set="accion" t-value="0"/>
+            <t t-if="len(rendicion_data)">
+            <t t-set="adquisicion_data" t-value="field_get(question.field_muestra_ids.name,rendicion_data)"/>
+            <t t-set="accion" t-value="4"/>
+            </t>
+            <t t-if="not len(adquisicion_data)">
+            <t t-set="adquisicion_data" t-value="field_get(question.nombre,proyectos_data)"/>
+            <t t-set="accion" t-value="0"/>
+            </t>
+            <t t-set="fields" t-value="adquisicion_get(adquisicion_data._name)"/>
+            <div class="hidden" t-att-id="'descripcion-%s' % (question.id)"><t t-esc="question.description"/></div>
+            <div class="hidden" t-att-id="'titulo-%s' % (question.id)"><strong><t t-esc="question.field_ids.field_description"/></strong></div>
+            <div t-att-class="'col-md-%s' % (question.divs)" t-attf-color="#{'panel-success' if question.state == 'avance' else 'panel-warning' if question.state == 'paralizacion' else 'panel-info' if question.state == 'culminacion' else 'panel-danger'}"
+            t-attf-style="#{'overflow: hidden; display: none;' if question.dependiente else ''}" t-att-id="'%s' % (question.id)" t-attf-dependencia="#{dependencia(question.dependencias_id)}">
+            <div t-attf-class="panel panel-#{css}">
+                 <div class="panel-heading">
+                      <strong><t t-esc="question.field_ids.field_description"/></strong><a href="#" class="question_description" t-att-ref-contenido="'descripcion-%s' % (question.id)" t-att-ref-titulo="'titulo-%s' % (question.id)"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a>
+                     </div>
+                 <div class="panel-body">
+                   <div class="row mt16">
+                        <div class="form-group table-responsive col-md-12" style="overflow-x:inherit">
+                        <table class="table table-bordered table-striped mt32">
+                            <thead>
+                            <tr>
+                            <t t-foreach="fields" t-as="field">
+                                <th t-att-class="'col-md-%s col-xs-%s' % ((12/len(fields)),(12/len(fields)))"><t t-esc="field.field_description"/></th>
+                            </t>
+                            </tr>
+                            </thead>
+                            <tbody t-att-id="'%s' % (question.nombre)">
+                                <t t-set="count" t-value="0"/>
+                            <t t-foreach="adquisicion_data" t-as="adquisicion">
+                                <t t-set="count" t-value="count+1"/>
+                                <tr class="active" t-att-id="'%s_%s' % (question.nombre.split('_')[0],count)">
+                                <t t-set="count_field" t-value="0"/>
+                            <t t-foreach="fields" t-as="field">
+                                <t t-set="count_field" t-value="count_field+1"/>
+                            <t t-set="field_name" t-value="field_get(field.name,adquisicion)"/>
+                            <td class="hidden">
+                               <input t-att-name="'%s-%s-%s-accion-adquisicion_%s_id_%s' % (question.id,question.tipo,adquisicion_data._name,question.nombre.split('_')[0],count)" t-att-value="'%s' % (accion)"/>
+                            </td>
+                            <td class="hidden">
+                               <input t-att-name="'%s-%s-%s-id-adquisicion_%s_id_%s' % (question.id,question.tipo,adquisicion_data._name,question.nombre.split('_')[0],count)" t-att-value="'%s' % (adquisicion.id)"/>
+                            </td>
+                            <td>
+                            <t t-if="field.ttype == 'many2one'">
+                                <t t-set="n_search" t-value="name_search(field.relation)"/>
+                                <select t-att-class="'form-control field-o2m-%s adquisicion hidden' % (count_field)"  t-att-name="'%s-%s-%s-select-%s_%s' % (question.id,question.tipo,adquisicion_data._name,field.name,count)">
+                                        <t t-foreach="n_search" t-as="option">
+                                        <t t-if="option[0] == field_name.id">
+                                            <option t-att-value="'%s' % (option[0])" selected="" ><t t-esc="option[1]"/></option>
+                                        </t>
+                                        </t>
+                                </select>
+                                <select t-att-class="'form-control field-o2m-%s adquisicion' % (count_field)"  t-att-name="'%s-%s-%s-select-%s_%s' % (question.id,question.tipo,adquisicion_data._name,field.name,count)" disabled="True">
+                                        <t t-foreach="n_search" t-as="option">
+                                        <t t-if="option[0] == field_name.id">
+                                            <option t-att-value="'%s' % (option[0])" selected="" ><t t-esc="option[1]"/></option>
+                                        </t>
+                                        </t>
+<!--
+                                        <t t-foreach="n_search" t-as="option">
+                                        <t t-if="not option[0] == field_name.id">
+                                            <option t-att-value="'%s' % (option[0])" ><t t-esc="option[1]"/></option>
+                                        </t>
+                                        </t>
+-->
+                                </select>
+                            </t>
+                            <t t-if="field.ttype == 'char'">
+                                <input type="text" t-att-name="'%s-%s-%s-text-%s_%s' % (question.id,question.tipo,adquisicion_data._name,field.name,count)" class="form-control adquisicion hidden" t-att-value="'%s' % (field_name)"/>
+                                <input type="text" t-att-name="'%s-%s-%s-text-%s_%s' % (question.id,question.tipo,adquisicion_data._name,field.name,count)" class="form-control adquisicion" t-att-value="'%s' % (field_name)" disabled="True"/>
+                            </t>
+                            <t t-if="field.ttype == 'integer'">
+                                <input type="number" t-att-name="'%s-%s-%s-number-%s_%s' % (question.id,question.tipo,adquisicion_data._name,field.name,count)" class="form-control adquisicion" t-attf-value="#{field_name if accion == 4 else ''}"/>
+                            </t>
+                            </td>
+                            </t>
+<!--
+                            <td><button type="button" value="Eliminar" class="eliminarFilaMeta" t-att-ref_body="'%s' % (question.nombre)">
+                                <span class="glyphicon glyphicon-trash"></span></button>
+                            </td>
+-->
+                            </tr>
+                            </t>
+                            </tbody>
+                        </table>
+<!--
+                        <button type="button" class="btn btn-primary btn-xs agregarFilaMeta" t-att-ref="'%s' % (question.nombre)" value="Adicionar" id="agregarFila">Adicionar</button>
+-->
+
+<!--
+                        <div class="col-md-12">
+                         <input type="text" t-att-name="'%s-%s' % (question.id,question.tipo)"
+                         t-att-class="'form-control input-sm %s' % (question.tipo)"
+                         t-att-id="'%s-%s' % (question.id,question.tipo)"
+                         data-inputmask="'mask': 'G-99999999-9'"/>
+                        </div>
+-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </template>
+        
+        
+        
+        <template id="obra" name="Template Obra Civil">
+            <div class="hidden" t-att-id="'descripcion-%s' % (question.id)"><t t-esc="question.description"/></div>
+            <div class="hidden" t-att-id="'titulo-%s' % (question.id)"><strong><t t-esc="question.nombre"/></strong></div>
+            <t t-set="r_data" t-value="proyectos_data"/>
+            <t t-if="len(rendicion_data)">
+            <t t-if="rendicion_data.obra_civil">
+                <t t-set="r_data" t-value="rendicion_data"/>
+            </t>
+            </t>
+            <div t-att-class="'col-md-%s' % (question.divs)" t-attf-color="#{'panel-success' if question.state == 'avance' else 'panel-warning' if question.state == 'paralizacion' else 'panel-info' if question.state == 'culminacion' else 'panel-danger'}"
+            t-attf-style="#{'overflow: hidden; display: none;' if question.dependiente else ''}" t-att-id="'%s' % (question.id)" t-attf-dependencia="#{dependencia(question.dependencias_id)}">
+            <div t-attf-class="panel panel-#{css}">
+                 <div class="panel-heading">
+                      <strong><t t-esc="question.nombre"/></strong><a href="#" class="question_description" t-att-ref-contenido="'descripcion-%s' % (question.id)" t-att-ref-titulo="'titulo-%s' % (question.id)"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a>
+                     </div>
+                 <div class="panel-body">
+                   <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="col-md-8">
+                                                    <div class="radio"  id="tipo_obra">
+                                                        <t t-if="r_data.tipo_obra == 'construccion'">
+                                                        <label>
+                                                            <input type="hidden" id="construccion" t-att-name="'%s-text-%s-tipo_obra' % (question.id,question.tipo)" value="construccion"/>
+                                                            <input type="radio" id="construccion" t-att-name="'%s-text-%s-tipo_obra' % (question.id,question.tipo)" t-attf-checked="#{'True' if r_data.tipo_obra == 'construccion' else ''}" disabled="True" value="construccion" data-switch-no-init="True"/>
+                                                            Construcción Inicial
+                                                        </label>
+                                                        </t>
+                                                        <t t-if="r_data.tipo_obra == 'ampliacion'">
+                                                        <label>
+                                                            <input type="hidden" t-att-name="'%s-text-%s-tipo_obra' % (question.id,question.tipo)" id="ampliacion" value="ampliacion"/>
+                                                            <input type="radio"  t-att-name="'%s-text-%s-tipo_obra' % (question.id,question.tipo)" id="ampliacion" t-attf-checked="#{'True' if r_data.tipo_obra == 'ampliacion' else ''}" disabled="True" value="ampliacion" data-switch-no-init="True"/>
+                                                            Ampliación
+                                                        </label>
+                                                        </t>
+                                                        <t t-if="r_data.tipo_obra == 'rehabilitacion'">
+                                                        <label>
+                                                            <input type="hidden" t-att-name="'%s-text-%s-tipo_obra' % (question.id,question.tipo)" id="rehabilitacion" value="rehabilitacion"/>
+                                                            <input type="radio" t-att-name="'%s-text-%s-tipo_obra' % (question.id,question.tipo)" id="rehabilitacion" t-attf-checked="#{'True' if r_data.tipo_obra == 'rehabilitacion' else ''}" disabled="True" value="rehabilitacion" data-switch-no-init="True"/>
+                                                            Rehabilitación o Mejora
+                                                        </label>
+                                                        </t>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="cantidad_unidad">
+                                            <label for="cantidad" >Cantidad
+                                                <input type="number" min="1"  step="1" class="form-control" id="cantidad1"  t-att-name="'%s-number-%s-cantidad_estimada_obra' % (question.id,question.tipo)" t-attf-value="#{r_data.cantidad_estimada_obra if r_data.obra_civil and r_data._name == 'jpv_rnd.rendicion' else ''}"></input></label>
+                                            <label for="unidad">Unidad
+                                            <t t-set="n_search" t-value="name_search(r_data.unidad_medicion_obra._name)"/>
+                                                <select class="selectpicker show-tick hidden" title="Seleccione" data-width="100%" t-att-name="'%s-select-%s-unidad_medicion_obra' % (question.id,question.tipo)">
+                                                        <t t-foreach="n_search" t-as="option">
+                                                        <t t-if="option[0] == r_data.unidad_medicion_obra.id">
+                                                            <option t-att-value="'%s' % (option[0])" selected="" ><t t-esc="option[1]"/></option>
+                                                        </t>
+                                                        </t>
+                                                </select>
+                                                <select class="selectpicker show-tick" title="Seleccione" data-width="100%" t-att-name="'%s-select-%s-unidad_medicion_obra' % (question.id,question.tipo)" disabled="True">
+                                                        <t t-foreach="n_search" t-as="option">
+                                                        <t t-if="option[0] == r_data.unidad_medicion_obra.id">
+                                                            <option t-att-value="'%s' % (option[0])" selected="" ><t t-esc="option[1]"/></option>
+                                                        </t>
+                                                        </t>
+<!--
+                                                        <t t-foreach="n_search" t-as="option">
+                                                        <t t-if="not option[0] == proyectos_data.unidad_medicion_obra.id">
+                                                            <option t-att-value="'%s' % (option[0])" ><t t-esc="option[1]"/></option>
+                                                        </t>
+                                                        </t>
+-->
+
+                                                </select>
+                                                </label>
+                                        </div>
+                </div>
+            </div>
+            </div>
+        </template>
+        
+        
+        <template id="select" name="Preguntas tipo select">
+            <t t-set="avance_fisico" t-value="False"/>
+            <t t-if="len(rendicion_data)">
+            <t t-if="question.field_muestra_ids.name == 'avance_fisico'">
+                <t t-set="avance_fisico" t-value="field_get(question.field_muestra_ids.name,rendicion_data)"/>
+            </t>
+            </t>
+            <div class="hidden" t-att-id="'descripcion-%s' % (question.id)"><t t-esc="question.description"/></div>
+            <div class="hidden" t-att-id="'titulo-%s' % (question.id)"><strong><t t-esc="question.nombre"/></strong></div>
+            <div t-att-class="'col-md-%s' % (question.divs)" t-attf-color="#{'panel-success' if question.state == 'avance' else 'panel-warning' if question.state == 'paralizacion' else 'panel-info' if question.state == 'culminacion' else 'panel-danger'}"
+            t-attf-style="#{'overflow: hidden; display: none;' if question.dependiente else ''}" t-att-id="'%s' % (question.id)" t-attf-dependencia="#{dependencia(question.dependencias_id)}">
+            <div t-attf-class="panel panel-#{css}">
+                 <div class="panel-heading">
+                      <strong><t t-esc="question.nombre"/></strong><a href="#" class="question_description" t-att-ref-contenido="'descripcion-%s' % (question.id)" t-att-ref-titulo="'titulo-%s' % (question.id)"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a>
+                     </div>
+                 <div class="panel-body">
+                   <div class="row mt16">
+                        <div class="form-group">
+                        
+<!--
+                        <label class="col-md-4 col-sm-4 col-md-offset-1 control-label" 
+                        t-att-for="'%s-%s' % (question.id,question.tipo)"><h4><t t-esc="question.nombre"/></h4></label>
+-->
+                        <div class="col-md-12">
+                    <t t-if="not avance_fisico">
+                        <select class="selectpicker show-tick" title="Seleccione" data-width="100%" t-att-name="'%s-%s' % (question.id,question.tipo)" required='1'>
+                             <t t-set="categorias" t-value="categorias_select(question.respuesta_ids)"/>
+                             <t t-if="len(categorias)">
+                                 <t t-foreach="categorias" t-as="categ">
+                                     <optgroup t-attf-label="#{categ.name if not categ.name == False else ''}">
+                                    <t t-foreach="question.respuesta_ids" t-as="answer">
+                                        <t t-if="answer.categoria_id == categ">
+                                         <option
+                                         t-att-value="'%s' % (answer.respuesta)" 
+                                         t-attf-dependiente="#{dependiente(answer.dependencia_line)}"
+                                         t-att-respuesta_id="'%s' % (answer.id)"
+                                         ><p><t t-esc="answer.respuesta"/></p></option>
+                                        </t>
+                                    </t>
+                                    </optgroup>
+                                 </t>
+                             </t>
+                             <t t-if="not len(categorias)">
+                                 <t t-foreach="question.respuesta_ids" t-as="answer">
+                                     <option
+                                     t-att-value="'%s' % (answer.respuesta)" 
+                                     t-attf-dependiente="#{dependiente(answer.dependencia_line)}"
+                                     t-att-respuesta_id="'%s' % (answer.id)"
+                                     ><p><t t-esc="answer.respuesta"/></p></option>
+                                </t>
+                            </t>
+                        </select>
+                    </t>
+                    <t t-if="avance_fisico">
+                        <select class="selectpicker show-tick" title="Seleccione" data-width="100%" t-att-name="'%s-%s' % (question.id,question.tipo)" required='1'>
+                             <t t-set="lista_avance" t-value="self.get_avance_fisico(question.respuesta_ids,avance_fisico)"/>
+                                    <t t-foreach="lista_avance" t-as="answer">
+                                         <option
+                                         t-att-value="'%s' % (answer.respuesta)" 
+                                         t-attf-dependiente="#{dependiente(answer.dependencia_line)}"
+                                         t-att-respuesta_id="'%s' % (answer.id)"
+                                         ><p><t t-esc="answer.respuesta"/></p></option>
+                                    </t>
+                        </select>
+                    </t>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </template>
+        
+        
+        
+        <template id="file" name="Preguntas tipo select">
+            <div class="hidden" t-att-id="'descripcion-%s' % (question.id)"><t t-esc="question.description"/></div>
+            <div class="hidden" t-att-id="'titulo-%s' % (question.id)"><strong><t t-esc="question.nombre"/></strong></div>
+            <div t-att-class="'col-md-%s' % (question.divs)" t-attf-color="#{'panel-success' if question.state == 'avance' else 'panel-warning' if question.state == 'paralizacion' else 'panel-info' if question.state == 'culminacion' else 'panel-danger'}"
+            t-attf-style="#{'overflow: hidden; display: none;' if question.dependiente else ''}" t-att-id="'%s' % (question.id)" t-attf-dependencia="#{dependencia(question.dependencias_id)}">
+            <div t-attf-class="panel panel-#{css}">
+                <div class="panel-heading">
+                      <strong><t t-esc="question.nombre"/></strong><a href="#" class="question_description" t-att-ref-contenido="'descripcion-%s' % (question.id)" t-att-ref-titulo="'titulo-%s' % (question.id)"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a>
+                     </div>
+                 <div class="panel-body">
+<!--
+                   <div class="row mt16">
+-->
+                        <div class="form-group">
+                        
+<!--
+                        <label class="col-md-4 col-sm-4 col-md-offset-1 control-label" 
+                        t-att-for="'%s-%s' % (question.id,question.tipo)"><h4><t t-esc="question.nombre"/></h4></label>
+-->
+                         <div class="row mt16">  
+                        <div t-attf-class="col-md-8 col-md-offset-2">
+
+                            <input t-att-id="'%s-%s' % (question.id,question.tipo)"  uploadExtraData="{id:'kv-1'}" t-att-name="'%s-%s-%s' % (question.id,question.tipo,question.cant_files)" multiple="1" t-att-maxfilecount="'%s' % (question.cant_files)" type="file" class="file-loading input-file js_file_apiform"/>
+                        </div>
+                        </div>
+                        </div>
+                    </div>
+<!--
+                </div>
+-->
+            <div class="panel-footer">
+                    <a href="http://smallpdf.com/es/comprimir-pdf" target="new">Enlace para reducir peso de los archivos pdf</a>
+            </div>
+            </div>
+            </div>
+        </template>
+        
+        <template id="img" name="Preguntas tipo img">
+            <div class="hidden" t-att-id="'descripcion-%s' % (question.id)"><t t-esc="question.description"/></div>
+            <div class="hidden" t-att-id="'titulo-%s' % (question.id)"><strong><t t-esc="question.nombre"/></strong></div>
+            <div t-att-class="'col-md-%s' % (question.divs)" t-attf-color="#{'panel-success' if question.state == 'avance' else 'panel-warning' if question.state == 'paralizacion' else 'panel-info' if question.state == 'culminacion' else 'panel-danger'}"
+            t-attf-style="#{'overflow: hidden; display: none;' if question.dependiente else ''}" t-att-id="'%s' % (question.id)" t-attf-dependencia="#{dependencia(question.dependencias_id)}">
+            <div t-attf-class="panel panel-#{css}">
+                 <div class="panel-heading">
+                      <strong><t t-esc="question.nombre"/></strong><a href="#" class="question_description" t-att-ref-contenido="'descripcion-%s' % (question.id)" t-att-ref-titulo="'titulo-%s' % (question.id)"><img class="pull-right" src="/jpv_carga_proyectos/static/src/img/dialog_information.png"/></a>
+                     </div>
+                 <div class="panel-body">
+                   <div class="row mt16">
+                        <div class="form-group">
+                        
+<!--
+                        <label class="col-md-4 col-sm-4 col-md-offset-1 control-label" 
+                        t-att-for="'%s-%s' % (question.id,question.tipo)"><h4><t t-esc="question.nombre"/></h4></label>
+-->
+                        <div class="row mt16">  
+                        <div t-attf-class="col-md-8 col-md-offset-2">
+                            <input t-att-id="'%s-%s' % (question.id,question.tipo)" t-att-name="'%s-%s-%s' % (question.id,question.tipo,question.cant_files)" multiple="1" t-att-maxfilecount="'%s' % (question.cant_files)" type="file" class="file-loading input-image js_file_apiform"/>
+                        </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="panel-footer">
+                    <a href="https://tinyjpg.com/" target="new">Enlace para reducir imagenes .jpg y .jpeg</a>  |
+                    <a href="https://tinypng.com/" target="new">Enlace para reducir imagenes .png</a>
+                    </div>
+                </div>
+            </div>
+        </template>
+        
+        
+<!--
+        <template id="numerico" name="Preguntas tipo text">
+            <div class="panel panel-default">
+                 <div class="panel-body">
+                   <div class="row mt16">
+                        <div class="form-group">
+                        
+                        <label class="col-md-4 col-sm-4 col-md-offset-1 control-label" 
+                        t-att-for="'%s-%s' % (question.id,question.tipo)"><h4><t t-esc="question.nombre"/></h4></label>
+                        <div class="col-md-4 col-md-offset-1">
+                         <input type="question.tipo" t-att-name="'%s-%s' % (question.id,question.tipo)" class="form-control input-sm numerico" t-att-id="'%s-%s' % (question.id,question.tipo)"/>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+        
+        
+        <template id="rif" name="Preguntas tipo text">
+            <div class="panel panel-default">
+                 <div class="panel-body">
+                   <div class="row mt16">
+                        <div class="form-group">
+                        
+                        <label class="col-md-4 col-sm-4 col-md-offset-1 control-label" 
+                        t-att-for="'%s-%s' % (question.id,question.tipo)"><h4><t t-esc="question.nombre"/></h4></label>
+                        <div class="col-md-4 col-md-offset-1">
+                         <input type="question.tipo" t-att-name="'%s-%s' % (question.id,question.tipo)" class="form-control input-sm numerico" t-att-id="'%s-%s' % (question.id,question.tipo)"/>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+-->
+        
+        
+    </data>
+</openerp>

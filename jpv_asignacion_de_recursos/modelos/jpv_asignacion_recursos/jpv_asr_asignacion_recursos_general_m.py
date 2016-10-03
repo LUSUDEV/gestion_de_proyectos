@@ -116,7 +116,7 @@ class jpv_asr_rescurso_general(osv.osv):
                         es incorrecto. El monto a asignar para cada Entidad \
                         o Institución debe ser mayor a Cero o no puede \
                         ser Negativo.'))
-        monto='%.2f' % monto
+        monto=float('%.2f' % monto)
         if asignacion.monto_asignar != monto:
             raise osv.except_osv(
                     ('Error!'),

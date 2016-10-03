@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <openerp>
+     <data>
+         
+
+    <record model="ir.ui.view" id="view_jpv_conf_preguntas_form">
+        <field name="name">jpv_conf_preguntas</field>
+        <field name="model">jpv_conf.preguntas</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Preguntas" >
+                <sheet>
+                    <separator string="Preguntas" colspan="4"/>
+                    <group>
+                        <field  name="nombre" />
+                        <field  name="field_ids"
+                                domain="[
+                                    ('model_id','=',default_model_id),
+                                    ('ttype','=','boolean')
+                                    ]"/>
+                        <field  name="field_muestra_ids"
+                                domain="[
+                                    ('model_id','=',default_model_destino_id),
+                                    ('name','not in',['entidad_id', 'proyecto_id', 'rendicion_line',])
+                                    ]"/>
+                                    
+                        <field name="description"/>
+                        <field name="tipo"/>
+                        <field name="divs"/>
+                        <field name="cant_files" attrs="{'invisible': [('tipo','not in',('file','img'))]}"/>
+                        <field name="state"/>
+                        </group>
+                        <separator string="Respuestas" attrs="{'invisible': [('tipo','not in',('radio','checkbox','select'))]}"/>
+                       <field name="respuesta_ids" attrs="{'invisible': [('tipo','not in',('radio','checkbox','select'))]}">
+                       <tree>
+                       <field name="sequence" widget="handle"/>
+                       <field name="respuesta"/>
+                       </tree>
+                       </field>
+                        
+                        
+                            <group>
+                                <field  name="id" invisible="True"/>
+                                <field  name="active" />
+                                <field  name="muestra_continua" />
+                                <field  name="condicion_muestra" domain="[('pregunta_id','=', id)]" attrs="{'invisible': [('muestra_continua','=',False)]}" />
+                                <field  name="dependiente" />
+                                <field  name="dependencias_id" readonly="True">
+                                <tree >
+                                <field name="respuesta_id"/>
+                                <field name="accion_type"/>
+                                </tree>
+                                </field>
+                            </group>
+                    
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+     
+     <record model="ir.ui.view" id="view_jpv_conf_preguntas_tree">
+        <field name="name">jpv_conf_preguntas</field>
+        <field name="model">jpv_conf.preguntas</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Carga de Proyectos">           
+                <field name="nombre"/>
+                <field name="state"/>
+                <field name="tipo"/>
+            </tree>
+        </field>
+     </record>
+     
+
+    
+    <record model="ir.actions.act_window" id="action_jpv_conf_preguntas">
+        <field name="name">Configuración Preguntas</field>
+        <field name="res_model">jpv_conf.preguntas</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_jpv_conf_preguntas_tree"/>
+        <field name="target">current</field>
+    </record>
+
+            
+        <menuitem name="Preguntas" 
+            id="menu_jpv_configuracion_preguntas"
+            action="action_jpv_conf_preguntas"
+            parent="menu_jpv_control_seguimiento_conf"
+            sequence="20"/>
+            
+    </data>
+</openerp>
