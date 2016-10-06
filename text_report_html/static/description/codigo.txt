@@ -1,0 +1,64 @@
+ 
+                 
+    
+    <div class="header" data-oe-id="498" data-oe-model="ir.ui.view" data-oe-field="arch" data-oe-xpath="/t[1]/div[1]">
+        <div class="contains">
+        <div class="row">
+            <div class="col-xs-12">
+                 <img class="img-responsive" src="/ept_valoracion/static/img/cabecera.png"/>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    
+                     <link rel="stylesheet" type="text/css" href="/ept_valoracion/static/src/css/ept_val_reporte.css" data-oe-id="453" data-oe-model="ir.ui.view" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/link[1]"/>
+                <div class="page">
+                     <p data-oe-id="453" data-oe-model="ir.ui.view" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/p[1]">RIF: G-20009542-3</p>
+                    CFG/FCI/DE/2016-00004022
+                    <div class="row">
+                        <div class="col-xs-9">
+                            <p><h5>Ciudadano(a) <strong>Hebert Osvaldo Chacon Gonzalez</strong><br data-oe-id="453" data-oe-model="ir.ui.view" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/div[1]/div[1]/p[1]/h5[1]/br[1]"/>
+                            Alcalde (sa) Alcaldía de Guajira (Edo. Zulia)<br data-oe-id="453" data-oe-model="ir.ui.view" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/div[1]/div[1]/p[1]/h5[1]/br[2]"/>
+                            Su Despacho.-</h5></p>
+                        </div>
+                         <div class="col-xs-offset-3">
+                             <p>Caracas, 2016-10-03</p>
+                         </div>
+                    </div>
+                    <br data-oe-id="453" data-oe-model="ir.ui.view" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/br[1]"/>
+                    <div class="row">
+                        <div class="col-xs-10 col-xs-offset-1">
+                            <p align="justify">Tengo el agrado de dirigirme a usted, en la oportunidad de extenderle un cordial saludo y a su vez, hacer de su conocimiento que la solicitud de <strong data-oe-id="453" data-oe-model="ir.ui.view" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/div[2]/div[1]/p[1]/strong[1]">Cambio de Monto</strong> del proyecto  PI-2016-C-2-E-119-00010385 REHABILITACION Y MEJORA DEL SISTEMA DE ADUCCION EN EL SECTOR CAMPAMENTO,LA GLORIA, PARROQUIA GUAJIRA MUNICIPIO INDIGENA BOLIVARIANO GUAJIRA, ESTADO ZULIA de BS. 500000,0 por BS. 1000000,00, fue aprobada. </p>
+                        </div>
+                    </div>
+                    <br data-oe-id="453" data-oe-model="ir.ui.view" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/br[2]"/>
+                    <br data-oe-id="453" data-oe-model="ir.ui.view" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/br[3]"/>
+                    <div class="row" data-oe-id="453" data-oe-model="ir.ui.view" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/div[3]">
+                        <div class="col-xs-10 col-xs-offset-1">
+                            <p>Sin ningún otro particular al cual hacer referencia, queda de usted,</p>
+                        </div>
+                    </div>
+                    <br data-oe-id="453" data-oe-model="ir.ui.view" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/br[4]"/>
+                    <br data-oe-id="453" data-oe-model="ir.ui.view" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/br[5]"/>
+                    <br data-oe-id="453" data-oe-model="ir.ui.view" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/br[6]"/>
+                    <div class="row" data-oe-id="453" data-oe-model="ir.ui.view" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/div[4]">
+                        <div class="col-xs-10 col-xs-offset-1">
+                            <p align="center">Atentamente,</p>
+                        </div>
+                    </div>
+                </div>
+                 
+    
+    <footer data-oe-id="499" data-oe-model="ir.ui.view" data-oe-field="arch" data-oe-xpath="/t[1]/footer[1]">
+    <div class="footer">
+        <div class="row">
+            <div class="col-xs-12">
+                <img class="img-responsive" src="/ept_valoracion/static/img/pie4.png" height="100"/>
+            </div>
+        </div>
+    </div> 
+    </footer>     
+
+
+    

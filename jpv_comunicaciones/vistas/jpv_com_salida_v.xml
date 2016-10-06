@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <openerp>
+     <data>
+         
+      <record model="ir.ui.view" id="view_jpv_com_salidas_form">
+        <field name="name">jpv_com_salidas_form</field>
+        <field name="model">jpv_com.salidas</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <header>
+                    <button 
+                        name="enviar_salida" 
+                        string="Enviar Salida"  
+                        type="object" 
+                        class="oe_highlight"
+                        groups="base.group_system,jpv_usuarios.group_ger_inf,jpv_usuarios.group_jun_dir,jpv_usuarios.group_jun_dir_sec"
+                        attrs="{'invisible': [('id','=',False)]}"
+                        />
+                    <field 
+                        name="state" 
+                        widget="statusbar" 
+                        groups="base.group_system,jpv_usuarios.group_ger_inf,jpv_usuarios.group_jun_dir,jpv_usuarios.group_jun_dir_sec"/>
+            </header>
+            <form string="Salida Comunicaciones" >
+                    <h2>
+                        <field name="id" invisible="1"/>
+                        <label string="Correlativo" attrs="{'invisible': [('id','=',False)]}"/>
+                        <field name="correlativo" class="oe_inline"  string="Codificación"  readonly="1" style="widht:30%%"/>
+                    </h2>
+                <sheet>
+                    <group>
+                    <field name="company_id" />
+                    <field name="asunto_id"/>
+                    <field name="comunicacion"/>
+                    <field name="adjunto_ids">
+                    <tree editable="button">
+                        <field name="attachment_id"/>
+                        <field name="id" invisible="1" />
+                        <field name="datas" attrs="{'invisible': [('id','=',False)]}"/>
+                    </tree>
+                    </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    
+     
+     <record model="ir.ui.view" id="viewjpv_com_salidas_tree">
+        <field name="name">jpv_com_salidas_proyecto_tree</field>
+        <field name="model">jpv_com.salidas</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Coroespondencia Oficiales">
+                <field name="correlativo"/>
+            </tree>
+        </field>
+     </record>
+     
+
+    
+    <record model="ir.actions.act_window" id="jpv_com_salidas_action">
+        <field name="name">Asignación de valoración</field>
+        <field name="res_model">jpv_com.salidas</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="viewjpv_com_salidas_tree"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+            Aqui se registran los Datos de las Salidas Comunicaciones.
+            </p>
+        </field>
+    </record>
+
+            
+<record model="ir.ui.view" id="view_jpv_com_adjuntos_form">
+        <field name="name">jpv_com_adjuntos_form</field>
+        <field name="model">jpv_com.adjuntos</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Adjuntos" >
+                <sheet>
+                    <group>
+                    <field name="attachment_id" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+            
+    </data>
+</openerp>
+

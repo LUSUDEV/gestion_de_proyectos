@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <openerp>
+     <data>
+         <!-- Pre- Valoracion de la Ures -->
+        <record id="jpv_fir_carga_cartas_wizard_view" model="ir.ui.view">
+            <field name="name">Cragar Cartas</field>
+            <field name="model">jpv_fir_carga_cartas_wizard</field>
+            <field name="arch" type="xml">
+                <form string="Cargar Cartas">
+                    <field name="confimado" readonly="1" invisible='1'/>
+                    <field name="resumen" readonly="1"/>
+                    <field 
+                        name="filedata" 
+                        widget="binary"
+                        attrs="{'readonly': [('confimado', '=', True)]}"/>
+                    <separator string="Cartas Cargadas" colspan="4"/>
+                    <field name="cartas_x_firmar_ids" readonly="1">
+                        <tree>
+                            <field  name="id" />
+                            <field  name="tipo_cartas" />
+                            <field  name="referencia" />
+                            <field  name="state" />
+                            <field  name="attachment_id" />
+                            
+                        </tree>
+                    </field>
+                    <footer>
+                        <button 
+                        string="Validar *.zip" 
+                        type="object" 
+                        name="validar_zip" 
+                        class="oe_highlight"
+                        attrs="{'invisible': [('confimado', '=', True)]}" />
+                        
+                        <button
+                        string="Cargar Cartas Firmadas"
+                        type="object" 
+                        name="cargar_cartas" 
+                        class="oe_highlight" 
+                        attrs="{'invisible': [('confimado', '=', False)]}"
+                        />
+                        or
+                        <button string="Cancelar " class="oe_link" special="cancel" />
+                        
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_jpv_fir_carga_cartas_wizard" model="ir.actions.act_window">
+             <field name="name">Validar Cartas</field>
+             <field name="res_model">jpv_fir_carga_cartas_wizard</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="view_type">form</field>
+             <field name="view_mode">tree,form</field>
+             <field name="view_id" ref="jpv_fir_carga_cartas_wizard_view"/>
+             <field name="context">{}</field>
+             <field name="target">new</field>
+       </record>
+        
+        <menuitem name="Cargar Cartas Firmadas" 
+                id="jpv_fir_carga_cartas_menu"
+                parent="rjpv_fir_gestion_cartas" 
+                action="action_jpv_fir_carga_cartas_wizard" 
+                sequence="10"
+                />
+<!--
+    herencia del boton limpiar ya que no se puede hacer recursividad de id de vistas
+-->
+    <record id="view_jpv_fir_carga_cartas_wizard_herencia_form" model="ir.ui.view">
+            <field name="name">jpv_fir_carga_cartas_wizard_herencia.form</field>
+            <field name="model">jpv_fir_carga_cartas_wizard</field>
+            <field name="inherit_id" ref="jpv_fir_carga_cartas_wizard_view" />
+            <field name="arch" type="xml">
+                <button string="Cancelar " class="oe_link" special="cancel" position="after">
+                        -
+                        <button
+                        string="--Limpiar"
+                        type="action" 
+                        name="%(action_jpv_fir_carga_cartas_wizard)d" 
+                        class="oe_link" 
+                        attrs="{'invisible': [('confimado', '=', False)]}"
+                        />
+                </button>
+            </field>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_jpv_com_asuntos_system,jpv_com.asuntos,model_jpv_com_asuntos,base.group_system,1,1,1,1
+access_jpv_com_gerencias_system,jpv_com.gerencias,model_jpv_com_gerencias,base.group_system,1,1,1,1
+access_jpv_com_proyectos_system,jpv_com.proyectos,model_jpv_com_proyectos,base.group_system,1,1,1,1
+access_jpv_com_comunicaciones,jpv_com.comunicaciones,model_jpv_com_comunicaciones,base.group_system,1,1,1,1
+access_jpv_com_campos_text_system,jpv_com.campos_text,model_jpv_com_campos_text,base.group_system,1,1,1,1
+access_jpv_com_salidas_system,jpv_com.salidas,model_jpv_com_salidas,base.group_system,1,1,1,1
+access_jpv_com_adjuntos_system,jpv_com.adjuntos,model_jpv_com_adjuntos,base.group_system,1,1,1,1
+access_jpv_com_comunicaciones_masivas_system,jpv_com.comunicaciones_masivas,model_jpv_com_comunicaciones_masivas,base.group_system,1,1,1,1
+access_jpv_com_adjuntos_masivos_system,jpv_com.adjuntos_masivos,model_jpv_com_adjuntos_masivos,base.group_system,1,1,1,1
+access_jpv_com_comunicaciones_masivas_leidas_system,jpv_com.comunicaciones_masivas_leidas,model_jpv_com_comunicaciones_masivas_leidas,base.group_system,1,1,1,1

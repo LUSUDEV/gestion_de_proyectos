@@ -1,0 +1,971 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+<template id="website_apiform" inherit_id="website.assets_frontend" name="website_apiform">
+    <xpath expr="/t" position="inside">
+            <script type="text/javascript" src="/jpv_valoracion/static/src/js/valoracion.js"></script>
+            <script type="text/javascript" src="/jpv_valoracion/static/src/js/jpv_val_enviar.js"></script>
+    </xpath>
+</template>
+
+
+<template id="jpv_valoracion.valoraciones" name="valorar proyectos" >
+<t t-set="cont" t-value="0" />
+ <t t-foreach="proyectos" t-as="proyecto">
+     <t t-set="cont" t-value="cont+1" />
+     <t t-set="tr_id" t-value="'c-%s' % (cont)" />
+     <div class="row">
+        <div class="col-sm-4 col-xs-4 col-md-4 col-lg-4" >
+            <h4><b><span t-field="proyecto.correlativo"/></b></h4>
+        </div>
+        <div class="col-sm-7 col-xs-7 col-md-7 col-lg-7 js_val_show"
+         t-att-tr_id="tr_id"
+         style="cursor:pointer">
+            <h4><b><span  t-field="proyecto.partner_id"/></b></h4>
+                
+        </div>
+        <div class="col-sm-1 col-xs-1 col-md-1 col-lg-1">
+             <div t-att-class="'js_val_exito%s%s' % (proyecto.id,tr_id)" style="display:none"/>
+             <img src="/web/static/src/img/icons/gtk-apply.png"/>
+        </div>
+     </div>
+     <div t-att-class="tr_id" >
+    <form action="/jpv_valorar" t-att-id="'idform%s-%s' % (proyecto.id,tr_id)">
+    <input type="hidden" t-att-value="tipo_valoracion" name="tipo_valoracion"/>
+    <input type="hidden" t-att-value="refencia" name="refencia"/>
+    <input type="hidden" t-att-value="CoordenadasData.id" name="obj_valoracion_id"/>
+    <input type="hidden" t-att-value="proyecto.id" name="proyecto_id"/>
+    <t t-if="tipo_valoracion in ['valoracion_coordenadas','valCoordenadasUre'] ">
+        <t t-call="jpv_conf_valoracion.valoracionCoordenadas" />
+        <t t-call="jpv_valoracion.datos_proyecto_coordenadas" />
+    </t>
+    <t t-if="tipo_valoracion=='valoracion_general'">
+        <t t-call="jpv_valoracion.datos_proyecto_general" />
+        <t t-call="jpv_conf_valoracion.valoracionGeneral" />
+    </t>
+</form>
+ </div>
+ </t>
+</template>
+
+<!--
+template recorrer asignaciones
+-->
+
+<template id="jpv_valoracion.valorar" name="valorar proyectos" >
+<!--
+    recorrido de valoracion general
+-->
+    <t t-if='cant_general!=0'>
+        <table class="table table-bordered table-striped mt32">
+            <thead>
+                <tr class="active">
+                    <th colspan="7" >
+                        <h4 align="center">
+                            <b>Valoración de General</b>
+                        </h4>
+                    </th>
+                </tr>
+                <tr class="active">
+                    <th>#</th>
+                    <th>Codificación FCI</th>
+                    <th>Nombre</th>
+                    <th>Categoria</th>
+                    <th ><span class="glyphicon glyphicon-wrench">...</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <t t-set="cont" t-value="0" />
+                <t t-set="proyectosGen" t-value="datos_asig.proyecto_idsg" />
+                
+                <t t-if='editar==1'>
+                <t t-set="proyectosGen" t-value="dictamen.proyecto_id" />
+                </t>
+                <t t-foreach="proyecto_data_gen" t-as="asignaciong">
+                    <t t-set="tr_id" t-value="'g-%s' % (cont+1)" />
+                    <t t-set="proyecto" t-value="asignaciong" />
+                    <t t-set="valorado" t-value="proyecto.valGeneral" />
+                    <t t-if="valorado==0 or editar==1">
+                            <tr>
+                                 <td ><a t-att-id="'a%s' % (tr_id)">G-<t t-esc="cont+1"/></a></td>
+                                 <t t-set="cont" t-value="cont+1" />
+                                 <td ><t t-esc="asignaciong['correlativo']"/></td>
+                                 <td ><t t-esc="asignaciong['partner_id'].name"/></td>
+                                 <td >
+                                     <p><t t-esc="asignaciong['tipo_sector_id'].name"/></p>
+                                     <t t-esc="asignaciong['categoria_id'].name"/> / 
+                                     <t t-esc="asignaciong['subcategoria_id'].name"/>
+                                 </td>
+                                 <td ><t t-set="proyecto_id" t-value="asignaciong.id" />
+                                    <t t-foreach="datos_asig.valoraciones_id" t-as="valoraciones">
+                                        <t t-if="valoraciones.tipo=='general'">
+                                            <t t-if="valoraciones.id==asignaciong['id']">
+                                                <t t-call="jpv_valoracion.botton2" />
+                                            </t>
+                                            <t t-if="valoraciones.id!=asignaciong['id']">
+                                                <t t-call="jpv_valoracion.botton" />
+                                            </t>
+                                        </t>
+                                        <t t-if="valoraciones.tipo!='general'">
+                                            <t t-call="jpv_valoracion.botton" />
+                                        </t>
+                                    </t>
+                                    <t t-if="len(datos_asig.valoraciones_id)==0">
+                                            <t t-call="jpv_valoracion.botton" />
+                                    </t>
+                                 </td>
+                             </tr>
+                             <tr class="active">
+                            <th colspan="7"  t-att-class="'g-%s' % (cont)" style="display: none;">
+                                    <form action="/jpv_valorar" t-att-id="'idform%s-%s' % (proyecto.id,tr_id)">
+                                        <t t-set='tipo_valoracion' t-value="'valoracion_general'"/>
+                                        <input type="hidden" value="valoracion_general" name="tipo_valoracion"/>
+                                        <input type="hidden" t-att-value="ValGeneralData.id" name="obj_valoracion_id"/>
+                                        <input type="hidden" t-att-value="proyecto.id" name="proyecto_id"/>
+                                        <input type="hidden" t-att-value="datos_asig.id" name="asignacion_id"/>
+                                        <t t-call="jpv_valoracion.datos_proyecto_general" />
+                                        <t t-call="jpv_conf_valoracion.valoracionGeneral" />
+                                    </form>
+                            </th>
+                        </tr>
+                    </t>
+                </t>
+            </tbody>
+        </table>
+    </t>
+<!--
+
+
+    recorrido de valoracion coordenadas
+
+    
+-->
+    <t t-if='cant_coordenadas>0'>
+        <table class="table table-bordered table-striped mt32 " >
+            <thead>
+                <tr class="active">
+                    <th colspan="7">
+                        <h4 align="center">
+                            <b>Valoración de Coordenadas</b>
+                        </h4>
+                    </th>
+                </tr>
+                <tr>
+                    <th colspan="7">
+                        <t t-if="cant_coordenadas>0"> 
+                         <form enctype="multipart/form-data">
+                            <input type="hidden" id="tipo_valoracionfile" value="valoracion_coordenadas" name="tipo_valoracion"/>
+                            <input type="hidden" id="asignacion_idfile" t-att-value="datos_asig.id" name="asignacion_id"/>
+                            <input type="hidden" id="obj_valoracion_idfile" t-att-value="CoordenadasData.id" name="obj_valoracion_id"/>
+                              <div class="kv-avatar center-block" style="width:250px">
+                                    <input  name="jpv_csv_valoracion" type="file" class="js_jpv_valoracionCsv file-loading"/>
+                              </div>
+                            <div id="kv-error-1" style="margin-top:10px;display:none"></div>
+                            <div id="kv-success-1" class="alert alert-success fade in" style="margin-top:10px;display:none"></div>
+                         </form>
+                        </t>
+                        <a t-att-href="url_for('/valoracion/formato/%s/' % datos_asig['id'])"> Descargar Formato </a>
+                    </th>
+                </tr>
+                <tr class="active">
+                    <th>#</th>
+                    <th>Codificación FCI</th>
+                    <th>Nombre</th>
+                    <th>Coordenadas Este Inicio</th>
+                    <th>Coordenadas Norte Inicio</th>
+                    <th ><span class="glyphicon glyphicon-wrench">...</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <t t-set="cont" t-value="0" />
+                <t t-set="proyectosCoor" t-value="datos_asig.proyecto_idsc" />
+                <t t-if='editar==1'>
+                <t t-set="proyectosCoor" t-value="dictamen.proyecto_id" />
+                </t>
+                <t t-foreach="proyecto_data_cor" t-as="asignacionc">
+                    <t t-set="tr_id" t-value="'c-%s' % (cont+1)" />
+                    <t t-set="proyecto" t-value="asignacionc" />
+                    <t t-set="valorado" t-value="proyecto.valCoordenadas" />
+                    <t t-if="valorado==0 or editar==1">
+                        <tr>
+                             <td><a t-att-id="'a%s' % (tr_id)">C-<t t-esc="cont+1"/></a></td>
+                             <t t-set="cont" t-value="cont+1" />
+                             <td ><t t-esc="asignacionc['correlativo']"/></td>
+                             <td ><t t-esc="asignacionc['partner_id'].name"/></td>
+                             <td ><t t-esc="asignacionc['coord_este']"/></td>
+                             <td ><t t-esc="asignacionc['coord_norte']"/></td>
+                             <td ><t t-set="proyecto_id" t-value="asignacionc.id" />
+                                <t t-foreach="datos_asig.valoraciones_id" t-as="valoraciones">
+                                    <t t-if="valoraciones.tipo=='coordenadas'">
+                                        <t t-if="valoraciones.id==asignaciong['id']">
+                                            <t t-call="jpv_valoracion.botton2" />
+                                        </t>
+                                        <t t-if="valoraciones.id!=asignaciong['id']">
+                                            <t t-call="jpv_valoracion.botton" />
+                                        </t>
+                                    </t>
+                                    <t t-if="valoraciones.tipo!='coordenadas'">
+                                        <t t-call="jpv_valoracion.botton" />
+                                        
+                                    </t>
+                                </t>    
+                                <t t-if="len(datos_asig.valoraciones_id)==0">
+                                    <t t-call="jpv_valoracion.botton" />
+                                     
+                                </t>
+                             </td>
+                         </tr>
+                        <tr class="active">
+                        <th colspan="7" t-att-class="'c-%s' % (cont)" style="display: none;">
+                                 <form action="/jpv_valorar" t-att-id="'idform%s-%s' % (proyecto.id,tr_id)">
+                                     <t t-set='tipo_valoracion' t-value="'valoracion_coordenadas'"/>
+                                    <input type="hidden" value="valoracion_coordenadas" name="tipo_valoracion"/>
+                                    <input type="hidden" t-att-value="CoordenadasData.id" name="obj_valoracion_id"/>
+                                    <input type="hidden" t-att-value="proyecto.id" name="proyecto_id"/>
+                                    <input type="hidden" t-att-value="datos_asig.id" name="asignacion_id"/>
+                                    <div t-if="cont &lt;= 300">
+                                    <t t-call="jpv_valoracion.datos_proyecto_coordenadas" />
+                                    <t t-call="jpv_conf_valoracion.valoracionCoordenadas" />
+                                    </div>
+                                 </form>
+                            </th>
+                        </tr>
+                    </t>
+                </t>
+            </tbody>
+        </table>
+    </t>
+
+</template>
+
+
+<!--
+template de los botones
+-->
+
+
+<template id="jpv_valoracion.botton" name="botton valorar">
+    <button
+        type="button"
+        class="btn btn-primary js_val_show"
+        t-att-proyecto_id="proyecto_id"
+        t-att-tr_id="tr_id"
+        >Mostrar <div t-att-class="'js_val_exito%s%s' % (proyecto.id,tr_id)" style="display:none">
+            <img src="/web/static/src/img/icons/gtk-apply.png"/>
+        </div></button>
+</template>
+<template id="jpv_valoracion.bottonsmall" name="botton valorar">
+    <button
+        type="button"
+        class="btn btn-primary js_val_show btn-sm"
+        t-att-proyecto_id="proyecto_id"
+        t-att-tr_id="tr_id"
+        >Mostrar <div t-att-class="'js_val_exito%s%s' % (proyecto.id,tr_id)" style="display:none" >
+            <img src="/web/static/src/img/icons/gtk-apply.png"/>
+        </div></button>
+</template>
+
+
+<template id="jpv_valoracion.bottonCerrar" name="botton valoraro">
+    <button
+        type="button"
+        class="close js_val_show"
+        t-att-proyecto_id="proyecto_id"
+        t-att-tr_id="tr_id"
+        >X</button>
+</template>
+
+
+<!--
+
+template de los datos del proyectos
+
+-->
+
+
+<template id="jpv_valoracion.datos_proyecto_general" name="dotos del proyecto">
+<div width="100%"  style="background-color:#B6E0FF">...</div>
+    <t t-call="jpv_valoracion.datosGenerales"/>
+<!--
+    <t t-call="jpv_valoracion.montoTiempo"/>
+-->
+    <t t-call="jpv_valoracion.calificacionInversion"/>
+    <t t-call="jpv_valoracion.caracteristicasGenerales"/>
+    <t t-call="jpv_valoracion.ubicacion_val_general"/>
+<!--
+    en la primera presentación con el Sr Guy y su equipo se acordo no colocar este items
+    <t t-call='jpv_valoracion.beneficiario'/>
+    <t t-call='jpv_valoracion.empleoAsociado'/>
+-->
+   <t t-call='jpv_valoracion.aval'/>
+   <t t-call='jpv_valoracion.foto'/>
+    <div class="panel panel-default">
+    <div class="panel-heading "><b>Observaciones</b></div>
+        <div class="panel-body">
+            <div class="row">
+                <textarea class="form-control" rows="5" name="observaciones"><t t-if="editar==1"><t t-esc="dictamen.observaciones"/></t></textarea>
+            </div>
+        </div>
+    </div>
+<div class="row">
+<!--
+    <div t-att-id="'valoracionhidden%s' % (proyecto.id)"/>
+-->
+    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12" align="center">
+        <img style="display:none"
+            width="40px"
+            t-att-id="'img-idform%s-%s' % (proyecto.id,tr_id)"
+            height="40px"
+            src="/web/static/src/img/throbber-large.gif"/>
+        <t t-call="jpv_valoracion.bottonCerrar" />
+            <button t-if="proyecto.state=='evaluacion'"
+                type="button"
+                class="js_EnviarValoracionEpt btn btn-success glyphicon glyphicon-send"
+                t-att-tr_id="tr_id"
+                t-att-proyecto_id="proyecto.id"
+                t-att-form="'idform%s-%s' % (proyecto.id,tr_id)"> Enviar Valoración
+            </button><br/><br/>
+    </div>
+</div>
+<div width="100%"  style="background-color:#1505FA">...</div>
+</template>
+
+<template id="jpv_valoracion.datos_proyecto_coordenadas" name="dotos del proyecto">
+<div width="100%"  style="background-color:#B6E0FF">...</div>
+    <t t-call="jpv_valoracion.datosGenerales"/>
+    <t t-call='jpv_valoracion.ubicacion'/>
+<!--
+    <t t-call="jpv_valoracion.montoTiempo"/>
+-->
+    <t t-call="jpv_valoracion.calificacionInversion"/>
+    <t t-call="jpv_valoracion.caracteristicasGenerales"/>
+<!--
+    en la primera presentación con el Sr Guy y su equipo se acordo no colocar este items
+    <t t-call='jpv_valoracion.beneficiario'/>
+    <t t-call='jpv_valoracion.empleoAsociado'/>
+-->
+<!--
+   <t t-call='jpv_valoracion.aval'/>
+-->
+    <div class="panel panel-default">
+    <div class="panel-heading "><b>Observaciones</b></div>
+        <div class="panel-body">
+            <div class="row">
+                <textarea class="form-control" rows="5" name="observaciones"><t t-if="editar==1"><t t-esc="dictamen.observaciones"/></t></textarea>
+            </div>
+        </div>
+    </div>
+<div class="row">
+<!--
+    <div t-att-id="'valoracionhidden%s' % (proyecto.id)"/>
+-->
+    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12" align="center">
+        <img style="display:none"
+            width="40px"
+            t-att-id="'img-idform%s-%s' % (proyecto.id,tr_id)"
+            height="40px"
+            src="/web/static/src/img/throbber-large.gif"/>
+        <t t-call="jpv_valoracion.bottonCerrar" />
+            <button t-if="proyecto.state=='evaluacion'"
+                type="button"
+                class="js_EnviarValoracionEpt btn btn-success glyphicon glyphicon-send"
+                t-att-tr_id="tr_id"
+                t-att-proyecto_id="proyecto.id"
+                t-att-form="'idform%s-%s' % (proyecto.id,tr_id)"> Enviar Valoración
+            </button><br/><br/>
+    </div>
+</div>
+<div width="100%"  style="background-color:#1505FA">...</div>
+</template>
+
+
+<template id='jpv_valoracion.datosGenerales' name='Panel de Datos Generales'>
+<div class="panel panel-default">
+    <div class="panel-heading "><b>Datos Generales</b></div>
+        <div class="panel-body">
+            <div class="row">
+              <div class="col-sm-7 col-xs-7 col-md-7 col-lg-7" >
+                    <b><p class="text-left text-muted" >Nombre del Proyecto:</p></b>
+                     <div  align="justify" t-field='proyecto.nombre_proyecto' />
+                    <div t-att-id="'nombre_proyecto%s-%s' % (proyecto.id,tr_id)" mostrar='si'></div>
+                    <b><p class="text-left text-muted js_labelValorar mt8" >Descripción del Proyecto:</p></b>
+                        <div  align="justify" t-field='proyecto.descripcion_proyecto' />
+                    <div t-att-id="'descripcion_proyecto%s-%s' % (proyecto.id,tr_id)" mostrar='si'></div>
+              </div>
+              <div t-att-id="'descripcion_proyectonombre_proyecto%s-%s' %(proyecto.id,tr_id)" mostrar='si' class="col-sm-5 col-xs-5 col-md-5 col-lg-5">
+              </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template id='jpv_valoracion.montoTiempo' name='Panel Monto y Tiempo de Ejecución'>
+    <div class="panel panel-default" >
+        <div class="panel-heading"><h4><b>Monto y Tiempo de Ejecución</b></h4></div>
+        <div class="panel-body">
+            <table class="table table-bordered table-striped mt32">
+                <thead>
+                    <tr class="active">
+                        <th>Fecha de Inicio</th>
+                        <th>Fecha Fin</th>
+                        <th>Tiempo de Duración</th>
+                        <th>Monto</th>
+                    </tr>
+                </thead>
+                <body>
+                    <tr> 
+                        <td>
+                            <span t-field='proyecto.fecha_inicio' /></td>
+                        <td>
+                            <span t-field='proyecto.fecha_fin' /></td>
+                        <td>
+                            <span t-field='proyecto.duracion_proyec' /></td>
+                        <td>
+                            <span t-field='proyecto.monto_proyecto' /></td>
+                    </tr>
+                </body>
+            </table>
+            <div t-att-id="'duracion_proyecfecha_finfecha_finmonto_proyecto%s-%s' %(proyecto.id,tr_id)" mostrar='si'/>
+            <div t-att-id="'fecha_finfecha_fin%s-%s' %(proyecto.id,tr_id)" mostrar='si'/>
+            <div t-att-id="'fecha_inicio%s-%s' % (proyecto.id,tr_id)" mostrar='si'/>
+            <div t-att-id="'fecha_fin%s-%s' % (proyecto.id,tr_id)" mostrar='si'/>
+            <div t-att-id="'duracion_proyec%s-%s' % (proyecto.id,tr_id)" mostrar='si'/>
+            <div t-att-id="'monto_proyecto%s-%s' % (proyecto.id,tr_id)" mostrar='si'/>
+        </div>
+    </div>
+</template>
+
+<template id='jpv_valoracion.calificacionInversion' name='Panel Clasificación de Inversión'>
+    <div class="panel panel-default">
+        <div class="panel-heading"><b>Clasificación de Inversión</b></div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-7 col-xs-7 col-md-7 col-lg-7">
+                    <b><p
+                        class="text-left text-muted js_labelValorar"
+                        ref="categoria_id"
+                        >Sector / Categoria / Subcategoria:</p></b>
+                    <span t-field='proyecto.subcategoria_id' />
+                </div>
+                <div class="col-sm-5 col-xs-5 col-md-5 col-lg-5">
+                    <div t-att-id="'categoria_idsubcategoria_idtipo_sector_id%s-%s' %(proyecto.id,tr_id)" mostrar='si' />
+                <div t-att-id="'subcategoria_id%s-%s' %(proyecto.id,tr_id)" mostrar='si' />
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template id='jpv_valoracion.caracteristicasGenerales' name='Caracteristicas Generales'>
+    <!--
+    **************inicio de panel de Caracteristicas Generales*****************
+-->
+<div class="panel panel-default">
+        <div class="panel-heading"><b>Caracteristicas Generales</b></div>
+        <div class="panel-body">
+<!--
+            Inicio Proyecto de mantenimiento
+-->
+            <div class="row" t-if='proyecto.proyect_mantenimiento'>
+             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12" >
+             <p class="text-left text-muted ">Proyecto de Mantenimiento</p>
+             </div>
+             </div>
+<!--
+    Fin de proyecto de mantenimiento
+-->
+
+<!--
+            inicio obra civil
+-->
+            <t t-if='proyecto.obra_civil' >
+            <b>
+                <p class="text-left text-muted ">Obral Civil:</p></b>
+                <table class="table table-bordered table-striped ">
+                    <thead>
+                        <tr class="active">
+                            <th>Tipo de Obra</th>
+                            <th>Unidad de Medición</th>
+                            <th>Cantidad Estimada</th>
+                        </tr>
+                    </thead>
+                    <body>
+                        <tr>
+                            <td>
+                                <span t-field='proyecto.tipo_obra' /></td>
+                            <td>
+                                <span t-field='proyecto.unidad_medicion_obra' /></td>
+                            <td>
+                                <span t-field='proyecto.cantidad_estimada_obra' /></td>
+                        </tr>
+                    </body>
+                </table>
+            </t>
+            <div t-att-id="'obra_civil%s-%s' %(proyecto.id,tr_id)" t-attf-mostrar="#{'si' if proyecto.obra_civil else 'no'}" />
+<!--
+            fin obra civil
+            
+            inicio adquisición de Equipos
+-->
+            <t t-if='proyecto.equipos' >
+            <b><p class="text-left text-muted mt32">Adquisición de Equipos:</p></b>
+                <table class="table table-bordered table-striped ">
+                    <thead>
+                        <tr class="active">
+                            <th>#</th>
+                            <th>Uso</th>
+                            <th>Tipo</th>
+                            <th>Cantidad Equipos</th>
+                        </tr>
+                    </thead>
+                    <body>
+                        <t t-set="cont" t-value="0" />
+                        <t t-foreach="proyecto.equipos_ids" t-as="equipo">
+                            <tr>
+                                <td ><t t-esc="cont+1"/></td>
+                                <t t-set="cont" t-value="cont+1" />
+                                <td>
+                                    <span t-esc='equipo["uso_id"].uso' /></td>
+                                <td>
+                                   <span t-esc='equipo["tipo"]' /></td>
+                                <td>
+                                   <span t-esc='equipo["cantidad"]' /></td>
+                            </tr>
+                        </t>
+                        <t t-if="len(proyecto.equipos_ids)==0">
+                            <tr>
+                                <td colspan="4"><h3><b>Pulsó Adquisición de Equipos, más no Agregó</b></h3></td>
+                            </tr>
+                        </t>
+                    </body>
+                </table>
+            </t>
+            <div t-att-id="'equipos%s-%s' %(proyecto.id,tr_id)" t-attf-mostrar="#{'si' if proyecto.equipos else 'no'}"/>
+<!--
+            fin adquisición de Equipos
+            
+            inicio adquisición de Maquinarias
+-->
+            <t t-if='proyecto.maquinaria' >
+            <b><p class="text-left text-muted mt32">Adquisición de Maquinarias:</p></b>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr class="active">
+                            <th>#</th>
+                            <th>Uso</th>
+                            <th>Tipo</th>
+                            <th>Cantidad de Maquinas</th>
+                        </tr>
+                    </thead>
+                    <body>
+                        <t t-set="cont" t-value="0" />
+                        <t t-foreach="proyecto.maquinaria_ids" t-as="maquina">
+                            <tr>
+                                <td ><t t-esc="cont+1"/></td>
+                                <t t-set="cont" t-value="cont+1" />
+                                <td><span t-esc='maquina["uso_id"].uso' /></td>
+                                <td><span t-esc='maquina["tipo"]' /></td>
+                                <td><span t-esc='maquina["cantidad"]' /></td>
+                            </tr>
+                        </t>
+                        <t t-if="len(proyecto.maquinaria_ids)==0">
+                            <tr>
+                                <td colspan="4"><h3><b>Pulsó Adquisición de Maquinarias, más no Agregó</b></h3></td>
+                            </tr>
+                        </t>
+                    </body>
+                </table>
+            </t>
+            <div t-att-id="'maquinaria%s-%s' %(proyecto.id,tr_id)" t-attf-mostrar="#{'si' if proyecto.maquinaria else 'no'}"/>
+<!--
+            fin adquisición de Maquinarias
+            
+            inicio adquisición de vehiculos
+-->
+        <t t-if='proyecto.vehiculos' >
+        <b><p class="text-left text-muted mt32">Adquisición de Vehculos:</p></b>
+                <table class="table table-bordered table-striped ">
+                    <thead>
+                        <tr class="active">
+                            <th>#</th>
+                            <th>Uso</th>
+                            <th>Caracteristicas</th>
+                            <th>Tipo</th>
+                            <th>Cantidad de vehiculos</th>
+                        </tr>
+                    </thead>
+                    <body>
+                        <t t-set="cont" t-value="0" />
+                        <t t-foreach="proyecto.vehiculos_ids" t-as="vehiculo">
+                            <tr>
+                                <td ><t t-esc="cont+1"/></td>
+                                <t t-set="cont" t-value="cont+1" />
+                                <td>
+                                    <span t-esc='vehiculo["uso_id"].uso' /></td>
+                                <td>
+                                    <span t-esc='vehiculo["caracteristica_id"].caracteristicas' /></td>
+                                <td>
+                                    <span t-esc='vehiculo["tipo_id"].tipo' /></td>
+                                <td>
+                                    <span t-esc='vehiculo["cantidad"]' /></td>
+                            </tr>
+                        </t>
+                        <t t-if="len(proyecto.vehiculos_ids)==0">
+                            <tr>
+                                <td colspan="5"><h3><b>Pulsó Adquisición de Vehiculos, más no Agregó</b></h3></td>
+                            </tr>
+                        </t>
+                    </body>
+                </table>
+            </t>
+        <div t-att-id="'vehiculos%s-%s' %(proyecto.id,tr_id)" t-attf-mostrar="#{'si' if proyecto.vehiculos else 'no'}" />
+<!--
+            fin adquisición de vehiculos
+            
+            inicio  Adquisición de Materiales de Consumo
+-->
+            <t t-if='proyecto.materiales_consumo' >
+                <b><p class="text-left text-muted mt32">Adquisición de Materiales de Consumo.</p></b>
+                <table class="table table-bordered table-striped ">
+                    <thead>
+                        <tr class="active">
+                            <th>#</th>
+                            <th>Uso</th>
+                            <th>Tipo</th>
+                            <th>Cantidad de Materiales</th>
+                        </tr>
+                    </thead>
+                    <body>
+                        <t t-set="cont" t-value="0" />
+                        <t t-foreach="proyecto.materiales_ids" t-as="materiales">
+                            <tr>
+                                <td ><t t-esc="cont+1"/></td>
+                                <t t-set="cont" t-value="cont+1" />
+                                <td><span t-esc='materiales["uso_id"].uso' /></td>
+                                <td><span t-esc='materiales["tipo"]' /></td>
+                                <td><span t-esc='materiales["cantidad"]' /></td>
+                            </tr>
+                        </t>
+                        <t t-if="len(proyecto.materiales_ids)==0">
+                            <tr>
+                                <td colspan="5"><h3><b>Pulsó Adquisición de Materiales de Consumo, más no Agregó</b></h3></td>
+                            </tr>
+                        </t>
+                    </body>
+                </table>
+            </t>
+            <div t-att-id="'materiales_consumo%s-%s' %(proyecto.id,tr_id)" t-attf-mostrar="#{'si' if proyecto.materiales_consumo else 'no'}"/>
+<!--
+            fin Adquisición de Materiales de Consumo
+            
+            inicio  de semovientes
+-->
+
+            <t t-if='proyecto.semoviente' >
+                <b><p class="text-left text-muted mt32">Adquisición de Semovientes.</p></b>
+                <table class="table table-bordered table-striped ">
+                    <thead>
+                        <tr class="active">
+                            <th>#</th>
+                            <th>Especie</th>
+                            <th>Grupo</th>
+                            <th>Uso</th>
+                            <th>Proposito</th>
+                            <th>Cantidad</th>
+                        </tr>
+                    </thead>
+                    <body>
+                        <t t-set="cont" t-value="0" />
+                        <t t-foreach="proyecto.semoviente_ids" t-as="semoviente">
+                            <tr>
+                                <td ><t t-esc="cont+1"/></td>
+                                <t t-set="cont" t-value="cont+1" />
+                                <td><span t-esc='semoviente["especie_id"].especie' /></td>
+                                <td><span t-esc='semoviente["grupo_id"].grupo_etario' /></td>
+                                <td><span t-esc='semoviente["uso_id"].uso' /></td>
+                                <td><span t-esc='semoviente["proposito_id"].proposito' /></td>
+                                <td><span t-esc='semoviente["cantidad"]' /></td>
+                            </tr>
+                        </t>
+                        <t t-if="len(proyecto.semoviente_ids)==0">
+                            <tr>
+                                <td colspan="5"><h3><b>Pulsó Semovientes, más no Agregó</b></h3></td>
+                            </tr>
+                        </t>
+                    </body>
+                </table>
+            </t>
+            <div t-att-id="'semoviente%s-%s' %(proyecto.id,tr_id)" t-attf-mostrar="#{'si' if proyecto.semoviente else 'no'}"/>
+
+
+            <div t-att-id="'cantidad_estimada_obratipo_obraunidad_medicion_obra%s-%s' %(proyecto.id,tr_id)" mostrar='si'/>
+            <div t-att-id="'cantidad_estimada_obra%s-%s' %(proyecto.id,tr_id)" mostrar='si'/>
+            <div t-att-id="'tipo_obra%s-%s' %(proyecto.id,tr_id)" mostrar='si'/>
+            <div t-att-id="'unidad_medicion_obra%s-%s' %(proyecto.id,tr_id)" mostrar='si'/>
+            <div t-att-id="'cantidadtipouso_id%s-%s' %(proyecto.id,tr_id)" mostrar='si'/>
+            <div t-att-id="'tipouso_id%s-%s' %(proyecto.id,tr_id)" mostrar='si'/>
+            <div t-att-id="'uso_id%s-%s' %(proyecto.id,tr_id)" mostrar='si'/>
+            <div t-att-id="'cantidad%s-%s' %(proyecto.id,tr_id)" mostrar='si'/>
+            
+            
+        </div>
+    </div>
+<!--
+            
+            fin  Adquisición de Materiales de Consumo
+-->
+<!--
+    **************Fin de panel de Caracteristicas Generales*****************
+-->
+
+</template>
+
+<template id='jpv_valoracion.beneficiario' name='Panel Baneficiarios del Proyecto'>
+    <!--
+            inicio Baneficiarios del Proyecto
+-->
+    <div class="panel panel-default">
+        <div class="panel-heading"><b>Baneficiarios del Proyecto</b></div>
+        <div class="panel-body">
+            <table class="table table-bordered table-striped ">
+                <thead>
+                    <tr class="active">
+                        <th>Masculimos</th>
+                        <th>Femeninos</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <body>
+                    <tr>
+                        <td>
+                            <span t-field='proyecto.benef_masculino' /></td>
+                        <td>
+                            <span t-field='proyecto.benef_femenino' /></td>
+                        <td>
+                            <span t-field='proyecto.total_benef' /></td>
+                    </tr>
+                </body>
+            </table>
+            <div t-att-id="'benef_femeninobenef_masculinototal_benef%s-%s' %(proyecto.id,tr_id)" mostrar='si'></div>
+            <div t-att-id="'benef_masculino%s-%s' %(proyecto.id,tr_id)" mostrar='si'></div>
+            <div t-att-id="'benef_femenino%s-%s' %(proyecto.id,tr_id)" mostrar='si'></div>
+            <div t-att-id="'total_benef%s-%s' %(proyecto.id,tr_id)" mostrar='si'></div>
+        </div>
+    </div>
+<!--
+            fin  Baneficiarios del Proyecto
+-->
+</template>
+
+<template id='jpv_valoracion.empleoAsociado' name='Panel Empleos Asociados'>
+<!--
+            inicio de Empleos asociados
+-->
+
+    <div class="panel panel-default">
+        <div class="panel-heading"><h4><b>Empleos Asociados</b></h4></div>
+        <div class="panel-body">
+            <table class="table table-bordered table-striped mt32">
+                <thead>
+                    <tr class="active">
+                        <th>Tipo de Empleo</th>
+                        <th>Masculinos</th>
+                        <th>Femeninos</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <body>
+                    <tr>
+                        <td><b>Directos</b></td>
+                        <td>
+                            <span t-field='proyecto.empleo_direct_masculino' /></td>
+                        <td>
+                            <span t-field='proyecto.empleo_direct_femenino' /></td>
+                        <td>
+                            <span t-field='proyecto.empleo_direct_total' /></td>
+                    </tr>
+                    <tr>
+                        <td ><b>Inirectos</b></td>
+                        <td>
+                            <span t-field='proyecto.empleo_indirect_masculino' /></td>
+                        <td>
+                            <span t-field='proyecto.empleo_indirect_femenino' /></td>
+                        <td>
+                            <span t-field='proyecto.empleo_indirect_total' /></td>
+                    </tr>
+                </body>
+            </table>
+            <div t-att-id="'empleo_indirect_femeninoempleo_indirect_masculinoempleo_indirect_total%s-%s' %(proyecto.id,tr_id)" mostrar='si'></div>
+            <div t-att-id="'empleo_direct_masculino%s-%s' %(proyecto.id,tr_id)" mostrar='si'></div>
+            <div t-att-id="'empleo_direct_femenino%s-%s' %(proyecto.id,tr_id)" mostrar='si'></div>
+            <div t-att-id="'empleo_direct_total%s-%s' %(proyecto.id,tr_id)" mostrar='si'></div>
+            <div t-att-id="'empleo_indirect_masculino%s-%s' %(proyecto.id,tr_id)" mostrar='si'></div>
+            <div t-att-id="'empleo_indirect_femenino%s-%s' %(proyecto.id,tr_id)" mostrar='si'></div>
+            <div t-att-id="'empleo_indirect_total%s-%s' %(proyecto.id,tr_id)" mostrar='si'></div>
+        </div>
+    </div>
+<!--
+            Fin de Empleos asociados
+-->
+</template>
+
+<template id='jpv_valoracion.ubicacion_val_general' name='Panel Ubicación'>
+<!--
+
+            inicio de Ubicación para valoracion general
+-->
+    <div class="panel panel-default">
+        <div class="panel-heading"><b>Ubicación</b></div>
+        <div class="panel-body">
+            <b><p class="text-left text-muted ">Política Territorial:</p></b>
+            <table class="table table-bordered table-striped ">
+                <thead>
+                    <tr class="active">
+                        <th>Estado</th>
+                        <th>Municipio</th>
+                        <th>Parroquía</th>
+                        <th>Sector</th>
+                    </tr>
+                </thead>
+                <body>
+                    <tr>
+                        <td>
+                            <span t-field='proyecto.estado_id' /></td>
+                        <td>
+                            <span t-field='proyecto.municipio_id' /></td>
+                        <td>
+                            <span t-field='proyecto.parroquia_id' /></td>
+                        <td>
+                            <span t-field='proyecto.sector' /></td>
+                    </tr>
+                </body>
+            </table>
+            <div t-att-id="'estadomunicipioparroquia%s-%s' %(proyecto.id,tr_id)" mostrar='si'></div>
+            <div t-att-id="'estado%s-%s' %(proyecto.id,tr_id)" mostrar='si'></div>
+            <div t-att-id="'municipio%s-%s' %(proyecto.id,tr_id)" mostrar='si'></div>
+            <div t-att-id="'parroquia%s-%s' %(proyecto.id,tr_id)" mostrar='si'></div>
+    </div>
+    </div>
+<!--
+
+            inicio de Ubicación para valoracion general
+-->
+</template>
+
+<template id='jpv_valoracion.ubicacion' name='Panel Ubicación'>
+<!--
+
+            inicio de Ubicación
+-->
+    <div class="panel panel-default">
+        <div class="panel-heading"><b>Ubicación</b></div>
+        <div class="panel-body">
+            <b><p class="text-left text-muted ">Política Territorial:</p></b>
+            <table class="table table-bordered table-striped ">
+                <thead>
+                    <tr class="active">
+                        <th>Estado</th>
+                        <th>Municipio</th>
+                        <th>Parroquía</th>
+                        <th>Sector</th>
+                    </tr>
+                </thead>
+                <body>
+                    <tr>
+                        <td>
+                            <span t-field='proyecto.estado_id' /></td>
+                        <td>
+                            <span t-field='proyecto.municipio_id' /></td>
+                        <td>
+                            <span t-field='proyecto.parroquia_id' /></td>
+                        <td>
+                            <span t-field='proyecto.sector' /></td>
+                    </tr>
+                </body>
+            </table>
+            <div t-att-id="'estadomunicipioparroquia%s-%s' %(proyecto.id,tr_id)" mostrar='si'></div>
+            <div t-att-id="'estado%s-%s' %(proyecto.id,tr_id)" mostrar='si'></div>
+            <div t-att-id="'municipio%s-%s' %(proyecto.id,tr_id)" mostrar='si'></div>
+            <div t-att-id="'parroquia%s-%s' %(proyecto.id,tr_id)" mostrar='si'></div>
+             <b><p class="text-left text-muted">Geo-estacial:</p></b>
+            <table class="table table-bordered table-striped ">
+                <thead>
+                    <tr class="active">
+                        <th>Tipo Coordenada</th>
+                        <th>Coordenada</th>
+                        <th>Huso</th>
+                    </tr>
+                </thead>
+                <body>
+                    <tr>
+                        <td><b>Norte</b></td>
+                        <td><span t-field='proyecto.coord_norte' /></td>
+                        <td rowspan="2"><span t-field='proyecto.huso_id' /></td>
+                    </tr>
+                    <tr>
+                        <td><b>Este</b></td>
+                        <td><span t-field='proyecto.coord_este' /></td>
+                    </tr>
+                   
+                    <tr>
+                        <td><b>Este Final</b></td>
+                        <td><span t-field='proyecto.coord_este_f' /></td>
+                        <td rowspan="2"><span t-field='proyecto.husof_id' /></td>
+                    </tr>
+                    <tr>
+                        <td><b>Norte Final</b></td>
+                        <td><span t-field='proyecto.coord_norte_f' /></td>
+                    </tr>
+                </body>
+            </table>
+            <div t-att-id="'coord_estecoord_este_fcoord_nortecoord_norte_fhuso_idhusof_id%s-%s' %(proyecto.id,tr_id)" mostrar='si'></div>
+            <div t-att-id="'huso_id%s-%s' %(proyecto.id,tr_id)" mostrar='si'></div>
+            <div t-att-id="'husof_id%s-%s' %(proyecto.id,tr_id)" mostrar='si'></div>
+            <div t-att-id="'coord_norte%s-%s' %(proyecto.id,tr_id)" mostrar='si'></div>
+            <div t-att-id="'coord_este%s-%s' %(proyecto.id,tr_id)" mostrar='si'></div>
+            <div t-att-id="'coord_este_f%s-%s' %(proyecto.id,tr_id)" mostrar='si'></div>
+            <div t-att-id="'coord_norte_f%s-%s' %(proyecto.id,tr_id)" mostrar='si'></div>
+        </div>
+    </div>
+<!--
+
+            inicio de Ubicación 
+-->
+</template>
+
+<template id='jpv_valoracion.aval' name='Panel Ubicación'>
+        <div class="panel panel-default" t-attf-style="#{'display:block' if proyecto.aval else 'display:none'}">
+            <div class="panel-heading"><b>Aval</b></div>
+            <div class="panel-body" >
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12" >
+                         <t t-foreach="proyecto.aval_ids" t-as="aval">
+                            <embed height="850px" width="100%" t-att-src="'data:%s;base64,%s' % (aval.mimetype,aval.datas)" />
+                        </t>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                        <div t-att-id="'aval%s-%s' %(proyecto.id,tr_id)" t-attf-mostrar="#{'si' if proyecto.aval else 'no'}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</template>
+<template id='jpv_valoracion.foto' name='Panel foto'>
+        <div class="panel panel-default">
+            <div class="panel-heading"><b>Foto</b></div>
+            <div class="panel-body" >
+                <div class="row">
+                    <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6" align="center">
+                            <img height="160px" width="60%"  t-att-src="'data:%s;base64,%s' % (proyecto.foto_id.mimetype,proyecto.foto_id.datas)" />
+                    </div>
+                    <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
+                            <div t-att-id="'foto_id%s-%s' %(proyecto.id,tr_id)" mostrar='si'></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</template>
+ </data>
+</openerp>

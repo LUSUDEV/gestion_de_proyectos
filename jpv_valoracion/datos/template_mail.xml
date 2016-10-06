@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<record id="email_template_valoracion_projectos_jpv_aprobado" model="email.template">
+            <field name="name">Valoración de proyecto aprobados ept - </field>
+            <field name="email_from">${(object.parent_id.company_id.email or '')|safe}</field>
+            <field name="subject">Valoraciones de Proyectos Aprobados</field>
+            <field name="model_id" ref="jpv_entidades.model_jpv_ent_entidades"/>
+            <field name="email_to">${object.correos()}</field>
+            <field name="auto_delete" eval="False"/>
+            <field name="lang">${object.parent_id.lang}</field>
+            <field name="body_html"><![CDATA[
+<div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+
+    <p>
+        <strong>${object.parent_id.name}</strong>
+        </p>
+        <p>
+		     Tiene un mensaje en el <strong>Sistema de Entidades Político Territoriales</strong>. 
+		 </p>
+         <p>Puede acceder al siguiente link:
+          <a href="${object.get_access_link()}">Registro de la ${object.name}</a>
+         </p>
+        <br/>
+        <br/>
+        <p align="center">
+         ${object.parent_id.company_id.name or ''}
+        ${object.parent_id.company_id.phone or ''}
+        </p>
+		    
+		 
+    
+</div>
+
+            ]]></field>
+        </record>
+<record id="email_template_valoracion_projectos_jpv_diferido" model="email.template">
+            <field name="name">Valoración de proyecto aprobados ept - </field>
+            <field name="email_from">${(object.parent_id.company_id.email or '')|safe}</field>
+            <field name="subject">Valoraciones de Proyectos Diferidos</field>
+            <field name="model_id" ref="jpv_entidades.model_jpv_ent_entidades"/>
+            <field name="email_to">${object.correos()}</field>
+            <field name="auto_delete" eval="False"/>
+            <field name="lang">${object.parent_id.lang}</field>
+            <field name="body_html"><![CDATA[
+<div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+
+    <p>
+        <strong>${object.parent_id.name}</strong>
+        </p>
+        <p>
+		     Tiene un mensaje en el <strong>Sistema de Entidades Político Territoriales</strong>. 
+		 </p>
+         <p>Puede acceder al siguiente link:
+          <a href="${object.get_access_link()}">Registro de la ${object.name}</a>
+         </p>
+        <br/>
+        <br/>
+        <p align="center">
+         ${object.parent_id.company_id.name or ''}
+        ${object.parent_id.company_id.phone or ''}
+        </p>
+		    
+		 
+    
+</div>
+
+            ]]></field>
+        </record>
+<record id="email_template_valoracion_projectos_jpv_negado" model="email.template">
+            <field name="name">Valoración de proyecto aprobados ept - </field>
+            <field name="email_from">${(object.parent_id.company_id.email or '')|safe}</field>
+            <field name="subject">Valoraciones de Proyectos Negados</field>
+            <field name="model_id" ref="jpv_entidades.model_jpv_ent_entidades"/>
+            <field name="email_to">${object.correos()}</field>
+            <field name="auto_delete" eval="False"/>
+            <field name="lang">${object.parent_id.lang}</field>
+            <field name="body_html"><![CDATA[
+<div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+
+    <p>
+        <strong>${object.parent_id.name}</strong>
+        </p>
+        <p>
+		     Tiene un mensaje en el <strong>Sistema de Entidades Político Territoriales</strong>. 
+		 </p>
+         <p>Puede acceder al siguiente link:
+          <a href="${object.get_access_link()}">Registro de la ${object.name}</a>
+         </p>
+        <br/>
+        <br/>
+        <p align="center">
+         ${object.parent_id.company_id.name or ''}
+        ${object.parent_id.company_id.phone or ''}
+        </p>
+		    
+		 
+    
+</div>
+
+            ]]></field>
+        </record>
+</data>
+</openerp>

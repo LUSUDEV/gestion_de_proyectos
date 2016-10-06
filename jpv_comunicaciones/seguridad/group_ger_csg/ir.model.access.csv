@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_jpv_com_asuntos_csg,jpv_com.asuntos,model_jpv_com_asuntos,jpv_usuarios.group_ger_csg,1,0,0,0
+access_jpv_com_gerencias_csg,jpv_com.gerencias,model_jpv_com_gerencias,jpv_usuarios.group_ger_csg,1,0,0,0
+access_jpv_com_proyectos_csg,jpv_com.proyectos,model_jpv_com_proyectos,jpv_usuarios.group_ger_csg,1,0,0,0
+access_jpv_com_comunicaciones_csg,jpv_com.comunicaciones,model_jpv_com_comunicaciones,jpv_usuarios.group_ger_csg,1,1,0,0
+access_jpv_com_campos_text_csg,jpv_com.campos_text,model_jpv_com_campos_text,jpv_usuarios.group_ger_csg,1,0,0,0
+access_jpv_com_salidas_csg,jpv_com.salidas,model_jpv_com_salidas,jpv_usuarios.group_ger_csg,1,1,1,0
+access_jpv_com_adjuntos_csg,jpv_com.adjuntos,model_jpv_com_adjuntos,jpv_usuarios.group_ger_csg,1,1,1,0
+access_jpv_com_comunicaciones_masivas_csg,jpv_com.comunicaciones_masivas,model_jpv_com_comunicaciones_masivas,jpv_usuarios.group_ger_csg,1,0,0,0
+access_jpv_com_adjuntos_masivos_csg,jpv_com.adjuntos_masivos,model_jpv_com_adjuntos_masivos,jpv_usuarios.group_ger_csg,1,0,0,0
+access_jpv_com_comunicaciones_masivas_leidas_csg,jpv_com.comunicaciones_masivas_leidas,model_jpv_com_comunicaciones_masivas_leidas,jpv_usuarios.group_ger_csg,1,0,0,0
+

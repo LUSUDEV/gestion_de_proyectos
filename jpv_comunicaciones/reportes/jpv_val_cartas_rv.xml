@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<report id="id_carta_valoracion_ept"
+			string="Carta Valoracion"
+			model="jpv_cp.carga_proyecto"
+			report_type="qweb-pdf"
+			file="jpv_valoracion.resultado_valoracion_qweb"
+            name="jpv_valoracion.resultado_valoracion_qweb"
+            menu="False"/>
+	</data>
+</openerp>

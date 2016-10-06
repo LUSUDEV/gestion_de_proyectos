@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <openerp>
+     <data>
+        
+      <record model="ir.ui.view" id="view_jpv_com_comunicaciones_masivas_form">
+        <field name="name">jpv_com_comunicaciones_masivas_form</field>
+        <field name="model">jpv_com.comunicaciones_masivas</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Comuniccaciones Masivas" >
+                <header 
+                groups="base.group_system,jpv_usuarios.group_ger_inf,jpv_usuarios.group_jun_dir,jpv_usuarios.group_jun_dir_sec">
+                    <button name="enviar_mensaje"
+                        string="Evíar Mensaje"  
+                        type="object" 
+                        class="oe_highlight"
+                        attrs="{'invisible': [('state','in',['enviado','cancelado','leidos'])]}"/>
+                    <button 
+                        name="enviar_mensaje" 
+                        string="Reenvíar Mensaje"  
+                        type="object" 
+                        class="oe_highlight"
+                        attrs="{'invisible': [('state','in',['borrador','cancelado'])]}"/>
+					<button 
+                        name="cambio_status_cancelar" 
+                        string="Cancelar"  
+                        type="object"
+                        attrs="{'invisible': [('state','in',['enviado','cancelado','leidos'])]}" />
+					<button 
+                        name="cambio_status_borrador" 
+                        string="Borrador"  
+                        type="object" 
+                        attrs="{'invisible': [('state','in',['enviado','borrador','leidos'])]}"/>
+                    <field 
+                        name="state" 
+                        widget="statusbar"/>
+                </header>
+                <sheet>
+                    <h3>
+                        <field name="correlativo" class="oe_inline"  string="Codificación"  readonly="1" style="widht:30%%"/>
+                    </h3>
+                    
+                    <group>
+                            <field name="name"/>
+                            <field name="create_uid"/>
+                            <field name="fecha_envio" string="Fecha de Envío"/>
+                    </group>
+                    <separator string="Para:" />
+                    <field name="pertner_ids"/>
+                    <separator string="Comunicación" />
+                    <field name="comunicacion"/>
+                    <separator string="Adjuntos:"/>
+                    <field name="adjunto_ids">
+                        <tree editable="button">
+                        <field name="attachment_id"/>
+                        </tree>
+                    </field>
+                    <separator string="Leído por:" attrs="{'invisible': [('state','in',['borrador'])]}"/>
+                    <field name="partner_leidos_ids" attrs="{'invisible': [('state','in',['borrador'])]}">
+                        <tree editable="button">
+                        <field name="pertner_id"/>
+                        <field name="create_date" string="Fecha de leído"/>
+                        </tree>
+                    </field>
+                    <group>
+                        <field name="active"
+                        groups="base.group_system"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    
+     
+     <record model="ir.ui.view" id="viewjpv_com_comunicaciones_masivas_tree">
+        <field name="name">jpv_com_comunicaciones_masivas_proyecto_tree</field>
+        <field name="model">jpv_com.comunicaciones_masivas</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Asignaciones de Valoraciones">
+                <field name="correlativo"/>
+                <field name="name"/>
+                <field name="fecha_envio" string="Fecha de Envío"/>
+            </tree>
+        </field>
+     </record>
+     
+
+    
+    <record model="ir.actions.act_window" id="jpv_com_comunicaciones_masivas_action">
+        <field name="name">Envios de Comunicaciones Oficiales</field>
+        <field name="res_model">jpv_com.comunicaciones_masivas</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="viewjpv_com_comunicaciones_masivas_tree"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+            Aqui se registran las comunicaciones masivas
+            </p>
+        </field>
+    </record>
+
+            
+        <menuitem name="Envío de Comunicaciones" 
+            id="jpv_com_comunicaciones_masivas_menu"  
+            action="jpv_com_comunicaciones_masivas_action" 
+            groups="base.group_system,jpv_usuarios.group_ger_inf,jpv_usuarios.group_jun_dir_ana,jpv_usuarios.group_jun_dir_sec,jpv_usuarios.group_jun_dir"
+            parent="menu_jpv_com_comunicaciones"
+            sequence="20"/>
+        
+<!--
+    herencia de filtro de pertner
+-->
+
+    <record id="filtro_partner_inherit_form" model="ir.ui.view">
+            <field name="name">herencia.filtro.partner.entidades.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter" />
+            <field name="arch" type="xml">
+                 <field name="name"
+                    filter_domain="['|','|',('display_name','ilike',self),('ref','=',self),('email','ilike',self)]" position="before">
+                       <filter string="Entidades" name="cis_entidad" domain="[('cis_entidad','=',1)]"/>
+                       </field>
+                        
+            </field>
+        </record>
+            
+    </data>
+</openerp>

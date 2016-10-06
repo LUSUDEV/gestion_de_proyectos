@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_jpv_fir.cartas_x_firmar_ppea,jpv_fir.cartas_x_firmar,model_jpv_fir_cartas_x_firmar,jpv_usuarios.group_ger_ppea,1,1,0,0
+access_jpv_fir.objeto_rastro_ppea,jpv_fir.objeto_rastro,model_jpv_fir_objeto_rastro,jpv_usuarios.group_ger_ppea,1,1,0,0

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <openerp>
+     <data>
+         
+      <record model="ir.ui.view" id="view_jpv_com_gerencias_form">
+        <field name="name">jpv_com_gerencias_form</field>
+        <field name="model">jpv_com.gerencias</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Gerencia" >
+                <sheet>
+                    <group>
+                        <field name="gerencia"/>
+                        <separator string="Usuarios asociados" colspan="4"/>
+                        <field name="res_users_ids"/>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    
+     
+     <record model="ir.ui.view" id="viewjpv_com_gerencias_tree">
+        <field name="name">jpv_com_gerencias_proyecto_tree</field>
+        <field name="model">jpv_com.gerencias</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Asignaciones de Valoraciones">
+                <field name="gerencia"/>
+                <field name="res_users_ids"/>
+            </tree>
+        </field>
+     </record>
+     
+
+    
+    <record model="ir.actions.act_window" id="jpv_com_gerencias_action">
+        <field name="name">Asignación de valoración</field>
+        <field name="res_model">jpv_com.gerencias</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="viewjpv_com_gerencias_tree"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+            Aqui se registran los Datos de las Gerencias para las comunicaciones
+            </p>
+        </field>
+    </record>
+
+            
+        <menuitem name="Gerencias" 
+            id="jpv_com_gerencias"  
+            action="jpv_com_gerencias_action" 
+            parent="menu_jpv_com_configuracion"
+            sequence="20"/>
+            
+    </data>
+</openerp>

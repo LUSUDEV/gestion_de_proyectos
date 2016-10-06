@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <openerp>
+     <data>
+         
+      <record model="ir.ui.view" id="view_jpv_com_comunicaciones_form">
+        <field name="name">jpv_com_comunicaciones_form</field>
+        <field name="model">jpv_com.comunicaciones</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Comunicaciones" version="7.0" duplicate="false" >
+                <header>
+                    <field 
+                        name="state" 
+                        widget="statusbar" 
+                        clickable="True"
+                        groups="base.group_system,jpv_usuarios.group_ger_inf,jpv_usuarios.group_jun_dir,jpv_usuarios.group_jun_dir_sec"/>
+                </header>
+                <sheet>
+                    <h3>
+                        <label string="Correlativo" attrs="{'invisible': [('state','=',False)]}"/>
+                        <field name="correlativo" class="oe_inline"  string="Codificación"  readonly="1" style="widht:30%%"/>
+                    </h3>
+                     <div class="oe_right oe_button_box">
+                    <button name="action_get_attachment_tree_view" 
+                        class="oe_stat_button"
+                        icon="fa-book"
+                        type="object">
+                        <field name="attachment_number" widget="statinfo" string="Documentos"/>
+                    </button>
+                    </div> 
+                    <group>
+                        <field name="partner_id"  readonly="1"/>
+                        <field name="id"  invisible="1"/>
+                        <field name="users_id"  readonly="1"/>
+                        <field name="asunto_id"  readonly="1"/>
+                        <field name="comunicacion"  readonly="1"/>
+                        <field name="attachment_id"  readonly="1"/>
+                        <field name="mensaje_id"  readonly="1"/>
+                    </group>
+                    <notebook colspan="4">
+                        <page string="Respuestas" >
+                            <separator string="Respuestas" colspan="4"/>
+                            <field name="salidas_ids"  
+                            readonly="0" 
+                            context="{'default_asunto_id':asunto_id,'parent_mensaje_id':mensaje_id,'partner_id':partner_id,'comunicacion_id2':id}"
+                            attrs="{'readonly': [('state','in',['enviado','leido','sinrespuesta'])]}">
+                            <tree>
+                            <field name="id" invisible="1"/>
+                            <field name="correlativo" attrs="{'invisible': [('id','=',False)]}"/>
+                            <field name="create_date" string="Fecha de leído" attrs="{'invisible': [('id','=',False)]}"/>
+                            <field name="asunto_id"/>
+                        </tree>
+                            </field>
+                        </page>
+                        <page string="Asignar Gerencia" 
+                        groups="base.group_system,jpv_usuarios.group_ger_inf,jpv_usuarios.group_jun_dir_ana,jpv_usuarios.group_jun_dir_sec,jpv_usuarios.group_jun_dir,jpv_usuarios.group_ger_tpg,jpv_usuarios.group_ger_csg,jpv_usuarios.group_ger_ppeg,jpv_usuarios.group_ger_fcto,jpv_usuarios.group_coor_ures,jpv_usuarios.group_ggu_ures"
+                        >
+                            <separator string="Asignar Gerencia" colspan="4"/>
+                            <field name="gerencia_ids"
+                              attrs="{'readonly': [('state','in',['enviado','leido','sinrespuesta'])]}" />
+                        </page>
+                        <page string="Proyectos Relacionados" >
+                            <separator string="Proyectos Relacionados" colspan="4"/>
+                            <field name="proyecto_ids"  readonly="1">
+                            <tree>
+                                <field name="correlativo"/>
+                                <field name="partner_id"/>
+                                <field name="monto_proyecto"/>
+                                <field name="state"/>
+                            </tree>
+                            </field>
+                        </page>
+                        <page string="Sub Asuntos" >
+                            <separator string="Sub Asuntos" colspan="4"/>
+                            <field name="campo_text_ids"  readonly="1"/>
+                        </page>
+                        <page string="Otros" groups="base.group_system,jpv_usuarios.group_ger_inf,jpv_usuarios.group_jun_dir,jpv_usuarios.group_jun_dir_sec">
+                            <group>
+                                <field name="active"/>
+                            </group>
+                        </page>
+                    </notebook>
+                      <group groups="base.group_system,jpv_usuarios.group_ger_inf,jpv_usuarios.group_jun_dir,jpv_usuarios.group_jun_dir_sec,jpv_usuarios.group_jun_dir_ana">
+                           <field 
+                            options="{'no_create':True}"
+                            widget="selection"
+                            name="user_id" 
+                            domain="[('groups_id.category_id.name','=','Roles de Junta Directiva'),('groups_id.name','=','Analista')]"
+                            attrs="{'readonly': [('state','in',['enviado','leido','sinrespuesta'])]}"
+                            />
+                      </group>
+                </sheet>
+                 <div class="oe_chatter"
+                 groups="base.group_system,jpv_usuarios.group_ger_inf,jpv_usuarios.group_jun_dir_ana,jpv_usuarios.group_jun_dir_sec,jpv_usuarios.group_jun_dir,jpv_usuarios.group_ger_tpg,jpv_usuarios.group_ger_csg,jpv_usuarios.group_ger_ppeg,jpv_usuarios.group_ger_fcto,jpv_usuarios.group_coor_ures,jpv_usuarios.group_ggu_ures">
+                    <field 
+                        name="message_follower_ids" 
+                        widget="mail_followers" 
+                        groups="base.group_user"/>
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    
+     
+     <record model="ir.ui.view" id="viewjpv_com_comunicaciones_tree">
+        <field name="name">jpv_com_comunicaciones_proyecto_tree</field>
+        <field name="model">jpv_com.comunicaciones</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Coroespondencia Oficiales" colors="blue:state=='proceso';black:state=='procesado'">
+                <field name="correlativo"/>
+                <field name="partner_id"/>
+                <field name="users_id"/>
+                <field name="asunto_id"/>
+                <field name="state"/>
+                <field name="create_date" string="Fecha de Solicitud"/>
+            </tree>
+        </field>
+     </record>
+     
+
+    
+    <record model="ir.actions.act_window" id="jpv_com_comunicaciones_action">
+        <field name="name">Comunicaciones Oficiales</field>
+        <field name="res_model">jpv_com.comunicaciones</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="view_id" ref="viewjpv_com_comunicaciones_tree"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+            Aqui se registran los Datos de las Comunicaciones.
+            </p>
+        </field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="jpv_com_miscomunicaciones_action">
+        <field name="name">Comunicaciones Oficiales</field>
+        <field name="res_model">jpv_com.comunicaciones</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('gerencia_ids.res_users_ids','in',[uid])]</field>
+        <field name="view_id" ref="viewjpv_com_comunicaciones_tree"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+            Aqui se registran los Datos de las Comunicaciones.
+            </p>
+        </field>
+    </record>
+
+            
+        <menuitem name="Comunicaciones" 
+            id="jpv_com_comunicaciones_menu"  
+            action="jpv_com_comunicaciones_action" 
+            parent="menu_jpv_com_comunicaciones"
+            sequence="20"/>
+            
+        <menuitem name="Mis Comunicaciones" 
+            id="jpv_com_mis_comunicaciones_menu"  
+            action="jpv_com_miscomunicaciones_action" 
+            parent="menu_jpv_com_comunicaciones"
+            groups="base.group_system,jpv_usuarios.group_ger_inf,jpv_usuarios.group_jun_dir_ana,jpv_usuarios.group_jun_dir_sec,jpv_usuarios.group_jun_dir"
+            sequence="15"/>
+            
+    </data>
+</openerp>
+

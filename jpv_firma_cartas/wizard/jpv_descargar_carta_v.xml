@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <openerp>
+     <data>
+         <!-- Pre- Valoracion de la Ures -->
+        <record id="jpv_val_validar_cartas_wizard_view" model="ir.ui.view">
+            <field name="name">Descargar Cartas Generales</field>
+            <field name="model">jpv_val_validar_cartas_wizard</field>
+            <field name="arch" type="xml">
+                <form string="Descargar Cartas generales">
+                    <separator string="Cartas a Validar" colspan="4"/>
+                    <field name="cartas_ids" >
+                        <tree>
+                            <field  name="tipo_cartas" />
+                            <field  name="referencia" />
+                            <field  name="state" />
+                        </tree>
+                    </field>
+                    <footer>
+                        <button string="Descargar .zip" type="object"  name="validar_cartas" class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+        <act_window id="jpv_directiva_valoracion_wizard_action"
+            name="Validar Cartas"
+            src_model="jpv_fir.cartas_x_firmar"
+            res_model="jpv_val_validar_cartas_wizard"
+            view_type="form" view_mode="form"
+            key2="client_action_multi" target="new"
+            />
+        
+
+
+    </data>
+</openerp>

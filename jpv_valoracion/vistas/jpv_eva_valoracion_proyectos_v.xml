@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <openerp>
+     <data>
+         
+    
+
+<!--
+     action general
+-->
+   
+   
+
+<!--
+    vista tree para la asignación de valoración
+-->
+
+    <record model="ir.ui.view" id="view_jpv_eva_valorar_proyecto_tree">
+        <field name="name">jpv_eval_valorar_proyecto_ure_tree</field>
+        <field name="model">jpv_cp.carga_proyecto</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Carga de Proyectos" colors="blue:AsigValCoordenadas==False;blue:AsigValGeneral==False;" >
+                <field name="correlativo"/>
+                <field name="partner_id"/>
+                <field name="subcategoria_id"/>
+                <field name="AsigValCoordenadas" string="Asig. Coordenadas"/>
+                <field name="AsigValGeneral" string="Asig. General"/>
+                <field name="state" invisible='1'/>
+            </tree>
+        </field>
+     </record>
+
+    
+    <record model="ir.actions.act_window" id="jpv_val_valoracion_projec_action">
+        <field name="name">Valoración de Proyectos CFG</field>
+        <field name="res_model">jpv_cp.carga_proyecto</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+         <field name="domain">[('state','in',['evaluacion'])]</field>
+        <field name="view_id" ref="view_jpv_eva_valorar_proyecto_tree"/>
+    </record>
+   
+<!--
+    menu para la evaluación de proyectos
+-->
+        <menuitem 
+            name="Gestion de Valoración" 	
+            id="menu_jpv_eva_varoracion_proyecto" 
+            parent="jpv_usuarios.menu_general_proyectos"
+            sequence="100"
+            groups="base.group_system,jpv_usuarios.group_ger_inf,jpv_usuarios.group_jun_dir,jpv_usuarios.group_ger_tpg,jpv_usuarios.group_ger_tpc,jpv_usuarios.group_ger_tpa,jpv_usuarios.group_jun_dir_sec,jpv_usuarios.group_ger_csg,jpv_usuarios.group_ger_ppeg"/>
+
+        <menuitem name="Proyectos a Valorar" 
+            id="jpv_val_asignacion_valora_m"  
+            action="jpv_val_valoracion_projec_action" 
+            parent="menu_jpv_eva_varoracion_proyecto"
+            sequence="20"
+            groups="base.group_system,jpv_usuarios.group_ger_inf,jpv_usuarios.group_jun_dir,jpv_usuarios.group_ger_tpg,jpv_usuarios.group_ger_tpc"/>
+            
+    </data>
+</openerp>

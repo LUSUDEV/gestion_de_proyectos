@@ -1,0 +1,64 @@
+ 
+                 
+    
+    <div class="header" data-oe-id="498" data-oe-model="ir.ui.view" data-oe-field="arch" data-oe-xpath="/t[1]/div[1]">
+        <div class="contains">
+        <div class="row">
+            <div class="col-xs-12">
+                 <img class="img-responsive" src="/ept_valoracion/static/img/cabecera.png"/>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    
+                     <link rel="stylesheet" type="text/css" href="/ept_valoracion/static/src/css/ept_val_reporte.css" data-oe-id="453" data-oe-model="ir.ui.view" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/link[1]"/>
+                <div class="page">
+                     <p data-oe-id="453" data-oe-model="ir.ui.view" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/p[1]">RIF: G-20009542-3</p>
+                    CFG/FCI/DE/2016-00004032
+                    <div class="row">
+                        <div class="col-xs-9">
+                            <p><h5>Ciudadano(a) <strong>Francisco Javier Arias Cardenas</strong><br data-oe-id="453" data-oe-model="ir.ui.view" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/div[1]/div[1]/p[1]/h5[1]/br[1]"/>
+                            Gobernador (a) Gobernación de Zulia<br data-oe-id="453" data-oe-model="ir.ui.view" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/div[1]/div[1]/p[1]/h5[1]/br[2]"/>
+                            Su Despacho.-</h5></p>
+                        </div>
+                         <div class="col-xs-offset-3">
+                             <p>Caracas, 2016-09-28</p>
+                         </div>
+                    </div>
+                    <br data-oe-id="453" data-oe-model="ir.ui.view" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/br[1]"/>
+                    <div class="row">
+                        <div class="col-xs-10 col-xs-offset-1">
+                            <p align="justify">Tengo el agrado de dirigirme a usted, en la oportunidad de extenderle un cordial saludo y a su vez, hacer de su conocimiento que la solicitud de <strong data-oe-id="453" data-oe-model="ir.ui.view" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/div[2]/div[1]/p[1]/strong[1]">Cambio de Monto</strong> del proyecto  PI-2016-C-1-E-361-00004691 REASFALTADO URBANIZACION ALTOS DE SOL AMADA, PARROQUIA FRANCISCO EUGENIO BUSTAMANTE, MUNICIPIO MARACAIBO, ESTADO ZULIA de BS. 30000000,0 por BS. 35474451,38, fue aprobada. </p>
+                        </div>
+                    </div>
+                    <br data-oe-id="453" data-oe-model="ir.ui.view" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/br[2]"/>
+                    <br data-oe-id="453" data-oe-model="ir.ui.view" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/br[3]"/>
+                    <div class="row" data-oe-id="453" data-oe-model="ir.ui.view" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/div[3]">
+                        <div class="col-xs-10 col-xs-offset-1">
+                            <p>Sin ningún otro particular al cual hacer referencia, queda de usted,</p>
+                        </div>
+                    </div>
+                    <br data-oe-id="453" data-oe-model="ir.ui.view" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/br[4]"/>
+                    <br data-oe-id="453" data-oe-model="ir.ui.view" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/br[5]"/>
+                    <br data-oe-id="453" data-oe-model="ir.ui.view" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/br[6]"/>
+                    <div class="row" data-oe-id="453" data-oe-model="ir.ui.view" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/div[4]">
+                        <div class="col-xs-10 col-xs-offset-1">
+                            <p align="center">Atentamente,</p>
+                        </div>
+                    </div>
+                </div>
+                 
+    
+    <footer data-oe-id="499" data-oe-model="ir.ui.view" data-oe-field="arch" data-oe-xpath="/t[1]/footer[1]">
+    <div class="footer">
+        <div class="row">
+            <div class="col-xs-12">
+                <img class="img-responsive" src="/ept_valoracion/static/img/pie4.png" height="100"/>
+            </div>
+        </div>
+    </div> 
+    </footer>     
+
+
+    

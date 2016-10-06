@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<openerp>
+<data>
+    
+    <record model="ir.ui.view" id="view_jpv_fir_cartas_x_firmar_form">
+        <field name="name">jpv_fir.cartas_x_firmar.form</field>
+        <field name="model">jpv_fir.cartas_x_firmar</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Cartas por Firmar" >
+                 <header>
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <group>
+                    <field name="id" invisible="1" />
+                    <field name="tipo_cartas" readonly="1" />
+                    <field name="referencia" readonly="1" />
+                    <field name="mensaje" readonly="1" />
+                    <field name="metodo" readonly="1" groups="base.group_system"/>
+                    <field name="metodoGenerarCartas" readonly="1" groups="base.group_system"/>
+                    <field name="attachment_id" readonly="1" />
+                    <field name="objeto_rastro_ids" readonly="1" groups="base.group_system"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    
+    <record model="ir.ui.view" id="view_jpv_fir_cartas_x_firmar_tree">
+        <field name="name">jpv_fir.cartas_x_firmar.tree</field>
+        <field name="model">jpv_fir.cartas_x_firmar</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Ures">
+                <field name="tipo_cartas"/>
+                <field name="referencia"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="action_jpv_fir_cartas_x_firmar">
+        <field name="name">Cartas a Firmar</field>
+        <field name="res_model">jpv_fir.cartas_x_firmar</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('state','in',['porfirmar'])]</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+            Aqui se registran las cartas a firmar por la gestion de las EPT
+            </p>
+        </field>
+    </record>
+    
+    
+    
+    <record model="ir.actions.act_window" id="action_jpv_fir_cartas_firmadas">
+        <field name="name">Cartas a Firmar</field>
+        <field name="res_model">jpv_fir.cartas_x_firmar</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('state','in',['firmadovaloracion','firmado'])]</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+            Aqui se registran las cartas a firmadas por la gestion de las EPT
+            </p>
+        </field>
+    </record>
+    
+
+            <menuitem name="Gestion de Cartas" 
+                id="rjpv_fir_gestion_cartas"
+                parent="jpv_usuarios.menu_general_proyectos"
+                groups="base.group_system,jpv_usuarios.group_jun_dir" 
+                sequence="120"
+                />
+                
+            <menuitem name="Cartas por Firmar" 
+                id="jpv_fir_cartas_x_firmar"
+                parent="rjpv_fir_gestion_cartas" 
+                action="action_jpv_fir_cartas_x_firmar" 
+                sequence="10"
+                />
+            <menuitem name="Cartas Firmadas" 
+                id="jpv_fir_cartas_firmada_menu"
+                parent="rjpv_fir_gestion_cartas" 
+                action="action_jpv_fir_cartas_firmadas" 
+                sequence="10"
+                />
+
+        
+</data>
+</openerp>

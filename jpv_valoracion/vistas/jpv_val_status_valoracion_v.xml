@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <openerp>
+     <data>
+         
+         <record model="ir.ui.view" id="view_status_valoraciones_graph">
+            <field name="name">jpv_cp.carga_proyecto.graph</field>
+            <field name="model">jpv_cp.carga_proyecto</field>
+            <field name="arch" type="xml">
+                <graph string="Valoraciones de Proyecto" type="bar">
+                    <field name="dictamengraph" type="row"/>
+                </graph>
+            </field>
+        </record>
+        
+      <record model="ir.ui.view" id="view_val_status_valoraciones_form">
+        <field name="name">jpv_val_status_valoraciones_form</field>
+        <field name="model">jpv_cp.carga_proyecto</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Resultados de Valoración" >
+
+                <sheet>
+                    <separator string="Status de la valoraciones" colspan="4"/>
+                    <group>
+                        <field name="periodo_id" readonly="1" />
+                        <field name="ciclo_id" readonly="1" />
+                        <field name="partner_id" readonly="1" />
+                        <field name="correlativo" readonly="1" />
+                        <field name="dictamen" readonly="1" />
+                        <field name="valoraciones_ids" readonly="1" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_carga_proyecto_filter" model="ir.ui.view">
+            <field name="name">project.project.select</field>
+            <field name="model">jpv_cp.carga_proyecto</field>
+            <field name="arch" type="xml">
+                <search string="Search Project">
+                    <filter string="Aprobados" name="dictamen" domain="[('dictamengraph', '=','Aprobado')]"/>
+                    <filter string="Diferidos" name="dictamen" domain="[('dictamengraph', '=','Diferido')]"/>
+                    <filter string="Negados" name="dictamen" domain="[('dictamengraph', '=','Negado')]"/>
+                    <filter string="Sin valorar" name="dictamen" domain="[('dictamengraph', '=','Sin valorar')]"/>
+                    <filter string="Solo General" name="dictamen" domain="[('dictamengraph', '=','Solo General')]"/>
+                    <filter string="Solo Coordenadas" name="dictamen" domain="[('dictamengraph  ', '=','Solo Coordenadas')]"/>
+                </search>
+            </field>
+        </record>
+     
+     <record model="ir.ui.view" id="view_jpv_eva_status_valoraciones_proyecto_tree">
+        <field name="name">jpv_val_status_valoraciones_proyecto_tree</field>
+        <field name="model">jpv_cp.carga_proyecto</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Estatus de las Valoraciones">           
+                <field  name="periodo_id" />
+                <field  name="ciclo_id" />
+                <field  name="partner_id" />
+                <field  name="correlativo" />
+                <field  name="dictamen" />
+                <field  name="state" />
+            </tree>
+        </field>
+     </record>
+     
+
+    
+    <record model="ir.actions.act_window" id="jpv_val_status_valoraciones_action">
+        <field name="name">Estatus de la Valoraciones</field>
+        <field name="res_model">jpv_cp.carga_proyecto</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,graph</field>
+        <field name="domain">[('state','in',['evaluacion'])]</field>
+        <field name="view_id" ref="view_jpv_eva_status_valoraciones_proyecto_tree" />
+        <field name="search_view_id" ref="view_carga_proyecto_filter"/>
+    </record>
+
+            
+        <menuitem name="Estatus Valoraciones" 
+            id="jpv_val_status_valoraciones"  
+            action="jpv_val_status_valoraciones_action" 
+            parent="menu_jpv_eva_varoracion_proyecto"
+            groups="base.group_system,jpv_usuarios.group_jun_dir,jpv_usuarios.group_ger_tpg,jpv_usuarios.group_jun_dir_sec"
+            sequence="30"/>
+            
+
+    </data>
+</openerp>
