@@ -127,7 +127,7 @@ class jpv_plf_periodos(osv.osv):
                             fecha_inicio=activida.fecha_inicio.split(' ')[0]
                             fecha_inicio=datetime.strptime(fecha_inicio, '%Y-%m-%d')
                             fecha_inicio =datetime.date(fecha_inicio)
-                            if cmp(hoy,fecha_inicio)==0:
+                            if cmp(hoy,fecha_inicio)==0 or cmp(hoy,fecha_inicio)==1:
                                 list_aviso.append(etapa.id)
                                 carga_proyecto_objeto=self.pool.get('jpv_cp.carga_proyecto')
                                 carga_proyecto_ids=carga_proyecto_objeto.search(cr,uid,[('ciclo_id','=',etapa.id),('state','=','carga')])
@@ -142,7 +142,7 @@ class jpv_plf_periodos(osv.osv):
         if len(list_aviso)>0:
             return True
         else:
-            raise osv.excjpv_osv(
+            raise osv.except_osv(
                     ('Error!'),
                     (u'La actividad de '+actividad+' no esta habilitada'))
     
