@@ -596,22 +596,12 @@ class jpv_valoracion(http.Controller):
         dictamen_valoracion_obj=registry.get('jpv_val.dictamen_valoracion')
         reportname='jpv_valoracion.resultado_valoracion_qweb'
         docids=[]
-        nombre_zip='%s_(%s).zip' % (str(date.today()),str(validar.id))
-        zipvaloracion_fd, zipvaloracion_path = tempfile.mkstemp(suffix='.zip', prefix='valoracion.tmp.')
+        nombre_zip='valoraciones/%s_(%s).zip' % (str(date.today()),str(validar.id))
+        if not os.path.exists('valoraciones'):
+            os.mkdir("valoraciones",0o755)
         if os.path.exists(nombre_zip):
             os.remove(nombre_zip)
-        #~ comp_zip=os.fdopen(zipvaloracion_fd, 'wb')
-        #~ comp_zip = zipfile.ZipFile(os.fdopen(zipvaloracion_fd, 'w'), "w" ,zipfile.ZIP_STORED, allowZip64=True)
-        print zipvaloracion_path
-        print zipvaloracion_path
-        print zipvaloracion_path
-        print zipvaloracion_path
-        print zipvaloracion_path
-        print zipvaloracion_path
-        print zipvaloracion_path
-        print zipvaloracion_path
-        comp_zip = zipfile.ZipFile(zipvaloracion_path, "w" ,zipfile.ZIP_STORED, allowZip64=True)
-        #~ comp_zip = open(zipvaloracion_path, 'wb')
+        comp_zip = zipfile.ZipFile(nombre_zip, "w" ,zipfile.ZIP_STORED, allowZip64=True)
         epts={}
         entidad_id=[]
         periodo=str()
@@ -698,41 +688,27 @@ class jpv_valoracion(http.Controller):
                 'fecha':date.today().strftime('%d-%m-%Y'),
                 }
             cartas_x_firmar_id=cartas_x_firmar_obj.create(cr,uid,value_x_firmar,context)
-            nombre_file='/zip/%s_%s#%s#.pdf' % (entidad,dictame,cartas_x_firmar_id)
-            nombrePdf='%s_%s#%s#.pdf' % (entidad,dictame,cartas_x_firmar_id)
-            pdfvaloracion_fd, pdfvaloracion_path = tempfile.mkstemp(suffix=nombrePdf, prefix='valoracion')
+            nombre_file='valoraciones/%s_%s#%s#.pdf' % (entidad,dictame,cartas_x_firmar_id)
             if os.path.exists(nombre_file):
                 os.remove(nombre_file)
             carta_data = request.registry['report'].get_pdf(cr, uid, docids, reportname, data=valores, context=context)
-            #~ file_tmp = open(nombre_file, "wb",buffering = 0)
-            with open(pdfvaloracion_path, 'wb') as pdfvaloracion:
-                pdfvaloracion.write('¿'+str(cartas_x_firmar_id)+'?\n')
-                pdfvaloracion.write(carta_data)
-            #~ file_tmp.write('¿'+str(cartas_x_firmar_id)+'?\n')
-            #~ file_tmp.write(carta_data)
-        #~ comp_zip.write(pdfvaloracion_path)
-                print 'fsdffffffffff pdfvaloracion_path'
-                print pdfvaloracion_path
-                print pdfvaloracion_path
-                print pdfvaloracion_path
-                comp_zip.write(pdfvaloracion_path)
-            #~ comp_zip.write(nombre_file)
-            #~ file_tmp.close()
-            #~ os.remove(nombre_file)
-        #~ reomover_zip = open(nombre_zip, "r")
-        with open(zipvaloracion_path, 'rb') as zipvaloracion:
-            data_zip=zipvaloracion.read()
-        print zipvaloracion_path
-        print zipvaloracion_path
-        print data_zip
-        #~ data_zip=reomover_zip.read()
-        #~ reomover_zip.close()
-        #~ os.remove(nombre_zip)
-        return request.make_response(comp_zip,
+            file_tmp = open(nombre_file, "wb",buffering = 0)
+            file_tmp.write('¿'+str(cartas_x_firmar_id)+'?\n')
+            file_tmp.write(carta_data)
+            comp_zip.write(nombre_file)
+            file_tmp.close()
+            os.remove(nombre_file)
+        comp_zip.close()
+        reomover_zip = open(nombre_zip, "r")
+        data_zip=reomover_zip.read()
+        reomover_zip.close()
+        os.remove(nombre_zip)
+        return request.make_response(data_zip,
                 headers=[('Content-Disposition',
                                 main.content_disposition(nombre_zip)),
                          ('Content-Type', 'application/zip;charset=utf8'),
-                         ('Content-Length', len(data_zip))])
+                         ('Content-Length', len(data_zip))],
+                cookies={'fileToken': '212123f4646546'})    
     
 
     
