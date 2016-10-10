@@ -11,9 +11,9 @@ from werkzeug import secure_filename
 class jpv_comunicaciones(http.Controller):
 
     @http.route(
-            ['/eptcomunicaciones'], 
+            ['/jpvcomunicaciones'], 
             type='http', auth="user", website=True)
-    def eptcomunicaciones(self,**post):
+    def jpvcomunicaciones(self,**post):
             '''este metodo sive para mostrar las valoración asignadas'''
             registry = http.request.registry
             cr=http.request.cr
@@ -48,7 +48,7 @@ class jpv_comunicaciones(http.Controller):
                                 'url_boton_list':'/web',
                                 'template':'jpv_comunicaciones.envios',
                                 'action':'/comunicaciones/enviar',
-                                'id_enviar':'EptEnviarComunicaciones',
+                                'id_enviar':'jpvEnviarComunicaciones',
                                 'nombre_bt_accion':' Enviar'},
                         'datos_organizacion':datos_organizacion,
                         'tipo_organizacion':tipo_organizacion,
@@ -58,7 +58,7 @@ class jpv_comunicaciones(http.Controller):
                                 }
                 return panel.panel_post(datos)
             mensaje={
-                    'titulo':'Sin EPT',
+                    'titulo':'Sin Entidad',
                     'mensaje':'''Disculpe NO esta asociado a ninguna Organización,
                                 Comuníquese con el administrador del sistema''',
                     'volver':'/'
@@ -68,7 +68,7 @@ class jpv_comunicaciones(http.Controller):
     @http.route(
             ['/comunicaciones/asuntos'], 
             type='http', auth="user", website=True)
-    def eptcomunicacionesAsuntos(self,**post):
+    def jpvcomunicacionesAsuntos(self,**post):
         registry = http.request.registry
         cr=http.request.cr
         uid=http.request.uid
@@ -115,7 +115,7 @@ class jpv_comunicaciones(http.Controller):
     @http.route(
         ['/comunicaciones/enviar'], 
         type='http', auth="user",methods=['POST'], website=True)
-    def eptcomunicacionesEnviar(self,**post):
+    def jpvcomunicacionesEnviar(self,**post):
         registry = http.request.registry
         cr=http.request.cr
         uid=http.request.uid
@@ -207,7 +207,7 @@ class jpv_comunicaciones(http.Controller):
         ret={'correlativo':correlativo}
         return json.dumps(ret)
         
-    @http.route('/eptconfirmar_comunicaciones',
+    @http.route('/jpvconfirmar_comunicaciones',
             type='json', auth="user", website=True)
     def confirmar_comunicaciones(self,**kw):
         comunicaciones={}
@@ -297,7 +297,7 @@ class jpv_comunicaciones(http.Controller):
                 }
         return{}
         
-    @http.route('/eptComunicacionesLeidos',
+    @http.route('/jpvComunicacionesLeidos',
             type='json', auth="user", website=True)
     def confirmar_comunicaciones_leidos(self,**post):
         registry = http.request.registry

@@ -150,17 +150,17 @@ class jpv_val_validar_valoraciones_wizard(osv.TransientModel):
         print 'proyecto_ids'
         print proyecto_ids
         print proyecto_ids
-        #~ print 'proyecto_ids _default_proyecto_ids'
-        #~ proyecto_data=proyecto_model.browse(cr,SUPERUSER_ID,proyecto_ids)
-        #~ for proyecto in proyecto_data:
-            #~ if proyecto.state!='evaluacion':
-                #~ proyecto_ids=[]
-            #~ if proyecto.dictamen in ['Sin valorar','Solo General','Solo Coordenadas']:
-                #~ proyecto_ids=[]
+        print 'proyecto_ids _default_proyecto_ids'
+        proyecto_data=proyecto_model.browse(cr,SUPERUSER_ID,proyecto_ids)
+        for proyecto in proyecto_data:
+            if proyecto.state!='evaluacion':
+                proyecto_ids=[]
+            if proyecto.dictamen in ['Sin valorar','Solo General','Solo Coordenadas']:
+                proyecto_ids=[]
  
         return proyecto_ids
 
-    #~ _defaults = {
-        #~ 'proyecto_ids': _default_proyecto_ids,
+    _defaults = {
+        'proyecto_ids': _default_proyecto_ids,
         #~ 'resumen': _dictamen_valoracion,
-    #~ }
+    }

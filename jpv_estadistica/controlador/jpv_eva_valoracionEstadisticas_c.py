@@ -48,7 +48,7 @@ class jpv_valoracion_estadisticas(http.Controller):
     
     #~ ruta de la estadistica para la vista estadistica 
     @http.route(
-            ['/eptEstadisticas'], 
+            ['/jpvEstadisticas'], 
             type='http', auth="user", website=True)
     def estadisticas_valoracion(self):
         registry = http.request.registry
@@ -86,7 +86,7 @@ class jpv_valoracion_estadisticas(http.Controller):
     
     #~ ruta para buscar el ciclo según el periodo seleccionado  
     @http.route(
-            ['/eptEstadisticasBuscarCiclo'], 
+            ['/jpvEstadisticasBuscarCiclo'], 
             type='json', auth="user", website=True)
     def Buscar_ciclo(self,**post):
         registry = http.request.registry
@@ -102,7 +102,7 @@ class jpv_valoracion_estadisticas(http.Controller):
         
     #~ ruta para buscar las entidades segun el estado que pulse  
     @http.route(
-            ['/eptEstadisticasBuscarEntidad'], 
+            ['/jpvEstadisticasBuscarEntidad'], 
             type='json', auth="user", website=True)
     def Buscar_Entidad_x_estado(self,**post):
         registry = http.request.registry
@@ -120,7 +120,7 @@ class jpv_valoracion_estadisticas(http.Controller):
                         
       #~ Ruta de grafica de torta de estadistica general, la que tiene de header Total de Proyectos xxx
     @http.route(
-            ['/eptEstadisticasPeriodoGereral'], 
+            ['/jpvEstadisticasPeriodoGereral'], 
             type='json', auth="public", website=True)
     def periodo_general(self,**post):
         registry = http.request.registry
@@ -154,7 +154,7 @@ class jpv_valoracion_estadisticas(http.Controller):
         
 #~ Ruta de grafica de torta de estadistica general, la que tiene de header Total de Proyectos xxx
     @http.route(
-            ['/eptEstadisticasPeriodoGereral2'], 
+            ['/jpvEstadisticasPeriodoGereral2'], 
             type='http', auth="public",method="post", website=True)
     def periodo_general2(self,**post):
         registry = http.request.registry
@@ -186,7 +186,7 @@ class jpv_valoracion_estadisticas(http.Controller):
     #~ Estadistica de la grafica de torta por tipo de sector de inversion 
     
     @http.route(
-            ['/eptEstadisticasPeriodoSectorInves'], 
+            ['/jpvEstadisticasPeriodoSectorInves'], 
             type='json', auth="user", website=True)
     def periodo_sector_inversion(self,**post):
         registry = http.request.registry
@@ -217,7 +217,7 @@ class jpv_valoracion_estadisticas(http.Controller):
     #~ Estadistica de la grafica de torta por Categoria  de inversion
     
     @http.route(
-            ['/eptEstadisticasPeriodoCategoria'], 
+            ['/jpvEstadisticasPeriodoCategoria'], 
             type='json', auth="user", website=True)
     def periodo_Categoria(self,**post):
         registry = http.request.registry
@@ -252,7 +252,7 @@ class jpv_valoracion_estadisticas(http.Controller):
     #~ Estadistica de la grafica de torta por Subategoria  de inversion
     
     @http.route(
-            ['/eptEstadisticasPeriodoSubategoria'], 
+            ['/jpvEstadisticasPeriodoSubategoria'], 
             type='json', auth="user", website=True)
     def periodo_Subcategoria(self,**post):
         registry = http.request.registry
@@ -288,7 +288,7 @@ class jpv_valoracion_estadisticas(http.Controller):
         #~ Ruta de estadistica de barra de la cantidad de proyectos diferidos   
         
     @http.route(
-            ['/eptEstadisticasDiferidos'], 
+            ['/jpvEstadisticasDiferidos'], 
             type='json', auth="user", website=True)
     def periodo_Diferidos(self,**post):
         registry = http.request.registry
@@ -333,7 +333,7 @@ class jpv_valoracion_estadisticas(http.Controller):
         
     #~ datos para la tabla de referencia de lectura de los motivos de las valoraciones
     @http.route(
-            ['/eptEstadisticasTablaValoracion'], 
+            ['/jpvEstadisticasTablaValoracion'], 
             type='json', auth="user", website=True)
     def Datos_ref_tabla_valoracion(self,**post):
         registry = http.request.registry
@@ -367,7 +367,7 @@ class jpv_valoracion_estadisticas(http.Controller):
     
         #~ Ruta de los proyectos en valoracion y que estan diferidos (grafica de barra)
     @http.route(
-            ['/eptEstadisticasValoracionDiferidos'], 
+            ['/jpvEstadisticasValoracionDiferidos'], 
             type='json', auth="user", website=True)
     def datos_valoracion_diferidos(self,**post):
         registry = http.request.registry
@@ -412,7 +412,7 @@ class jpv_valoracion_estadisticas(http.Controller):
         
  #~ Ruta de grafica de torta de estadistica de proyectos en valoracion
     @http.route(
-            ['/eptEstadisticasDictamenesProyectosValoracion'], 
+            ['/jpvEstadisticasDictamenesProyectosValoracion'], 
             type='json', auth="user", website=True)
     def cant_dictamenes_proyectos_valoracion(self,**post):
         registry = http.request.registry
@@ -468,7 +468,7 @@ class jpv_valoracion_estadisticas(http.Controller):
         
  #~ Ruta de mostrar la lista de proyectos diferidos
     @http.route(
-            ['/EptMostarListaProyectosDiferidos'], 
+            ['/jpvMostarListaProyectosDiferidos'], 
             type='json', auth="user", website=True)
     def jpv_devolver_datos_proyecto(self,post2=None,**post):
         if not post2==None:
@@ -547,7 +547,7 @@ class jpv_valoracion_estadisticas(http.Controller):
 
 #~ Descargar csv de proyectos con estatus diferido
     @http.route(
-            ['/EptDescargarListaProyectosDiferidosCsv'], 
+            ['/jpvDescargarListaProyectosDiferidosCsv'], 
             type='http', auth="user", method="post",website=True)
     def jpv_descargar_csv_diferidos(self,**post):
         registry = http.request.registry
@@ -583,7 +583,7 @@ class jpv_valoracion_estadisticas(http.Controller):
 
 #~ Ruta de mostrar la lista de proyectos en valoracion pero diferidos
     @http.route(
-            ['/EptMostarListaProyectosValoracionDiferidos'], 
+            ['/jpvMostarListaProyectosValoracionDiferidos'], 
             type='json', auth="user", website=True)
     def jpv_datos_proyecto_valoaracion_diferidos(self,post2=None,**post):
         if not post2==None:
@@ -662,7 +662,7 @@ class jpv_valoracion_estadisticas(http.Controller):
 
 #~ Descargar csv de proyectos en Valoracion con estatus diferido
     @http.route(
-            ['/EptDescargarListaProyectosValoracionDiferidosCsv'], 
+            ['/jpvDescargarListaProyectosValoracionDiferidosCsv'], 
             type='http', auth="user", method="post",website=True)
     def jpv_descargar_csv_Valoraciondiferidos(self,**post):
         registry = http.request.registry

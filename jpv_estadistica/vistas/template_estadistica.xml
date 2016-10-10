@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <openerp>
     <data>
-<template id="EptEstadisticaAddjs" inherit_id="website.assets_frontend" name="Adicionando archivos js de website estadistica ept">
+<template id="jpvEstadisticaAddjs" inherit_id="website.assets_frontend" name="Adicionando archivos js de website estadistica jpv">
     <xpath expr="/t" position="inside">
             <script type="text/javascript" src="/jpv_estadistica/static/src/js/plugin_estadisticas.js"></script>
             <script type="text/javascript" src="/jpv_estadistica/static/src/js/jpv_val_estadisticas.js"></script>
@@ -76,9 +76,9 @@
         </div>
         <div class="row">
             <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6" align="center">
-                 <div id="EptgraficaGeneralVal" t-att-periodo_id="periodo_fiscal_id">
-                 <div id="EptgraficaRestrict" t-att-restrict="restrict" />
-                 <div id="epttotal_general" ></div>
+                 <div id="jpvgraficaGeneralVal" t-att-periodo_id="periodo_fiscal_id">
+                 <div id="jpvgraficaRestrict" t-att-restrict="restrict" />
+                 <div id="jpvtotal_general" ></div>
                  <div id="jpv_Estadistica_Periodo_general" style="height: 300px" ></div>
                  </div>
             </div>
@@ -89,25 +89,25 @@
         </div>
         <div class="row">
             <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" align="left">
-                     <span style="cursor:pointer" id="EptMostarTablaCausasDiferidos">
+                     <span style="cursor:pointer" id="jpvMostarTablaCausasDiferidos">
                     <h5><img src="/jpv_estadistica/static/src/img/show.png"/>Motivos de diferidos</h5>
                     </span>
-                  <div  style="display: none;" id="eptTablaRefValoracion"></div>
+                  <div  style="display: none;" id="jpvTablaRefValoracion"></div>
             </div>
         </div>
        
         <div class="row">
             <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" align="center">
-                  <div id="EptGraficaDiferidos"></div>
+                  <div id="jpvGraficaDiferidos"></div>
             </div>
         </div>
          <div class="row">
             <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" align="left">
                  <form 
-                     action="/EptDescargarListaProyectosDiferidosCsv"
+                     action="/jpvDescargarListaProyectosDiferidosCsv"
                      method="post">
                     <h5 >
-                        <span style="cursor:pointer" id="EptMostarProyectosDiferidos">
+                        <span style="cursor:pointer" id="jpvMostarProyectosDiferidos">
                             <img src="/jpv_estadistica/static/src/img/show_property.png" width="50" height="50"/>
                                 Mostrar Proyectos Diferidos
                         </span>
@@ -132,28 +132,28 @@
         <div class="row">
             <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" align="center">
                     <h1 class="mt32">Estatus de las Valoraciones</h1>
-                    <div id="epttotal_proyectosValoracion" ></div>
-                  <div id="EptDictamenesProyectosValoracion" style="height: 300px"></div>
+                    <div id="jpvtotal_proyectosValoracion" ></div>
+                  <div id="jpvDictamenesProyectosValoracion" style="height: 300px"></div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" align="center">
-                  <div id="eptEstadisticasValoracion"></div>
+                  <div id="jpvEstadisticasValoracion"></div>
             </div>
         </div>
         
         <div class="row" >
             <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" align="left">
                 <form 
-                     action="/EptDescargarListaProyectosValoracionDiferidosCsv"
+                     action="/jpvDescargarListaProyectosValoracionDiferidosCsv"
                      method="post">
                     <h5 >
-                        <span style="cursor:pointer" id="EptMostarProyectosEnValoracionDiferidos">
+                        <span style="cursor:pointer" id="jpvMostarProyectosEnValoracionDiferidos">
                             <img src="/jpv_estadistica/static/src/img/show_property.png" width="50" height="50"/>
                                 Mostrar Proyectos en Valoración Diferidos
                         </span>
 <!--
-                        id="EptDescargarMostarProyectosDiferidosCsv"
+                        id="jpvDescargarMostarProyectosDiferidosCsv"
 -->
                         <input type="hidden" name="periodo_id" t-att-value="periodo_fiscal_id"/>
                         <input type="hidden" name="ciclo_id" value=""/>
@@ -175,16 +175,16 @@
             <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" align="center">
                     <h1 class="mt32">Estatus de la Rendición de Proyectos</h1>
                     <div id="jpv_proyectos_rendiciones" ></div>
-                  <div id="EptProyectosRendiciones" style="height: 300px"></div>
+                  <div id="jpvProyectosRendiciones" style="height: 300px"></div>
             </div>
         </div>
         <div id="rowListaRendiciones" class="row hidden rowRendiciones">
             <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" align="left">
                 <form 
-                     action="/EptDescargarListaProyectosValoracionDiferidosCsv"
+                     action="/jpvDescargarListaProyectosValoracionDiferidosCsv"
                      method="post">
                     <h5 >
-                        <span style="cursor:pointer" id="EptMostarProyectosXRendir">
+                        <span style="cursor:pointer" id="jpvMostarProyectosXRendir">
                             <img src="/jpv_estadistica/static/src/img/show_property.png" width="50" height="50"/>
                                 Mostrar proyectos por rendir
                         </span>

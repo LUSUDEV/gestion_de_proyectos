@@ -38,7 +38,7 @@ class jpv_ent_entidades(osv.osv):
     def carta_firmada_valoracion(self,cr,uid,carta_data,file_name,file_data,context=None):
         '''Este es el metodo es el que cambia los estado del proyecto una vez
         se cargen las cartas firmadas de las valoraciones de los proyectos,
-        le envia un mensaje (notificación) y correo a los usuarios dela ept
+        le envia un mensaje (notificación) y correo a los usuarios de la entidad
         adicionelmente cuando el proyecto sea aprobado verifica y cambia el 
         campo cargar_proyectos.         
         carga_data: Es el browser de jpv_fir.cartas_x_firmar(id,)
@@ -51,7 +51,7 @@ class jpv_ent_entidades(osv.osv):
         carga_proyecto_obj=self.pool.get('jpv_cp.carga_proyecto')
         dictamen_valoracion_obj=self.pool.get('jpv_val.dictamen_valoracion')
         cp_historial_obj=self.pool.get('jpv_cp.historial_proyecto')
-        movimientos_cuentas_obj=self.pool.get('ept.movimientos_cuentas')
+        movimientos_cuentas_obj=self.pool.get('jpv.movimientos_cuentas')
         ir_model_data_obj = self.pool.get('ir.model.data')
         mail_compose_message = self.pool.get('mail.compose.message')
         mail_message_obj=self.pool.get('mail.message')
@@ -81,6 +81,9 @@ class jpv_ent_entidades(osv.osv):
                 mail_template='email_template_valoracion_projectos_jpv_negado'
                 accion='Proyecto Negado'
                 if proyecto_datos.state!='negado':
+                    print proyecto_id
+                    print proyecto_id
+                    print proyecto_id
                     resultado_movimiento=movimientos_cuentas_obj.movimiento_ingreso(
                                                             cr,uid,
                                                             proyecto_datos.cuenta_id.id,
@@ -91,16 +94,15 @@ class jpv_ent_entidades(osv.osv):
                                                             proyecto_id,
                                                             proyecto_datos.periodo_id.id,
                                                             proyecto_datos.partner_id.id,
-                                                            proyecto_datos.proyect_mantenimiento,
-                                                            proyecto_datos.monto_proyecto)
-                    if proyecto_datos.proyect_mantenimiento==True:
-                        carga_proyecto_obj.write(
-                                cr,
-                                SUPERUSER_ID,
-                                proyecto_id,
-                                {'monto_tomado_mantenimiento':0},
-                                0,
-                                context)
+                                                            context)
+                    #~ if proyecto_datos.proyect_mantenimiento==True:
+                        #~ carga_proyecto_obj.write(
+                                #~ cr,
+                                #~ SUPERUSER_ID,
+                                #~ proyecto_id,
+                                #~ {'monto_tomado_mantenimiento':0},
+                                #~ 0,
+                                #~ context)
                     
             mensajes = ', '.join(mensajes)
             descripcion+=proyecto_datos.correlativo+'. '+mensajes+'\n'
@@ -127,7 +129,7 @@ class jpv_ent_entidades(osv.osv):
                                         cr,
                                         SUPERUSER_ID,
                                         dictamen_ids,
-                                        {'state':'validada'}) # estoy aqui**********************************************************************
+                                        {'state':'validada'}) 
         attachment_id = ir_attachment_obj.create(cr,uid,{
             'name': file_name,
             'datas': file_data,

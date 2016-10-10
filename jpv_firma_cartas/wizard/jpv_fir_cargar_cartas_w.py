@@ -21,6 +21,7 @@ class jpv_fir_carga_cartas_wizard(osv.TransientModel):
         Este wizard es carga las cartas firmadas
     """
     _name = "jpv_fir_carga_cartas_wizard"
+    _rec_name = "confimado"
     _description = "Cargar las cartas firmadas"
     _order = 'id desc'
 
@@ -42,7 +43,16 @@ class jpv_fir_carga_cartas_wizard(osv.TransientModel):
     def validar_zip(self, cr, uid, ids, context=None):
         '''Metodo para validar el contenido de las cartas firmadas 
         .zip antes de cargar o enviar las cartas '''
-        nombre_zip='/zip/cartas/validar_zip.zip'
+        print "hola munodo"
+        print "hola munodo"
+        print "hola munodo"
+        print "hola munodo"
+        print "hola munodo"
+        print "hola munodo"
+        print "hola munodo"
+        print "hola munodo"
+        print "hola munodo"
+        nombre_zip='valoraciones/cartas/validar_zip.zip'
         #~ variable de mensaje html
         resumen='<div class="alert alert-success">'\
                 'Correcto el contenido del .zip </div>'
@@ -55,8 +65,8 @@ class jpv_fir_carga_cartas_wizard(osv.TransientModel):
         #~ ids de cartas por firmar
         cartas_x_firmar_ids=[]
         #~ creo una carpeta para que si hay error todo se almacene hay..
-        if not os.path.isdir('/zip/cartas'):
-            os.mkdir('/zip/cartas')
+        if not os.path.isdir('valoraciones/cartas'):
+            os.mkdir('valoraciones/cartas')
         #~ borro el ultimo validar_zip.zip
         if os.path.exists(nombre_zip):
             os.remove(nombre_zip)
@@ -82,6 +92,17 @@ class jpv_fir_carga_cartas_wizard(osv.TransientModel):
                         index_final=file_path.find('#-')
                         index_inicial=index_inicial+2
                         cartaXfirmar_id=file_path[index_inicial:index_final]
+                        print cartaXfirmar_id
+                        print cartaXfirmar_id
+                        print cartaXfirmar_id
+                        print cartaXfirmar_id
+                        print cartaXfirmar_id
+                        indev= file_path.find(cartaXfirmar_id)
+                        print file_path.find(cartaXfirmar_id)
+                        print file_path.find(cartaXfirmar_id)
+                        print cartaXfirmar_id
+                        print file_path[indev:]
+                        print file_path[indev:]
                         #~ valido la fidelidad del archivo
                         if file_path.find(cartaXfirmar_id)==-1:
                             confimado=False
@@ -97,7 +118,11 @@ class jpv_fir_carga_cartas_wizard(osv.TransientModel):
                             titulo='Validar'
                         
                         else:
-                            cartas_x_firmar_ids.append(int(cartaXfirmar_id))
+                            try:
+                                cartas_x_firmar_ids.append(int(cartaXfirmar_id))
+                            except :
+                                _logger.warning('Error falta de firma: %s ' % file_path)
+                                pass
                     #~ si el archivo no esta firmado
                     if file_path.find('Firmado')==-1:
                         error_firmar+=file_path+' <br/>'
@@ -139,7 +164,7 @@ class jpv_fir_carga_cartas_wizard(osv.TransientModel):
     def cargar_cartas(self, cr, uid, ids, context=None):
         '''Metodo para cargar el contenido de las cartas firmadas 
         .zip antes de cargar o enviar las cartas '''
-        nombre_zip='/zip/cartas/validar_zip.zip'
+        nombre_zip='valoraciones/cartas/validar_zip.zip'
         #~ variable de mensaje html
         resumen='<div class="alert alert-success">'\
                 'Exito  Cartas Cargadas.</div>'
@@ -152,8 +177,8 @@ class jpv_fir_carga_cartas_wizard(osv.TransientModel):
         #~ ids de cartas por firmar
         cartas_x_firmar_ids=[]
         #~ creo una carpeta para que si hay error todo se almacene hay..
-        if not os.path.isdir('/zip/cartas'):
-            os.mkdir('/zip/cartas')
+        if not os.path.isdir('valoraciones/cartas'):
+            os.mkdir('valoraciones/cartas')
         #~ borro el ultimo validar_zip.zip
         if os.path.exists(nombre_zip):
             os.remove(nombre_zip)

@@ -1,6 +1,6 @@
 $(document).ready(function () {
 console.debug("[enviar comunicaciones] Custom JS for comunicaciones is loading...");
-$("#EptEnviarComunicaciones").click( function( event ) {
+$("#jpvEnviarComunicaciones").click( function( event ) {
             var comuni=$('#comunicacionCont').val();
             if (comuni.length<3001){
                 var gif=$('#img-form1');
@@ -17,11 +17,11 @@ $("#EptEnviarComunicaciones").click( function( event ) {
                                   dataType : 'json',
                                   beforeSend: function( xhr ) {
                                          $('#img-form1').show()
-                                         $('#EptEnviarComunicaciones').hide()
+                                         $('#jpvEnviarComunicaciones').hide()
                                       }
                                 }).done(function(data) {
                                     $('#img-form1').hide()
-                                    $('#EptEnviarComunicaciones').show()
+                                    $('#jpvEnviarComunicaciones').show()
                                     cuerpomodal='Comunicación Registrada con el código '+data['correlativo']
                                     $('#form1').find('select').each(function(){
                                         $(this).val('');

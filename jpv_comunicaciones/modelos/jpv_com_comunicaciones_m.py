@@ -373,7 +373,7 @@ class jpv_com_adjuntos(osv.osv):
                             select=True,
                             store=True),
         'salidas_id': fields.many2one(
-                            'ept_com.salidas',
+                            'jpv_com.salidas',
                             'Salida'),
         }
     

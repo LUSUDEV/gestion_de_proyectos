@@ -3,7 +3,7 @@ $(document).ready(function () {
     console.debug("[comunicaciones] Custom JS for confir is loading...");
 var ids_leidosept;
 var comunicacion=function(){
-    openerp.jsonRpc('/eptconfirmar_comunicaciones', 'call', {}).then(function (comunicacion) {
+    openerp.jsonRpc('/jpvconfirmar_comunicaciones', 'call', {}).then(function (comunicacion) {
         ids_leidosept=comunicacion.ids
         var cuerpo='';
         $.each(comunicacion.comunicaciones,function(index, value){
@@ -16,7 +16,7 @@ var comunicacion=function(){
                 }
             cuerpo+='<div class="panel panel-default">'
             cuerpo+='<div class="panel-heading"><b><p class="text-center">Solicitud: '+value.correlativo+'</p>Fecha de envío: '+fecha_envio+'</b>'
-            cuerpo+='<img class="Eptcom_ocultarWebsite" src="/web/static/src/img/icons/terp-folder-green.png" align="right"></div>'
+            cuerpo+='<img class="jpvcom_ocultarWebsite" src="/web/static/src/img/icons/terp-folder-green.png" align="right"></div>'
             cuerpo+='<div class="panel-body">'
             cuerpo+='Asunto: '+value.asunto_name+'<br/>'
             cuerpo+='Comunicación: '+value.comunicacion+'</strong><br/>'
@@ -44,7 +44,7 @@ var comunicacion=function(){
                 }
             cuerpo+='<div class="panel panel-success">'
             cuerpo+='<div class="panel-heading"><b><p class="text-center">Comunicación Oficial: '+value.correlativo+'</p>Fecha de envío: '+fecha_envio+'</b>'
-            cuerpo+='<img class="Eptcom_ocultarWebsite" src="/web/static/src/img/icons/terp-folder-green.png" align="right"></div>'
+            cuerpo+='<img class="jpvcom_ocultarWebsite" src="/web/static/src/img/icons/terp-folder-green.png" align="right"></div>'
             cuerpo+='<div class="panel-body">'
             cuerpo+='Asunto: '+value.name+'<br/>'
             cuerpo+='Comunicación: '+value.comunicacion+'</strong><br/>'
@@ -62,7 +62,7 @@ var comunicacion=function(){
         }
 comunicacion();
 $('#comunicacion_leido').live('click', function () {
-     openerp.jsonRpc('/eptComunicacionesLeidos', 'call', ids_leidosept);
+     openerp.jsonRpc('/jpvComunicacionesLeidos', 'call', ids_leidosept);
      $('#Modal_sin_botton').modal('hide');
             });
 $('.Eptcom_ocultarWebsite').live('click', function () {

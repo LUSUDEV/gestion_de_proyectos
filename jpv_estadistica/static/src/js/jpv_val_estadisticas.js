@@ -2,12 +2,12 @@ $(document).ready(function () {
 console.debug("[estadistica val] Custom JS for estadistica valoración is loading...");
 var cant_proyecto_diferidos=0;
 //~ inicio de grafica general
-periodo_id=$("#EptgraficaGeneralVal").attr('periodo_id');
+periodo_id=$("#jpvgraficaGeneralVal").attr('periodo_id');
 estado_id=$("#estado_select").val();
 if (!estado_id){
     estado_id='0'
     }
-if($("#EptgraficaGeneralVal").length){
+if($("#jpvgraficaGeneralVal").length){
         var datos_general={
                 'opcion':'general',
                 'periodo_id':periodo_id,
@@ -15,7 +15,7 @@ if($("#EptgraficaGeneralVal").length){
                 'div':'jpv_Estadistica_Periodo_general',
                 'estado_id':estado_id,
                 'entidad_id':'0'}
-        $("#EptgraficaGeneralVal").jpv_estadisticas(datos_general);
+        $("#jpvgraficaGeneralVal").jpv_estadisticas(datos_general);
         
         
     }
@@ -31,12 +31,12 @@ if($("#periodo_sector_inversion").length){
         $("#periodo_sector_inversion").jpv_estadisticas(datos_sectorServicio);
     }
     //~ inicio de grafica Diferido
-    if($("#EptGraficaDiferidos").length){
+    if($("#jpvGraficaDiferidos").length){
         var datos_proyectosDiferidos={
                 'opcion':'pryectosDiferidos',
                 'periodo_id':periodo_id,
                 'ciclo_id':'0',
-                'div':'EptGraficaDiferidos',
+                'div':'jpvGraficaDiferidos',
                 'estado_id':estado_id,
                 'entidad_id':'0'}
         $("#periodo_sector_inversion").jpv_estadisticas(datos_proyectosDiferidos);

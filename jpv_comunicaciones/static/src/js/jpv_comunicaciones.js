@@ -41,7 +41,7 @@ $('.js_jpv_asunto_comunicaciones').live('change',function(){
               dataType : 'json',
               beforeSend: function( xhr ) {
                 $('#img-form1').show()
-                $('#EptEnviarComunicaciones').hide()
+                $('#jpvEnviarComunicaciones').hide()
               }
             })
               .done(function(data) {
@@ -68,7 +68,7 @@ $('.js_jpv_asunto_comunicaciones').live('change',function(){
                         break;
                                 }
                     $('#img-form1').hide()
-                    $('#EptEnviarComunicaciones').show()
+                    $('#jpvEnviarComunicaciones').show()
                   select.parents('div[class="form-group"]').after(resultado);
               });
         }
@@ -118,7 +118,7 @@ $('.js_jpv_asunto_comunicaciones').live('change',function(){
               dataType : 'json',
               beforeSend: function( xhr ) {
                 $('#img-form1').show()
-                $('#EptEnviarComunicaciones').hide()
+                $('#jpvEnviarComunicaciones').hide()
               }
             })
               .done(function(data) {
@@ -145,7 +145,7 @@ $('.js_jpv_asunto_comunicaciones').live('change',function(){
                         break;
                                 }
                     $('#img-form1').hide()
-                    $('#EptEnviarComunicaciones').show()
+                    $('#jpvEnviarComunicaciones').show()
                   checkbox.parents('div[class="form-group"]').after(resultado);
               });
         }

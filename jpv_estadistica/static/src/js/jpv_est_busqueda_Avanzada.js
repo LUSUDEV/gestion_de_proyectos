@@ -11,7 +11,7 @@ $("#periodo_select").change(function() {
     $("#titulo_estadisticas").html('<h1>Periodo Fiscal '+periodo_name+' </h1>');
     var periodo_id=$(this).val();
     //~ INICIO BUSCAR EL CICLO DEL PERIODO
-    openerp.jsonRpc('eptEstadisticasBuscarCiclo', 'call', {'periodo_id':periodo_id}).then(function (respuesta) {
+    openerp.jsonRpc('jpvEstadisticasBuscarCiclo', 'call', {'periodo_id':periodo_id}).then(function (respuesta) {
                 var options='<option value="">Seleccione..</option>'
                 $.each(respuesta.ciclos_data,function(index,ciclo){
                     options=options+'<option value='+ciclo.ciclo_id+'>'+ciclo.nombre+'</option>'
@@ -41,7 +41,7 @@ $("#periodo_select").change(function() {
                 'ciclo_id':'0',
                 'entidad_id':'0'}
         $("#jpv_Estadistica_Periodo_general").html('');
-        $("#EptgraficaGeneralVal").jpv_estadisticas(datos_general);
+        $("#jpvgraficaGeneralVal").jpv_estadisticas(datos_general);
     var datos_sectorInv={
                 'opcion':'sectorServicio',
                 'periodo_id':periodo_id,
@@ -55,29 +55,29 @@ $("#periodo_select").change(function() {
                 'opcion':'pryectosDiferidos',
                 'periodo_id':periodo_id,
                 'ciclo_id':'0',
-                'div':'EptGraficaDiferidos',
+                'div':'jpvGraficaDiferidos',
                 'estado_id':'0',
                 'entidad_id':estado_id}
-    $("#EptGraficaDiferidos").html('');
-    $("#EptGraficaDiferidos").jpv_estadisticas(datos_pryectosDiferidos);
+    $("#jpvGraficaDiferidos").html('');
+    $("#jpvGraficaDiferidos").jpv_estadisticas(datos_pryectosDiferidos);
     var datos_proyectosenvaloracion={
                 'opcion':'proyectosenvaloracion',
                 'periodo_id':periodo_id,
                 'ciclo_id':'0',
-                'div':'EptDictamenesProyectosValoracion',
+                'div':'jpvDictamenesProyectosValoracion',
                 'estado_id':'0',
                 'entidad_id':estado_id}
-        $("#EptDictamenesProyectosValoracion").html('');
-        $("#EptDictamenesProyectosValoracion").jpv_estadisticas(datos_proyectosenvaloracion);
+        $("#jpvDictamenesProyectosValoracion").html('');
+        $("#jpvDictamenesProyectosValoracion").jpv_estadisticas(datos_proyectosenvaloracion);
     var datos_barramotivosproydiferidosvaloracion={
                 'opcion':'barramotivosproydiferidosvaloracion',
                 'periodo_id':periodo_id,
                 'ciclo_id':'0',
-                'div':'eptEstadisticasValoracion',
+                'div':'jpvEstadisticasValoracion',
                 'estado_id':'0',
                 'entidad_id':estado_id}
-        $("#eptEstadisticasValoracion").html('');
-        $("#eptEstadisticasValoracion").jpv_estadisticas(datos_barramotivosproydiferidosvaloracion);
+        $("#jpvEstadisticasValoracion").html('');
+        $("#jpvEstadisticasValoracion").jpv_estadisticas(datos_barramotivosproydiferidosvaloracion);
 });
 
 
@@ -110,7 +110,7 @@ $("#ciclo_select").change(function(){
                 'estado_id':estado_id,
                 'entidad_id':'0'}
         $("#jpv_Estadistica_Periodo_general").html('');
-        $("#EptgraficaGeneralVal").jpv_estadisticas(datos_general);
+        $("#jpvgraficaGeneralVal").jpv_estadisticas(datos_general);
     var datos_sectorInv={
                 'opcion':'sectorServicio',
                 'periodo_id':periodo_id,
@@ -124,29 +124,29 @@ $("#ciclo_select").change(function(){
                 'opcion':'pryectosDiferidos',
                 'periodo_id':periodo_id,
                 'ciclo_id':ciclo_id,
-                'div':'EptGraficaDiferidos',
+                'div':'jpvGraficaDiferidos',
                 'estado_id':'0',
                 'entidad_id':'0'}
-    $("#EptGraficaDiferidos").html('');
-    $("#EptGraficaDiferidos").jpv_estadisticas(datos_pryectosDiferidos);
+    $("#jpvGraficaDiferidos").html('');
+    $("#jpvGraficaDiferidos").jpv_estadisticas(datos_pryectosDiferidos);
     var datos_proyectosenvaloracion={
                 'opcion':'proyectosenvaloracion',
                 'periodo_id':periodo_id,
                 'ciclo_id':ciclo_id,
-                'div':'EptDictamenesProyectosValoracion',
+                'div':'jpvDictamenesProyectosValoracion',
                 'estado_id':estado_id,
                 'entidad_id':'0'}
-        $("#EptDictamenesProyectosValoracion").html('');
-        $("#EptDictamenesProyectosValoracion").jpv_estadisticas(datos_proyectosenvaloracion);
+        $("#jpvDictamenesProyectosValoracion").html('');
+        $("#jpvDictamenesProyectosValoracion").jpv_estadisticas(datos_proyectosenvaloracion);
     var datos_barramotivosproydiferidosvaloracion={
                 'opcion':'barramotivosproydiferidosvaloracion',
                 'periodo_id':periodo_id,
                 'ciclo_id':ciclo_id,
-                'div':'eptEstadisticasValoracion',
+                'div':'jpvEstadisticasValoracion',
                 'estado_id':estado_id,
                 'entidad_id':'0'}
-        $("#eptEstadisticasValoracion").html('');
-        $("#eptEstadisticasValoracion").jpv_estadisticas(datos_barramotivosproydiferidosvaloracion);
+        $("#jpvEstadisticasValoracion").html('');
+        $("#jpvEstadisticasValoracion").jpv_estadisticas(datos_barramotivosproydiferidosvaloracion);
     
     });
     
@@ -166,7 +166,7 @@ $("#estado_select").change(function() {
     $(':input[type="hidden"][name="ciclo_id"]').val(ciclo_id);
     $(':input[type="hidden"][name="entidad_id"]').val('');
     //~ buscar municipios
-    openerp.jsonRpc('eptEstadisticasBuscarEntidad', 'call', {'estado_id':estado_id,'periodo_id':periodo_id,'ciclo_id':ciclo_id}).then(function (respuesta) {
+    openerp.jsonRpc('jpvEstadisticasBuscarEntidad', 'call', {'estado_id':estado_id,'periodo_id':periodo_id,'ciclo_id':ciclo_id}).then(function (respuesta) {
                 var options='<option value="">Seleccione..</option>'
                 $.each(respuesta.entidad_data,function(index,causa){
                     options=options+'<option value='+causa.parent_id+'>'+causa.nombre+'</option>'
@@ -194,7 +194,7 @@ $("#estado_select").change(function() {
                                 'estado_id':estado_id,
                                 'entidad_id':entidad_id}
                         $("#jpv_Estadistica_Periodo_general").html('');
-                        $("#EptgraficaGeneralVal").jpv_estadisticas(datos_general);
+                        $("#jpvgraficaGeneralVal").jpv_estadisticas(datos_general);
                     var datos_sectorInv={
                                 'opcion':'sectorServicio',
                                 'periodo_id':periodo_id,
@@ -208,29 +208,29 @@ $("#estado_select").change(function() {
                                 'opcion':'pryectosDiferidos',
                                 'periodo_id':periodo_id,
                                 'ciclo_id':ciclo_id,
-                                'div':'EptGraficaDiferidos',
+                                'div':'jpvGraficaDiferidos',
                                 'estado_id':estado_id,
                                 'entidad_id':entidad_id}
-                    $("#EptGraficaDiferidos").html('');
-                    $("#EptGraficaDiferidos").jpv_estadisticas(datos_pryectosDiferidos);
+                    $("#jpvGraficaDiferidos").html('');
+                    $("#jpvGraficaDiferidos").jpv_estadisticas(datos_pryectosDiferidos);
                     var datos_proyectosenvaloracion={
                                 'opcion':'proyectosenvaloracion',
                                 'periodo_id':periodo_id,
                                 'ciclo_id':ciclo_id,
-                                'div':'EptDictamenesProyectosValoracion',
+                                'div':'jpvDictamenesProyectosValoracion',
                                 'estado_id':estado_id,
                                 'entidad_id':entidad_id}
-                        $("#EptDictamenesProyectosValoracion").html('');
-                        $("#EptDictamenesProyectosValoracion").jpv_estadisticas(datos_proyectosenvaloracion);
+                        $("#jpvDictamenesProyectosValoracion").html('');
+                        $("#jpvDictamenesProyectosValoracion").jpv_estadisticas(datos_proyectosenvaloracion);
                     var datos_barramotivosproydiferidosvaloracion={
                                 'opcion':'barramotivosproydiferidosvaloracion',
                                 'periodo_id':periodo_id,
                                 'ciclo_id':ciclo_id,
-                                'div':'eptEstadisticasValoracion',
+                                'div':'jpvEstadisticasValoracion',
                                 'estado_id':estado_id,
                                 'entidad_id':entidad_id}
-                        $("#eptEstadisticasValoracion").html('');
-                        $("#eptEstadisticasValoracion").jpv_estadisticas(datos_barramotivosproydiferidosvaloracion);
+                        $("#jpvEstadisticasValoracion").html('');
+                        $("#jpvEstadisticasValoracion").jpv_estadisticas(datos_barramotivosproydiferidosvaloracion);
                 
                 //~ fin de llamar al plugin
 });
@@ -264,20 +264,20 @@ $("#entidad_select").change(function() {
                 'estado_id':estado_id,
                 'entidad_id':entidad_id}
         $("#jpv_Estadistica_Periodo_general").html('');
-        $("#EptgraficaGeneralVal").jpv_estadisticas(datos_general);
+        $("#jpvgraficaGeneralVal").jpv_estadisticas(datos_general);
      var datos_rendicion={
                 'opcion':'pryectosRendiciones',
                 'periodo_id':periodo_id,
                 'ciclo_id':ciclo_id,
-                'div':'EptProyectosRendiciones',
+                'div':'jpvProyectosRendiciones',
                 'estado_id':estado_id,
                 'entidad_id':entidad_id}
         console.log(estado_id);        
         if (!entidad_id == ''){
-        $("#EptProyectosRendiciones").html('');
+        $("#jpvProyectosRendiciones").html('');
         $("#ListaProyectosxrendir").html('');
         $(".rowRendiciones").removeClass('hidden');
-        $("#EptgraficaGeneralVal").jpv_estadisticas(datos_rendicion);
+        $("#jpvgraficaGeneralVal").jpv_estadisticas(datos_rendicion);
     }else{
         $(".rowRendiciones").addClass('hidden');
     }       
@@ -294,29 +294,29 @@ $("#entidad_select").change(function() {
                 'opcion':'pryectosDiferidos',
                 'periodo_id':periodo_id,
                 'ciclo_id':ciclo_id,
-                'div':'EptGraficaDiferidos',
+                'div':'jpvGraficaDiferidos',
                 'estado_id':estado_id,
                 'entidad_id':entidad_id}
-    $("#EptGraficaDiferidos").html('');
-    $("#EptGraficaDiferidos").jpv_estadisticas(datos_pryectosDiferidos);
+    $("#jpvGraficaDiferidos").html('');
+    $("#jpvGraficaDiferidos").jpv_estadisticas(datos_pryectosDiferidos);
     var datos_proyectosenvaloracion={
                 'opcion':'proyectosenvaloracion',
                 'periodo_id':periodo_id,
                 'ciclo_id':ciclo_id,
-                'div':'EptDictamenesProyectosValoracion',
+                'div':'jpvDictamenesProyectosValoracion',
                 'estado_id':estado_id,
                 'entidad_id':entidad_id}
-        $("#EptDictamenesProyectosValoracion").html('');
-        $("#EptDictamenesProyectosValoracion").jpv_estadisticas(datos_proyectosenvaloracion);
+        $("#jpvDictamenesProyectosValoracion").html('');
+        $("#jpvDictamenesProyectosValoracion").jpv_estadisticas(datos_proyectosenvaloracion);
     var datos_barramotivosproydiferidosvaloracion={
                 'opcion':'barramotivosproydiferidosvaloracion',
                 'periodo_id':periodo_id,
                 'ciclo_id':ciclo_id,
-                'div':'eptEstadisticasValoracion',
+                'div':'jpvEstadisticasValoracion',
                 'estado_id':estado_id,
                 'entidad_id':entidad_id}
-        $("#eptEstadisticasValoracion").html('');
-        $("#eptEstadisticasValoracion").jpv_estadisticas(datos_barramotivosproydiferidosvaloracion);
+        $("#jpvEstadisticasValoracion").html('');
+        $("#jpvEstadisticasValoracion").jpv_estadisticas(datos_barramotivosproydiferidosvaloracion);
 
                 //~ fin de llamar al plugin
 });

@@ -16,7 +16,7 @@ $(document).ready(function () {
                         ciclo_id='0'
                         }
                 var datos={'periodo_id':periodo_id,'ciclo_id':ciclo_id,'estado_id':estado_id,'entidad_id':entidad_id}
-                openerp.jsonRpc('eptEstadisticasPeriodoGereral', 'call', datos).then(function (respuesta) {
+                openerp.jsonRpc('jpvEstadisticasPeriodoGereral', 'call', datos).then(function (respuesta) {
                 cant_proyecto_diferidos=respuesta.datos.diferidos;
                 Morris.Donut({
                     element: div,
@@ -35,7 +35,7 @@ $(document).ready(function () {
                     resize: true
                 });
                 var total=respuesta.datos.cargados+respuesta.datos.aprobados+respuesta.datos.cancelados+respuesta.datos.diferidos+respuesta.datos.negados+respuesta.datos.culminados
-                $('#epttotal_general').html('<h4>Total de Proyectos '+total+'</h4>')
+                $('#jpvtotal_general').html('<h4>Total de Proyectos '+total+'</h4>')
             }).fail(function (source, error) {
                        $('#error_server').html('<strong class="text-danger">Tipo de debug</strong>'+
                                                 '<p>'+error.data.name+': '+error.data.message+'</p>'+
@@ -57,7 +57,7 @@ $(document).ready(function () {
                         ciclo_id='0'
                         }
                 var datos={'periodo_id':periodo_id,'ciclo_id':ciclo_id,'estado_id':estado_id,'entidad_id':entidad_id}
-                openerp.jsonRpc('eptProyectosxRendirEstadistica', 'call', datos).then(function (respuesta) {
+                openerp.jsonRpc('jpvProyectosxRendirEstadistica', 'call', datos).then(function (respuesta) {
 				Morris.Donut({
 					element: div,
 					colors: ["#9BC036","#B61342"],
@@ -91,7 +91,7 @@ $(document).ready(function () {
                         ciclo_id='0'
                         }
             var datos={'periodo_id':periodo_id,'ciclo_id':ciclo_id,'estado_id':estado_id,'entidad_id':entidad_id}
-            openerp.jsonRpc('eptEstadisticasPeriodoSectorInves', 'call', datos).then(function (respuesta) {
+            openerp.jsonRpc('jpvEstadisticasPeriodoSectorInves', 'call', datos).then(function (respuesta) {
                 var datos=[];
                 $.each(respuesta,function(index,valor){
                     datos.push({label:valor.name,value:valor.total})
@@ -125,7 +125,7 @@ $(document).ready(function () {
                         ciclo_id='0'
                         }
             var datos={'periodo_id':periodo_id,'ciclo_id':ciclo_id,'estado_id':estado_id,'entidad_id':entidad_id}
-            openerp.jsonRpc('eptEstadisticasDiferidos', 'call',datos).then(function (respuesta) {
+            openerp.jsonRpc('jpvEstadisticasDiferidos', 'call',datos).then(function (respuesta) {
                 if (respuesta.cantidad>0){
                 var total=0
                  var options = {
@@ -200,7 +200,7 @@ $(document).ready(function () {
                         ciclo_id='0'
                         }
             var datos={'periodo_id':periodo_id,'ciclo_id':ciclo_id,'estado_id':estado_id,'entidad_id':entidad_id};
-            openerp.jsonRpc('eptEstadisticasDictamenesProyectosValoracion', 'call', datos).then(function (respuesta) {
+            openerp.jsonRpc('jpvEstadisticasDictamenesProyectosValoracion', 'call', datos).then(function (respuesta) {
                 var total=respuesta.porValorar+respuesta.aprobado+respuesta.diferido+respuesta.negado;
                 if(total>0){
                 cant_proyecto_diferidos=respuesta.diferido
@@ -221,7 +221,7 @@ $(document).ready(function () {
                          $('#'+div).html('');
                         }
                 
-                $('#epttotal_proyectosValoracion').html('<h4>Total de Proyectos en Valoración '+total+'</h4>');
+                $('#jpvtotal_proyectosValoracion').html('<h4>Total de Proyectos en Valoración '+total+'</h4>');
 			}).fail(function (source, error) {
 					   $('#error_server').html('<strong class="text-danger">Tipo de debug</strong>'+
 												'<p>'+error.data.name+': '+error.data.message+'</p>'+
@@ -242,7 +242,7 @@ $(document).ready(function () {
                         ciclo_id='0'
                         }
             var datos={'periodo_id':periodo_id,'ciclo_id':ciclo_id,'estado_id':estado_id,'entidad_id':entidad_id};
-            openerp.jsonRpc('eptEstadisticasValoracionDiferidos', 'call', datos).then(function (respuesta) {
+            openerp.jsonRpc('jpvEstadisticasValoracionDiferidos', 'call', datos).then(function (respuesta) {
                 if(respuesta.cantidad>0){
                  var total=0
                  var options = {

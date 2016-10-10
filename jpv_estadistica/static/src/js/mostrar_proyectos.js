@@ -1,7 +1,7 @@
 $(document).ready(function () {
-console.debug("[estadistica ept] Custom JS for estadistica mostrar proyectos is loading...");
+console.debug("[estadistica jpv] Custom JS for estadistica mostrar proyectos is loading...");
 //~ muestras los proyectos diferidos con sus motivos 
-$('#EptMostarProyectosDiferidos').click(function(){
+$('#jpvMostarProyectosDiferidos').click(function(){
        var periodo_id=$('#periodo_select').val(); 
        var ciclo_id=$('#ciclo_select').val(); 
        var estado_id=$('#estado_select').val(); 
@@ -9,7 +9,7 @@ $('#EptMostarProyectosDiferidos').click(function(){
        if ($('#ListaProyectoDiferidos').find('table').length==0){
             console.log('sfkasfkasf444')
            var datos={'periodo_id':periodo_id,'ciclo_id':ciclo_id,'estado_id':estado_id,'entidad_id':entidad_id}
-                openerp.jsonRpc('EptMostarListaProyectosDiferidos', 'call', datos).then(function (respuesta) {
+                openerp.jsonRpc('jpvMostarListaProyectosDiferidos', 'call', datos).then(function (respuesta) {
                     var tabla='<table class="table table-striped table-bordered">'+
                                     '<thead>'+
                                 '<tr>'+
@@ -61,7 +61,7 @@ $('#EptMostarProyectosDiferidos').click(function(){
     });
 
 //~ Muestras los proyectos en valoraciion y diferidos con sus motivos 
-$('#EptMostarProyectosEnValoracionDiferidos').click(function(){
+$('#jpvMostarProyectosEnValoracionDiferidos').click(function(){
         console.log('hola mundo');
        var periodo_id=$('#periodo_select').val();
        var ciclo_id=$('#ciclo_select').val(); 
@@ -69,7 +69,7 @@ $('#EptMostarProyectosEnValoracionDiferidos').click(function(){
        var entidad_id=$('#entidad_select').val();
        if ($('#ListaProyectoValoracionDiferidos').find('table').length==0){
            var datos={'periodo_id':periodo_id,'ciclo_id':ciclo_id,'estado_id':estado_id,'entidad_id':entidad_id}
-                openerp.jsonRpc('EptMostarListaProyectosValoracionDiferidos', 'call', datos).then(function (respuesta) {
+                openerp.jsonRpc('jpvMostarListaProyectosValoracionDiferidos', 'call', datos).then(function (respuesta) {
                     var tabla='<table class="table table-striped table-bordered">'+
                                     '<thead>'+
                                 '<tr>'+
@@ -121,15 +121,15 @@ $('#EptMostarProyectosEnValoracionDiferidos').click(function(){
     });
 
 //~ Muestras los proyectos x rendir 
-$('#EptMostarProyectosXRendir').click(function(){
+$('#jpvMostarProyectosXRendir').click(function(){
       $('#ListaProyectosxrendir').html('<div class="col-md-12">'+
                         '<img src="/web/static/src/img/throbber-large.gif"/>'+
                         '<br/>Cargando Proyectos...'+
                         '</div>');
        var entidad_id=$('#entidad_select').val();
-       if ($('#EptMostarProyectosXRendir').find('table').length==0){
+       if ($('#jpvMostarProyectosXRendir').find('table').length==0){
            var datos={'entidad_id':entidad_id}
-                openerp.jsonRpc('eptProyectosxRendirListaEstadistica', 'call', datos).then(function (respuesta) {
+                openerp.jsonRpc('jpvProyectosxRendirListaEstadistica', 'call', datos).then(function (respuesta) {
                     var tabla='<table class="table table-striped table-bordered">'+
                                     '<thead>'+
                                 '<tr>'+
@@ -172,5 +172,5 @@ $('#EptMostarProyectosXRendir').click(function(){
                } 
        
     });
-console.debug("[estadistica ept ] Custom JS for estadistica mostrar proyectos is loading...");
+console.debug("[estadistica jpv ] Custom JS for estadistica mostrar proyectos is loading...");
 });

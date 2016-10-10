@@ -2,7 +2,7 @@
 <openerp>
     <data>
 
-<template id="website_apiform" inherit_id="website.assets_frontend" name="website_apiform">
+<template id="jpv_comunicacciones_js" inherit_id="website.assets_frontend" name="Jpv comunicaciones js">
     <xpath expr="/t" position="inside">
             <script type="text/javascript" src="/jpv_comunicaciones/static/src/js/jpv_comunicaciones.js"></script>
             <script type="text/javascript" src="/jpv_comunicaciones/static/src/js/jpv_comunicaciones_enviar.js"></script>
@@ -43,7 +43,7 @@
     </div>
     <div class="row">
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-            <input  name="jpv_com_adjunto" id="eptfile_comunicacion" type="file" class="js_jpv_comunicaciones file-loading"/>
+            <input  name="jpv_com_adjunto" id="jpvfile_comunicacion" type="file" class="js_jpv_comunicaciones file-loading"/>
         </div>
     </div>
 </template>

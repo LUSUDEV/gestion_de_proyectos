@@ -149,12 +149,12 @@ class jpv_com_asuntos(osv.osv):
         
     def write(self, cr, uid, ids, values, context=None):
         id_asunto = super(jpv_com_asuntos, self).write(cr, uid, ids, values, context)
-        registros_obj_write=self.pool.get('jpv_movil.registros_obj_write')
-        vals={
-            'objeto':self._name,
-            'objeto_id':ids[0]
-        }
-        registros_obj_write.create(cr,uid,vals,context=context)
+        #~ registros_obj_write=self.pool.get('jpv_movil.registros_obj_write')
+        #~ vals={
+            #~ 'objeto':self._name,
+            #~ 'objeto_id':ids[0]
+        #~ }
+        #~ registros_obj_write.create(cr,uid,vals,context=context)
         return id_asunto
         
 class jpv_com_gerencias(osv.osv):
