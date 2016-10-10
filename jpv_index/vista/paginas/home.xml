@@ -194,20 +194,7 @@
                                     </div>
                                 </div>
                             </li>
-<!--
-                            jpv_usuarios.group_ent_pt,jpv_usuarios.group_ent_pts,jpv_usuarios.group_ent_ptio,
--->
-                            <li groups="jpv_usuarios.group_ent_pt,jpv_usuarios.group_ent_pts,jpv_usuarios.group_ent_ptio,base.group_system">
-                                <div class="ch-item">
-                                    <div class="ch-info">
-                                        <div class="ch-info-front ch-img-2"><img src="/jpv_index/static/src/imagenes/logo_sinco.png" width="170" height="170"/></div>
-                                        <div class="ch-info-back">
-                                            <h3>SINCO</h3>
-                                            <p><a href="/jpvObpp">Proyectos OBPP</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
+
                             <li groups="jpv_usuarios.group_ent_pt,jpv_usuarios.group_ent_pts,jpv_usuarios.group_ent_ptio,base.group_system">
                                 <div class="ch-item">
                                     <div class="ch-info">
@@ -241,17 +228,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li groups="base.group_system,cem_usuarios.group_cementera_central_gerente,cem_usuarios.group_cementera_central_coordinador">
-                                <div class="ch-item">
-                                    <div class="ch-info">
-                                        <div class="ch-info-front ch-img-2"><img src="/jpv_index/static/src/imagenes/corporacion_cemento.png" width="170" height="170"/></div>
-                                        <div class="ch-info-back">
-                                            <h3>CSC</h3>
-                                            <p><a href="/corporacionCemento/proyectos">Corporación de cemento</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
+                            
                         </ul>
                     </section>
                     <!-- /.col-lg-12 -->

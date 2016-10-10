@@ -6,7 +6,7 @@
 
 
 <template id="resultado_valoracion_qweb"> 
-                 <t t-call="jpv_valoracion.external_layout_ept">
+                 <t t-call="report.external_layout">
                      <link rel="stylesheet" type="text/css" href="/jpv_valoracion/static/src/css/jpv_val_reporte.css"/>
                 <div class="page">
                      <p >RIF: G-20009542-3</p>
@@ -86,40 +86,6 @@
                  </t>
     </template>
     
-    
-<template id="external_layout_ept">
-    <!-- Multicompany -->
-    <t t-call="jpv_valoracion.external_layout_header2" />
-    <t t-raw="0" ></t>
-    <t t-call="jpv_valoracion.external_layout_footer2" />
-</template>
-
-
-
-
-<template id="external_layout_header2">
-    <div class="header">
-        <div class="contains" >
-        <div class="row">
-            <div class="col-xs-12">
-                 <img class="img-responsive" src="/jpv_valoracion/static/img/cabecera.png"/>
-            </div>
-        </div>
-        </div>
-    </div>
-</template>
-
-<template id="external_layout_footer2">
-    <footer>
-    <div class='footer'>
-        <div class="row">
-            <div class="col-xs-12">
-                <img class="img-responsive" src="/jpv_valoracion/static/img/pie4.png" height="100"/>
-            </div>
-        </div>
-    </div> 
-    </footer>     
-</template>
 
 
 

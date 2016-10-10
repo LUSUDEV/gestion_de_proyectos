@@ -6,7 +6,7 @@
 
 
 <template id="jpv_carga_proyectos.ficha_proyecto_qweb"> 
-			<t t-call="jpv_carga_proyectos.external_layout_header2"/>
+			<t t-call="jpv_carga_proyectos.external_layout_ept3"/>
                 <div class="page">
 						<t t-foreach="data['proyecto_data']" t-as="proyecto">
                             <table colspan="6" class="table table-bordered" style="border: 2px solid black" >
@@ -302,38 +302,10 @@
 -->
     </template>
     
-<template id="external_layout_ept">
+<template id="external_layout_ept3">
     <!-- Multicompany -->
-    <t t-call="jpv_carga_proyectos.external_layout_header2" />
+    <t t-call="report.external_layout_header" />
     <t t-raw="0" ></t>
-    <t t-call="jpv_carga_proyectos.external_layout_footer2" />
-</template>
-
-
-
-
-<template id="external_layout_header2">
-    <div class="header">
-        <div class="contains" >
-        <div class="row">
-            <div class="col-xs-12">
-                 <img class="img-responsive" src="/jpv_carga_proyectos/static/img/cabecera.png"/>
-            </div>
-        </div>
-        </div>
-    </div>
-</template>
-
-<template id="external_layout_footer2">
-    <footer>
-    <div class='footer'>
-        <div class="row">
-            <div class="col-xs-12">
-                <img class="img-responsive" src="/jpv_carga_proyectos/static/img/pie4.png" height="100"/>
-            </div>
-        </div>
-    </div> 
-    </footer>     
 </template>
     
     
