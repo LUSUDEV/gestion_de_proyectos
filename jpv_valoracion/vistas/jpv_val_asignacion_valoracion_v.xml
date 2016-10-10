@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <openerp>
+     <data>
+         
+        <record id="view_jpv_valoraciones_mis_asignaciones_filter" model="ir.ui.view">
+            <field name="name">mis_asignaciones.filtro</field>
+            <field name="model">jpv_val.asignacion_valoracion</field>
+            <field name="arch" type="xml">
+                <search string="Mis asignaciones">
+                    <filter string="Mis Asignaciones" name="user_id" domain="[('user_id', '=',uid)]"/>
+                </search>
+            </field>
+        </record>
+        
+      <record model="ir.ui.view" id="view_val_asignacion_valoracion_form">
+        <field name="name">jpv_val_asignacion_valoracion_form</field>
+        <field name="model">jpv_val.asignacion_valoracion</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Asignación de las Valoraciones" >
+                <header>
+                    <field  name="website_url" />
+                    <field name="state" widget="statusbar" invisible='1'/>
+                </header>
+                <sheet>
+                    <separator string="Asignación Para La Valoración" colspan="4"/>
+                    <group>
+                        <field  name="referencia" />
+                        <field  
+                                name="user_id"
+                                attrs="{'readonly': [('state','=','validada')]}" />
+                        <field
+                            name="tipo_sector_id"
+                            on_change="jpv_cp.carga_proyecto.cp_limpiar_campos('categoria_id')"
+                            domain="[('parent_id','=',[0])]" />
+                        <field
+                            name="categoria_id"
+                            on_change="jpv_cp.carga_proyecto.cp_limpiar_campos('subcategoria_id')"
+                            string="Categoria" context="{'default_id':tipo_sector_id}"
+                            domain="[('parent_id','=',tipo_sector_id)]" />
+                        <field
+                            name="subcategoria_id"
+                            on_change="jpv_cp.carga_proyecto.cp_limpiar_campos('obra_civil')"
+                            context="{'default_id':categoria_id}"
+                            domain="[('parent_id','=',categoria_id)]" />
+                        <field name="mantenimiento" />
+                        </group>
+                        <separator string="Valoración General"/>
+                        <field
+                            name="proyecto_idsg"
+                            domain="[
+                                    ('subcategoria_id','=',subcategoria_id),
+                                    ('state','=','evaluacion'),
+                                    ('AsigValGeneral','=',False),
+                                    ('proyect_mantenimiento','=',mantenimiento)
+                                    ]" 
+                            on_change='eliminacion_general(proyecto_idsg[0][2],proyecto_idsg2[0][2])'
+                            attrs="{'readonly': [('state','=','validada')]}"
+                             >
+                            <tree string="Carga de Proyectos" context="{'defoult_hola':'hola...'}" colors="black:valGeneral==True;">           
+                                <field name="valGeneral" string="..." />
+                                <field name="correlativo"/>
+                                <field name="partner_id"/>
+                                <field name="subcategoria_id"/>
+                                <field name="state"/>
+                            </tree>
+                            </field>
+                            <field  name="proyecto_idsg2" invisible='1'/>
+                    
+                    <separator string="Valoración de Coordenadas"/>
+                        
+                        <field
+                            name="proyecto_idsc"
+                            domain="[
+                                    ('state','=','evaluacion'),
+                                    ('AsigValCoordenadas','=',False),
+                                    ]"
+                            on_change='eliminacion_coord(proyecto_idsc[0][2],proyecto_idsc2[0][2])'
+                            attrs="{'readonly': [('state','=','validada')]}">
+                            <tree string="Carga de Proyectos" colors="black:valCoordenadas==True;">           
+                                <field name="valCoordenadas" string="..."/>
+                                <field name="correlativo"/>
+                                <field name="partner_id"/>
+                                <field name="subcategoria_id"/>
+                                <field name="state"/>
+                            </tree>
+                            </field>
+                            <field  name="proyecto_idsc2" invisible='1'/>
+                            <separator string="Valoraciones Realizadas"/>
+                            <field  name="dictamen_ids" readonly="1"/>
+                            <group>
+                                <field  name="active" />
+                            </group>
+                    
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_asignacion_valoracion_calendar" model="ir.ui.view">
+            <field name="name">asignacion_valoracion.calendar</field>
+            <field name="model">jpv_val.asignacion_valoracion</field>
+            <field eval="2" name="priority"/>
+            <field name="arch" type="xml">
+                <calendar color="user_id" date_start="fecha_asig" string="Asignado">
+                    <field name="cant_asig_g"/>
+                    <field name="cant_asig_c"/>
+                </calendar>
+            </field>
+        </record>
+     
+     <record model="ir.ui.view" id="view_jpv_eva_asignacion_valoracion_proyecto_tree">
+        <field name="name">jpv_val_asignacion_valoracion_proyecto_tree</field>
+        <field name="model">jpv_val.asignacion_valoracion</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Asignaciones de Valoraciones">
+                <field name="create_uid" string="Responsable"/>
+                <field name="user_id"/>
+                <field  name="referencia" />
+                <field name="cant_asig_g" />
+                <field name="cant_asig_c" />
+                <field name="fecha_asig" />
+            </tree>
+        </field>
+     </record>
+     
+
+    
+    <record model="ir.actions.act_window" id="jpv_val_asignacion_valoracion_action">
+        <field name="name">Asignación de valoración</field>
+        <field name="res_model">jpv_val.asignacion_valoracion</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,calendar</field>
+        <field name="view_id" ref="view_jpv_eva_asignacion_valoracion_proyecto_tree"/>
+        <field name="search_view_id" ref="view_jpv_valoraciones_mis_asignaciones_filter"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+            Aqui se registran los Datos de las Ures tanto Alcaldias como Gobernaciones
+            </p>
+        </field>
+    </record>
+
+            
+        <menuitem name="Asignar Valoración" 
+            id="jpv_val_asignacion_valoracion"  
+            action="jpv_val_asignacion_valoracion_action" 
+            parent="menu_jpv_eva_varoracion_proyecto"
+            groups="base.group_system,jpv_usuarios.group_ger_inf,jpv_usuarios.group_jun_dir,jpv_usuarios.group_ger_tpg,jpv_usuarios.group_ger_tpc,jpv_usuarios.group_ger_tpa"
+            sequence="20"/>
+            
+    </data>
+</openerp>

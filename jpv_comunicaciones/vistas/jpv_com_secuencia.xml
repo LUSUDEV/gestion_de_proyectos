@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<openerp>
+<data >
+	<record model="ir.sequence.type" id="seq_type_jpv_comunicacion">
+		<field name="name">jpv_comunicacion</field>
+		<field name="code">jpv_com.comunicaciones</field> 
+	</record>
+	<record model="ir.sequence" id="seq_jpv_comunicacion">
+		<field name="name">jpv_com.comunicaciones</field>
+		<field name="code">jpv_com.comunicaciones</field>
+		<field name="prefix">CFG/FCI/E/%(year)s-</field>
+		<field name="padding">8</field>
+	</record>
+    <record model="ir.sequence.type" id="seq_type_jpv_com_salisas">
+		<field name="name">jpv_com_salidas</field>
+		<field name="code">jpv_com.salidas</field> 
+	</record>
+	<record model="ir.sequence" id="seq_jpv_comunicacion_salida">
+		<field name="name">jpv_com.salidas</field>
+		<field name="code">jpv_com.salidas</field>
+		<field name="prefix">CFG/FCI/S/%(year)s-</field>
+		<field name="padding">8</field>
+	</record>
+    <record model="ir.sequence.type" id="seq_type_jpv_com_comunicaciones_masivas">
+		<field name="name">jpv_com.comunicaciones_masivas</field>
+		<field name="code">jpv_com.comunicaciones_masivas</field> 
+	</record>
+	<record model="ir.sequence" id="seq_jpv_com_comunicaciones_masivas">
+		<field name="name">jpv_com.comunicaciones_masivas</field>
+		<field name="code">jpv_com.comunicaciones_masivas</field>
+		<field name="prefix">CFG/FCI/CM/%(year)s-</field>
+		<field name="padding">8</field>
+	</record>
+</data>
+</openerp>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+
+
+
+<template id="resultado_valoracion_qweb"> 
+                 <t t-call="report.external_layout">
+                     <link rel="stylesheet" type="text/css" href="/jpv_valoracion/static/src/css/jpv_val_reporte.css"/>
+                <div class="page">
+                     <p >RIF: G-20009542-3</p>
+                    <t t-esc="data['correlativo']"></t>
+                    <div class="row">
+                        <div class="col-xs-9">
+                            <p><h5>Ciudadano(a) <strong><t t-esc="data['nombre_lider']"/></strong><br/>
+                            <t t-esc="data['cargo_lider']"/> <t t-esc="data['entidad']"/><br/>
+                            Su Despacho.-</h5></p>
+                        </div>
+                         <div class="col-xs-offset-3">
+                             <p >Caracas <t t-esc="data['fecha']"/></p>
+                         </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-xs-10 col-xs-offset-1">
+                            <p align="justify">Tengo el agrado de dirigirme a usted, en la oportunidad de extenderle un cordial saludo y su vez, hacer de su conocimiento que los Proyectos del <strong>Plan de Inversión <t t-esc="data['periodo']"></t></strong>, pertenecientes a la <t t-esc="data['ciclo']"/> incorporados en el sistema del Fondo de Compensación Interterritorial por su entidad, <t t-esc="data['mensaje_dictamen']"/></p>
+                        </div>
+                    </div>
+                    
+                    <div class="row" >
+                        <div class="col-xs-10 col-xs-offset-1" >
+                            <t t-set="cont" t-value="0" />
+                            <table class="table" t-if="data['dictamen']=='Aprobado'">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Código de Proyecto</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                     <t t-foreach="data['proyectos']" t-as="proyecto">
+                                         <tr>
+                                             <t t-set="cont" t-value="cont+1" />
+                                            <td><t t-esc="cont"></t></td>
+                                            <td><t t-esc="proyecto['correlativo']"></t></td>
+                                        </tr>
+                                    </t>
+                                    </tbody>
+                                </table>
+                            <table class="table" t-if="data['dictamen']!='Aprobado'">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Código de Proyecto</th>
+                                            <th  width="200">Razones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                     <t t-foreach="data['proyectos']" t-as="proyecto">
+                                         <tr>
+                                            <t t-set="cont" t-value="cont+1" />
+                                            <td><t t-esc="cont"></t></td>
+                                            <td width="200"><t t-esc="proyecto['correlativo']"></t></td>
+                                            <td><div t-esc="proyecto['razones']"/></td>
+                                        </tr>
+                                    </t>
+                                    </tbody>
+                                </table>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div class="row">
+                        <div class="col-xs-10 col-xs-offset-1">
+                            <p>Sin ningún otro particular al cual hacer referencia, queda de usted,</p>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-xs-10 col-xs-offset-1" >
+                            <p align="center">Atentamente,</p>
+                        </div>
+                    </div>
+                </div>
+                 </t>
+    </template>
+    
+
+
+
+</data>
+</openerp>

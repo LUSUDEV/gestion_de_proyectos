@@ -473,7 +473,6 @@
     <menuitem name="Gerencia de Control y Seguimiento" id="registro_usuarios_gcs" action="action_usuarios_gcs_jpv" parent="sub_menu_usuarios" sequence="40"/>
     <menuitem name="Gerencia de Política, Planificación y Estrategía" id="registro_usuarios_gppe" action="action_usuarios_gppe_jpv" parent="sub_menu_usuarios" sequence="50"/>
     <menuitem name="Entidades Politico Territoriales" id="registro_usuarios_jpv" action="action_usuarios_jpv" parent="sub_menu_usuarios" sequence="60"/>
-    <menuitem name="UREs" id="registro_usuarios_jpv" action="action_usuarios_ures" parent="sub_menu_usuarios" sequence="70"/>
     <menuitem name="Gerencias Varias" id="registro_usuarios_gv" action="action_usuarios_gv" parent="sub_menu_usuarios" sequence="80"/>
             
     </data>

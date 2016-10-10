@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_jpv_val_dictamen_valoracion_system,jpv_val.dictamen_valoracion,model_jpv_val_dictamen_valoracion,base.group_system,1,0,0,0
+access_jpv_val_resultados_valoraciones_system,jpv_val.resultados_valoraciones,model_jpv_val_resultados_valoraciones,base.group_system,1,0,0,0
+access_jpv_val_asignacion_valoracion_system,jpv_val.asignacion_valoracion,model_jpv_val_asignacion_valoracion,base.group_system,1,0,0,0
+access_jpv_val_valoraciones_system,jpv_val.valoraciones,model_jpv_val_valoraciones,base.group_system,1,0,0,0

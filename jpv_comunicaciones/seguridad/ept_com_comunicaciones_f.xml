@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="mis_comunicacionesept" model="ir.rule">
+            <field name="name">Mis Comunicaciones EPT (Gerencias)</field>
+            <field name="model_id" ref="model_ept_com_comunicaciones"/>
+            <field name="domain_force">[('gerencia_ids.res_users_ids.id','in',[user.id])]</field>
+            <field name="perm_read" eval='True'/>
+            <field name="perm_write" eval='True'/>
+            <field name="perm_create" eval='True'/>
+            <field name="perm_unlink" eval='True'/>
+            <field name="groups" eval="[(4,ref('ept_usuarios.group_ger_tpg')),(4,ref('ept_usuarios.group_ger_csg')),(4,ref('ept_usuarios.group_ger_ppeg')),(4,ref('ept_usuarios.group_ger_fcto'))]"/>
+        </record>
+        
+        <record id="mis_comunicacionesept_ajd" model="ir.rule">
+            <field name="name">Mis Comunicaciones EPT (Analistas Junta Directiva)</field>
+            <field name="model_id" ref="model_ept_com_comunicaciones"/>
+            <field name="domain_force">[('user_id','=',user.id)]</field>
+            <field name="perm_read" eval='True'/>
+            <field name="perm_write" eval='True'/>
+            <field name="perm_create" eval='True'/>
+            <field name="perm_unlink" eval='True'/>
+            <field name="groups" eval="[(4,ref('ept_usuarios.group_jun_dir_ana'))]"/>
+        </record>
+        
+        <record id="ures_comunicacionesept" model="ir.rule">
+            <field name="name">Ures Comunicaciones EPT (Coordinadores ures)</field>
+            <field name="model_id" ref="model_ept_com_comunicaciones"/>
+            <field name="domain_force">[('partner_id','in',[e.parent_id.id for u in user.ures_ids for e in u.entidad_ids])]</field>
+            <field name="perm_read" eval='True'/>
+            <field name="perm_write" eval='True'/>
+            <field name="perm_create" eval='True'/>
+            <field name="perm_unlink" eval='True'/>
+            <field name="groups" eval="[(4,ref('ept_usuarios.group_coor_ures'))]"/>
+        </record>
+        
+        <record id="entidades_comunicacionesept" model="ir.rule">
+            <field name="name">Entidades Comunicaciones EPT </field>
+            <field name="model_id" ref="model_ept_com_comunicaciones"/>
+            <field name="domain_force">[('partner_id','in',[e.parent_id.id for e in user.entidades_ids])]</field>
+            <field name="perm_read" eval='True'/>
+            <field name="perm_write" eval='True'/>
+            <field name="perm_create" eval='True'/>
+            <field name="perm_unlink" eval='True'/>
+            <field name="groups" eval="[(4,ref('ept_usuarios.group_ent_pt')),(4,ref('ept_usuarios.group_ent_ptio')),(4,ref('ept_usuarios.group_ent_pts'))]"/>
+        </record>
+<!--
+        filtros de las comunicaciones masivas
+-->
+
+    <record id="entidades_comunicacionesMasivasept" model="ir.rule">
+            <field name="name">Entidades Comunicaciones masivas EPT (Usuarios EPT) </field>
+            <field name="model_id" ref="model_ept_com_comunicaciones_masivas"/>
+            <field name="domain_force">[('pertner_ids','in',[e.parent_id.id for e in user.entidades_ids])]</field>
+            <field name="perm_read" eval='True'/>
+            <field name="perm_write" eval='True'/>
+            <field name="perm_create" eval='True'/>
+            <field name="perm_unlink" eval='True'/>
+            <field name="groups" eval="[(4,ref('ept_usuarios.group_ent_pt')),(4,ref('ept_usuarios.group_ent_ptio')),(4,ref('ept_usuarios.group_ent_pts'))]"/>
+        </record>
+        
+        <record id="ures_comunicacionesept" model="ir.rule">
+            <field name="name">Ures Comunicaciones  Masivas EPT (Coordinadores ures)</field>
+            <field name="model_id" ref="model_ept_com_comunicaciones_masivas"/>
+            <field name="domain_force">[('pertner_ids','in',[e.parent_id.id for u in user.ures_ids for e in u.entidad_ids])]</field>
+            <field name="perm_read" eval='True'/>
+            <field name="perm_write" eval='True'/>
+            <field name="perm_create" eval='True'/>
+            <field name="perm_unlink" eval='True'/>
+            <field name="groups" eval="[(4,ref('ept_usuarios.group_coor_ures'))]"/>
+        </record>
+
+    </data>
+</openerp>
+<!--
+[ u.id for g in gerencia_ids for u in g.res_users_ids]-->

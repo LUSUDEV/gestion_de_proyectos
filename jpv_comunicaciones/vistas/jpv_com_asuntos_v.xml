@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+         <record model="ir.ui.view" id="jpv_com_asuntos_form">
+            <field name="name">jpv_com_asuntos_form</field>
+            <field name="model">jpv_com.asuntos</field> 
+            <field name="arch" type="xml">
+                <form string="Tipo de Asunto">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                                
+                            <field name="parent_id"/>
+                            <field name="tipo_campo"/>
+                            <field name="name_text" attrs="{'invisible': [('tipo_campo','!=','text')],'required': [('tipo_campo','=','text')]}"/>
+                            <separator string="Gerencias Asociadas" colspan="4"/>
+                            <field name="gerencias_ids"/>
+                            <separator string="Plan Proyecto Asociados" colspan="4"/>
+                            <field name="proyectos_ids"/>
+                            <field name="active"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="jpv_com_asuntos_lista">
+            <field name="name">jpv_com_asuntos_lista</field>
+            <field name="model">jpv_com.asuntos</field>
+            <field name="priority">1</field>
+            <field name="arch" type="xml">
+                <tree string="Tipo de Asunto">
+                    <field name="complete_name"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="jpv_com_asuntos_tree">
+            <field name="name">jpv_com_asuntos_tree</field>
+            <field name="model">jpv_com.asuntos</field>
+            <field name="field_parent">child_id</field>
+            <field name="arch" type="xml">
+                <tree toolbar="True" string="Tipo de Asunto">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="jpv_com_asuntos_tree2">
+            <field name="name">jpv_com_asuntos_tree</field>
+            <field name="model">jpv_com.asuntos</field>
+            <field name="arch" type="xml">
+                <tree string="Tipo de Asunto">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="jpv_com_asuntos_2_action">
+        <field name="name">Tipo de Asunto</field>
+        <field name="res_model">jpv_com.asuntos</field>
+        <field name="view_type">form</field>
+        <field name="field_parent">child_id</field>
+        <field name="view_id" ref="jpv_com_asuntos_lista"/>
+        </record>
+        
+        <record model="ir.actions.act_window" id="jpv_com_asuntos_action">
+            <field name="name">Tipo de Asunto</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">jpv_com.asuntos</field>
+            <field name="domain">[('parent_id','=',False)]</field>
+            <field name="view_type">tree</field>
+            <field name="view_id" ref="jpv_com_asuntos_tree"/>
+            <field name="help" type="html">
+				<p>
+					Aquí está una lista de todos los asuntos clasificados por categorías. usted
+					puede hacer clic en una categoría para obtener la lista de todos los sectores vinculados a
+					esta categoría o para un hijo de esta categoría.
+				</p>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="jpv_com_asuntos_tree_action">
+        <field name="name">Tipo de Asuntos</field>
+        <field name="res_model">jpv_com.asuntos</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="jpv_com_asuntos_tree2"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+            Aqui se registran los Datos de las Gerencias para las comunicaciones
+            </p>
+        </field>
+    </record>
+    
+         <menuitem 
+			name="Comunnicaciones" 	
+			id="menu_jpv_com_comunicaciones" 
+            parent="jpv_usuarios.menu_general_proyectos"
+            groups="base.group_system,jpv_usuarios.group_ger_inf,jpv_usuarios.group_jun_dir_ana,jpv_usuarios.group_jun_dir_sec,jpv_usuarios.group_jun_dir,jpv_usuarios.group_ger_tpg,jpv_usuarios.group_ger_csg,jpv_usuarios.group_ger_ppeg,jpv_usuarios.group_ger_csg"
+			sequence="80"/>
+       <menuitem 
+			name="Configuración" 	
+			id="menu_jpv_com_configuracion" 
+            parent="menu_jpv_com_comunicaciones"
+            groups="base.group_system,jpv_usuarios.group_ger_inf"
+			sequence="80"/>
+      <menuitem name="Tipo de Asuntos (lista) " 
+                id="inicio_jpv_com_asuntos"  
+                action="jpv_com_asuntos_action" 
+                parent="menu_jpv_com_configuracion"
+                sequence="10"/>
+      <menuitem name="Tipo de Asuntos (tree)" 
+                id="inicio_jpv_com_asuntos2"  
+                action="jpv_com_asuntos_tree_action" 
+                parent="menu_jpv_com_configuracion"
+                sequence="10"/>
+    </data>
+    </openerp>

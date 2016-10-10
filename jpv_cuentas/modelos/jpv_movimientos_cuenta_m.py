@@ -39,7 +39,6 @@ class jpv_movimientos_cuentas(osv.osv):
                                     valor_ingreso,accion,descripcion,
                                     objeto_rastro,id_rastro,periodo_id,
                                     partner_id=None,context=None):
-        
         '''Metódo que se utiliza para pasar los ingresos en movimiento
         esté metódo tiene que recibir por parametros el ID de la cuenta
         el valor a ingresar, una breve descripción el nombre del objeto 

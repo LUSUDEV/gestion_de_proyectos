@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <openerp>
+     <data>
+         <!-- Pre- Valoracion de la Ures -->
+        <record id="jpv_directiva_valoracion_wizard_view" model="ir.ui.view">
+            <field name="name">Descargar Cartas de Valoraciones</field>
+            <field name="model">jpv_val_validar_valoraciones_wizard</field>
+            <field name="arch" type="xml">
+                <form string="Pre-Valoración de Coordenadas">
+                        <separator string="Estados" colspan="4"/>
+                        <field  name="estado_ids" >
+                            <tree>
+                                <field  name="estado" />
+                            </tree>
+                        </field>
+<!--
+                        <field  name="dictamen" />
+-->
+                    <separator string="Entidades" colspan="4"/>
+                    <field  name="partner_ids" domain="[('estado_id','in',estado_ids[0][2]),('cis_entidad','=',True)]" />
+                    <field name="resumen" readonly="1"/>
+                    <separator string="Proyectos a Validar" colspan="4"/>
+                    <field name="proyecto_ids" domain="[('partner_id','in',partner_ids[0][2]),('state','=','evaluacion')]" >
+                        <tree>
+                            <field  name="periodo_id" />
+                            <field  name="ciclo_id" />
+                            <field  name="partner_id" />
+                            <field  name="correlativo" />
+                            <field  name="dictamen" />
+                            <field  name="state" />
+                            
+                        </tree>
+                    </field>
+                    <footer>
+                        <button string="Descargar .zip" type="object" groups="jpv_usuarios.group_jun_dir" name="validar_valoracion" class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+        <act_window id="jpv_directiva_valoracion_wizard_action"
+            name="Validar Valoraciones"
+            src_model="jpv_cp.carga_proyecto"
+            res_model="jpv_val_validar_valoraciones_wizard"
+            view_type="form" view_mode="form"
+            groups="jpv_usuarios.group_jun_dir"
+            key2="client_action_multi" target="new"
+            />
+
+    </data>
+</openerp>

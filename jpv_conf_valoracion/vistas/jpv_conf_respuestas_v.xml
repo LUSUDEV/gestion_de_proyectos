@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <openerp>
+     <data>
+         
+
+    <record model="ir.ui.view" id="view_jpv_conf_valoracion_items_respueta_form">
+        <field name="name">jpv_conf_valoracion_items_respueta</field>
+        <field name="model">jpv_conf.valoracion_items_respueta</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Respuestas de Valoración" >
+                <sheet>
+                    <separator string="Respuesta" colspan="4"/>
+                    <group>
+                        <field  name="id" readonly="1"/>
+                        <field  name="respuesta" />
+                        <field  name="state" />
+                        <field  
+                            name="mensaje"
+                            attrs="{'invisible': [('state','not in',('negado','diferido'))]}"
+                             />
+                        
+                        </group>
+                        <separator string="Preguntas Dependientes"/>
+                       <field
+                                name="dependencia_line"
+                                context="{'default_obj_valoracion_id':default_obj_valoracion_id,'default_pregunta_id':default_pregunta_id}">
+                                    <tree editable="bottom">
+                                        <field
+                                            name="pregunta_id"
+                                            domain="[('id','!=',default_pregunta_id),('obj_valoracion_id','=',default_obj_valoracion_id)]"
+                                            string="Pregunta"/>
+                                        <field name="accion_type" string="Accion"/>
+                                    </tree>
+                        </field>
+                        
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+     
+     <record model="ir.ui.view" id="view_jpv_conf_valoracion_items_respueta_tree">
+        <field name="name">jpv_conf_valoracion_items_respueta</field>
+        <field name="model">jpv_conf.valoracion_items_respueta</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Respuestas">           
+                <field name="respuesta"/>
+                <field name="pregunta_id"/>
+            </tree>
+        </field>
+     </record>
+     
+
+    
+    <record model="ir.actions.act_window" id="action_jpv_conf_valoracion_items_respueta">
+        <field name="name">Configuración Preguntas</field>
+        <field name="res_model">jpv_conf.valoracion_items_respueta</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_jpv_conf_valoracion_items_respueta_tree"/>
+        <field name="target">inline</field>
+    </record>
+
+            
+
+            
+    </data>
+</openerp>

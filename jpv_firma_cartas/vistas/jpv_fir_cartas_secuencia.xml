@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<openerp>
+<data >
+	<record model="ir.sequence.type" id="seq_type_jpv_cartas">
+		<field name="name">jpv_fir_cartas_x_firmar</field>
+		<field name="code">jpv_fir.cartas_x_firmar</field> 
+	</record>
+	<record model="ir.sequence" id="seq_cfg_fir_cartas">
+		<field name="name">jpv_fir_cartas_x_firmar</field>
+		<field name="code">jpv_fir.cartas_x_firmar</field>
+		<field name="prefix">CFG/FCI/DE/%(year)s-</field>
+		<field name="padding">8</field>
+	</record>
+</data>
+</openerp>

@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+<template id="jpv_comunicacciones_js" inherit_id="website.assets_frontend" name="Jpv comunicaciones js">
+    <xpath expr="/t" position="inside">
+            <script type="text/javascript" src="/jpv_comunicaciones/static/src/js/jpv_comunicaciones.js"></script>
+            <script type="text/javascript" src="/jpv_comunicaciones/static/src/js/jpv_comunicaciones_enviar.js"></script>
+             <script type="text/javascript" src="/jpv_comunicaciones/static/src/js/confirmar_comunicacion.js"></script>
+    </xpath>
+</template>
+
+
+<template id="jpv_comunicaciones.envios" name="Envios de comunicaciones" >
+    <div class="form-group">
+                 <label><t t-esc="tipo_organizacion"></t></label>
+                 <t t-esc="datos_organizacion.name"></t>
+                 <input type="hidden" id="organizacionId" name="organizacion_id" t-att-value="datos_organizacion.id" />
+                 <input type="hidden" id="referencia" name="referencia" t-att-value="referencia" />
+                 
+    </div>
+    <div class="form-group">
+                 <label>Remitente: </label>
+                 <t t-esc="remitente"></t>
+                 
+    </div>
+    <t t-call="jpv_comunicaciones.selection"/>
+    
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="form-group">
+            <label for="comunicacionCont">Comunicación:</label>
+            <textarea 
+                class="form-control"
+                name="comunicacion"
+                required="required"
+                mensaje="del Contenido de la Comunicación" 
+                rows="15" 
+                id="comunicacionCont"
+                placeholder="A continuación cuenta con 3000 caracteres para exponer su caso."></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <input  name="jpv_com_adjunto" id="jpvfile_comunicacion" type="file" class="js_jpv_comunicaciones file-loading"/>
+        </div>
+    </div>
+</template>
+
+<template id="selection" name="Asunto tipo selection">
+    <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <div class="form-group">
+        <label>Asunto: </label>
+        <select class="form-control js_jpv_asunto_comunicaciones" name="asunto_1" title="Seleccione"  required='required' mensaje="El Asunto ">
+             <option value="" selected="selected" >Seleccione el Asunto</option>
+             <t t-foreach="asunto_data" t-as="asunto">
+                 <option 
+                        t-att-value="asunto['id']" 
+                        t-att-name_text="asunto['name_text']" 
+                        t-att-tipo_campo="asunto['tipo_campo']"><t t-esc='asunto["asunto"]'></t></option>
+             </t>
+        </select>
+        
+    </div>
+        </div>
+    </div>
+</template>
+ </data>
+</openerp>

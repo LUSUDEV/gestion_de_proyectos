@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<record id="email_template_comunicacion_respuesta" model="email.template">
+            <field name="name">Respuesta de Comunicación Oficial ept - </field>
+            <field name="email_from">${(object.parent_id.company_id.email or '')|safe}</field>
+            <field name="subject">Respuesta de Comunicación Oficial FCI</field>
+            <field name="model_id" ref="jpv_entidades.model_jpv_ent_entidades"/>
+            <field name="email_to">${object.correos()}</field>
+            <field name="auto_delete" eval="False"/>
+            <field name="lang">${object.parent_id.lang}</field>
+            <field name="body_html"><![CDATA[
+<div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+
+    <p>
+        <strong>${object.parent_id.name}</strong>
+        </p>
+        <p>
+		     Tiene un mensaje en el <strong>Sistema de Entidades Político Territoriales</strong>. 
+		 </p>
+         <p>Puede acceder al siguiente link:
+          <a href="${object.get_access_link()}">Registro de la ${object.name}</a>
+         </p>
+        <br/>
+        <br/>
+        <p align="center">
+         ${object.parent_id.company_id.name or ''}
+        ${object.parent_id.company_id.phone or ''}
+        </p>
+		    
+		 
+    
+</div>
+
+            ]]></field>
+</record>
+
+<record id="email_template_comunicacion_masiva" model="email.template">
+            <field name="name">Comunicación Oficial del Consejo Federal de Gobierno- </field>
+            <field name="email_from">${(object.parent_id.company_id.email or '')|safe}</field>
+            <field name="subject">Comunicación Oficial del Consejo Federal de Gobierno</field>
+            <field name="model_id" ref="jpv_entidades.model_jpv_ent_entidades"/>
+            <field name="email_to">${object.correos()}</field>
+            <field name="auto_delete" eval="False"/>
+            <field name="lang">${object.parent_id.lang}</field>
+            <field name="body_html"><![CDATA[
+<div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+
+    <p>
+        <strong>${object.parent_id.name}</strong>
+        </p>
+        <p>
+		     Tiene un mensaje en el <strong>Sistema de Entidades Político Territoriales</strong>. 
+		 </p>
+         <p>Puede acceder al siguiente link:
+          <a href="${object.get_access_link()}">Registro de la ${object.name}</a>
+         </p>
+        <br/>
+        <br/>
+        <p align="center">
+         ${object.parent_id.company_id.name or ''}
+        ${object.parent_id.company_id.phone or ''}
+        </p>
+		    
+		 
+    
+</div>
+
+            ]]></field>
+</record>
+
+<record id="email_template_comunicacion_masiva_partner" model="email.template">
+            <field name="name">Comunicación Oficial del Consejo Federal de Gobierno- </field>
+            <field name="email_from">${(object.company_id.email or '')|safe}</field>
+            <field name="subject">Comunicación Oficial del Consejo Federal de Gobierno</field>
+            <field name="model_id" ref="jpv_entidades.model_res_partner"/>
+            <field name="email_to">${object.email}</field>
+            <field name="auto_delete" eval="False"/>
+            <field name="lang">${object.lang}</field>
+            <field name="body_html"><![CDATA[
+<div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+
+    <p>
+        <strong>${object.name}</strong>
+        </p>
+        <p>
+		     Tiene un mensaje en el <strong>Sistema de Entidades Político Territoriales</strong>. 
+		 </p>
+         <p>Puede acceder al siguiente link:
+          <a href="http://ept.cfg.gob.ve/web">Sessión de ${object.name}</a>
+         </p>
+        <br/>
+        <br/>
+        <p align="center">
+         ${object.company_id.name or ''}
+        ${object.company_id.phone or ''}
+        </p>
+		    
+		 
+    
+</div>
+
+            ]]></field>
+</record>
+</data>
+</openerp>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <openerp>
+     <data>
+         
+
+    <record model="ir.ui.view" id="view_jpv_conf_objeto_valoracion_form">
+        <field name="name">jpv_conf_objeto_valoracion</field>
+        <field name="model">jpv_conf.objeto_valoracion</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Objetos de Valoraciones" >
+                <sheet>
+                    <separator string="Objeto de la Valoración" colspan="4"/>
+                    <group>
+                        <field  name="refencia" />
+                        <field  name="model_id" />
+                        </group>
+                        <separator string="Preguntas de la Valoración"/>
+                       <field name="preguntas_ids" context="{'default_model_id':model_id,'default_obj_valoracion_id':id}" />
+                        
+                            <group>
+                                <field  name="active" />
+                            </group>
+                    
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+     
+     <record model="ir.ui.view" id="view_jpv_conf_objeto_valoracion_tree">
+        <field name="name">jpv_conf_objeto_valoracion</field>
+        <field name="model">jpv_conf.objeto_valoracion</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Carga de Proyectos">           
+                <field name="refencia"/>
+                <field name="model_id"/>
+            </tree>
+        </field>
+     </record>
+     
+
+    
+    <record model="ir.actions.act_window" id="action_jpv_conf_objeto_valoraciones">
+        <field name="name">Objeto de la Valoracion</field>
+        <field name="res_model">jpv_conf.objeto_valoracion</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_jpv_conf_objeto_valoracion_tree"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+            Aqui se registran los items de la valoraciones
+            </p>
+        </field>
+    </record>
+
+        <menuitem 
+            name="Configuración de Valoración" 	
+            id="menu_jpv_conf_valoracion" 
+            parent="jpv_usuarios.menu_general_proyectos"
+            groups="base.group_system,jpv_usuarios.group_ger_inf"
+            sequence="105"/>
+            
+        <menuitem name="Objeto de la valoracion" 
+            id="menu_jpv_val_objeto_valoracion"  
+            action="action_jpv_conf_objeto_valoraciones" 
+            parent="menu_jpv_conf_valoracion"
+            sequence="20"/>
+            
+    </data>
+</openerp>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <openerp>
+     <data>
+         
+         <record model="ir.ui.view" id="view_dictamen_valoracion_graph">
+            <field name="name">jpv_val.dictamen_valoracion.graph</field>
+            <field name="model">jpv_val.dictamen_valoracion</field>
+            <field name="arch" type="xml">
+                <graph string="Valoraciones de Proyecto" type="pivot">
+                    <field name="dictamen" type="row"/>
+                    <field name="nombre_ept" />
+                    <field name="tipo_valoracion" type="pie"/>
+                    <field name="proyecto_id" />
+                </graph>
+            </field>
+        </record>
+        
+      <record model="ir.ui.view" id="view_val_dictamen_valoracion_form">
+        <field name="name">jpv_val_dictamen_valoracion_form</field>
+        <field name="model">jpv_val.dictamen_valoracion</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Resultados de Valoración" >
+                <header>
+                    <field name="proyecto_id_status" invisible="1"/>
+                    <field  
+                        name="website_url" 
+                        attrs="{'invisible': ['|',('proyecto_id_status','!=','evaluacion'),('state','=','validada')]}"
+                        groups="base.group_system,jpv_usuarios.group_ger_inf,jpv_usuarios.group_jun_dir_ana,jpv_usuarios.group_jun_dir_sec,jpv_usuarios.group_jun_dir,jpv_usuarios.group_ger_tpg,jpv_usuarios.group_ger_tpc,jpv_usuarios.group_ger_tpa"/>
+                </header>
+                <sheet>
+                    <separator string="Dictamen de la valoración" colspan="4"/>
+                    <group>
+                        <field name="asignacion_id" readonly="1" string="Asignado:"/>
+                        <field name="create_uid" readonly="1" string="Valorado por:"/>
+                        <field name="dictamen" readonly="1"/>
+                        <field name="resultados_ids" readonly="1"/>
+                        <field name="periodo_id" readonly="1"/>
+                        <field name="ciclo_id" readonly="1"/>
+                        <field name="proyecto_id" readonly="1"/>
+                        <field name="nombre_ept" readonly="1"/>
+                        <field name="observaciones" readonly="1"/>
+                        <field name="tipo_valoracion" readonly="1"/>
+                        <field name="active" readonly="1"/>
+                        <field name="state" readonly="1"/>
+                        </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+     
+     <record model="ir.ui.view" id="view_jpv_eva_dictamen_valoracion_proyecto_tree">
+        <field name="name">jpv_val_dictamen_valoracion_proyecto_tree</field>
+        <field name="model">jpv_val.dictamen_valoracion</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Carga de Proyectos">           
+                <field  name="tipo_valoracion" />
+                <field name="proyecto_id" />
+                <field name="nombre_ept" />
+                <field name="sub_categoria" />
+                <field name="proyecto_id_status" invisible="1"/>
+                <field name="state"/>
+                <field name="dictamen"/>
+                <button name="editar_dict_url_tree"
+                        string="Editar Valoracion" 
+                        type="object"
+                        help="Valorar dfsgslas coordenadas"
+                        groups="base.group_system,jpv_usuarios.group_ger_inf,jpv_usuarios.group_jun_dir_ana,jpv_usuarios.group_jun_dir_sec,jpv_usuarios.group_jun_dir,jpv_usuarios.group_ger_tpg,jpv_usuarios.group_ger_tpc,jpv_usuarios.group_ger_tpa"
+                        attrs="{'invisible': ['|',('proyecto_id_status','!=','evaluacion'),('state','=','validada')]}"
+                        icon="gtk-paste-v"/>
+            </tree>
+        </field>
+     </record>
+     
+
+    
+    <record model="ir.actions.act_window" id="jpv_val_dictamen_valoracion_action">
+        <field name="name">Resultados de la Valoraciones</field>
+        <field name="res_model">jpv_val.dictamen_valoracion</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,graph</field>
+        <field name="view_id" ref="view_jpv_eva_dictamen_valoracion_proyecto_tree" />
+    </record>
+
+            
+        <menuitem name="Valoraciones" 
+            id="jpv_val_dictamen_valoracion"  
+            action="jpv_val_dictamen_valoracion_action" 
+            parent="menu_jpv_eva_varoracion_proyecto"
+            groups="base.group_system,jpv_usuarios.group_jun_dir,jpv_usuarios.group_ger_tpg,jpv_usuarios.group_ger_csg,jpv_usuarios.group_ger_ppeg,jpv_usuarios.group_ger_ppeg"
+            sequence="30"/>
+
+    <record model="ir.ui.view" id="view_val_resultados_valoraciones_form">
+        <field name="name">jpv_val_resultados_valoraciones_form</field>
+        <field name="model">jpv_val.resultados_valoraciones</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Pregunta y respusta de Valoración" >
+                <sheet>
+                    <separator string="Pregunta de la valoración" colspan="4"/>
+                    <group>
+                        <field name="pregunta_id" />
+                        <field name="tipo_pregunta" />
+                        <field name="resp_texto_siple_id" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+     
+     <record model="ir.ui.view" id="view_jpv_eva_resultados_valoraciones_proyecto_tree">
+        <field name="name">jpv_val_resultados_valoraciones_proyecto_tree</field>
+        <field name="model">jpv_val.resultados_valoraciones</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Pregunta Respuesta">           
+                <field  name="pregunta_id" />
+                <field name="resp_texto_siple_id" />
+            </tree>
+        </field>
+     </record>
+     
+
+    
+    <record model="ir.actions.act_window" id="jpv_val_resultados_valoraciones_action">
+        <field name="name">Pregunta y Resultados de las valoraciones</field>
+        <field name="res_model">jpv_val.resultados_valoraciones</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_jpv_eva_resultados_valoraciones_proyecto_tree" />
+    </record>
+            
+    </data>
+</openerp>

@@ -1,0 +1,56 @@
+"id","pregunta_id:id","respuesta","sequence","state","mensaje"
+"coherencia_valida_si","coherencia_valida","Si",10,"aprobado",
+"coherencia_valida_no","coherencia_valida","No",10,"diferido","Por Choerencia no Valida"
+"no_valido_chorencia_nombre","no_valido_chorencia","Nombre",10,"diferido","Por Nombre del Proyecto."
+"no_valido_chorencia_descrip","no_valido_chorencia","Descripción",10,"diferido","Por Descrpción del Proyecto."
+"no_valido_chorencia_nomb_desc","no_valido_chorencia","Nombre-Descripción",10,"diferido","Por Nombre y Descrpción del Proyecto."
+"politica_valida_si","politica_valida","Si",10,"aprobado",
+"politica_valida_no","politica_valida","No",10,"negado","Por Política no válida."
+"no_valida_politica_no_tansf","no_valida_politica","No, Transferencia de recursos",10,"negado","Por Tansferencia de recursos."
+"no_valida_politica_no_pre_inv","no_valida_politica","No, Pre inversión para proyectos",10,"negado","Por Pre Inversión para proyectos."
+"no_valida_politica_no_plan","no_valida_politica","No, Planes o programas",10,"negado","Por Planes o programas."
+"no_valida_politica_no_cent","no_valida_politica","No, Centro de cultos religiosos",10,"negado","Por Centro de cultos religiosos."
+"no_valida_politica_no_alq","no_valida_politica","No, Alquiler o renta",10,"negado","Por Alquiler o renta."
+"no_valida_politica_no_comp","no_valida_politica","No, Compra de terrenos privados",10,"negado","Por Compra de terrenos privados."
+"concord_clasif_valida_si","concord_clasif_valida","Si",10,"aprobado",
+"concord_clasif_valida_no","concord_clasif_valida","No",10,"diferido","Por Coordenadas en Clasificación No válida."
+"no_valido_concord_clasif_no_sect","no_valido_concord_clasif","No, Sector",10,"diferido","Por Sector."
+"no_valido_concord_clasif_no_cat","no_valido_concord_clasif","No, Categoría",10,"diferido","Por Categoría."
+"no_valido_concord_clasif_no_subcat","no_valido_concord_clasif","No, SubCategoría",10,"diferido","Por Sub Categoría."
+"concord_caract_valida_si","concord_caract_valida","Si",10,"aprobado",
+"concord_caract_valida_no","concord_caract_valida","No",10,"diferido","Por Característica No válida."
+"no_valido_concord_caract_no_tip_obr","no_valido_concord_caract","No, Tipo de Obra Civil",10,"diferido","Por Tipo de Obra Civil."
+"no_valido_concord_caract_no_adq","no_valido_concord_caract","No, Adquisición",10,"diferido","Por Adquisición."
+"no_valido_concord_caract_no_mant","no_valido_concord_caract","No, Mantenimiento",10,"diferido","Por Mantenimiento."
+"aval_aval_si","aval_aval","Si",10,"aprobado",
+"aval_aval_no","aval_aval","No",10,"diferido","Por no poseer aval."
+"identifica_ente_avalador_si","identifica_ente_avalador","Si",10,"aprobado",
+"identifica_ente_avalador_no","identifica_ente_avalador","No",10,"diferido","Por no identificar el ente avalador."
+"firma_sello_avalador_si","firma_sello_avalador","Si",10,"aprobado",
+"firma_sello_avalador_no","firma_sello_avalador","No",10,"diferido","Por no poseer firma y sello del avalador."
+"fecha_emision_aval_si","fecha_emision_aval","Si",10,"aprobado",
+"fecha_emision_aval_no","fecha_emision_aval","No",10,"diferido","Por fecha erronea de emisión del aval."
+"ente_competente_si","ente_competente","Si",10,"aprobado",
+"ente_competente_no","ente_competente","No",10,"diferido","Por error en ente competente."
+"identifica_nombre_proyecto_si","identifica_nombre_proyecto","Si",10,"aprobado",
+"identifica_nombre_proyecto_no","identifica_nombre_proyecto","No",10,"diferido","Por no idenficar el nombre del proyecto."
+"aval_refiere_tramite_administ_si","aval_refiere_tramite_administ","Si",10,"aprobado",
+"aval_refiere_tramite_administ_no","aval_refiere_tramite_administ","No",10,"diferido","Por aval no referirse a un trámite administrartivo."
+"aval_ref_ejecu_fisica_si","aval_ref_ejecu_fisica","Si",10,"aprobado",
+"aval_ref_ejecu_fisica_no","aval_ref_ejecu_fisica","No",10,"diferido","Por aval no referirse a una ejecución física."
+"exp_disp_aval_proyecto_si","exp_disp_aval_proyecto","Si",10,"aprobado",
+"exp_disp_aval_proyecto_no","exp_disp_aval_proyecto","No",10,"diferido","Por no expresar disposición para avalar el proyecto."
+"coordenada_plausible_ure_si","coordenada_plausible_ure","Si",10,"sinEfecto",
+"coordenada_plausible_ure_no","coordenada_plausible_ure","No",10,"sinEfecto",
+"coord_plausible_si","coord_plausible","Si",10,"aprobado",
+"coord_plausible_no","coord_plausible","No",10,"diferido","Por Coordenadas."
+"no_valida_coordenada_ure_no_huso","no_valida_coordenada_ure","No, Huso",10,"sinEfecto",
+"no_valida_coordenada_ure_no_inv","no_valida_coordenada_ure","No, Invertidas",10,"sinEfecto",
+"no_valida_coordenada_ure_no_incomp","no_valida_coordenada_ure","No, Incompletas",10,"sinEfecto",
+"no_valida_coordenada_ure_no_fuera_ub","no_valida_coordenada_ure","No, Fuera de Ubicación",10,"sinEfecto",
+"no_valido_coordenada_no_huso","no_valido_coordenada","No, Huso",10,"diferido","Por Huso."
+"no_valido_coordenada_no_invert","no_valido_coordenada","No, Invertidas",10,"diferido","Por Coordenadas Invertidas."
+"no_valido_coordenada_no_incomp","no_valido_coordenada","No, Incompletas",10,"diferido","Por Coordenadas Incompletas."
+"no_valido_coordenada_no_fuer_ub","no_valido_coordenada","No, Fuera de Ubicación",10,"diferido","Por estar Fuera de Ubicación."
+"ubicacion_politica_plausible_si","ubicacion_politica_plausible","Si",10,"aprobado",
+"ubicacion_politica_plausible_no","ubicacion_politica_plausible","No",10,"diferido","Por Ubicación Política Plausible."

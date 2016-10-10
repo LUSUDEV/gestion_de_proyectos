@@ -1,0 +1,217 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+<template id="jpvEstadisticaAddjs" inherit_id="website.assets_frontend" name="Adicionando archivos js de website estadistica jpv">
+    <xpath expr="/t" position="inside">
+            <script type="text/javascript" src="/jpv_estadistica/static/src/js/plugin_estadisticas.js"></script>
+            <script type="text/javascript" src="/jpv_estadistica/static/src/js/jpv_val_estadisticas.js"></script>
+            <script type="text/javascript" src="/jpv_estadistica/static/src/js/jpv_val_dictamen_proyecto_valoracion.js"></script>
+            <script type="text/javascript" src="/jpv_estadistica/static/src/js/jpv_est_busqueda_Avanzada.js"></script>
+            <script type="text/javascript" src="/jpv_estadistica/static/src/js/mostrar_proyectos.js"></script>
+    </xpath>
+</template>
+
+
+<template id="jpv_estadistica.estadisticas_index" name="Vista Inicial Estadisticas" >
+     <t t-call="website.layout">
+    <t t-call="website_apiform.ajax_error"/>
+    <t t-call="website_apiform.modal"/>
+    <t t-call="website_apiform.modal_sinBoton"/>
+<!--
+         inicio de busqueda avanzada
+-->
+         <form 
+         class="form-horizontal" role="form">
+          <div class="row">
+            <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" align="center">
+                <div class="panel panel-default">
+                      <div class="panel-heading"><h4>Busqueda Avanzada</h4></div>
+                      <div class="panel-body">
+                         <div class="row">
+                            <div class="col-md-2 col-xs-2 col-sm-2 col-lg-2" align="center">
+                                Periodo:<select name="periodo_id" id="periodo_select" class="form-control">
+                                    <t t-foreach="periodo_data" t-as="periodo">
+                                      <option t-att-value="periodo['id']"><t t-esc="periodo['periodo_fiscal']"/></option>
+                                       </t>
+                                </select>
+                            </div>
+                            <div class="col-md-2 col-xs-2 col-sm-2 col-lg-2" align="center">
+                                Ciclo:<select name="ciclo_id" id="ciclo_select" class="form-control">
+                                    <option value="">Seleccione..</option>
+                                    <t t-foreach="periodo_data" t-as="periodo"> 
+                                        <t t-foreach="periodo.etapas_ids" t-as="ciclo">
+                                      <option t-if="periodo['id']==periodo_fiscal_id" t-att-value="ciclo['id']"><t t-esc="ciclo['nombre']"/></option>
+                                       </t>
+                                    </t>
+                                </select>
+                            </div>
+                            <div class="col-md-2 col-xs-2 col-sm-2 col-lg-2" align="center">
+                                Estado:<select name="estado_id" id="estado_select" class="form-control">
+                                    <option t-if="restrict==False" value="">Seleccione..</option>
+                                    <option t-if="restrict==True" t-att-value="estado_id">Seleccione..</option>
+                                    <t t-foreach="estado_data" t-as="estado">
+                                      <option t-att-value="estado['id']"><t t-esc="estado['estado']"/></option>
+                                       </t>
+                                </select>
+                            </div>
+                            <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6" align="center">
+                                Entidad:<select name="entidad_id" id="entidad_select" class="form-control">
+                                   <option value="">Seleccione..</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+<!--
+        fin de busqueda Avanzada
+-->
+        <div class="row">
+            <div id="titulo_estadisticas" class="col-md-12 col-xs-12 col-sm-12 col-lg-12" align="center">
+                 <h1>Periodo Fiscal <t t-esc="periodo_fiscal"/></h1>
+                 <h3><t t-esc="estado_name"/></h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6" align="center">
+                 <div id="jpvgraficaGeneralVal" t-att-periodo_id="periodo_fiscal_id">
+                 <div id="jpvgraficaRestrict" t-att-restrict="restrict" />
+                 <div id="jpvtotal_general" ></div>
+                 <div id="jpv_Estadistica_Periodo_general" style="height: 300px" ></div>
+                 </div>
+            </div>
+            <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6" align="center">
+                 <h4>Sector de Invesión</h4>
+                <div id="periodo_sector_inversion" style="height: 300px" ></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" align="left">
+                     <span style="cursor:pointer" id="jpvMostarTablaCausasDiferidos">
+                    <h5><img src="/jpv_estadistica/static/src/img/show.png"/>Motivos de diferidos</h5>
+                    </span>
+                  <div  style="display: none;" id="jpvTablaRefValoracion"></div>
+            </div>
+        </div>
+       
+        <div class="row">
+            <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" align="center">
+                  <div id="jpvGraficaDiferidos"></div>
+            </div>
+        </div>
+         <div class="row">
+            <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" align="left">
+                 <form 
+                     action="/jpvDescargarListaProyectosDiferidosCsv"
+                     method="post">
+                    <h5 >
+                        <span style="cursor:pointer" id="jpvMostarProyectosDiferidos">
+                            <img src="/jpv_estadistica/static/src/img/show_property.png" width="50" height="50"/>
+                                Mostrar Proyectos Diferidos
+                        </span>
+                             <input type="hidden" name="periodo_id" t-att-value="periodo_fiscal_id"/>
+                             <input type="hidden" name="ciclo_id" value=""/>
+                             <input type="hidden" name="estado_id" value=""/>
+                             <input type="hidden" name="entidad_id" value=""/>
+                            <button type="summit" class="btn btn-link"><span style="cursor:pointer" >
+                                <img src="/jpv_estadistica/static/src/img/csv.png" width="50" height="50"/>Descargar</span>
+                            </button>
+                     </h5>
+                      <div id="ListaProyectoDiferidos"></div>
+                </form>
+            </div>
+        </div>
+<!--
+        inicio div para agrupar los permisos de mostrar los estatus de la valoraciones
+-->
+        <div 
+        groups="base.group_system,jpv_usuarios.group_ger_inf,jpv_usuarios.group_jun_dir_ana,jpv_usuarios.group_jun_dir_sec,jpv_usuarios.group_jun_dir,jpv_usuarios.group_ger_tpg,jpv_usuarios.group_ger_csg,jpv_usuarios.group_ger_ppeg,jpv_usuarios.group_ger_fcto">
+        
+        <div class="row">
+            <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" align="center">
+                    <h1 class="mt32">Estatus de las Valoraciones</h1>
+                    <div id="jpvtotal_proyectosValoracion" ></div>
+                  <div id="jpvDictamenesProyectosValoracion" style="height: 300px"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" align="center">
+                  <div id="jpvEstadisticasValoracion"></div>
+            </div>
+        </div>
+        
+        <div class="row" >
+            <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" align="left">
+                <form 
+                     action="/jpvDescargarListaProyectosValoracionDiferidosCsv"
+                     method="post">
+                    <h5 >
+                        <span style="cursor:pointer" id="jpvMostarProyectosEnValoracionDiferidos">
+                            <img src="/jpv_estadistica/static/src/img/show_property.png" width="50" height="50"/>
+                                Mostrar Proyectos en Valoración Diferidos
+                        </span>
+<!--
+                        id="jpvDescargarMostarProyectosDiferidosCsv"
+-->
+                        <input type="hidden" name="periodo_id" t-att-value="periodo_fiscal_id"/>
+                        <input type="hidden" name="ciclo_id" value=""/>
+                        <input type="hidden" name="estado_id" value=""/>
+                        <input type="hidden" name="entidad_id" value=""/>
+                        <button type="summit" class="btn btn-link"><span style="cursor:pointer" >
+                            <img src="/jpv_estadistica/static/src/img/csv.png" width="50" height="50"/>Descargar
+                        </span></button>
+                 </h5>
+                  <div id="ListaProyectoValoracionDiferidos"></div>
+                </form>
+            </div>
+        </div>
+<!--
+        fin  div para agrupar los permisos de mostrar los estatus de la valoraciones
+-->
+        </div>
+        <div id="rowRendiciones" class="row mb32 hidden rowRendiciones">
+            <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" align="center">
+                    <h1 class="mt32">Estatus de la Rendición de Proyectos</h1>
+                    <div id="jpv_proyectos_rendiciones" ></div>
+                  <div id="jpvProyectosRendiciones" style="height: 300px"></div>
+            </div>
+        </div>
+        <div id="rowListaRendiciones" class="row hidden rowRendiciones">
+            <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" align="left">
+                <form 
+                     action="/jpvDescargarListaProyectosValoracionDiferidosCsv"
+                     method="post">
+                    <h5 >
+                        <span style="cursor:pointer" id="jpvMostarProyectosXRendir">
+                            <img src="/jpv_estadistica/static/src/img/show_property.png" width="50" height="50"/>
+                                Mostrar proyectos por rendir
+                        </span>
+                        
+                        <input type="hidden" name="periodo_id" t-att-value="periodo_fiscal_id"/>
+                        <input type="hidden" name="ciclo_id" value=""/>
+                        <input type="hidden" name="estado_id" value=""/>
+                        <input type="hidden" name="entidad_id" value=""/>
+                 </h5>
+                  <div id="ListaProyectosxrendir"></div>
+                </form>
+            </div>
+        </div>
+     </t>
+</template>
+
+<template id="jpv_estadistica.estadisticas_index2" name="Vista Inicial Estadisticas" >
+     <t t-esc="datos"></t>
+</template>
+
+<template id="jpv_estadistica.status_valoracion" name="Vista Inicial Estadisticas" >
+     <h1>hola mundo</h1>
+     <h1>hola mundo</h1>
+     <h1>hola mundo</h1>
+     <h1>hola mundo</h1>
+</template>
+
+
+ </data>
+</openerp>

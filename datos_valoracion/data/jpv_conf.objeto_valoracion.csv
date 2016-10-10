@@ -1,0 +1,4 @@
+"id","model_id","refencia"
+"val_coordnadas","jpv_cp.carga_proyecto","valoracion_coordenadas"
+"val_coord_ures","jpv_cp.carga_proyecto","valoracion_coordenadas_ures"
+"val_general","jpv_cp.carga_proyecto","valoracion_general"

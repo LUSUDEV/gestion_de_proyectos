@@ -1,0 +1,175 @@
+<openerp>
+    <data>
+        <template id="jpv_conf_valoracion.valoracionGeneral" name="Valoración de Proyectos General">
+           <t t-foreach="ValGeneralData.preguntas_ids" t-as="question">
+                    <t t-if="question.tipo == 'radio' and editar==0"><t t-call="jpv_conf_valoracion.evaluacion_radio"/></t>
+           </t>
+           <t t-foreach="preguntas" t-as="question">
+                   <t t-if="question['tipo'] == 'radio' and editar==1">
+                        <t t-call="jpv_conf_valoracion.Editar_evaluacion_radio"/>
+                    </t>
+           </t>
+        </template>
+        <template id="jpv_conf_valoracion.valoracionCoordenadas" name="Valoración de Proyectos Coordenadeas">
+           <t t-foreach="CoordenadasData.preguntas_ids" t-as="question">
+                <t t-if="question.tipo == 'radio' and editar==0"><t t-call="jpv_conf_valoracion.evaluacion_radio"/></t>           
+           </t>
+           <t t-foreach="preguntas" t-as="question">
+                   <t t-if="question['tipo'] == 'radio' and editar==1">
+                        <t t-call="jpv_conf_valoracion.Editar_evaluacion_radio"/>
+                    </t>
+           </t>
+        </template>
+<!--
+        t-att-name="'%s-%s' % (question.tipo,question.id)"
+-->
+<template id="Editar_evaluacion_radio" name="Preguntas tipo radio">
+            <div t-attf-class="panel panel-danger js_ubicarPregValoracion #{destino_referencia(question['field_ids'],proyecto.id,tr_id)}"
+                style='display:none'
+                t-attf-ref="#{destino_referencia(question['field_ids'],proyecto.id,tr_id)}"
+                t-attf-mostrar="#{'No' if question['dependiente'] else 'Si'}"
+                t-att-id="'pregunta%s-%s' % (question['id'],proyecto.id)"
+                t-att-pregunta_id="question['id']">
+                <div class="panel-heading">
+                    <b><t t-esc="question['nombre']"/></b>
+                    <h6><t t-esc="mostrar"/></h6>
+                    <div t-if="len(question['respuesta_ids'])  &lt;=  2">
+                    <t t-foreach="question['respuesta_ids']" t-as="respueta">
+                                    <input
+                                        t-att-class="'js_respuestaClick idclick_p%s' % (proyecto.id)"
+                                        t-att-proyecto="'%s' % (proyecto.id)"
+                                        t-att-value="respueta['id']"
+                                        t-att-state='respueta["state"]'
+                                        t-att-id="'%s-%s' % (question['id'],respueta['id'])"
+                                        t-att-type="question['tipo']" 
+                                        t-att-name="'%s-%s' % (question['tipo'],question['id'])"
+                                        t-att-mensaje="question['nombre']"
+                                        t-att-checked='respueta["checked"]'
+                                        t-attf-depen="#{dependientes_preguntas(respueta['dependencia_line'],proyecto.id)}"
+                                        t-attf-required="#{'False' if question['dependiente'] else 'required'}"
+                                        data-switch-no-init="True"
+                                        ><label
+                                            t-att-for="'%s-%s-%s' % (question['id'],question['tipo'],respueta_id)"
+                                            data-toggle="popover"
+                                            data-trigger="hover"
+                                            t-att-data-content="respueta['id']"><t t-esc="respueta['respuesta']"/></label></input>
+                    </t>
+                </div>
+                </div>
+                <div class="panel-body" t-if="len(question['respuesta_ids']) > 2">
+                    <t t-foreach="question['respuesta_ids']" t-as="respueta">
+                        <div class="row">
+                            <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                <div class="form-group">
+                                    <input
+                                        t-att-class="'js_respuestaClick idclick_p%s' % (proyecto.id)"
+                                        t-att-proyecto="'%s' % (proyecto.id)"
+                                        t-att-value="respueta['id']"
+                                        t-att-state='respueta["state"]'
+                                        t-att-id="'%s-%s' % (question['id'],respueta['id'])"
+                                        t-att-type="question['tipo']" 
+                                        t-att-name="'%s-%s' % (question['tipo'],question['id'])"
+                                        t-att-mensaje="question['nombre']"
+                                        t-att-checked='respueta["checked"]'
+                                        t-attf-depen="#{dependientes_preguntas(respueta['dependencia_line'],proyecto.id)}"
+                                        t-attf-required="#{'False' if question['dependiente'] else 'required'}"
+                                        data-switch-no-init="True"
+                                        ><label
+                                            t-att-for="'%s-%s-%s' % (question['id'],question['tipo'],respueta_id)"
+                                            data-toggle="popover"
+                                            data-trigger="hover"
+                                            t-att-data-content="respueta['id']"><t t-esc="respueta['respuesta']"/></label></input>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+</template>
+
+<template id="evaluacion_radio" name="Preguntas tipo radio">
+        <div t-attf-class="panel panel-danger js_ubicarPregValoracion #{destino_referencia(question.field_ids,proyecto.id,tr_id)}"
+            style='display:none'
+            t-attf-ref='#{destino_referencia(question.field_ids,proyecto.id,tr_id)}'
+            t-attf-mostrar="#{'No' if question.dependiente else 'Si'}"
+            t-att-id="'pregunta%s-%s' % (question.id,proyecto.id)"
+            t-att-pregunta_id='question.id'>
+            <div class="panel-heading">
+                <b><t t-esc="question.nombre"/></b>
+                <h6><t t-esc="mostrar"/></h6>
+                <div t-if="len(question.respuesta_ids) &lt;= 2">
+                <t t-foreach="question.respuesta_ids" t-as="respueta">
+                            <input
+                                t-att-class="'js_respuestaClick idclick_p%s' % (proyecto.id)"
+                                t-att-proyecto="'%s' % (proyecto.id)"
+                                t-att-value='respueta.id'
+                                t-att-state='respueta.state'
+                                t-att-id="'%s-%s' % (question.id,respueta.id)"
+                                t-att-type="question.tipo" 
+                                t-att-name="'%s-%s' % (question.tipo,question.id)"
+                                t-att-mensaje="question.nombre"
+                                t-attf-depen="#{dependientes_preguntas(respueta.dependencia_line,proyecto.id)}"
+                                t-attf-required="#{'False' if question.dependiente else 'required'}"
+                                data-switch-no-init="True"
+                                ><label
+                                    t-att-for="'%s-%s-%s' % (question.id,question.tipo,respueta_id)"
+                                    data-toggle="popover"
+                                    data-trigger="hover"
+                                    t-att-data-content="respueta['id']"><t t-esc="respueta.respuesta"/></label></input>
+                </t>
+                    </div>
+            </div>
+             <div class="panel-body" t-if="len(question.respuesta_ids)>2">
+                <t t-foreach="question.respuesta_ids" t-as="respueta">
+                    <div class="row">
+                        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                        <div class="form-group">
+                            <input
+                                t-att-class="'js_respuestaClick idclick_p%s' % (proyecto.id)"
+                                t-att-proyecto="'%s' % (proyecto.id)"
+                                t-att-value='respueta.id'
+                                t-att-state='respueta.state'
+                                t-att-id="'%s-%s' % (question.id,respueta.id)"
+                                t-att-type="question.tipo" 
+                                t-att-name="'%s-%s' % (question.tipo,question.id)"
+                                t-att-mensaje="question.nombre"
+                                t-attf-depen="#{dependientes_preguntas(respueta.dependencia_line,proyecto.id)}"
+                                t-attf-required="#{'False' if question.dependiente else 'required'}"
+                                data-switch-no-init="True"
+                                ><label
+                                    t-att-for="'%s-%s-%s' % (question.id,question.tipo,respueta_id)"
+                                    data-toggle="popover"
+                                    data-trigger="hover"
+                                    t-att-data-content="respueta['id']"><t t-esc="respueta.respuesta"/></label></input>
+                        </div>
+                        </div>
+                    </div>
+                </t>
+                    </div>
+<!--
+             <div class="panel-body" t-if="len(question.respuesta_ids) &lt;= 2">
+                <t t-foreach="question.respuesta_ids" t-as="respueta">
+                            <input
+                                t-att-class="'js_respuestaClick idclick_p%s' % (proyecto.id)"
+                                t-att-proyecto="'%s' % (proyecto.id)"
+                                t-att-value='respueta.id'
+                                t-att-state='respueta.state'
+                                t-att-id="'%s-%s' % (question.id,respueta.id)"
+                                t-att-type="question.tipo" 
+                                t-att-name="'%s-%s' % (question.tipo,question.id)"
+                                t-att-mensaje="question.nombre"
+                                t-attf-depen="#{dependientes_preguntas(respueta.dependencia_line,proyecto.id)}"
+                                t-attf-required="#{'False' if question.dependiente else 'required'}"
+                                data-switch-no-init="True"
+                                ><label
+                                    t-att-for="'%s-%s-%s' % (question.id,question.tipo,respueta_id)"
+                                    data-toggle="popover"
+                                    data-trigger="hover"
+                                    t-att-data-content="respueta['id']"><t t-esc="respueta.respuesta"/></label></input>
+                </t>
+                    </div>
+-->
+            </div>
+</template>
+    </data>
+</openerp>
