@@ -8,7 +8,7 @@
     
     <template id="id_template_reporte_ejecucion_qweb">
             <t t-foreach="docs" t-as="o">
-                <t t-call="jpv_valoracion.external_layout_jpv">
+                <t t-call="report.external_layout">
                     <link rel="stylesheet" type="text/css" href="/jpv_valoracion/static/src/css/jpv_val_reporte.css"/>
                 <div class="page">
                     <div class="row">
@@ -261,7 +261,7 @@
     
     <template id="id_template_reporte_ejecucion_qweb_website">
             <t t-foreach="data['rendicion_data']" t-as="o">
-                <t t-call="jpv_valoracion.external_layout_jpv">
+                <t t-call="report.external_layout">
                 <div class="page">
                     <div class="row">
                         <h2>
