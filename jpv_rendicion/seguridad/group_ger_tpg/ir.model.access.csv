@@ -1,6 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_ept_rnd_rendicion_gtpg,ept_rnd.rendicion,model_ept_rnd_rendicion,ept_usuarios.group_ger_tpg,1,0,0,0
-access_ept_rnd_avance_gtpg,ept_rnd.avance,model_ept_rnd_avance,ept_usuarios.group_ger_tpg,1,0,0,0
-access_ept_rnd_input_line_gtpg,ept_rnd.input_line,model_ept_rnd_input_line,ept_usuarios.group_ger_tpg,1,0,0,0
-access_ept_rnd_cancelacion_proyecto_gtpg,ept_rnd.cancelacion_proyecto,model_ept_rnd_cancelacion_proyecto,ept_usuarios.group_ger_tpg,1,0,0,0
-access_ept_rnd_tiempo_validez_gtpg,ept_rnd.tiempo_validez,model_ept_rnd_tiempo_validez,ept_usuarios.group_ger_tpg,1,0,0,0
+access_jpv_rnd_rendicion_gtpg,jpv_rnd.rendicion,model_jpv_rnd_rendicion,jpv_usuarios.group_ger_tpg,1,0,0,0
+access_jpv_rnd_avance_gtpg,jpv_rnd.avance,model_jpv_rnd_avance,jpv_usuarios.group_ger_tpg,1,0,0,0
+access_jpv_rnd_input_line_gtpg,jpv_rnd.input_line,model_jpv_rnd_input_line,jpv_usuarios.group_ger_tpg,1,0,0,0
+access_jpv_rnd_cancelacion_proyecto_gtpg,jpv_rnd.cancelacion_proyecto,model_jpv_rnd_cancelacion_proyecto,jpv_usuarios.group_ger_tpg,1,0,0,0
+access_jpv_rnd_tiempo_validez_gtpg,jpv_rnd.tiempo_validez,model_jpv_rnd_tiempo_validez,jpv_usuarios.group_ger_tpg,1,0,0,0
