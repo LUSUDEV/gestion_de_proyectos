@@ -34,11 +34,11 @@
                 <div> 
                 <t t-foreach="carga_proyecto_data" t-as="proyectos">
                     <a href="/proyecto/crear">
-                        <button type="button"  t-attf-class="btn btn-info glyphicon glyphicon-folder-open" > Crear</button>
+                        <button type="button"  t-attf-class="btn btn-info glyphicon glyphicon-folder-open #{ocultar_boton_crear(proyectos.partner_id)}" > Crear</button>
                     </a>
                     <t t-if="proyectos['state'] in ['aprobado','carga','diferido']">
                         <a t-att-href="'/proyecto/editar/%s' % (carga_proyecto_data['id'])">
-                            <button type="button"  t-attf-class="btn btn-info glyphicon glyphicon-folder-open" > Editar</button>
+                            <button type="button"  t-attf-class="btn btn-info glyphicon glyphicon-folder-open #{ocultar_boton_editar(proyectos.partner_id,proyectos.ciclo_id,proyectos.state,proyectos.id)}" > Editar</button>
                         </a>    
                     </t>
                     <t t-if="proyectos['state'] in ['carga','diferido']">

@@ -1181,10 +1181,10 @@ class jpv_cp_carga_proyecto(osv.osv):
                     'empleo_direct_total':empleo_direct_total,
                     'empleo_indirect_total':empleo_indirect_total,
                     'state':status,
-                    #~ 'valCoordenadas':valCoordenadas,
-                    #~ 'valGeneral':valGeneral,
-                    #~ 'AsigValCoordenadas':AsigValCoordenadas,
-                    #~ 'AsigValGeneral':AsigValGeneral,
+                    'valCoordenadas':valCoordenadas,
+                    'valGeneral':valGeneral,
+                    'AsigValCoordenadas':AsigValCoordenadas,
+                    'AsigValGeneral':AsigValGeneral,
                     
                     })
         modificar=super(jpv_cp_carga_proyecto, self).write(cr, uid, ids,vals,context=context) 
