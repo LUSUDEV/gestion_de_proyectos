@@ -23,8 +23,9 @@
 template para  listar los proyectos creados
 -->
         <template id="jpv_carga_proyectos.proyecto_template" name="Template para listar los proyectos">
+            
             <a href="/proyecto/crear">
-                <button type="button"  t-attf-class="btn btn-info glyphicon glyphicon-folder-open "> Crear</button>
+                <button type="button"  t-attf-class="btn btn-info glyphicon glyphicon-folder-open #{ocultar_boton_crear(partner_id)}"> Crear</button>
             </a>
             <br/>
             <br/>

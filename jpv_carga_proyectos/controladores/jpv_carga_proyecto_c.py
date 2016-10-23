@@ -27,6 +27,39 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
         ids = objeto.search(cr,SUPERUSER_ID,parametro,context=context)
         data = objeto.browse(cr,SUPERUSER_ID,ids,context=context)
         return data
+    
+    def ocultar_boton_crear(self,partner_id):
+        registry = http.request.registry
+        cr=http.request.cr
+        uid=http.request.uid
+        context = http.request.context
+        hoy=date.today()
+        format="%Y"
+        periodos_obj = registry.get('jpv_plf.periodos')
+        anio=hoy.strftime(format)
+        actividad="CARGA DE PROYECTOS"
+        carga=periodos_obj.plf_control_actividades(cr, uid, [],int(partner_id),actividad,None,anio)
+        if 'periodo' in carga.keys():
+            return ''
+        else:
+            return 'hidden'
+    
+    def ocultar_boton_editar(self,partner_id,ciclo,state,proyecto_id):
+        registry = http.request.registry
+        cr=http.request.cr
+        uid=http.request.uid
+        context = http.request.context
+        periodos_obj = registry.get('jpv_plf.periodos')
+        actividad="REPARACIÓN DE PROYECTOS"
+        entidades_data=self.instanciar_objetos('jpv_ent.entidades',[('parent_id','=',int(partner_id)),])
+        list_user=[]
+        for usuario in entidades_data['user_ids']:
+            if usuario.id==uid:
+                list_user.append(usuario.id)
+        if len(list_user)==0:
+            hidden='hidden'
+            return hidden
+        
             
     @http.route(['/proyecto'], 
             type='http', auth="user", website=True)
@@ -61,7 +94,6 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
                 monto_proyecto=str(monto_proyecto).replace('.',',')
                 dict_montos[id_proyecto.id]=monto_proyecto
             partner=int(entidades_data['parent_id'])
-
             datos={'parametros':{
                             'titulo':'Proyectos '+entidades_data['name'],
                             'template':'jpv_carga_proyectos.proyecto_template',
@@ -70,6 +102,7 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
                             'proyectos_ids':proyectos_ids,
                             'dict_montos':dict_montos,
                             'partner_id':partner,
+                            'ocultar_boton_crear':self.ocultar_boton_crear,
                             }
             return panel.panel_lista(datos)
             
@@ -292,6 +325,8 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
                                 'partner':str(partner),
                                 'carga_proyecto_data':carga_proyecto_data,
                                 'dict_montos':dict_montos,
+                                'ocultar_boton_crear':self.ocultar_boton_crear,
+                                'ocultar_boton_editar':self.ocultar_boton_editar,
                                     }
                 return panel.panel_post(datos)
             else:
