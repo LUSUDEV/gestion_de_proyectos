@@ -70,18 +70,30 @@ class rendicion(http.Controller):
         context = http.request.context
         hoy=date.today()
         format="%Y"
-        periodos_obj = registry['jpv_plf.periodos']
+        periodos_obj = registry.get('jpv_plf.periodos')
         anio=hoy.strftime(format)
         actividad="CARGA DE PROYECTOS"
-        entidades_data=self.instanciar_objetos('jpv_ent.entidades',None,[('parent_id','=',int(partner_id))])
         carga=periodos_obj.plf_control_actividades(cr, uid, [],int(partner_id),actividad,None,anio)
         if 'periodo' in carga.keys():
-            if entidades_data['cargar_proyectos']==True:
-                return ''
-            else:
-                return 'hidden'
+            return ''
         else:
             return 'hidden'
+
+    def ocultar_boton_editar(self,partner_id,ciclo,state,proyecto_id):
+        registry = http.request.registry
+        cr=http.request.cr
+        uid=http.request.uid
+        context = http.request.context
+        periodos_obj = registry.get('jpv_plf.periodos')
+        actividad="REPARACIÓN DE PROYECTOS"
+        entidades_data=self.instanciar_objetos('jpv_ent.entidades',[('parent_id','=',int(partner_id)),])
+        list_user=[]
+        for usuario in entidades_data['user_ids']:
+            if usuario.id==uid:
+                list_user.append(usuario.id)
+        if len(list_user)==0:
+            hidden='hidden'
+            return hidden
     
     def formato_montos_get(self, monto):
         monto='{:,.2f}'.format(monto)

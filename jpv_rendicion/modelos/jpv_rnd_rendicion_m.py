@@ -253,8 +253,7 @@ class jpv_rnd_rendicion(osv.osv):
                                                                     'jpv_cp.carga_proyecto',rendicion_data.proyecto_id.id,
                                                                     rendicion_data.proyecto_id.periodo_id.id,
                                                                     rendicion_data.entidad_id.id,
-                                                                    rendicion_data.proyecto_id.proyect_mantenimiento,
-                                                                    rendicion_data.proyecto_id.monto_proyecto)
+                                                                    )
                 if rendicion_data.proyecto_id.proyect_mantenimiento:
                     if reverso_culminacion['monto_disponible_mantenimiento_egreso']>disp_mantenimiento_entidad[0]['monto_disp_mantenimiento']:
                         raise osv.except_osv(
