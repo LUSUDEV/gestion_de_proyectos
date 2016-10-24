@@ -20,7 +20,7 @@
 ##############################################################################
 
 {
-    'name': "Gestión Comunicaciones Oficiales - Sifipro",
+    'name': "10) Gestión Comunicaciones Oficiales - Sifipro",
     'summary': "Sistema de Financiamiento de Proyectos ",
     'description': """
 """,

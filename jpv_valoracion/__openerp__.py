@@ -24,7 +24,7 @@
 ##############################################################################
 
 {
-    'name': "Valoracion de Proyectos - Sistema para la carga, valoración y rendición de proyectos",
+    'name': "7) Valoracion de Proyectos - Sistema para la carga, valoración y rendición de proyectos",
     'summary': "Con este módulo se valoran los proyectos",
     'description': """
 """,
