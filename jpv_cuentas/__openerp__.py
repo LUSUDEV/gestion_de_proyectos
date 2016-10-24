@@ -24,7 +24,7 @@
 ##############################################################################
 
 {
-    'name': 'Registro de Cuentas y tipos de cuenta - Sistema para la carga, valoración y rendición de proyectos',
+    'name': '4) Registro de Cuentas y tipos de cuenta - Sistema para la carga, valoración y rendición de proyectos',
     'version': '1.0',
     'depends': ['base_setup','jpv_entidades','jpv_planificacion'],
     'author': 'Jueventud Productiva Bicentenaria (Víctor Davila)',

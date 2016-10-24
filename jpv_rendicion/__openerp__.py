@@ -24,7 +24,7 @@
 ##############################################################################
 
 {
-    'name': 'JPV Rendicion - Sistema de Plan de Inversión',
+    'name': '8) JPV Rendicion - Sistema de Plan de Inversión',
     'version': '1.0',
     'depends': ['base','base_setup','jpv_cuentas','jpv_conf_preguntas'],
     'author': 'Jueventud Productiva Bicentenaria (Jose Daniel Mancilla)',
