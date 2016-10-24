@@ -254,16 +254,6 @@ class jpv_rnd_rendicion(osv.osv):
                                                                     rendicion_data.proyecto_id.periodo_id.id,
                                                                     rendicion_data.entidad_id.id,
                                                                     )
-                if rendicion_data.proyecto_id.proyect_mantenimiento:
-                    if reverso_culminacion['monto_disponible_mantenimiento_egreso']>disp_mantenimiento_entidad[0]['monto_disp_mantenimiento']:
-                        raise osv.except_osv(
-                                            ('Error!'),
-                                            (u'No puede realizar reverso.\n'\
-                                            'No dispone de monto de mantenimiento suficiente'))
-                    monto_rest_mant=rendicion_data.proyecto_id.monto_tomado_mantenimiento + reverso_culminacion['monto_disponible_mantenimiento_egreso']
-                    self.pool.get('jpv_cp.carga_proyecto').write(cr,SUPERUSER_ID,
-                                                    rendicion_data.proyecto_id.id,
-                                                    {'monto_tomado_mantenimiento':monto_rest_mant})
                 lista_movimientos.append(reverso_culminacion['movimiento_id_egreso'])
                 write_mov_ids=self.write(cr,uid,rendicion_data.id,{'movimiento_ids':[6,False,[lista_movimientos]]})
             self.pool.get('jpv_cp.carga_proyecto').write(cr,SUPERUSER_ID,
