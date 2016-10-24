@@ -58,7 +58,7 @@
                                 help="Correo Electronico de la Entidad"
                                 />
                         <field  name="website" 
-                                placeholder="Por ejemplo: www.cfg.gob.ve"
+                                placeholder="Por ejemplo: www.proyectos.gob.ve"
                                 help="Pagina web de la Entidad"
                                 />
                         <field  name="phone" 

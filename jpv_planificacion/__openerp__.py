@@ -20,7 +20,7 @@
 ##############################################################################
 
 {
-    'name': 'CFG Planificación  de las Entidades - Sistema para la carga, valoración y rendición de proyectos',
+    'name': '3) CFG Planificación  de las Entidades - Sistema para la carga, valoración y rendición de proyectos',
     'version': '1.0',
     'depends': ['base_setup','jpv_entidades'], 
     'author': 'Jueventud Productiva Bicentenaria',
