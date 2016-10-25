@@ -703,14 +703,5 @@ class jpv_ent_entidades(osv.osv):
     def write(self, vals):
         vals['editar']=False
         entidad_id = super(jpv_ent_entidades, self).write(vals)
-        if(vals.has_key('image1')):
-            movil_users_obj=self.pool('jpv_movil.movil_users')
-            movil_users_ids=movil_users_obj.search(self.env.cr,SUPERUSER_ID,[('entidad','=',self.parent_id.id)])
-            if movil_users_ids:
-                vals_movil={
-                'image':movil_users_obj.reducir_imagen(vals['image1']),
-                'logo':False
-                }
-                movil_users_obj.write(self.env.cr,SUPERUSER_ID,[movil_users_ids[0]],vals_movil)
         return entidad_id
             
