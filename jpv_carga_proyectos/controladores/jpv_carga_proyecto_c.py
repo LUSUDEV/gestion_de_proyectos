@@ -107,8 +107,8 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
             return panel.panel_lista(datos)
             
         mensaje={
-                    'titulo':'Sin jpv',
-                    'mensaje':'''Disculpe NO esta asociado a ninguna jpv,
+                    'titulo':'Sin Entidad',
+                    'mensaje':'''Disculpe NO esta asociado a ninguna Entidad,
                                 Comuníquese con el administrador del sistema''',
                     'volver':'/'
                 }
