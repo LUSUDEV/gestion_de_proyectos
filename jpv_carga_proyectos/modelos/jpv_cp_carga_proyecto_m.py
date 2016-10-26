@@ -1064,10 +1064,10 @@ class jpv_cp_carga_proyecto(osv.osv):
                                     (u'El monto a registrar para el proyecto debe ser mayor a 0.00.'))
             for datos in proyecto_datos:
                 entidad_name=datos.partner_id.name
-                #~ valCoordenadas=datos.valCoordenadas
-                #~ valGeneral=datos.valGeneral
-                #~ AsigValCoordenadas=datos.AsigValCoordenadas
-                #~ AsigValGeneral=datos.AsigValGeneral
+                valCoordenadas=datos.valCoordenadas
+                valGeneral=datos.valGeneral
+                AsigValCoordenadas=datos.AsigValCoordenadas
+                AsigValGeneral=datos.AsigValGeneral
                 if datos.state=='aprobado' or datos.state=='diferido':
                     if len(vals)>0:
                         if vals.keys()[0]!='monto_proyecto':

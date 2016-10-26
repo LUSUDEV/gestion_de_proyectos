@@ -77,7 +77,7 @@ class jpv_plf_periodos(osv.osv):
                         get_select_porcentaje(0,105,5),
                         'Porcentaje de Mantenimiento',
                         size=3,
-                        required=True,
+                        required=False,
                         help="""Aqui se coloca el porcentaje de mantenimiento"""),
          'active':fields.boolean(
                     'Activo',
