@@ -426,7 +426,7 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
             
             partner=int(entidades_data['parent_id'])
             
-            cuenta_data=self.instanciar_objetos('jpv.cuentas',[('tipo_cuenta_id.name','=','PLAN DE INVERSIÓN'),('partner_id','=',int(partner))])
+            cuenta_data=self.instanciar_objetos('jpv.cuentas',[('tipo_cuenta_id.name','=','CUENTA'),('partner_id','=',int(partner))])
             
             equipos_data=self.instanciar_objetos('jpv_cp.equipos_config',[])
             
@@ -576,7 +576,7 @@ class jpv_cp_carga_proyecto_controlador(http.Controller):
             categ_subca_data=self.instanciar_objetos('jpv_cp.tipo_sectores',[])
             
             partner_data=self.instanciar_objetos('res.partner',[('id','=',int(entidades_data['parent_id']))])
-            cuenta_data=self.instanciar_objetos('jpv.cuentas',[('tipo_cuenta_id.name','=','PLAN DE INVERSIÓN'),('partner_id','=',int(partner_data['id']))])
+            cuenta_data=self.instanciar_objetos('jpv.cuentas',[('tipo_cuenta_id.name','=','CUENTA'),('partner_id','=',int(partner_data['id']))])
             
             equipos_data=self.instanciar_objetos('jpv_cp.equipos_config',[])
 
