@@ -24,9 +24,9 @@
 
 {
 
-    'name': 'Carga de proyectos - Sistema para la carga, valoración y rendición de proyectos', 
+    'name': '6) Carga de proyectos - Sistema para la carga, valoración y rendición de proyectos', 
     'version': '1.0',
-    'depends': ['base_setup','jpv_usuarios','jpv_entidades','jpv_cuentas','jpv_planificacion'],
+    'depends': ['base_setup','jpv_usuarios','jpv_entidades','jpv_cuentas','jpv_planificacion','jpv_planificacion'],
     'author': 'Juventud Productiva Bicentenaria',
     'category': '',
     'description': """

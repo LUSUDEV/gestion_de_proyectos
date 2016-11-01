@@ -5,7 +5,7 @@ $(document).ready(function () {
   var lista_proyectos;
 
 	if ($('#proyectos_completos').length){
-    datos={'page_limit':1,
+    datos={'page_limit':30,
             'num':0,
             'fin':0,
             'cantidad_proyectos':0,

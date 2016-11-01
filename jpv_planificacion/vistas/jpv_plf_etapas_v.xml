@@ -14,6 +14,7 @@
                 <form string="Ciclos">
                      <header>
                         <button name="plf_activar_etapa" string="Activar"  type="object" states="inactivo" class="oe_highlight" groups="jpv_usuarios.group_jun_dir,jpv_usuarios.group_ger_tpg"/>
+                        <button name="plf_cambiar_estatus_carga_valoracion" string="Cambio a Valoración"  type="object" states="" class="oe_highlight" groups="jpv_usuarios.group_jun_dir,jpv_usuarios.group_ger_tpg"/>
                         <button name="plf_desactivar_etapa" string="Desactivar"  type="object" states="activo" class="oe_highlight" groups="jpv_usuarios.group_jun_dir"/>
                         <field name="state" widget="statusbar" statusbar_visible="inactivo,activo" />
                     </header>

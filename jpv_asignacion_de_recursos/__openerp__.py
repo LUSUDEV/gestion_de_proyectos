@@ -24,7 +24,7 @@
 ##############################################################################
 
 {
-    'name': 'Asignación de Recursos - Sistema para la carga, valoración y rendición de proyectos',
+    'name': '5) Asignación de Recursos - Sistema para la carga, valoración y rendición de proyectos',
     'version': '1.0',
     'depends': ['base','base_setup','jpv_cuentas'],
     'author': 'Jueventud Productiva Bicentenaria (Jose Daniel Mancilla)',

@@ -111,6 +111,19 @@ class jpv_plf_etapas(osv.osv):
         'active':True,
         'state':'inactivo'
             }
+    
+    def plf_cambiar_estatus_carga_valoracion(self, cr, uid, ids, context=None):
+        for c in self.browse(cr,uid,ids):
+            carga_proyecto_objeto=self.pool.get('jpv_cp.carga_proyecto')
+            carga_proyecto_ids=carga_proyecto_objeto.search(cr,uid,[('ciclo_id','=',c.id),('state','=','carga')])
+            carga_proyecto_objeto.write(cr,uid,carga_proyecto_ids,{'state':'evaluacion'},modificacion_interna=0)
+            for ids_proyecto in carga_proyecto_ids:
+                cp_historial_obj=self.pool.get('jpv_cp.historial_proyecto')
+                mensaje={
+                    'descripcion':'Su proyecto se encuentra en el proceso de Valoración',
+                    'proyecto_id':ids_proyecto,
+                    }
+                cp_historial_obj.create(cr,uid,mensaje)
             
     
     def plf_activar_etapa(self, cr, uid, ids, context=None):

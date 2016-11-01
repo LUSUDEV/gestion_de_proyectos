@@ -104,11 +104,11 @@ class jpv_plf_actividad_etapas(osv.osv):
     def plf_tipo_planificacion_id(self, cr, uid, ids, fecha_inicio,
                                     fecha_fin, context=None):
         if not fecha_inicio:
-            raise osv.excjpv_osv(('Fechas de la etapa no definida!'), 
+            raise osv.except_osv(('Fechas de la etapa no definida!'), 
                                 ('Seleccione una fecha inicial y una\
                                  fecha final.'))
         if not fecha_fin:
-            raise osv.excjpv_osv(('Fechas de la etapa no definida!'), 
+            raise osv.except_osv(('Fechas de la etapa no definida!'), 
                                 ('Seleccione una fecha inicial y una\
                                  fecha final.'))
         return True

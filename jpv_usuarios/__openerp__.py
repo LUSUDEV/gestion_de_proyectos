@@ -20,7 +20,7 @@
 ##############################################################################
 
 {
-    'name': "CFG Usuarios, Perfiles - Sistema para la carga, valoración y rendición de proyectos",
+    'name': "1) CFG Usuarios, Perfiles - Sistema para la carga, valoración y rendición de proyectos",
     'summary': "",
     'description': """
 """,

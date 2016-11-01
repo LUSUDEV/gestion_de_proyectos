@@ -58,7 +58,7 @@
           <img class="first-slide" src="/jpv_index/static/src/imagenes/slider/a1.png" alt="Bienvenida"/>
           <div class="container">
             <div class="carousel-caption">
-              <center><h1>Bienvenidos al Sistema de Gestión del Consejo Federal Gobierno<br/>Fondo de Compensación Interterritorial</h1></center>
+              <center><h1>Bienvenidos al Sistema de Gestión de Proyectos</h1></center>
             </div>
           </div>
         </div>
@@ -66,7 +66,7 @@
           <img class="second-slide" src="/jpv_index/static/src/imagenes/slider/a2.png" alt="Segunda Informacio"/>
           <div class="container">
             <div class="carousel-caption">
-              <h3 class="text-center">El Consejo Federal de Gobierno, es el órgano encargado de la planificación y coordinación de políticas y acciones para el desarrollo del proceso de descentralización y transferencia de competencias del Poder Nacional a los estados y municipios.</h3>
+              <h3 class="text-center"></h3>
             </div>
           </div>
         </div>
@@ -74,8 +74,7 @@
           <img class="third-slide" src="/jpv_index/static/src/imagenes/slider/a3.png" alt="Tercera Informacio"/>
           <div class="container">
             <div class="carousel-caption">
-              <h3 class="text-center">Estará presidido por el Vicepresidente Ejecutivo o Vicepresidenta Ejecutiva e integrado por los Ministros y Ministras, los Gobernadores y Gobernadoras, un Alcalde o Alcaldesa por cada Estado y 
-                        de la sociedad organizada, de acuerdo con la ley.  </h3>
+              <h3 class="text-center"></h3>
             </div>
           </div>
         </div>
@@ -83,7 +82,7 @@
           <img class="third-slide" src="/jpv_index/static/src/imagenes/slider/a4.png" alt="Tercera Informacio"/>
           <div class="container">
             <div class="carousel-caption">
-              <h3 class="text-center">El Consejo Federal de Gobierno contará con una Secretaría, integrada por el Vicepresidente  Ejecutivo o Vicepresidenta Ejecutiva, dos Ministros o Ministras, tres Gobernadores o Gobernadoras y tres Alcaldes o Alcaldesas.</h3>
+              <h3 class="text-center"></h3>
             </div>
           </div>
         </div>
@@ -91,7 +90,7 @@
           <img class="third-slide" src="/jpv_index/static/src/imagenes/slider/a5.png" alt="Tercera Informacio"/>
           <div class="container">
             <div class="carousel-caption">
-              <h3 class="text-center">Del Consejo Federal de Gobierno dependerá el Fondo de Compensación Interterritorial, destinado al financiamiento de inversiones públicas dirigidas a promover el desarrollo equilibrado de las regiones, la cooperación y complementación de las políticas e iniciativas de desarrollo de las distintas entidades públicas territoriales, y a apoyar especialmente la dotación de obras y servicios esenciales en las regiones y comunidades de menor desarrollo relativo.</h3>
+              <h3 class="text-center"></h3>
             </div>
           </div>
         </div>
@@ -138,7 +137,10 @@
 -->
         </div><!-- /.col-lg-3 -->
         <div class="col-xs-12 col-sm-6 col-md-3" align="center">
+<!--
         <img src="/jpv_index/static/src/imagenes/logo1.png"/> 
+-->
+        <br/><br/><br/><br/><br/>
         <h1>Iniciar Sesión</h1>
           <div class="login-box">
             <div class="login-box-body">

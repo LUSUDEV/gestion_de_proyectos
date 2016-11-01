@@ -24,7 +24,7 @@
 ##############################################################################
 
 {
-    'name': 'Estadisticas - Sistema para la carga, valoración y rendición de proyectos',
+    'name': '12) Estadisticas - Sistema para la carga, valoración y rendición de proyectos',
     'version': '1.0',
     'depends': ['base','base_setup'],
     'author': 'Jueventud Productiva Bicentenaria (Felipe Villamizar)',

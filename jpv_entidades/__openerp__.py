@@ -24,7 +24,7 @@
 ##############################################################################
 
 {
-    'name': 'Entidades - Sistema para la carga, valoración y rendición de proyectos',
+    'name': '2) Entidades - Sistema para la carga, valoración y rendición de proyectos',
     'version': '1.0',
     'depends': ['base','base_setup','jpv_usuarios','web_fields_masks','web_hide_duplicate','users_only_groups'],
     'author': 'Juventud Productiva Bicentenaria ()',

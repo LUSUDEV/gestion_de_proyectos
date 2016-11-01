@@ -26,7 +26,7 @@
                             class="btn btn-danger"
                             form="idform1"
                             data-dismiss="modal" id="editar_proyecto_confirm" >
-                            Acjpvo Editar el proyecto <t t-esc="proyecto['correlativo']"/>
+                            Acepto Editar el proyecto <t t-esc="proyecto['correlativo']"/>
                         </button>
                                 </div>
                                 <div class="modal-footer "><span class="pie"></span><button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button></div>

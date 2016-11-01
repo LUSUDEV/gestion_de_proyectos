@@ -20,7 +20,7 @@
 ##############################################################################
 
 {
-    'name': "Gestion de Cartas- - Sistema para la carga, valoración y rendición de proyectos",
+    'name': "9) Gestion de Cartas- - Sistema para la carga, valoración y rendición de proyectos",
     'summary': "",
     'description': """
 """,
