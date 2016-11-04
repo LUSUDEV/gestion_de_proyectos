@@ -26,6 +26,7 @@ from openerp.osv import fields, osv
 from openerp.http import request
 from datetime import datetime, date, time, timedelta
 from jpv_plf_comunes import *
+from openerp import SUPERUSER_ID
 
 
 class jpv_plf_etapas(osv.osv):
@@ -123,7 +124,7 @@ class jpv_plf_etapas(osv.osv):
                     'descripcion':'Su proyecto se encuentra en el proceso de Valoración',
                     'proyecto_id':ids_proyecto,
                     }
-                cp_historial_obj.create(cr,uid,mensaje)
+                cp_historial_obj.create(cr,SUPERUSER_ID,mensaje)
             
     
     def plf_activar_etapa(self, cr, uid, ids, context=None):
