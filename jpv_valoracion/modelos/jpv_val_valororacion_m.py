@@ -307,6 +307,188 @@ class jpv_cp_carga_proyecto(osv.osv):
         'valCoordenadas':False
         }
     
+    def write(self, cr, uid, ids, vals,modificacion_interna=None,vista_web=None, context=None):
+        if modificacion_interna==None:
+            modificacion_interna=1
+        if vista_web==None:
+            vista_web=0
+        historial=[]
+        cp_historial_obj=self.pool.get('jpv_cp.historial_proyecto')
+        entidades_objeto=self.pool.get('jpv_ent.entidades')
+        cuenta_obj=self.pool.get('jpv.cuentas')
+        vals_modif=vals
+        movimientos_cuentas_objeto=self.pool.get('jpv.movimientos_cuentas')
+        resultado_movimiento={}
+        monto_disponible_manteni=0
+        valores=vals.keys()
+        campos_viejos=[]
+        proyecto_datos=self.browse(cr,uid,ids)
+        for datos in proyecto_datos:
+            monto_actual=cuenta_obj.browse(cr,uid,datos.cuenta_id.id).monto_actual
+            status=datos.state
+        
+        
+        for val in ['correlativo','monto_tomado_mantenimiento','coordenada','editar_migracion','aval_ids',
+                    'avance','total_benef','empleo_direct_total','empleo_indirect_total','foto_id',
+                    'dictamengraph' ,'partner_id','state','aval', 'movimiento_ids', 'historial_ids', 
+                    'duracion_proyec','monto_proyecto','valCoordenadas','valGeneral','AsigValCoordenadas',
+                    'AsigValGeneral','valCoordenadasUre','coordenada','solicitud_cambio','asignado_cemento_val']:
+            if val in valores:
+                valores.remove(val)
+        for campo in valores:
+            campos_viejos.append(proyecto_datos[campo])
+
+        if modificacion_interna==1:
+            if 'monto_proyecto' in vals.keys():
+                if vals['monto_proyecto']<1:
+                    raise osv.except_osv(
+                                    ('Error!'),
+                                    (u'El monto a registrar para el proyecto debe ser mayor a 0.00.'))
+            for datos in proyecto_datos:
+                entidad_name=datos.partner_id.name
+                valCoordenadas=datos.valCoordenadas
+                valGeneral=datos.valGeneral
+                AsigValCoordenadas=datos.AsigValCoordenadas
+                AsigValGeneral=datos.AsigValGeneral
+                if datos.state=='aprobado' or datos.state=='diferido':
+                    if len(vals)>0:
+                        if vals.keys()[0]!='monto_proyecto':
+                            cambio_status=self.cp_cambio_state_evaluacion(cr,uid,ids,vals,datos.periodo_id,datos.ciclo_id,int(datos.partner_id))
+                            if cambio_status==True:
+                                status='carga'
+                                valCoordenadas=False
+                                valGeneral=False
+                                AsigValCoordenadas=False
+                                AsigValGeneral=False
+                            else:
+                                if len(vals)==1:
+                                    if 'aval_ids' in vals.keys():
+                                        status='evaluacion'
+                                        valCoordenadas=False
+                                        valGeneral=False
+                                        AsigValCoordenadas=False
+                                        AsigValGeneral=False
+                                else:
+                                    raise osv.except_osv(
+                                    ('Error!'),
+                                    (u'La actividad de Reparación de Proyectos no esta habilitada para la fecha de hoy.'))
+                accion='Aumento del monto del proyecto'
+                acion2='Reducción del monto del proyecto'
+                descripcion=datos.correlativo
+                if 'monto_proyecto' in vals.keys():
+                    if type(ids)==list:
+                        ids=ids[0]
+                    if float(datos.monto_proyecto)>float(vals['monto_proyecto']):
+                        monto=float(datos.monto_proyecto)-float(vals['monto_proyecto'])
+                        resultado_movimiento=movimientos_cuentas_objeto.movimiento_ingreso(
+                                                            cr,uid,
+                                                            int(datos.cuenta_id),
+                                                            monto,
+                                                            acion2,
+                                                            descripcion,
+                                                            self,
+                                                            ids,
+                                                            int(datos.periodo_id),
+                                                            int(datos.partner_id),
+                                                            )
+                    if float(datos.monto_proyecto)<float(vals['monto_proyecto']):
+                        monto=float(vals['monto_proyecto'])-float(datos.monto_proyecto)
+                        resultado_movimiento=movimientos_cuentas_objeto.movimiento_egreso(
+                                                            cr,uid,
+                                                            int(datos.cuenta_id),
+                                                            monto,
+                                                            accion,
+                                                            descripcion,
+                                                            self,
+                                                            ids,
+                                                            int(datos.periodo_id),
+                                                            int(datos.partner_id),
+                                                            )
+                    descripcion3='Se realizo un cambio en el monto asignado al \
+                                  proyecto de '+str(datos.monto_proyecto)+' a ' \
+                                  +str(vals['monto_proyecto'])
+                    historial.append([0,False,{'descripcion':descripcion3}])
+                total_benef=datos.benef_masculino+datos.benef_femenino
+                if 'benef_masculino' in vals.keys():
+                    total_benef=int(vals['benef_masculino'])+datos.benef_femenino
+                if 'benef_femenino' in vals.keys():
+                    total_benef=int(vals['benef_femenino'])+datos.benef_masculino
+                if 'benef_masculino' in vals.keys() and 'benef_femenino' in vals.keys():
+                    total_benef=int(vals['benef_masculino'])+int(vals['benef_femenino'])
+                empleo_direct_total=datos.empleo_direct_masculino+datos.empleo_direct_femenino
+                if 'empleo_direct_masculino' in vals.keys():
+                    empleo_direct_total=int(vals['empleo_direct_masculino'])+datos.empleo_direct_femenino
+                if 'empleo_direct_femenino' in vals.keys():
+                    empleo_direct_total=int(vals['empleo_direct_femenino'])+datos.empleo_direct_masculino
+                if 'empleo_direct_masculino' in vals.keys() and 'empleo_direct_femenino' in vals.keys():
+                    empleo_direct_total=int(vals['empleo_direct_masculino'])+int(vals['empleo_direct_femenino'])
+                empleo_indirect_total=datos.empleo_indirect_masculino+datos.empleo_indirect_femenino
+                if 'empleo_indirect_masculino' in vals.keys():
+                    empleo_indirect_total=int(vals['empleo_indirect_masculino'])+datos.empleo_indirect_femenino
+                if 'empleo_indirect_femenino' in vals.keys():
+                    empleo_indirect_total=int(vals['empleo_indirect_femenino'])+datos.empleo_indirect_masculino
+                if 'empleo_indirect_masculino' in vals.keys() and 'empleo_indirect_femenino' in vals.keys():
+                    empleo_indirect_total=int(vals['empleo_indirect_masculino'])+int(vals['empleo_indirect_femenino']) 
+                if (datos.state=='aprobado' or datos.state=='diferido') and status=='carga':
+                    mensaje='Su proyecto cambio de '+datos.state+' para Borrador'
+                    mensaje_his={
+                        'descripcion':mensaje,
+                        'proyecto_id':datos.id,
+                        }
+                    cp_historial_obj.create(cr,uid,mensaje_his)
+                if vista_web==0:
+                    duracion=self.cp_validar_fechas_proyecto(cr,uid,datos.id,
+                                                                    datos.fecha_inicio,
+                                                                    datos.fecha_fin,)
+                    if 'fecha_inicio' in vals.keys():
+                        duracion=self.cp_validar_fechas_proyecto(cr,uid,datos.id,
+                                                                vals['fecha_inicio'],
+                                                                    datos.fecha_fin,)
+                    if 'fecha_fin' in vals.keys():
+                        duracion=self.cp_validar_fechas_proyecto(cr,uid,datos.id,
+                                                                    datos.fecha_inicio,
+                                                                    vals['fecha_fin'],)
+                                                                    
+                    if 'fecha_fin' in vals.keys() and 'fecha_inicio' in vals.keys():
+                        duracion=self.cp_validar_fechas_proyecto(cr,uid,datos.id,
+                                                                    vals['fecha_inicio'],
+                                                                    vals['fecha_fin'],)
+                
+                    vals.update({
+                        'duracion_proyec':duracion.values()[0].values()[0],
+                    })
+                vals.update({
+                    'historial_ids':historial,
+                    'total_benef':total_benef,
+                    'empleo_direct_total':empleo_direct_total,
+                    'empleo_indirect_total':empleo_indirect_total,
+                    'state':status,
+                    'valCoordenadas':valCoordenadas,
+                    'valGeneral':valGeneral,
+                    'AsigValCoordenadas':AsigValCoordenadas,
+                    'AsigValGeneral':AsigValGeneral,
+                    
+                    })
+        modificar=super(jpv_cp_carga_proyecto, self).write(cr, uid, ids,vals,context=context) 
+        if type(ids)==list:
+            if len(ids)>0:
+                ids=ids[0]
+            else:
+                ids=0
+        for dato in self.browse(cr,uid,ids):
+            if len(dato.aval_ids)>1:
+                raise osv.except_osv(
+                    ('Alerta!'),
+                    (u'Debe registrar un solo archivo para el aval del proyecto.'))
+            if modificacion_interna==1:
+                if dato.aval==True:
+                    historial_2=self.cp_mensaje_historial_aval(cr, uid,dato.id,dato.aval,dato.aval_ids)
+                    hist={
+                        'descripcion':historial_2[0][2].values()[0],
+                        'proyecto_id':dato.id
+                        }
+        hist_modif=self.cp_historial_modificaciones(cr,uid,ids,vals_modif,campos_viejos,valores)
+        return modificar
         
     
 

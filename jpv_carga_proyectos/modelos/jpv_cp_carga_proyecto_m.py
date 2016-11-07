@@ -524,7 +524,7 @@ class jpv_cp_carga_proyecto(osv.osv):
                                                              int(partner),
                                                                actividad,)
             if periodo_id.keys()[0]!='periodo':
-                raise osv.excjpv_osv(
+                raise osv.except_osv(
                 ('Alerta!'),
                 (u'La carga de proyecto no esta habilitada para la fecha de hoy.'))
             else:
@@ -1059,7 +1059,7 @@ class jpv_cp_carga_proyecto(osv.osv):
         if modificacion_interna==1:
             if 'monto_proyecto' in vals.keys():
                 if vals['monto_proyecto']<1:
-                    raise osv.excjpv_osv(
+                    raise osv.except_osv(
                                     ('Error!'),
                                     (u'El monto a registrar para el proyecto debe ser mayor a 0.00.'))
             for datos in proyecto_datos:
@@ -1087,7 +1087,7 @@ class jpv_cp_carga_proyecto(osv.osv):
                                         AsigValCoordenadas=False
                                         AsigValGeneral=False
                                 else:
-                                    raise osv.excjpv_osv(
+                                    raise osv.except_osv(
                                     ('Error!'),
                                     (u'La actividad de Reparación de Proyectos no esta habilitada para la fecha de hoy.'))
                 accion='Aumento del monto del proyecto'
@@ -1181,10 +1181,10 @@ class jpv_cp_carga_proyecto(osv.osv):
                     'empleo_direct_total':empleo_direct_total,
                     'empleo_indirect_total':empleo_indirect_total,
                     'state':status,
-                    'valCoordenadas':valCoordenadas,
-                    'valGeneral':valGeneral,
-                    'AsigValCoordenadas':AsigValCoordenadas,
-                    'AsigValGeneral':AsigValGeneral,
+                    #~ 'valCoordenadas':valCoordenadas,
+                    #~ 'valGeneral':valGeneral,
+                    #~ 'AsigValCoordenadas':AsigValCoordenadas,
+                    #~ 'AsigValGeneral':AsigValGeneral,
                     
                     })
         modificar=super(jpv_cp_carga_proyecto, self).write(cr, uid, ids,vals,context=context) 
@@ -1195,7 +1195,7 @@ class jpv_cp_carga_proyecto(osv.osv):
                 ids=0
         for dato in self.browse(cr,uid,ids):
             if len(dato.aval_ids)>1:
-                raise osv.excjpv_osv(
+                raise osv.except_osv(
                     ('Alerta!'),
                     (u'Debe registrar un solo archivo para el aval del proyecto.'))
             if modificacion_interna==1:
@@ -1210,7 +1210,7 @@ class jpv_cp_carga_proyecto(osv.osv):
 
     def create(self,cr,uid,vals,context=None):
         if vals['monto_proyecto']<=0.00:
-            raise osv.excjpv_osv(
+            raise osv.except_osv(
             ('Alerta!'),
             (u'El monto a registrar para el proyecto debe ser mayor a 0.00.'))
         vals.update({
