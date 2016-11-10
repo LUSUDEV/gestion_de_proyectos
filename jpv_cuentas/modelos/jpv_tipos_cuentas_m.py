@@ -60,7 +60,7 @@ class jpv_tipo_cuentas(osv.osv):
     def _control_jpv_tipo_field_ids(self, cr, uid, ids, context=None):
         for r in self.browse(cr,uid,ids):
             if not r.jpv_tipo_field_ids:
-                raise osv.excjpv_osv(
+                raise osv.except_osv(
                         ('Error!'),
                         (u'Debe Seleccionar una opción para\
                          quien será creada la cuenta'))
