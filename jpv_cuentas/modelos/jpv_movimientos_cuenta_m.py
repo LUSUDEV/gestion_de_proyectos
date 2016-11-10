@@ -72,7 +72,7 @@ class jpv_movimientos_cuentas(osv.osv):
             cuenta_obj.write(cr, uid, [cuenta_id], {'monto_actual': resultado})
             resultado_devolver['movimiento_id_ingreso']=movimiento_id
         else:
-            raise osv.excjpv_osv(
+            raise osv.except_osv(
                     ('Error!'),
                     (u'El monto Ingresado no puede ser Negativo'\
                      'Verifique o comuniquese con el administrador del sistema.'))
@@ -103,7 +103,7 @@ class jpv_movimientos_cuentas(osv.osv):
         proyecto_data=proyecto_obj.browse(cr,uid,id_rastro)
         if (valor_egreso>0):
             if saldo_datos.monto_saldo<valor_egreso:
-                raise osv.excjpv_osv(
+                raise osv.except_osv(
                         ('Error!'),
                         (u'El monto Ingresado (%s) no puede ser Mayor \
                          al Saldo Disponible (%s)'
@@ -126,7 +126,7 @@ class jpv_movimientos_cuentas(osv.osv):
             cuenta_obj.write(cr, uid, [cuenta_id], {'monto_actual': resultado})
             resultado_devolver['movimiento_id_egreso']=movimiento_id
         else:
-            raise osv.excjpv_osv(
+            raise osv.except_osv(
                     ('Error!'),
                     (u'El monto Ingresado no puede ser Negativo'\
                      'Verifique o comuniquese con el administrador del sistema.'))
@@ -144,7 +144,7 @@ class jpv_movimientos_cuentas(osv.osv):
                             [('partner_id','=',partner_id),
                             ('tipo_cuenta_id','=',tipo_cuenta_id)])
         if not cuenta_ids:
-            raise osv.excjpv_osv(
+            raise osv.except_osv(
                     ('Error!'),
                     (u'La entidad o Institución que esta eligiendo, \
                      no poseé cuenta asociada.'))
@@ -162,7 +162,7 @@ class jpv_movimientos_cuentas(osv.osv):
                             [('partner_id','=',partner_id),
                             ('tipo_cuenta_id','=',tipo_cuenta_id)])
         if not cuenta_ids:
-            raise osv.excjpv_osv(
+            raise osv.except_osv(
                     ('Error!'),
                     (u'La entidad o Institución que esta eligiendo, \
                      no poseé cuenta asociada.'))
